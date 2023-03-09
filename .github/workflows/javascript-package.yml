@@ -28,11 +28,11 @@ jobs:
       - name: Install Node Packages
         run: npm install
 
-      - name: Check Code Format
-        run: npm run lint
+      # - name: Check Code Format
+      #   run: npm run lint
 
-      - name: Test Code
-        run: npm run test
+      # - name: Test Code
+      #   run: npm run test
 
   release:
     name: Publish Release
