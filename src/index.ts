@@ -1,9 +1,11 @@
 // components
 import SayHello from './components/example';
-export {
-  SayHello
-};
 
-// theme
+// other
 import theme from './theme';
-export { theme };
+
+// exports
+export {
+  SayHello,
+  theme
+};
