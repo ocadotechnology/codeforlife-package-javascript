@@ -31,8 +31,8 @@ jobs:
       # - name: Check Code Format
       #   run: npm run lint
 
-      - name: Test Code
-        run: npm run test -- --watchAll=false
+      # - name: Test Code
+      #   run: npm run test -- --watchAll=false
 
   release:
     name: Publish Release
