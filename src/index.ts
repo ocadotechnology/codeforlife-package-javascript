@@ -1,7 +1,7 @@
 // components
 import SayHello from './components/example';
 export {
-    SayHello
+  SayHello
 };
 
 // theme

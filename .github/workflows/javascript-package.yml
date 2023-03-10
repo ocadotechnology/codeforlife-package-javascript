@@ -28,8 +28,8 @@ jobs:
       - name: Install Node Packages
         run: npm install
 
-      # - name: Check Code Format
-      #   run: npm run lint
+      - name: Check Code Format
+        run: npm run lint
       
       # // TODO: https://www.pluralsight.com/guides/how-to-test-react-components-in-typescript
       # - name: Test Code
