@@ -2,6 +2,7 @@ import { PaletteColor } from '@mui/material';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
+// Extend palette to include a third color.
 declare module '@mui/material/styles' {
   interface Palette {
     tertiary: PaletteColor;
