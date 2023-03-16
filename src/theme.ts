@@ -48,7 +48,8 @@ const theme = responsiveFontSizes(createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          width: '100%'
+          width: '100%',
+          backgroundColor: 'white'
         }
       }
     }
