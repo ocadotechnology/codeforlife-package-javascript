@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.0...v1.1.1) (2023-03-16)
+
+
+### Bug Fixes
+
+* image width and export ([74342d5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/74342d590eb862d3480d011b8565bebb899664c7))
+
 # [1.1.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.0.8...v1.1.0) (2023-03-16)
 
 
