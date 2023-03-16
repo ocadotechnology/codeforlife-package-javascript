@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.0.8...v1.1.0) (2023-03-16)
+
+
+### Bug Fixes
+
+* missing import ([a31e6bb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a31e6bb5a085967e99543577496a0bc9dccd2a25))
+
+
+### Features
+
+* image component ([3e75d3b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3e75d3b641de1741cd37c2f5b19cd0afe007d283))
+
 ## [1.0.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.0.7...v1.0.8) (2023-03-10)
 
 
