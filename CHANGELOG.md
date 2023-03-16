@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.2...v1.1.3) (2023-03-16)
+
+
+### Bug Fixes
+
+* add comment ([9fa85c0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9fa85c0e4056641b0897c24ce6e21d93e2bb1183))
+* link ([f15ed2a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f15ed2a0c3b5d9af53e6831a9ccc31c1b6676e31))
+
 ## [1.1.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.1...v1.1.2) (2023-03-16)
 
 
