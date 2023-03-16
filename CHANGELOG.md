@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.1...v1.1.2) (2023-03-16)
+
+
+### Bug Fixes
+
+* theme colors ([fc86953](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fc86953f74449959ab1ceb425a673bd08aa1b743))
+
 ## [1.1.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.0...v1.1.1) (2023-03-16)
 
 
