@@ -52,6 +52,16 @@ const theme = responsiveFontSizes(createTheme({
           backgroundColor: 'white'
         }
       }
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'hover'
+      },
+      styleOverrides: {
+        root: {
+          cursor: 'pointer'
+        }
+      }
     }
   }
 }));
