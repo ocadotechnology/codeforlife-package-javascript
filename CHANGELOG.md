@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.5...v1.1.6) (2023-03-17)
+
+
+### Bug Fixes
+
+* export PropsColorOverrides ([90834b6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/90834b61e32f7734d951be7aef391ea1a5432253))
+
 ## [1.1.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.4...v1.1.5) (2023-03-17)
 
 
