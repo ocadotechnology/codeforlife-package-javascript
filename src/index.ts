@@ -1,10 +1,11 @@
 // other
-import theme from './theme';
+import theme, { PropsColorOverrides } from './theme';
 
 // modules
 export * as components from './components';
 
 // exports
 export {
-  theme
+  theme,
+  type PropsColorOverrides
 };

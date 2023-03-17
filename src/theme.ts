@@ -12,11 +12,12 @@ declare module '@mui/material/styles' {
   interface PaletteOptions extends CustomPaletteColors { }
 }
 
+export interface PropsColorOverrides {
+  tertiary: true;
+  white: true;
+}
+
 declare module '@mui/material' {
-  interface PropsColorOverrides {
-    tertiary: true;
-    white: true;
-  }
   interface ButtonPropsColorOverrides extends PropsColorOverrides { }
 }
 
