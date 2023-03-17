@@ -1,20 +1,23 @@
 import { PaletteColor } from '@mui/material';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { red, common } from '@mui/material/colors';
 
 // Extend palette to include a third color.
 declare module '@mui/material/styles' {
   interface Palette {
     tertiary: PaletteColor;
+    white: PaletteColor;
   }
   interface PaletteOptions {
     tertiary: PaletteColor;
+    white: PaletteColor;
   }
 }
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     tertiary: true;
+    white: true;
   }
 }
 
@@ -31,6 +34,11 @@ const theme = responsiveFontSizes(createTheme({
     tertiary: palette.augmentColor({
       color: {
         main: '#ffd23b'
+      }
+    }),
+    white: palette.augmentColor({
+      color: {
+        main: common.white
       }
     }),
     error: {
