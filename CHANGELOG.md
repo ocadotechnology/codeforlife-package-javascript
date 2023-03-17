@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.3...v1.1.4) (2023-03-17)
+
+
+### Bug Fixes
+
+* add white to color palette ([57d112f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/57d112feca9a1ec0de18ccf5c3217f248f23bca4))
+
 ## [1.1.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.2...v1.1.3) (2023-03-16)
 
 
