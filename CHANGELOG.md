@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.4...v1.1.5) (2023-03-17)
+
+
+### Bug Fixes
+
+* add info color ([20bb47b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/20bb47bfc4a3b074d837ca8545c2e74522a1ab73))
+
 ## [1.1.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.3...v1.1.4) (2023-03-17)
 
 
