@@ -8,7 +8,7 @@ import {
 
 export interface ElevatedAppBarProps {
   props: AppBarProps
-  children: React.ReactElement
+  children: React.ReactNode
 }
 
 const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({ props, children }) => {
