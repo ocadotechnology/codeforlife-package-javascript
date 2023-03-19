@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.1...v1.2.2) (2023-03-19)
+
+
+### Bug Fixes
+
+* use ReactNode ([48f393d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/48f393db02b57ced1f08fabd1d92c565a80b7c3e))
+
 ## [1.2.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.0...v1.2.1) (2023-03-19)
 
 
