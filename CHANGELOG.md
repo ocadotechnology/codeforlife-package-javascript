@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.0...v1.2.1) (2023-03-19)
+
+
+### Bug Fixes
+
+* add toolbar to elevated app bar ([e2c94b5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e2c94b52194d50eba90aec1712bc2d50a0bd6a92))
+
 # [1.2.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.6...v1.2.0) (2023-03-19)
 
 
