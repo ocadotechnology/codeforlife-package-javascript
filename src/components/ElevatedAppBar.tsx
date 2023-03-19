@@ -2,6 +2,7 @@ import React from 'react';
 import {
   AppBar,
   AppBarProps,
+  Toolbar,
   useScrollTrigger
 } from '@mui/material';
 
@@ -17,7 +18,11 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({ props, children }) => {
   });
 
   return React.cloneElement(
-    <AppBar {...props}>{children}</AppBar>,
+    <AppBar {...props}>
+      <Toolbar>
+        {children}
+      </Toolbar>
+    </AppBar>,
     { elevation: trigger ? 4 : 0 }
   );
 };
