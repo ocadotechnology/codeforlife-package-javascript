@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.6...v1.2.0) (2023-03-19)
+
+
+### Features
+
+* elevated app bar ([33efb82](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/33efb829a8b7b89613ce529c463e00cc03df46ce))
+
 ## [1.1.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.1.5...v1.1.6) (2023-03-17)
 
 
