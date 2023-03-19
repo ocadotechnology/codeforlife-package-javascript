@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.2...v1.2.3) (2023-03-19)
+
+
+### Bug Fixes
+
+* extend all prop color overrides ([0cd4416](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/0cd44162b7cf05a954b45f36829dd272839b148b))
+
 ## [1.2.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.1...v1.2.2) (2023-03-19)
 
 
