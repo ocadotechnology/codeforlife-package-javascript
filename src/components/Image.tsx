@@ -19,6 +19,7 @@ const Image: React.FC<ImageProps> = ({
     ...otherProps
   } = boxProps;
 
+  // Override onClick if href provided.
   if (href !== undefined) {
     const navigate = useNavigate();
     onClick = () => navigate(href);
