@@ -24,7 +24,7 @@ const Image: React.FC<ImageProps> = ({
 
   // Override onClick if href provided.
   if (href !== undefined) {
-    style.cursor = 'pointer';
+    style = { ...style, cursor: 'pointer' };
     if (hrefInNewTab) {
       onClick = () => { openInNewTab(href); };
     } else {
