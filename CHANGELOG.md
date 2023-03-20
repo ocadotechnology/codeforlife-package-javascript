@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.9...v1.2.10) (2023-03-20)
+
+
+### Bug Fixes
+
+* add grid flex center ([62cc8ee](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/62cc8eeaab6fed702ff3881f0cd4f90bae36acc2))
+
 ## [1.2.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.8...v1.2.9) (2023-03-20)
 
 
