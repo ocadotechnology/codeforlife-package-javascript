@@ -1,3 +1,11 @@
+## [1.2.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.3...v1.2.4) (2023-03-20)
+
+
+### Bug Fixes
+
+* add href to Image ([e8da1ec](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e8da1ec1fad9d91dd0b8c9a3d3c6926a2724e782))
+* code format ([32038eb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/32038ebd404ecfa7fc7ab9a45c716753e4097fe1))
+
 ## [1.2.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.2...v1.2.3) (2023-03-19)
 
 

@@ -3,6 +3,7 @@ import { BoxProps } from '@mui/material';
 export interface ImageProps {
     alt: string;
     src: string;
+    href?: string;
     boxProps?: BoxProps;
 }
 declare const Image: React.FC<ImageProps>;
