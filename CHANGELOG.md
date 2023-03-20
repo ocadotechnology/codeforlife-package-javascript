@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.8...v1.2.9) (2023-03-20)
+
+
+### Bug Fixes
+
+* add primary light ([9d8fedd](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9d8feddc061e399445364c88e165d19e7d5ebb12))
+
 ## [1.2.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.7...v1.2.8) (2023-03-20)
 
 
