@@ -22,7 +22,7 @@ const Image: React.FC<ImageProps> = ({
   // Override onClick if href provided.
   if (href !== undefined) {
     const navigate = useNavigate();
-    onClick = () => navigate(href);
+    onClick = () => { navigate(href); };
     style.cursor = 'pointer';
   }
 
