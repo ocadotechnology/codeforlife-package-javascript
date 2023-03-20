@@ -23,7 +23,10 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({ props, children }) => {
         {children}
       </Toolbar>
     </AppBar>,
-    { elevation: trigger ? 4 : 0 }
+    {
+      elevation: trigger ? 4 : 0,
+      position: trigger ? 'fixed' : 'sticky'
+    }
   );
 };
 
