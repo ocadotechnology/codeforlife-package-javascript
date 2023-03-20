@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.7...v1.2.8) (2023-03-20)
+
+
+### Bug Fixes
+
+* app bar position ([a4796fe](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a4796fe164602c01538463a133a801156edfa5fc))
+
 ## [1.2.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.6...v1.2.7) (2023-03-20)
 
 
