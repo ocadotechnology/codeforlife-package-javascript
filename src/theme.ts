@@ -78,6 +78,15 @@ const theme = responsiveFontSizes(createTheme({
     MuiGrid2: {
       defaultProps: {
         disableEqualOverflow: true
+      },
+      styleOverrides: {
+        root: {
+          '&.flex-center': {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }
+        }
       }
     },
     MuiButton: {
