@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.6...v1.2.7) (2023-03-20)
+
+
+### Bug Fixes
+
+* treat props as immutable ([dd1ea3e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dd1ea3e66704151dc0517ac5febf3642be376b30))
+
 ## [1.2.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.5...v1.2.6) (2023-03-20)
 
 
