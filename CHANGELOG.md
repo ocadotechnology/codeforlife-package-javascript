@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.5...v1.2.6) (2023-03-20)
+
+
+### Bug Fixes
+
+* support opening image href in new tab ([6c5a931](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6c5a931b9c9e3982691d63604718fd03413f779f))
+
 ## [1.2.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.4...v1.2.5) (2023-03-20)
 
 
