@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.4...v1.2.5) (2023-03-20)
+
+
+### Bug Fixes
+
+* new helper to open link in new tab ([67c3482](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/67c34824664861259313cdd1ba6d569fe4318498))
+
 ## [1.2.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.3...v1.2.4) (2023-03-20)
 
 
