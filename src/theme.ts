@@ -80,13 +80,13 @@ const theme = responsiveFontSizes(createTheme({
         disableEqualOverflow: true
       },
       styleOverrides: {
-        root: {
-          '&.flex-center': {
+        root: ({ ownerState }) => ({
+          ...(ownerState.className === 'flex-center' && {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
-          }
-        }
+          })
+        })
       }
     },
     MuiButton: {
