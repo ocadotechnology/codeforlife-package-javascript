@@ -7,6 +7,7 @@ declare module '@mui/material/styles' {
   interface CustomPaletteColors {
     tertiary: PaletteColor;
     white: PaletteColor;
+    black: PaletteColor;
   }
   interface Palette extends CustomPaletteColors { }
   interface PaletteOptions extends CustomPaletteColors { }
@@ -15,6 +16,7 @@ declare module '@mui/material/styles' {
 export interface PropsColorOverrides {
   tertiary: true;
   white: true;
+  black: true;
 }
 
 declare module '@mui/material' {
@@ -65,6 +67,11 @@ const theme = responsiveFontSizes(createTheme({
     white: palette.augmentColor({
       color: {
         main: common.white
+      }
+    }),
+    black: palette.augmentColor({
+      color: {
+        main: common.black
       }
     }),
     info: {
