@@ -3,6 +3,7 @@ declare module '@mui/material/styles' {
     interface CustomPaletteColors {
         tertiary: PaletteColor;
         white: PaletteColor;
+        black: PaletteColor;
     }
     interface Palette extends CustomPaletteColors {
     }
@@ -12,6 +13,7 @@ declare module '@mui/material/styles' {
 export interface PropsColorOverrides {
     tertiary: true;
     white: true;
+    black: true;
 }
 declare module '@mui/material' {
     interface FabPropsColorOverrides extends PropsColorOverrides {

@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.1...v1.3.2) (2023-03-22)
+
+
+### Bug Fixes
+
+* add black color to palette ([5871c0d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5871c0df4303858ae1f6ea61fecefd4129454c7c))
+
 ## [1.3.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.0...v1.3.1) (2023-03-22)
 
 
