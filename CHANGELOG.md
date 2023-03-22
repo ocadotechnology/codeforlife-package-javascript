@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.10...v1.2.11) (2023-03-22)
+
+
+### Bug Fixes
+
+* remove experimental sx property ([833cd99](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/833cd994a2386ca7e81e6cd411b8c1d21821ea40))
+
 ## [1.2.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.9...v1.2.10) (2023-03-20)
 
 
