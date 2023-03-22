@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.0...v1.3.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* optional pl property ([bfa6e9c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bfa6e9cfbde72ebfbd507acf6b1d8d6da043c6f5))
+
 # [1.3.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.11...v1.3.0) (2023-03-22)
 
 
