@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.11...v1.3.0) (2023-03-22)
+
+
+### Features
+
+* add itemized list component ([baa4c43](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/baa4c439744f8d4f460872a0212de8d99b858b9d))
+
 ## [1.2.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.2.10...v1.2.11) (2023-03-22)
 
 
