@@ -29,7 +29,7 @@ export interface ItemizedListProps {
     'circle'
   )
   listProps?: ListProps
-  pl: number
+  pl?: number
   children: ListItemElement | ListItemElement[]
 }
 
