@@ -1,3 +1,4 @@
 import ElevatedAppBar, { ElevatedAppBarProps } from './ElevatedAppBar';
 import Image, { ImageProps } from './Image';
-export { ElevatedAppBar, type ElevatedAppBarProps, Image, type ImageProps };
+import ItemizedList, { ItemizedListProps } from './ItemizedList';
+export { ElevatedAppBar, type ElevatedAppBarProps, Image, type ImageProps, ItemizedList, type ItemizedListProps };
