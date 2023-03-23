@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.2...v1.3.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* allow for text items ([e86c1dc](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e86c1dc36548507c748c787ea5116b555d30fd5a))
+
 ## [1.3.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.1...v1.3.2) (2023-03-22)
 
 

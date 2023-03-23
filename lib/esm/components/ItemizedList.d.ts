@@ -1,6 +1,6 @@
 import React from 'react';
-import { ListProps, ListItem } from '@mui/material';
-type ListItemElement = React.ReactElement<typeof ListItem>;
+import { ListProps, ListItem, ListItemText } from '@mui/material';
+type ListItemElement = React.ReactElement<typeof ListItem | typeof ListItemText>;
 export interface ItemizedListProps {
     styleType: ('unset' | 'initial' | 'inherit' | 'upper-roman' | 'upper-latin' | 'upper-alpha' | 'square' | 'none' | 'lower-roman' | 'lower-latin' | 'lower-greek' | 'lower-alpha' | 'georgian' | 'disc' | 'decimal-leading-zero' | 'decimal' | 'armenian' | 'circle');
     listProps?: ListProps;
