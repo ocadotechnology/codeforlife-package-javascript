@@ -2,10 +2,11 @@ import React from 'react';
 import {
   List,
   ListProps,
-  ListItem
+  ListItem,
+  ListItemText
 } from '@mui/material';
 
-type ListItemElement = React.ReactElement<typeof ListItem>;
+type ListItemElement = React.ReactElement<typeof ListItem | typeof ListItemText>;
 
 export interface ItemizedListProps {
   styleType: (
@@ -37,15 +38,15 @@ const ItemizedList: React.FC<ItemizedListProps> = ({
   styleType, listProps = {}, pl = 4, children
 }) => {
   const { sx, ...otherProps } = listProps;
+  const listItemProps = { display: 'list-item' };
 
   return (
     <List
       sx={{
         listStyleType: styleType,
         pl,
-        '.MuiListItem-root': {
-          display: 'list-item'
-        },
+        '.MuiListItem-root': listItemProps,
+        '.MuiListItemText-root': listItemProps,
         ...sx
       }}
       {...otherProps}
