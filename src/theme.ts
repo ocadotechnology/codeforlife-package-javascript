@@ -84,13 +84,22 @@ const theme = responsiveFontSizes(createTheme({
   components: {
     MuiGrid2: {
       defaultProps: {
-        disableEqualOverflow: true
+        disableEqualOverflow: true,
+        padding: 0
       },
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.className === 'flex-center' && {
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center'
+          }),
+          ...(ownerState.className === 'flex-center-x' && {
+            display: 'flex',
+            justifyContent: 'center'
+          }),
+          ...(ownerState.className === 'flex-center-y' && {
+            display: 'flex',
             alignItems: 'center'
           })
         })
@@ -100,7 +109,8 @@ const theme = responsiveFontSizes(createTheme({
       styleOverrides: {
         root: {
           whiteSpace: 'nowrap',
-          minWidth: 'max-content'
+          minWidth: 'max-content',
+          width: 'fit-content'
         }
       }
     },
