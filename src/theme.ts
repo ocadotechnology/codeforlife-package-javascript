@@ -84,8 +84,8 @@ const theme = responsiveFontSizes(createTheme({
   components: {
     MuiGrid2: {
       defaultProps: {
-        disableEqualOverflow: true,
-        padding: 0
+        disableEqualOverflow: true
+        // padding: 0 // TODO: normalize padding.
       },
       styleOverrides: {
         root: ({ ownerState }) => ({
