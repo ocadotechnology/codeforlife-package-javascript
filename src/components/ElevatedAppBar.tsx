@@ -6,19 +6,18 @@ import {
   useScrollTrigger
 } from '@mui/material';
 
-export interface ElevatedAppBarProps {
-  props: AppBarProps
-  children: React.ReactNode
-}
+export interface ElevatedAppBarProps extends AppBarProps { }
 
-const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({ props, children }) => {
+const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
+  children, ...otherProps
+}) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0
   });
 
   return React.cloneElement(
-    <AppBar {...props}>
+    <AppBar {...otherProps}>
       <Toolbar>
         {children}
       </Toolbar>
