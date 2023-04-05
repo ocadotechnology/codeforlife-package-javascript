@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.4...v1.3.5) (2023-04-05)
+
+
+### Bug Fixes
+
+* remove MuiGrid2 padding ([b8c0289](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b8c028912114622ed2aa19a05af6d4b4c47b5270))
+
 ## [1.3.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.3...v1.3.4) (2023-04-05)
 
 
