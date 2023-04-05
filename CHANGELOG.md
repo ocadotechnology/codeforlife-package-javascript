@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.3...v1.3.4) (2023-04-05)
+
+
+### Bug Fixes
+
+* add grid props and styles and button width ([a914216](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a9142168073230e6034fc3bf1573882e9af1b8dc))
+
 ## [1.3.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.2...v1.3.3) (2023-03-23)
 
 
