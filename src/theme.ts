@@ -89,18 +89,30 @@ const theme = responsiveFontSizes(createTheme({
       },
       styleOverrides: {
         root: ({ ownerState }) => ({
-          ...(ownerState.className === 'flex-center' && {
+          ...(ownerState.className?.startsWith('flex') && {
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }),
-          ...(ownerState.className === 'flex-center-x' && {
-            display: 'flex',
-            justifyContent: 'center'
-          }),
-          ...(ownerState.className === 'flex-center-y' && {
-            display: 'flex',
-            alignItems: 'center'
+            ...{
+              'flex-center': {
+                justifyContent: 'center',
+                alignItems: 'center'
+              },
+              'flex-center-x': {
+                justifyContent: 'center'
+              },
+              'flex-center-y': {
+                alignItems: 'center'
+              },
+              'flex-end': {
+                justifyContent: 'end',
+                alignItems: 'end'
+              },
+              'flex-end-x': {
+                justifyContent: 'end'
+              },
+              'flex-end-y': {
+                alignItems: 'end'
+              }
+            }[ownerState.className]
           })
         })
       }
