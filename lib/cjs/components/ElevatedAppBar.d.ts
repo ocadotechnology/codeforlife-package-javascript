@@ -1,8 +1,6 @@
 import React from 'react';
 import { AppBarProps } from '@mui/material';
-export interface ElevatedAppBarProps {
-    props: AppBarProps;
-    children: React.ReactNode;
+export interface ElevatedAppBarProps extends AppBarProps {
 }
 declare const ElevatedAppBar: React.FC<ElevatedAppBarProps>;
 export default ElevatedAppBar;

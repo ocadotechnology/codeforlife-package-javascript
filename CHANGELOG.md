@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.5...v1.3.6) (2023-04-06)
+
+
+### Bug Fixes
+
+* multiple flex classes for grid ([8754b44](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8754b44cdbd6d24f4404b6a4f4bacff49adf581a))
+
 ## [1.3.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.4...v1.3.5) (2023-04-05)
 
 
