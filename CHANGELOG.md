@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.7...v1.3.8) (2023-04-11)
+
+
+### Bug Fixes
+
+* grid classes ([167b08e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/167b08ef07cdfda74809aeff7f8c34af37bee90d))
+
 ## [1.3.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.6...v1.3.7) (2023-04-11)
 
 
