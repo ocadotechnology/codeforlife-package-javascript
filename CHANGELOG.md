@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.6...v1.3.7) (2023-04-11)
+
+
+### Bug Fixes
+
+* add container ([ce650f5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ce650f5071b39717ee0aea09cca0f57aaf36ef89))
+
 ## [1.3.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.5...v1.3.6) (2023-04-06)
 
 
