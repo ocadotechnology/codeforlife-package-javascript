@@ -97,9 +97,11 @@ const theme = responsiveFontSizes(createTheme({
                 alignItems: 'center'
               },
               'flex-center-x': {
-                justifyContent: 'center'
+                justifyContent: 'center',
+                alignItems: 'start'
               },
               'flex-center-y': {
+                justifyContent: 'start',
                 alignItems: 'center'
               },
               'flex-end': {
@@ -107,9 +109,11 @@ const theme = responsiveFontSizes(createTheme({
                 alignItems: 'end'
               },
               'flex-end-x': {
-                justifyContent: 'end'
+                justifyContent: 'end',
+                alignItems: 'start'
               },
               'flex-end-y': {
+                justifyContent: 'start',
                 alignItems: 'end'
               }
             }[ownerState.className]
