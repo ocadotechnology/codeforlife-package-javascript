@@ -4,23 +4,25 @@ import { useNavigate } from 'react-router-dom';
 
 import { openInNewTab } from '../helpers';
 
-export interface ImageProps {
+export interface ImageProps extends BoxProps {
   alt: string
   src: string
   href?: string
   hrefInNewTab?: boolean
-  boxProps?: BoxProps
 }
 
 const Image: React.FC<ImageProps> = ({
-  alt, src, href, hrefInNewTab = false, boxProps = {}
+  href, hrefInNewTab = false, ...props
 }) => {
   let {
-    sx,
     onClick,
     style = {},
     ...otherProps
-  } = boxProps;
+  } = props;
+
+  if (style.width === undefined) {
+    style.width = '100%';
+  }
 
   // Override onClick if href provided.
   if (href !== undefined) {
@@ -36,14 +38,8 @@ const Image: React.FC<ImageProps> = ({
   return (
     <Box
       component='img'
-      alt={alt}
-      src={src}
       onClick={onClick}
       style={style}
-      sx={{
-        width: '100%',
-        ...sx
-      }}
       {...otherProps}
     />
   );
