@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.8...v1.3.9) (2023-04-12)
+
+
+### Bug Fixes
+
+* simplify image props interface ([e2f3ea1](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e2f3ea1021755a75b4866fac23e1506036362e92))
+
 ## [1.3.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.7...v1.3.8) (2023-04-11)
 
 
