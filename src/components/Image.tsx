@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { openInNewTab } from '../helpers';
 
-export interface ImageProps extends BoxProps {
+export interface ImageProps extends Omit<BoxProps, 'component'> {
   alt: string
   src: string
   href?: string
