@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.9...v1.4.0) (2023-04-13)
+
+
+### Features
+
+* add OrderedGridProps component ([80fe50c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/80fe50c525895962ef6134b05cb2b7de43ac4425))
+
 ## [1.3.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.8...v1.3.9) (2023-04-12)
 
 
