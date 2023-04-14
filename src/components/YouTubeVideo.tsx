@@ -18,7 +18,7 @@ const YouTubeVideo: React.FC<YouTubeVideoProps> = ({
       src={src}
       title='YouTube video player'
       allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen'
-      style={{ border: '0px', aspectRatio: '1 / 0.5625', ...style }}
+      style={{ border: '0px', aspectRatio: '16 / 9', ...style }}
       {...otherProps}
     />
   );
