@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.4.0...v1.5.0) (2023-04-13)
+
+
+### Features
+
+* add YouTubeVideoPlayer component ([71c5681](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/71c56814bc90e39cd2b1313fac784079b680a4da))
+
 # [1.4.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.3.9...v1.4.0) (2023-04-13)
 
 
