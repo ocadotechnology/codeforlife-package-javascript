@@ -4,11 +4,11 @@ import {
   BoxProps
 } from '@mui/material';
 
-export interface YouTubeVideoPlayerProps extends Omit<BoxProps, 'component'> {
+export interface YouTubeVideoProps extends Omit<BoxProps, 'component'> {
   src: string
 }
 
-const YouTubeVideoPlayer: React.FC<YouTubeVideoPlayerProps> = ({
+const YouTubeVideo: React.FC<YouTubeVideoProps> = ({
   src, style = {}, ...otherProps
 }) => {
   return (
@@ -24,4 +24,4 @@ const YouTubeVideoPlayer: React.FC<YouTubeVideoPlayerProps> = ({
   );
 };
 
-export default YouTubeVideoPlayer;
+export default YouTubeVideo;
