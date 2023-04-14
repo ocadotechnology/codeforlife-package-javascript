@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.0...v1.5.1) (2023-04-14)
+
+
+### Bug Fixes
+
+* rename to YouTubeVideo ([7b3ed3f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7b3ed3f2e89ca5b4782221f4da2ad593b13c3251))
+
 # [1.5.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.4.0...v1.5.0) (2023-04-13)
 
 
