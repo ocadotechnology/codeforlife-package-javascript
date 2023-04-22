@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.3...v1.5.4) (2023-04-22)
+
+
+### Bug Fixes
+
+* use keyword args ([4a8423b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4a8423b8179f5ec1c08c25613e46ee576ddc55f8))
+
 ## [1.5.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.2...v1.5.3) (2023-04-22)
 
 
