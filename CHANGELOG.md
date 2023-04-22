@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.2...v1.5.3) (2023-04-22)
+
+
+### Bug Fixes
+
+* add insertDividerBetweenElements to helpers ([4c44110](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4c4411090d089b123e0cca91cf1f59332e7e8d11))
+
 ## [1.5.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.1...v1.5.2) (2023-04-22)
 
 
