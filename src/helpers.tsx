@@ -8,10 +8,13 @@ export function openInNewTab(url: string, target = '_blank'): void {
   window.open(url, target);
 }
 
-export function insertDividerBetweenElements(
+export function insertDividerBetweenElements({
+  elements,
+  dividerProps
+}: {
   elements: React.ReactElement[],
   dividerProps?: DividerProps
-): React.ReactElement[] {
+}): React.ReactElement[] {
   return elements.map((element, index) => <>
     {element}
     {index !== elements.length - 1
