@@ -50,6 +50,42 @@ declare module '@mui/material' {
 
 const { palette } = createTheme();
 
+function getClassStyleOverrides(className?: string): Record<string, string> {
+  const styleOverrides = {};
+
+  if (className?.startsWith('flex')) {
+    styleOverrides['display'] = 'flex';
+    switch (className) {
+      case 'flex-center':
+        styleOverrides['justifyContent'] = 'center';
+        styleOverrides['alignItems'] = 'center';
+        break;
+      case 'flex-center-x':
+        styleOverrides['justifyContent'] = 'center';
+        styleOverrides['alignItems'] = 'start';
+        break;
+      case 'flex-center-y':
+        styleOverrides['justifyContent'] = 'start';
+        styleOverrides['alignItems'] = 'center';
+        break;
+      case 'flex-end':
+        styleOverrides['justifyContent'] = 'end';
+        styleOverrides['alignItems'] = 'end';
+        break;
+      case 'flex-end-x':
+        styleOverrides['justifyContent'] = 'end';
+        styleOverrides['alignItems'] = 'start';
+        break;
+      case 'flex-end-y':
+        styleOverrides['justifyContent'] = 'start';
+        styleOverrides['alignItems'] = 'end';
+        break;
+    }
+  }
+
+  return styleOverrides;
+}
+
 const theme = responsiveFontSizes(createTheme({
   palette: {
     primary: {
@@ -89,35 +125,14 @@ const theme = responsiveFontSizes(createTheme({
       },
       styleOverrides: {
         root: ({ ownerState }) => ({
-          ...(ownerState.className?.startsWith('flex') && {
-            display: 'flex',
-            ...{
-              'flex-center': {
-                justifyContent: 'center',
-                alignItems: 'center'
-              },
-              'flex-center-x': {
-                justifyContent: 'center',
-                alignItems: 'start'
-              },
-              'flex-center-y': {
-                justifyContent: 'start',
-                alignItems: 'center'
-              },
-              'flex-end': {
-                justifyContent: 'end',
-                alignItems: 'end'
-              },
-              'flex-end-x': {
-                justifyContent: 'end',
-                alignItems: 'start'
-              },
-              'flex-end-y': {
-                justifyContent: 'start',
-                alignItems: 'end'
-              }
-            }[ownerState.className]
-          })
+          ...getClassStyleOverrides(ownerState.className)
+        })
+      }
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...getClassStyleOverrides(ownerState.className)
         })
       }
     },
