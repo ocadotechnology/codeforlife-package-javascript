@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.1...v1.5.2) (2023-04-22)
+
+
+### Bug Fixes
+
+* add flex classes to MuiContainer ([250da7f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/250da7f6bdc55886d25f9a8bafc3490d7f9090a7))
+
 ## [1.5.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.0...v1.5.1) (2023-04-14)
 
 
