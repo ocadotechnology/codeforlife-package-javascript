@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.4...v1.5.5) (2023-04-28)
+
+
+### Bug Fixes
+
+* remove imports that break babel ([0b07228](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/0b0722825ea434ac3fb949ea66e4bca4a4944751))
+
 ## [1.5.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.3...v1.5.4) (2023-04-22)
 
 
