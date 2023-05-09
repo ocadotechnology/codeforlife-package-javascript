@@ -162,6 +162,16 @@ const theme = responsiveFontSizes(createTheme({
           cursor: 'pointer'
         }
       }
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.className === 'header' && {
+            pointerEvents: 'none',
+            fontWeight: 'bold'
+          })
+        })
+      }
     }
   }
 }));
