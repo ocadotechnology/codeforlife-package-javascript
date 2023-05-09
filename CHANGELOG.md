@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.6.0...v1.6.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* replace MenuHeader component with style override ([b441724](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b44172486894963766775b75947eb59f317b291f))
+
 # [1.6.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.5...v1.6.0) (2023-05-09)
 
 
