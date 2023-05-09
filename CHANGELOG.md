@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.5...v1.6.0) (2023-05-09)
+
+
+### Features
+
+* add MenuHeader component ([fcb5b5a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fcb5b5adaa635c79349b5507d91fc9ea1d8e90a2))
+
 ## [1.5.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.5.4...v1.5.5) (2023-04-28)
 
 
