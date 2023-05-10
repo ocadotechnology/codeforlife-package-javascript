@@ -27,9 +27,14 @@ export function insertDividerBetweenElements({
   </>);
 }
 
+export function stringToBoolean(value: string): boolean {
+  value = value.toLowerCase();
+  return value !== 'false' && value !== '0';
+}
+
 export function getSearchParams(
-  requiredParams: Record<string, any> = {},
-  optionalParams: Record<string, any> = {}
+  requiredParams: Record<string, (value: string) => any> = {},
+  optionalParams: Record<string, (value: string) => any> = {}
 ): Record<string, any> | null {
   const searchParams = useSearchParams()[0];
 
@@ -49,6 +54,6 @@ export function getSearchParams(
 
   return Object.fromEntries(
     Object.entries(params)
-      .map(([key, value]) => [key, value(searchParams.get(key))])
+      .map(([key, value]) => [key, value(searchParams.get(key) as string)])
   );
 }
