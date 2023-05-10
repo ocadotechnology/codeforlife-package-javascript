@@ -5,4 +5,5 @@ export declare function insertDividerBetweenElements({ elements, dividerProps }:
     elements: React.ReactElement[];
     dividerProps?: DividerProps;
 }): React.ReactElement[];
-export declare function getSearchParams(requiredParams?: Record<string, any>, optionalParams?: Record<string, any>): Record<string, any> | null;
+export declare function stringToBoolean(value: string): boolean;
+export declare function getSearchParams(requiredParams?: Record<string, (value: string) => any>, optionalParams?: Record<string, (value: string) => any>): Record<string, any> | null;

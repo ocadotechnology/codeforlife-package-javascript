@@ -1,3 +1,11 @@
+## [1.7.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.0...v1.7.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* add stringToBoolean helper ([2225b19](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2225b1940909475f612acce5968dd37e2d41c092))
+* trigger pipeline ([a6089bb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a6089bb9673de7a039b5dbcdb0ff19aa8a4da465))
+
 # [1.7.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.6.1...v1.7.0) (2023-05-10)
 
 
