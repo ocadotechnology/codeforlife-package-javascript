@@ -28,8 +28,7 @@ export function insertDividerBetweenElements({
 }
 
 export function stringToBoolean(value: string): boolean {
-  value = value.toLowerCase();
-  return value !== 'false' && value !== '0';
+  return value.toLowerCase() !== 'false' && value !== '0';
 }
 
 export function getSearchParams(
