@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.6.1...v1.7.0) (2023-05-10)
+
+
+### Features
+
+* create helper to parse search params ([8623a9a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8623a9a8bdd17616ed14ec14e138f2959e741488))
+
 ## [1.6.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.6.0...v1.6.1) (2023-05-09)
 
 
