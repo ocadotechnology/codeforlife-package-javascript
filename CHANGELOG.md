@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.2...v1.7.3) (2023-05-12)
+
+
+### Bug Fixes
+
+* export themeOptions ([d0525a0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d0525a0f35c48006239c484ea99abc834e9d0269))
+
 ## [1.7.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.1...v1.7.2) (2023-05-12)
 
 
