@@ -4,7 +4,12 @@ import {
 } from 'react-router-dom';
 import {
   Divider,
-  DividerProps
+  DividerProps,
+  useTheme,
+  createTheme,
+  Theme,
+  ThemeOptions,
+  ComponentsPropsList
 } from '@mui/material';
 
 export function openInNewTab(url: string, target = '_blank'): void {
@@ -56,3 +61,45 @@ export function getSearchParams(
       .map(([key, value]) => [key, value(searchParams.get(key) as string)])
   );
 }
+
+export function overrideComponentsRootStyles(
+  keys: Array<keyof NonNullable<ThemeOptions['components']>>,
+  rootStyleOverrides: Record<string, any>,
+  theme?: Theme
+): Theme {
+  theme = theme ?? useTheme<Theme>();
+
+  let components = theme.components ?? {};
+  components = {
+    ...components,
+    ...Object.fromEntries(keys.map(key => {
+      let component = components[key] ?? {};
+
+      interface RootArgs { ownerState: ComponentsPropsList[typeof key] };
+
+      const styleOverrides: {
+        root?: object | (({ ownerState }: RootArgs) => object)
+      } = ('styleOverrides' in component) ? component.styleOverrides as object : {};
+
+      component = {
+        ...component,
+        styleOverrides: {
+          ...styleOverrides,
+          root: ({ ownerState }: RootArgs) => ({
+            ...(typeof styleOverrides.root === 'function' &&
+              styleOverrides.root({ ownerState })
+            ),
+            ...(typeof styleOverrides.root === 'object' &&
+              styleOverrides.root
+            ),
+            ...rootStyleOverrides
+          })
+        }
+      };
+
+      return [key, component];
+    }))
+  };
+
+  return createTheme(theme, { components });
+};
