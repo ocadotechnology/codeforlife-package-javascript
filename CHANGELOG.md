@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.1...v1.7.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* export themeOptions and add contrast text ([2cd77a9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2cd77a9593b234eb3e23c26c2682b8d1ba0a54ae))
+
 ## [1.7.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.0...v1.7.1) (2023-05-10)
 
 
