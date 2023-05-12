@@ -10,10 +10,10 @@ To install this package, do one of the following options.
 
 Note that the version property in `package.json` is not set as it's only needed when publishing to NPM.
 
-**Option 1:** Run `npm install` command:
+**Option 1:** Run `yarn install` command:
 
 ```bash
-npm install git+https://github.com/ocadotechnology/codeforlife-package-javascript.git#v0.0.0
+yarn install git+https://github.com/ocadotechnology/codeforlife-package-javascript.git#v0.0.0
 ```
 
 **Option 2:** add the following to `package.json`:
@@ -24,6 +24,14 @@ npm install git+https://github.com/ocadotechnology/codeforlife-package-javascrip
     "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v0.0.0"
   }
 }
+```
+
+**Why does Yarn install an old version of the CFL package?**
+
+This sometimes occurs because Yarn has cached an old version of the CFL package. To resolve this, clear your cache and then install the new version.
+
+```bash
+yarn cache clean
 ```
 
 ## Pipeline
