@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.3...v1.8.0) (2023-05-12)
+
+
+### Features
+
+* add overrideComponentsRootStyles helper ([93f46b0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/93f46b060ed7995cf243b4efd58590456dec1528))
+
 ## [1.7.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.2...v1.7.3) (2023-05-12)
 
 
