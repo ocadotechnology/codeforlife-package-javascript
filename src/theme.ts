@@ -1,5 +1,9 @@
-import { PaletteColor } from '@mui/material';
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import {
+  ThemeOptions,
+  PaletteColor,
+  createTheme,
+  responsiveFontSizes
+} from '@mui/material/styles';
 import { red, common } from '@mui/material/colors';
 
 // Extend palette to include a custom colors.
@@ -86,18 +90,21 @@ function getClassStyleOverrides(className?: string): Record<string, string> {
   return styleOverrides;
 }
 
-const theme = responsiveFontSizes(createTheme({
+export const themeOptions: ThemeOptions = {
   palette: {
     primary: {
       main: '#e0004d',
-      light: '#fa1664'
+      light: '#fa1664',
+      contrastText: common.white
     },
     secondary: {
-      main: '#00a3e0'
+      main: '#00a3e0',
+      contrastText: common.white
     },
     tertiary: palette.augmentColor({
       color: {
-        main: '#ffd23b'
+        main: '#ffd23b',
+        contrastText: common.black
       }
     }),
     white: palette.augmentColor({
@@ -174,6 +181,8 @@ const theme = responsiveFontSizes(createTheme({
       }
     }
   }
-}));
+};
+
+const theme = responsiveFontSizes(createTheme(themeOptions));
 
 export default theme;
