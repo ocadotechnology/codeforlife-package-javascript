@@ -45,13 +45,13 @@ export function getSearchParams(
   const searchParams = useSearchParams()[0];
 
   if (Object.entries(params).some(([name, { isRequired }]) =>
-    isRequired === true && searchParams.get(name) === null
+    isRequired !== false && searchParams.get(name) === null
   )) { return null; }
 
   return Object.fromEntries(
     Object.entries(params)
       .filter(([name, { isRequired }]) =>
-        isRequired === true || searchParams.get(name) !== null
+        isRequired !== false || searchParams.get(name) !== null
       )
       .map(([name, { cast }]) =>
         [name, cast(searchParams.get(name) as string)]
