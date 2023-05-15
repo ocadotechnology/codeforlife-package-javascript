@@ -37,28 +37,25 @@ export function stringToBoolean(value: string): boolean {
 }
 
 export function getSearchParams(
-  requiredParams: Record<string, (value: string) => any> = {},
-  optionalParams: Record<string, (value: string) => any> = {}
-): Record<string, any> | null {
+  params: Record<string, {
+    cast: (value: string) => any,
+    isRequired?: boolean
+  }>
+): object | null {
   const searchParams = useSearchParams()[0];
 
-  if (Object
-    .keys(requiredParams)
-    .some(name => searchParams.get(name) === null)
-  ) { return null; }
-
-  const params = {
-    ...requiredParams,
-    ...Object.fromEntries(
-      Object.keys(optionalParams)
-        .filter(name => searchParams.get(name) !== null)
-        .map(name => [name, optionalParams[name]])
-    )
-  };
+  if (Object.entries(params).some(([name, { isRequired }]) =>
+    isRequired === true && searchParams.get(name) === null
+  )) { return null; }
 
   return Object.fromEntries(
     Object.entries(params)
-      .map(([key, value]) => [key, value(searchParams.get(key) as string)])
+      .filter(([name, { isRequired }]) =>
+        isRequired === true || searchParams.get(name) !== null
+      )
+      .map(([name, { cast }]) =>
+        [name, cast(searchParams.get(name) as string)]
+      )
   );
 }
 
