@@ -36,6 +36,12 @@ export function stringToBoolean(value: string): boolean {
   return value.toLowerCase() !== 'false' && value !== '0';
 }
 
+export function stringToProperty(obj: object): (value: string) => boolean {
+  return (value: string): boolean => {
+    return obj[value];
+  };
+}
+
 export function getSearchParams(
   params: Record<string, {
     cast: (value: string) => any,
