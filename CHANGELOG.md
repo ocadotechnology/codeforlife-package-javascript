@@ -1,3 +1,11 @@
+## [1.8.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.2...v1.8.3) (2023-05-15)
+
+
+### Bug Fixes
+
+* add stringToProperty helper ([ff31636](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ff31636f13c0dc506b108bcdc35225d027b17d4e))
+* types ([f05239d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f05239d83aba644388054e462737f5b4a7691389))
+
 ## [1.8.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.1...v1.8.2) (2023-05-15)
 
 

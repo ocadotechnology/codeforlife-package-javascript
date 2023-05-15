@@ -6,6 +6,7 @@ export declare function insertDividerBetweenElements({ elements, dividerProps }:
     dividerProps?: DividerProps;
 }): React.ReactElement[];
 export declare function stringToBoolean(value: string): boolean;
+export declare function stringToProperty(obj: object): (value: string) => any;
 export declare function getSearchParams(params: Record<string, {
     cast: (value: string) => any;
     isRequired?: boolean;
