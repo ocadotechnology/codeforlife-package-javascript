@@ -1,3 +1,11 @@
+## [1.8.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.0...v1.8.1) (2023-05-15)
+
+
+### Bug Fixes
+
+* simplify getSearchParams helper ([f6e2067](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f6e20671820a2a1a88b45480d690cb24560aee9d))
+* simplify overrideComponentsInTheme helper ([ab2f31c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ab2f31c220e3a762e6834f9fd318cde38ad2245d))
+
 # [1.8.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.7.3...v1.8.0) (2023-05-12)
 
 
