@@ -8,7 +8,7 @@ import {
   useTheme,
   createTheme,
   Theme,
-  ThemeOptions,
+  Components,
   ComponentsPropsList
 } from '@mui/material';
 
@@ -59,9 +59,8 @@ export function getSearchParams(
   );
 }
 
-export function overrideComponentsRootStyles(
-  keys: Array<keyof NonNullable<ThemeOptions['components']>>,
-  rootStyleOverrides: Record<string, any>,
+export function overrideComponentsInTheme(
+  componentOverrides: Components<Omit<Theme, 'components'>>,
   theme?: Theme
 ): Theme {
   theme = theme ?? useTheme<Theme>();
@@ -69,33 +68,48 @@ export function overrideComponentsRootStyles(
   let components = theme.components ?? {};
   components = {
     ...components,
-    ...Object.fromEntries(keys.map(key => {
-      let component = components[key] ?? {};
+    ...Object.fromEntries(Object.keys(componentOverrides)
+      .map((key: keyof Components<Omit<Theme, 'components'>>) => {
+        const component = components[key] ?? {};
+        const componentOverride = componentOverrides[key] ?? {};
 
-      interface RootArgs { ownerState: ComponentsPropsList[typeof key] };
-
-      const styleOverrides: {
-        root?: object | (({ ownerState }: RootArgs) => object)
-      } = ('styleOverrides' in component) ? component.styleOverrides as object : {};
-
-      component = {
-        ...component,
-        styleOverrides: {
-          ...styleOverrides,
-          root: ({ ownerState }: RootArgs) => ({
-            ...(typeof styleOverrides.root === 'function' &&
-              styleOverrides.root({ ownerState })
-            ),
-            ...(typeof styleOverrides.root === 'object' &&
-              styleOverrides.root
-            ),
-            ...rootStyleOverrides
-          })
+        interface RootFunctionArgs {
+          ownerState: ComponentsPropsList[typeof key]
         }
-      };
+        interface StyleOverrides {
+          root?: object | (({ ownerState }: RootFunctionArgs) => object)
+        }
 
-      return [key, component];
-    }))
+        const componentStyleOverrides: StyleOverrides = ('styleOverrides' in component)
+          ? component.styleOverrides as object
+          : {};
+        const componentOverrideStyleOverrides: StyleOverrides = ('styleOverrides' in componentOverride)
+          ? componentOverride.styleOverrides as object
+          : {};
+
+        return [key, {
+          ...component,
+          ...componentOverride,
+          styleOverrides: {
+            ...componentStyleOverrides,
+            ...componentOverrideStyleOverrides,
+            root: ({ ownerState }: RootFunctionArgs) => ({
+              ...(typeof componentStyleOverrides.root === 'function' &&
+                componentStyleOverrides.root({ ownerState })
+              ),
+              ...(typeof componentStyleOverrides.root === 'object' &&
+                componentStyleOverrides.root
+              ),
+              ...(typeof componentOverrideStyleOverrides.root === 'function' &&
+                componentOverrideStyleOverrides.root({ ownerState })
+              ),
+              ...(typeof componentOverrideStyleOverrides.root === 'object' &&
+                componentOverrideStyleOverrides.root
+              )
+            })
+          }
+        }];
+      }))
   };
 
   return createTheme(theme, { components });
