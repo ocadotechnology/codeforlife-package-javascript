@@ -1,3 +1,10 @@
+## [1.8.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.3...v1.8.4) (2023-05-16)
+
+
+### Bug Fixes
+
+* update theme palette ([bd02470](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bd024704d847086fa61093b86ec7b471f382449c))
+
 ## [1.8.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.2...v1.8.3) (2023-05-15)
 
 
