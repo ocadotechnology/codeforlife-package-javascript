@@ -99,11 +99,13 @@ export const themeOptions: ThemeOptions = {
     },
     secondary: {
       main: '#00a3e0',
+      light: '#08bafc',
       contrastText: common.white
     },
     tertiary: palette.augmentColor({
       color: {
-        main: '#ffd23b',
+        main: '#ffc709',
+        light: '#ffd23b',
         contrastText: common.black
       }
     }),
