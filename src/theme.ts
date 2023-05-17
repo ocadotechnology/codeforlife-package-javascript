@@ -6,6 +6,8 @@ import {
 } from '@mui/material/styles';
 import { red, common } from '@mui/material/colors';
 
+// import { primary, secondary, tertiary } from './colors';
+
 // Extend palette to include a custom colors.
 declare module '@mui/material/styles' {
   interface CustomPaletteColors {
