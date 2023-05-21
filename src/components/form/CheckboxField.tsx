@@ -46,7 +46,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   ...otherCheckboxProps
 }) => {
   if (required && validate instanceof BooleanSchema) {
-    validate = validate.required();
+    validate = validate.oneOf([true]);
   }
 
   const fieldConfig: FieldConfig = {
