@@ -46,7 +46,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   ...otherCheckboxProps
 }) => {
   if (required && validate instanceof BooleanSchema) {
-    validate = validate.oneOf([true]);
+    validate = validate.oneOf([true], 'this is a required field');
   }
 
   const fieldConfig: FieldConfig = {
@@ -80,6 +80,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
         return (
           <Stack
             direction='row'
+            justifyContent='center'
             {...stackProps}
           >
             <FormControlLabel
@@ -93,7 +94,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
             {meta.error !== undefined && meta.error !== '' &&
               <ClickableTooltip title={meta.error}>
                 <Icon {...iconProps}>
-                  <ErrorIcon />
+                  <ErrorIcon color={iconProps.color} />
                 </Icon>
               </ClickableTooltip>
             }
