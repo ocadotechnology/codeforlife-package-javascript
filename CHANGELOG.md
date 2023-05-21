@@ -1,3 +1,11 @@
+## [1.10.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.1...v1.10.2) (2023-05-21)
+
+
+### Bug Fixes
+
+* default value ([946b90f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/946b90f7916065213c6a15265e4c349acadc1162))
+* default values ([304de03](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/304de0374fc03bb9a442b37b7b255bcdc9ed43ac))
+
 ## [1.10.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.0...v1.10.1) (2023-05-21)
 
 
