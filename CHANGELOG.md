@@ -1,3 +1,10 @@
+## [1.10.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.4...v1.10.5) (2023-05-21)
+
+
+### Bug Fixes
+
+* validate required ([21181c5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/21181c5a6a71233f31ca58d9b63461d4cab8f8a6))
+
 ## [1.10.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.3...v1.10.4) (2023-05-21)
 
 
