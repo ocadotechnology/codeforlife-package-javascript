@@ -43,7 +43,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   iconProps = {},
   validate = CheckboxFieldValidation,
   name,
-  value,
+  value = false,
   onChange,
   ...otherCheckboxProps
 }) => {

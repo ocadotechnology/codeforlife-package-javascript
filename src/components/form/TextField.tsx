@@ -33,7 +33,7 @@ const TextField: React.FC<TextFieldProps<YupSchema>> = ({
   validate,
   name,
   type,
-  value,
+  value = '',
   InputProps = {},
   onKeyUp,
   onBlur,
