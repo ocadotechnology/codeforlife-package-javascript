@@ -1,6 +1,7 @@
 {
   "name": "codeforlife",
   "version": "1.0.0",
+  "private": true,
   "description": "Common frontend code",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -60,6 +61,7 @@
         "@semantic-release/git",
         {
           "assets": [
+            "package.json",
             "CHANGELOG.md",
             "lib/**/*.{js,css,d.ts}"
           ],
