@@ -92,6 +92,7 @@ const AutocompleteField = <
         let {
           sx,
           InputProps = {},
+          value = '',
           onBlur,
           ...otherTextFieldProps
         } = textFieldProps;
@@ -133,6 +134,7 @@ const AutocompleteField = <
               <TextField
                 {...params}
                 {...otherTextFieldProps}
+                value={value}
                 sx={sx}
                 onBlur={onBlur}
                 InputProps={{
