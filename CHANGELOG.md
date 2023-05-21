@@ -1,3 +1,10 @@
+## [1.10.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.8...v1.10.9) (2023-05-21)
+
+
+### Bug Fixes
+
+* checkbox style ([0d7d329](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/0d7d3297ad9c400def2b7d2a4156d0415183052d))
+
 ## [1.10.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.7...v1.10.8) (2023-05-21)
 
 
