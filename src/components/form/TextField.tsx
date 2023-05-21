@@ -23,7 +23,7 @@ import {
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
-export type TextFieldProps = MuiTextFieldProps & {
+export type TextFieldProps = Omit<MuiTextFieldProps, 'value'> & {
   validate?: FieldValidator | StringSchema;
   name: string;
 };
@@ -33,7 +33,6 @@ const TextField: React.FC<TextFieldProps> = ({
   required = false,
   name,
   type = 'text',
-  value = '',
   InputProps = {},
   onKeyUp,
   onBlur,
@@ -49,7 +48,6 @@ const TextField: React.FC<TextFieldProps> = ({
   const fieldConfig: FieldConfig = {
     name,
     type,
-    value,
     validate: async (value) => {
       if (validate instanceof StringSchema) {
         try {
@@ -110,6 +108,7 @@ const TextField: React.FC<TextFieldProps> = ({
 
         return (
           <MuiTextField
+            value={meta.value}
             name={name}
             type={type}
             onKeyUp={onKeyUp}

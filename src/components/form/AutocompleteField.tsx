@@ -42,7 +42,7 @@ export interface AutocompleteFieldProps<
     'onChange'
   )
 > {
-  textFieldProps: Omit<TextFieldProps, 'type'> & {
+  textFieldProps: Omit<TextFieldProps, 'type' | 'value'> & {
     name: string;
   }
 }
@@ -92,7 +92,6 @@ const AutocompleteField = <
         let {
           sx,
           InputProps = {},
-          value = '',
           onBlur,
           ...otherTextFieldProps
         } = textFieldProps;
@@ -134,7 +133,7 @@ const AutocompleteField = <
               <TextField
                 {...params}
                 {...otherTextFieldProps}
-                value={value}
+                value={meta.value}
                 sx={sx}
                 onBlur={onBlur}
                 InputProps={{

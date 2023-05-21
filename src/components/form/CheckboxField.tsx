@@ -27,7 +27,7 @@ import {
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
-export interface CheckboxFieldProps extends CheckboxProps {
+export interface CheckboxFieldProps extends Omit<CheckboxProps, 'value'> {
   formControlLabelProps: Omit<FormControlLabelProps, 'control'>,
   stackProps?: Omit<StackProps, 'direction' | 'children'>,
   iconProps?: Omit<IconProps, 'children'>,
@@ -41,13 +41,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   iconProps = {},
   validate = YupBool(),
   name,
-  value = false,
   onChange,
   ...otherCheckboxProps
 }) => {
   const fieldConfig: FieldConfig = {
     name,
-    value,
     type: 'checkbox',
     validate: async (value) => {
       if (validate instanceof BooleanSchema) {
@@ -81,6 +79,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           >
             <FormControlLabel
               control={<Checkbox
+                value={meta.value}
                 onChange={onChange}
                 {...otherCheckboxProps}
               />}
