@@ -15,24 +15,24 @@ import {
   FieldValidator
 } from 'formik';
 import {
-  Schema as YupSchema,
-  ValidationError as YupValidationError
+  string as YupString,
+  StringSchema,
+  ValidationError
 } from 'yup';
 
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
-export type TextFieldProps<
-  Schema extends YupSchema
-> = MuiTextFieldProps & {
-  validate: FieldValidator | Schema;
+export type TextFieldProps = MuiTextFieldProps & {
+  validate?: FieldValidator | StringSchema;
   name: string;
 };
 
-const TextField: React.FC<TextFieldProps<YupSchema>> = ({
-  validate,
+const TextField: React.FC<TextFieldProps> = ({
+  validate = YupString(),
+  required = false,
   name,
-  type,
+  type = 'text',
   value = '',
   InputProps = {},
   onKeyUp,
@@ -42,16 +42,20 @@ const TextField: React.FC<TextFieldProps<YupSchema>> = ({
 }) => {
   const theme = useTheme();
 
+  if (required && validate instanceof StringSchema) {
+    validate = validate.required();
+  }
+
   const fieldConfig: FieldConfig = {
     name,
     type,
     value,
     validate: async (value) => {
-      if (validate instanceof YupSchema) {
+      if (validate instanceof StringSchema) {
         try {
           validate.validateSync(value);
         } catch (error) {
-          if (error instanceof YupValidationError) {
+          if (error instanceof ValidationError) {
             return error.errors[0];
           }
           throw error;

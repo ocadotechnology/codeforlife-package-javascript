@@ -19,15 +19,13 @@ import {
   FieldValidator
 } from 'formik';
 import {
-  bool,
+  bool as YupBool,
   BooleanSchema,
   ValidationError
 } from 'yup';
 
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
-
-export const CheckboxFieldValidation = bool();
 
 export interface CheckboxFieldProps extends CheckboxProps {
   formControlLabelProps: Omit<FormControlLabelProps, 'control'>,
@@ -41,7 +39,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   formControlLabelProps,
   stackProps = {},
   iconProps = {},
-  validate = CheckboxFieldValidation,
+  validate = YupBool(),
   name,
   value = false,
   onChange,

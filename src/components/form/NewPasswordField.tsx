@@ -7,17 +7,13 @@ import {
   Security as SecurityIcon
 } from '@mui/icons-material';
 import {
-  StringSchema,
-  string,
+  string as YupString,
   ref
 } from 'yup';
 
 import TextField, { TextFieldProps } from './TextField';
 
-export const NewPasswordFieldValidation = string()
-  .required();
-
-interface PasswordFieldProps extends Omit<TextFieldProps<StringSchema>, (
+interface PasswordFieldProps extends Omit<TextFieldProps, (
   'type' |
   'name'
 )> { }
@@ -53,25 +49,18 @@ const NewPasswordField: React.FC<NewPasswordFieldProps> = ({
     ...('InputProps' in repeatPasswordFieldProps && repeatPasswordFieldProps.InputProps)
   };
 
-  const {
-    validate = NewPasswordFieldValidation,
-    ...otherPasswordFieldProps
-  } = passwordFieldProps;
-
   return <>
     <TextField
       type='password'
       name='password'
-      validate={validate}
-      {...otherPasswordFieldProps}
+      required
+      {...passwordFieldProps}
     />
     <TextField
       type='password'
       name='repeatPassword'
-      validate={string()
-        .oneOf([ref('password'), undefined], 'Passwords don\'t match')
-        .required()
-      }
+      required
+      validate={YupString().oneOf([ref('password'), undefined], 'Passwords don\'t match')}
       {...repeatPasswordFieldProps}
     />
   </>;

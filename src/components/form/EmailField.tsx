@@ -5,28 +5,21 @@ import {
 import {
   EmailOutlined as EmailOutlinedIcon
 } from '@mui/icons-material';
-import { FieldValidator } from 'formik';
-import { string, StringSchema } from 'yup';
+import { string as YupString } from 'yup';
 
 import TextField, { TextFieldProps } from './TextField';
 
-export const EmailFieldValidation = string()
-  .email();
-
-export interface EmailFieldProps extends Omit<TextFieldProps<StringSchema>, (
+export interface EmailFieldProps extends Omit<TextFieldProps, (
   'type' |
-  'name' |
-  'validate'
+  'name'
 )> {
-  name?: string,
-  validate?: FieldValidator | StringSchema
+  name?: string
 }
 
 const EmailField: React.FC<EmailFieldProps> = ({
   name = 'email',
   InputProps = {},
-  required = false,
-  validate = EmailFieldValidation,
+  validate = YupString().email(),
   ...otherTextFieldProps
 }) => {
   let {
@@ -39,10 +32,6 @@ const EmailField: React.FC<EmailFieldProps> = ({
       <EmailOutlinedIcon />
     </InputAdornment>
   );
-
-  if (required && validate instanceof StringSchema) {
-    validate = validate.required();
-  }
 
   return (
     <TextField
