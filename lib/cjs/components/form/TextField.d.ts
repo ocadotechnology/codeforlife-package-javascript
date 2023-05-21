@@ -2,7 +2,7 @@ import React from 'react';
 import { TextFieldProps as MuiTextFieldProps } from '@mui/material';
 import { FieldValidator } from 'formik';
 import { StringSchema } from 'yup';
-export type TextFieldProps = MuiTextFieldProps & {
+export type TextFieldProps = Omit<MuiTextFieldProps, 'value'> & {
     validate?: FieldValidator | StringSchema;
     name: string;
 };
