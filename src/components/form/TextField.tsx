@@ -23,7 +23,7 @@ import {
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
-export type TextFieldProps = Omit<MuiTextFieldProps, 'value'> & {
+export type TextFieldProps = Omit<MuiTextFieldProps, 'defaultValue'> & {
   validate?: FieldValidator | StringSchema;
   name: string;
 };
@@ -106,12 +106,9 @@ const TextField: React.FC<TextFieldProps> = ({
           after: () => { setShowError(true); }
         }, onBlur);
 
-        if (meta.initialValue !== undefined && !meta.touched) {
-          otherTextFieldProps['value'] = meta.initialValue;
-        }
-
         return (
           <MuiTextField
+            defaultValue={meta.initialValue}
             name={name}
             type={type}
             onKeyUp={onKeyUp}

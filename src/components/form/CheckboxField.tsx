@@ -27,7 +27,7 @@ import {
 import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
-export interface CheckboxFieldProps extends Omit<CheckboxProps, 'value'> {
+export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
   formControlLabelProps: Omit<FormControlLabelProps, 'control'>,
   stackProps?: Omit<StackProps, 'direction' | 'children'>,
   iconProps?: Omit<IconProps, 'children'>,
@@ -77,10 +77,6 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           }
         }, onChange);
 
-        if (meta.initialValue !== undefined && !meta.touched) {
-          otherCheckboxProps['value'] = meta.initialValue;
-        }
-
         return (
           <Stack
             direction='row'
@@ -88,6 +84,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           >
             <FormControlLabel
               control={<Checkbox
+                defaultValue={meta.initialValue}
                 onChange={onChange}
                 {...otherCheckboxProps}
               />}

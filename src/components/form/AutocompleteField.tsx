@@ -39,10 +39,11 @@ export interface AutocompleteFieldProps<
     ChipComponent
   >, (
     'renderInput' |
-    'onChange'
+    'onChange' |
+    'defaultValue'
   )
 > {
-  textFieldProps: Omit<TextFieldProps, 'type' | 'value'> & {
+  textFieldProps: Omit<TextFieldProps, 'type' | 'defaultValue'> & {
     name: string;
   }
 }
@@ -126,13 +127,10 @@ const AutocompleteField = <
           after: () => { setShowError(true); }
         }, onBlur);
 
-        if (meta.initialValue !== undefined && !meta.touched) {
-          otherTextFieldProps['value'] = meta.initialValue;
-        }
-
         return (
           <Autocomplete
             options={options}
+            defaultValue={meta.initialValue}
             renderInput={(params) => (
               <TextField
                 {...params}
