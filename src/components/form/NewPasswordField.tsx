@@ -7,7 +7,8 @@ import {
   Security as SecurityIcon
 } from '@mui/icons-material';
 import {
-  string as YupString
+  string as YupString,
+  StringSchema as YupStringSchema
 } from 'yup';
 
 import { wrap } from '../../helpers';
@@ -33,7 +34,7 @@ const NewPasswordField: React.FC<NewPasswordFieldProps> = ({
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   repeatPasswordFieldProps = {} as RepeatPasswordFieldProps
 }) => {
-  const [password, setPassword] = React.useState<string>();
+  const [validate, setValidate] = React.useState<YupStringSchema>();
 
   const endAdornment: InputBaseProps['endAdornment'] = (
     <InputAdornment position='end'>
@@ -43,7 +44,14 @@ const NewPasswordField: React.FC<NewPasswordFieldProps> = ({
 
   passwordFieldProps.onKeyUp = wrap({
     after: (event: React.KeyboardEvent<HTMLDivElement>) => {
-      setPassword((event.target as HTMLTextAreaElement).value);
+      setValidate(YupString().test(
+        'matches-password',
+        'doesn\'t match password',
+        (repeatPassword) => {
+          const password = (event.target as HTMLTextAreaElement).value;
+          return password === repeatPassword;
+        }
+      ));
     }
   }, passwordFieldProps.onKeyUp);
 
@@ -68,7 +76,7 @@ const NewPasswordField: React.FC<NewPasswordFieldProps> = ({
       type='password'
       name='repeatPassword'
       required
-      validate={YupString().oneOf([password], 'Passwords don\'t match')}
+      validate={validate}
       {...repeatPasswordFieldProps}
     />
   </>;
