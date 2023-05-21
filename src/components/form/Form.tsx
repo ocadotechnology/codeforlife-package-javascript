@@ -11,7 +11,7 @@ import {
 } from 'formik';
 
 export interface FormProps<Values> extends FormikConfig<Values> {
-  stackProps?: StackProps
+  stackProps?: Omit<StackProps, 'children'>
 }
 
 const Form = <Values extends FormikValues = FormikValues>({
