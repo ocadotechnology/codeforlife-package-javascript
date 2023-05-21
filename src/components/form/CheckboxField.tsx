@@ -40,10 +40,15 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   stackProps = {},
   iconProps = {},
   validate = YupBool(),
+  required = false,
   name,
   onChange,
   ...otherCheckboxProps
 }) => {
+  if (required && validate instanceof BooleanSchema) {
+    validate = validate.required();
+  }
+
   const fieldConfig: FieldConfig = {
     name,
     type: 'checkbox',
