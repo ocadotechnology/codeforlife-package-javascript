@@ -126,6 +126,10 @@ const AutocompleteField = <
           after: () => { setShowError(true); }
         }, onBlur);
 
+        if (meta.initialValue !== undefined && !meta.touched) {
+          otherTextFieldProps['value'] = meta.initialValue;
+        }
+
         return (
           <Autocomplete
             options={options}
@@ -133,7 +137,6 @@ const AutocompleteField = <
               <TextField
                 {...params}
                 {...otherTextFieldProps}
-                value={meta.value}
                 sx={sx}
                 onBlur={onBlur}
                 InputProps={{

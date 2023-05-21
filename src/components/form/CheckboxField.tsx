@@ -77,6 +77,10 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           }
         }, onChange);
 
+        if (meta.initialValue !== undefined && !meta.touched) {
+          otherCheckboxProps['value'] = meta.initialValue;
+        }
+
         return (
           <Stack
             direction='row'
@@ -84,7 +88,6 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           >
             <FormControlLabel
               control={<Checkbox
-                value={meta.value}
                 onChange={onChange}
                 {...otherCheckboxProps}
               />}

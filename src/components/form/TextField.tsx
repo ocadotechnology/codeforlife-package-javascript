@@ -106,9 +106,12 @@ const TextField: React.FC<TextFieldProps> = ({
           after: () => { setShowError(true); }
         }, onBlur);
 
+        if (meta.initialValue !== undefined && !meta.touched) {
+          otherTextFieldProps['value'] = meta.initialValue;
+        }
+
         return (
           <MuiTextField
-            value={meta.value}
             name={name}
             type={type}
             onKeyUp={onKeyUp}
