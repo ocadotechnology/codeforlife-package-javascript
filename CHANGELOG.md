@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.9.0...v1.9.1) (2023-05-20)
+
+
+### Bug Fixes
+
+* wrap function ([9ed3886](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9ed3886d93eb5e040ebf2d1f8f491b44410b2b08))
+
 # [1.9.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.8.4...v1.9.0) (2023-05-17)
 
 

@@ -12,3 +12,7 @@ export declare function getSearchParams(params: Record<string, {
     isRequired?: boolean;
 }>): object | null;
 export declare function overrideComponentsInTheme(componentOverrides: Components<Omit<Theme, 'components'>>, theme?: Theme): Theme;
+export declare function wrap(newFn: {
+    before?: (...args: any[]) => void;
+    after?: (...args: any[]) => void;
+}, fn?: (...args: any[]) => any): (...args: any[]) => any;
