@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.2...v1.10.3) (2023-05-21)
+
+
+### Bug Fixes
+
+* simplify code ([d0eefec](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d0eefecf76f11201df25f781267beafc82a1e3de))
+
 ## [1.10.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.1...v1.10.2) (2023-05-21)
 
 

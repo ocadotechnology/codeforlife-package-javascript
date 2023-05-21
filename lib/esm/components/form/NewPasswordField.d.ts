@@ -1,8 +1,6 @@
 import React from 'react';
-import { StringSchema } from 'yup';
 import { TextFieldProps } from './TextField';
-export declare const NewPasswordFieldValidation: StringSchema<string, import("yup").AnyObject, undefined, "">;
-interface PasswordFieldProps extends Omit<TextFieldProps<StringSchema>, ('type' | 'name')> {
+interface PasswordFieldProps extends Omit<TextFieldProps, ('type' | 'name')> {
 }
 interface RepeatPasswordFieldProps extends Omit<PasswordFieldProps, ('validate')> {
 }
