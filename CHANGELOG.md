@@ -1,3 +1,10 @@
+## [1.10.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.10...v1.10.11) (2023-05-21)
+
+
+### Bug Fixes
+
+* password match validation ([47cfd51](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/47cfd51a7fc48e1275ab633391c0f46d0c22414d))
+
 ## [1.10.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.9...v1.10.10) (2023-05-21)
 
 
