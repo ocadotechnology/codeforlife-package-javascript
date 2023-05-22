@@ -43,7 +43,11 @@ export interface AutocompleteFieldProps<
     'defaultValue'
   )
 > {
-  textFieldProps: Omit<TextFieldProps, 'type' | 'defaultValue'> & {
+  textFieldProps: Omit<TextFieldProps, (
+    'type' |
+    'defaultValue' |
+    'InputProps'
+  )> & {
     name: string;
   }
 }
@@ -92,36 +96,9 @@ const AutocompleteField = <
 
         let {
           sx,
-          InputProps = {},
           onBlur,
           ...otherTextFieldProps
         } = textFieldProps;
-
-        let {
-          endAdornment,
-          ...otherInputProps
-        } = InputProps;
-
-        if (showError &&
-          meta.error !== undefined &&
-          meta.error !== ''
-        ) {
-          endAdornment = <>
-            {endAdornment}
-            <InputAdornment position='end'>
-              <ClickableTooltip title={meta.error}>
-                <ErrorOutlineIcon color='error' />
-              </ClickableTooltip>
-            </InputAdornment>
-          </>;
-
-          sx = {
-            ...sx,
-            '& .MuiOutlinedInput-root.Mui-focused > fieldset': {
-              borderColor: theme.palette.error.main
-            }
-          };
-        }
 
         onBlur = wrap({
           after: () => { setShowError(true); }
@@ -131,21 +108,53 @@ const AutocompleteField = <
           <Autocomplete
             options={options}
             defaultValue={meta.initialValue}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                {...otherTextFieldProps}
-                sx={sx}
-                onBlur={onBlur}
-                InputProps={{
-                  endAdornment,
-                  ...otherInputProps
-                }}
-              />
-            )}
+            renderInput={(params) => {
+              let {
+                endAdornment,
+                ...otherInputProps
+              } = params.InputProps;
+
+              if (showError &&
+                meta.error !== undefined &&
+                meta.error !== ''
+              ) {
+                endAdornment = <>
+                  {endAdornment}
+                  <InputAdornment position='end'>
+                    <ClickableTooltip title={meta.error}>
+                      <ErrorOutlineIcon color='error' />
+                    </ClickableTooltip>
+                  </InputAdornment>
+                </>;
+
+                sx = {
+                  ...sx,
+                  '& .MuiOutlinedInput-root.Mui-focused > fieldset': {
+                    borderColor: theme.palette.error.main
+                  }
+                };
+              }
+
+              return (
+                <TextField
+                  {...params}
+                  {...otherTextFieldProps}
+                  sx={sx}
+                  onBlur={onBlur}
+                  InputProps={{
+                    endAdornment,
+                    ...otherInputProps
+                  }}
+                />
+              );
+            }}
             onChange={(_, value) => {
               flushSync(() => {
-                form.setFieldValue(textFieldProps.name, value, true);
+                form.setFieldValue(
+                  textFieldProps.name,
+                  value ?? undefined,
+                  true
+                );
               });
             }}
             {...otherAutocompleteProps}
