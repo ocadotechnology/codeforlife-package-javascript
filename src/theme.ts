@@ -2,8 +2,10 @@ import {
   ThemeOptions,
   PaletteColor,
   createTheme,
-  responsiveFontSizes
-} from '@mui/material/styles';
+  responsiveFontSizes,
+  tableCellClasses,
+  typographyClasses
+} from '@mui/material';
 import { red, common } from '@mui/material/colors';
 
 // import { primary, secondary, tertiary } from './colors';
@@ -180,6 +182,45 @@ export const themeOptions: ThemeOptions = {
           ...(ownerState.className === 'header' && {
             pointerEvents: 'none',
             fontWeight: 'bold'
+          })
+        })
+      }
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          [`.${tableCellClasses.root}`]: {
+            border: '2px solid white'
+          },
+          ...(ownerState.className === 'text' && {
+            [`.${tableCellClasses.root}`]: {
+              border: '1px solid #DDD'
+            }
+          })
+        })
+      }
+    },
+    MuiTableHead: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          backgroundColor: '#6E7171',
+          ...(ownerState.className === 'light' && {
+            backgroundColor: '#9A9C9E'
+          }),
+          [`.${typographyClasses.root}`]: {
+            color: 'white',
+            marginBottom: 0,
+            fontWeight: 600
+          }
+        })
+      }
+    },
+    MuiTableBody: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          backgroundColor: '#F2F2F2',
+          ...(ownerState.className === 'text' && {
+            backgroundColor: 'white'
           })
         })
       }
