@@ -1,4 +1,4 @@
-import { ThemeOptions, PaletteColor } from '@mui/material/styles';
+import { ThemeOptions, PaletteColor } from '@mui/material';
 declare module '@mui/material/styles' {
     interface CustomPaletteColors {
         tertiary: PaletteColor;
@@ -70,5 +70,5 @@ declare module '@mui/material' {
     }
 }
 export declare const themeOptions: ThemeOptions;
-declare const theme: import("@mui/material/styles").Theme;
+declare const theme: import("@mui/material").Theme;
 export default theme;

@@ -1,3 +1,10 @@
+## [1.10.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.14...v1.10.15) (2023-05-23)
+
+
+### Bug Fixes
+
+* add table styles ([e573c0a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e573c0a273f1a7f77b40434d523c767ab36926fe))
+
 ## [1.10.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.13...v1.10.14) (2023-05-22)
 
 
