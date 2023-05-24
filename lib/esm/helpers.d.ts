@@ -8,13 +8,11 @@ export declare function insertDividerBetweenElements({ elements, dividerProps }:
 export declare function stringToBoolean(value: string): boolean;
 export declare function stringToProperty(obj: object): (value: string) => any;
 export declare function valueInOptions(options: readonly any[]): (value: any) => boolean;
-export declare function getSearchParams<Params extends Record<string, {
+export declare function getSearchParams<T>(params: Record<string, {
     cast?: (value: string) => any;
     validate?: (value: any) => boolean;
     isRequired?: boolean;
-}>>(params: Params): null | {
-    [K in keyof Params]: any;
-};
+}>): null | T;
 export declare function overrideComponentsInTheme(componentOverrides: Components<Omit<Theme, 'components'>>, theme?: Theme): Theme;
 export declare function wrap(newFn: {
     before?: (...args: any[]) => void;

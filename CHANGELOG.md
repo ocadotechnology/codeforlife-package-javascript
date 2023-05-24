@@ -1,3 +1,10 @@
+## [1.10.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.16...v1.10.17) (2023-05-24)
+
+
+### Bug Fixes
+
+* getSearchParams helper ([345a609](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/345a60942b80613762415d0333a81de054fec54d))
+
 ## [1.10.16](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.15...v1.10.16) (2023-05-24)
 
 
