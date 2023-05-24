@@ -1,3 +1,10 @@
+## [1.10.16](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.15...v1.10.16) (2023-05-24)
+
+
+### Bug Fixes
+
+* support search param validation ([1347418](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1347418bbcfec5a276c9a6109a0adb6ae2301a45))
+
 ## [1.10.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.14...v1.10.15) (2023-05-23)
 
 
