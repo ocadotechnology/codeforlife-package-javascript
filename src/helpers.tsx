@@ -44,33 +44,35 @@ export function valueInOptions(options: readonly any[]): (value: any) => boolean
   return (value: any): boolean => options.includes(value);
 }
 
-export function getSearchParams<Params extends Record<string, {
-  cast?: (value: string) => any,
-  validate?: (value: any) => boolean,
-  isRequired?: boolean
-}>>(params: Params): null | { [K in keyof Params]: any } {
+export function getSearchParams<T>(
+  params: Record<string, {
+    cast?: (value: string) => any,
+    validate?: (value: any) => boolean,
+    isRequired?: boolean
+  }>
+): null | T {
   const searchParams = useSearchParams()[0];
 
-  if (Object.entries(params).some(([name, { isRequired }]) =>
+  let entries = Object.entries(params);
+
+  if (entries.some(([name, { isRequired }]) =>
     isRequired !== false && searchParams.get(name) === null
   )) { return null; }
 
+  entries = entries.filter(([name, { isRequired }]) =>
+    isRequired !== false || searchParams.get(name) !== null
+  );
+
+  if (entries.length === 0) { return null; }
+
   try {
-    return Object.fromEntries(
-      Object.entries(params)
-        .filter(([name, { isRequired }]) =>
-          isRequired !== false || searchParams.get(name) !== null
-        )
-        .map(([name, { cast, validate }]) => {
-          const stringValue = searchParams.get(name) as string;
-          const value = (cast !== undefined) ? cast(stringValue) : stringValue;
-          if (validate !== undefined && !validate(value)) { throw Error(); }
-          return [name, value];
-        })
-    ) as { [K in keyof Params]: any };
-  } catch (error) {
-    return null;
-  }
+    return Object.fromEntries(entries.map(([name, { cast, validate }]) => {
+      const stringValue = searchParams.get(name) as string;
+      const value = (cast !== undefined) ? cast(stringValue) : stringValue;
+      if (validate !== undefined && !validate(value)) { throw Error(); }
+      return [name, value];
+    })) as T;
+  } catch (error) { return null; }
 }
 
 export function overrideComponentsInTheme(
