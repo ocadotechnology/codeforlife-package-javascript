@@ -16,6 +16,7 @@ import {
   valueInOptions
 } from './searchParams';
 
+// Namespace
 export const SearchParams = {
   get: getSearchParams,
   cast: {
