@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.17...v1.11.0) (2023-05-25)
+
+
+### Features
+
+* helper namespaces ([4b0f52e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4b0f52ee0bbe4b0790083fe2784dcc3d604fe541))
+
 ## [1.10.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.10.16...v1.10.17) (2023-05-24)
 
 
