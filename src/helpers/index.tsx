@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  useSearchParams
-} from 'react-router-dom';
-import {
   Divider,
   DividerProps,
   useTheme,
@@ -11,6 +8,24 @@ import {
   Components,
   ComponentsPropsList
 } from '@mui/material';
+
+import {
+  getSearchParams,
+  stringToBoolean,
+  stringToProperty,
+  valueInOptions
+} from './searchParams';
+
+export const SearchParams = {
+  get: getSearchParams,
+  cast: {
+    toBoolean: stringToBoolean,
+    toProperty: stringToProperty
+  },
+  validate: {
+    inOptions: valueInOptions
+  }
+};
 
 export function openInNewTab(url: string, target = '_blank'): void {
   window.open(url, target);
@@ -30,49 +45,6 @@ export function insertDividerBetweenElements({
       : undefined
     }
   </>);
-}
-
-export function stringToBoolean(value: string): boolean {
-  return value.toLowerCase() !== 'false' && value !== '0';
-}
-
-export function stringToProperty(obj: object): (value: string) => any {
-  return (value: string): any => obj[value];
-}
-
-export function valueInOptions(options: readonly any[]): (value: any) => boolean {
-  return (value: any): boolean => options.includes(value);
-}
-
-export function getSearchParams<T>(
-  params: Record<string, {
-    cast?: (value: string) => any,
-    validate?: (value: any) => boolean,
-    isRequired?: boolean
-  }>
-): null | T {
-  const searchParams = useSearchParams()[0];
-
-  let entries = Object.entries(params);
-
-  if (entries.some(([name, { isRequired }]) =>
-    isRequired !== false && searchParams.get(name) === null
-  )) { return null; }
-
-  entries = entries.filter(([name, { isRequired }]) =>
-    isRequired !== false || searchParams.get(name) !== null
-  );
-
-  if (entries.length === 0) { return null; }
-
-  try {
-    return Object.fromEntries(entries.map(([name, { cast, validate }]) => {
-      const stringValue = searchParams.get(name) as string;
-      const value = (cast !== undefined) ? cast(stringValue) : stringValue;
-      if (validate !== undefined && !validate(value)) { throw Error(); }
-      return [name, value];
-    })) as T;
-  } catch (error) { return null; }
 }
 
 export function overrideComponentsInTheme(
