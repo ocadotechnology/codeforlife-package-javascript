@@ -54,7 +54,22 @@ jobs:
         run: npm install --only=dev
 
       - name: Build Package
-        run: npm run build
+        run: |
+          rm -rf lib
+          npm run build
+      
+      - name: Setup Git
+        run: |
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
+      
+      - name: Sync Setup Dependencies
+        run: |
+          git add lib/*
+          if ! git diff --staged --quiet; then
+            git commit -m "push build files [skip ci]"
+            git push
+          fi
 
       - name: Publish Semantic Release
         env:
