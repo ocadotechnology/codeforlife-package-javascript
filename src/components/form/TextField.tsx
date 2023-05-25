@@ -20,7 +20,7 @@ import {
   ValidationError
 } from 'yup';
 
-import { wrap } from '../../helper';
+import { wrap } from '../../helpers';
 import ClickableTooltip from '../ClickableTooltip';
 
 export type TextFieldProps = Omit<MuiTextFieldProps, 'defaultValue'> & {

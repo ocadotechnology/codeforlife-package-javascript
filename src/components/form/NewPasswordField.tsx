@@ -11,7 +11,7 @@ import {
   StringSchema as YupStringSchema
 } from 'yup';
 
-import { wrap } from '../../helper';
+import { wrap } from '../../helpers';
 import TextField, { TextFieldProps } from './TextField';
 
 interface PasswordFieldProps extends Omit<TextFieldProps, (
