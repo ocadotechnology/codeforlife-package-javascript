@@ -4,7 +4,7 @@ import {
   TooltipProps
 } from '@mui/material';
 
-import { wrap } from '../helpers';
+import { wrap } from '../helper';
 
 export interface ClickableTooltipProps extends TooltipProps { }
 

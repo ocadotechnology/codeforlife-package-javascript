@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, BoxProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { openInNewTab } from '../helpers';
+import { openInNewTab } from '../helper';
 
 export interface ImageProps extends Omit<BoxProps, 'component'> {
   alt: string

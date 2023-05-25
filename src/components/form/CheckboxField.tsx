@@ -24,7 +24,7 @@ import {
   ValidationError
 } from 'yup';
 
-import { wrap } from '../../helpers';
+import { wrap } from '../../helper';
 import ClickableTooltip from '../ClickableTooltip';
 
 export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
