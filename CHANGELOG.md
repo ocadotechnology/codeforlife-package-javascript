@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.2...v1.11.3) (2023-05-25)
+
+
+### Bug Fixes
+
+* don't merge build files ([2153524](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2153524ebd457b592beed9e5d28a9bc40ef9eb48))
+
 ## [1.11.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.1...v1.11.2) (2023-05-25)
 
 
