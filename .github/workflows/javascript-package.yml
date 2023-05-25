@@ -49,21 +49,19 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19.7
-
-      - name: Install Node Packages
-        run: npm install --only=dev
-
-      - name: Build Package
-        run: |
-          rm -rf lib
-          npm run build
       
       - name: Setup Git
         run: |
           git config --local user.name github-actions
           git config --local user.email github-actions@github.com
+
+      - name: Install Node Packages
+        run: npm install --only=dev
+
+      - name: Build Package
+        run: npm run build
       
-      - name: Sync Setup Dependencies
+      - name: Push Build Files
         run: |
           git add lib/*
           if ! git diff --staged --quiet; then
