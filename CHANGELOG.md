@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.1...v1.11.2) (2023-05-25)
+
+
+### Bug Fixes
+
+* rename helpers to helper ([191fb77](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/191fb7739033d4c66b9edf5c1157fb1830dc8107))
+
 ## [1.11.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.0...v1.11.1) (2023-05-25)
 
 
