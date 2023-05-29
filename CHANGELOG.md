@@ -1,3 +1,10 @@
+## [1.11.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.5...v1.11.6) (2023-05-29)
+
+
+### Bug Fixes
+
+* alignment ([5167ee9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5167ee90113e12466fd0678dd9a3a7b12276e4c6))
+
 ## [1.11.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.4...v1.11.5) (2023-05-29)
 
 
