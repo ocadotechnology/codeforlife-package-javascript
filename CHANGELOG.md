@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.0...v1.12.1) (2023-05-29)
+
+
+### Bug Fixes
+
+* break components into smaller files ([9f82250](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9f82250608a27d520a70c5466b6d1c7b7d0e4eef))
+
 # [1.12.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.8...v1.12.0) (2023-05-29)
 
 
