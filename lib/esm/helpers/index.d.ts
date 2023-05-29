@@ -1,7 +1,7 @@
 import { openInNewTab, wrap } from './general';
 import { getSearchParams, stringToProperty, valueInOptions, valueMatchesSchema } from './searchParams';
-import { insertDividerBetweenElements, overrideComponentsInTheme } from './materialUI';
-export { openInNewTab, wrap, insertDividerBetweenElements, overrideComponentsInTheme };
+import { insertDividerBetweenElements, overrideComponentsInTheme, getStyleOverrides } from './materialUI';
+export { openInNewTab, wrap, insertDividerBetweenElements, overrideComponentsInTheme, getStyleOverrides };
 export declare const SearchParams: {
     get: typeof getSearchParams;
     cast: {

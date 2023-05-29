@@ -5,3 +5,4 @@ export declare function insertDividerBetweenElements({ elements, dividerProps }:
     dividerProps?: DividerProps;
 }): React.ReactElement[];
 export declare function overrideComponentsInTheme(componentOverrides: Components<Omit<Theme, 'components'>>, theme?: Theme): Theme;
+export declare function getStyleOverrides(componentClass: any, ownerState: Record<string, unknown>): object;
