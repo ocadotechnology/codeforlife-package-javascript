@@ -1,5 +1,5 @@
 import { openInNewTab, wrap } from './general';
-import { getSearchParams, stringToProperty, valueInOptions } from './searchParams';
+import { getSearchParams, stringToProperty, valueInOptions, valueMatchesSchema } from './searchParams';
 import { insertDividerBetweenElements, overrideComponentsInTheme } from './materialUI';
 export { openInNewTab, wrap, insertDividerBetweenElements, overrideComponentsInTheme };
 export declare const SearchParams: {
@@ -10,5 +10,6 @@ export declare const SearchParams: {
     };
     validate: {
         inOptions: typeof valueInOptions;
+        matchesSchema: typeof valueMatchesSchema;
     };
 };
