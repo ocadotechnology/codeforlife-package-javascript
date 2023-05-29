@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
+import { Schema } from 'yup';
 
 type CastFunc = (value: string) => any;
 type ValidateFunc = (value: any) => boolean;
@@ -46,4 +47,11 @@ export function stringToProperty(obj: object): CastFunc {
 // Validate functions
 export function valueInOptions(options: readonly any[]): ValidateFunc {
   return (value) => options.includes(value);
+}
+
+export function valueMatchesSchema(schema: Schema): ValidateFunc {
+  return (value) => {
+    schema.validateSync(value);
+    return true;
+  }
 }

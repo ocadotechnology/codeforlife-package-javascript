@@ -6,7 +6,8 @@ import {
   getSearchParams,
   stringToBoolean,
   stringToProperty,
-  valueInOptions
+  valueInOptions,
+  valueMatchesSchema
 } from './searchParams';
 import {
   insertDividerBetweenElements,
@@ -29,6 +30,7 @@ export const SearchParams = {
     toProperty: stringToProperty
   },
   validate: {
-    inOptions: valueInOptions
+    inOptions: valueInOptions,
+    matchesSchema: valueMatchesSchema
   }
 };
