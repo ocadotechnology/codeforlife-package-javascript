@@ -5,9 +5,9 @@ const MuiLink: Components['MuiLink'] = {
     underline: 'hover'
   },
   styleOverrides: {
-    root: {
+    root: ({ ownerState }) => ({
       cursor: 'pointer'
-    }
+    })
   }
 };
 

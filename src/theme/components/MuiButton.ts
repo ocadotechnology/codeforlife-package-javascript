@@ -2,11 +2,11 @@ import Components from './_components';
 
 const MuiButton: Components['MuiButton'] = {
   styleOverrides: {
-    root: {
+    root: ({ ownerState }) => ({
       whiteSpace: 'nowrap',
       minWidth: 'max-content',
       width: 'fit-content'
-    }
+    })
   }
 };
 
