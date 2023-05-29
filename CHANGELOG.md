@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.8...v1.12.0) (2023-05-29)
+
+
+### Features
+
+* add multiline support ([cff9d0a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/cff9d0af53bbeaf06e16515521d02e0641912e7c))
+
 ## [1.11.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.7...v1.11.8) (2023-05-29)
 
 
