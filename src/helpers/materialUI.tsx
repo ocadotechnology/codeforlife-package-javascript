@@ -80,3 +80,17 @@ export function overrideComponentsInTheme(
 
   return createTheme(theme, { components });
 }
+
+export function getStyleOverrides(
+  componentClass: any,
+  ownerState: Record<string, unknown>
+): object {
+  switch (typeof componentClass) {
+    case 'function':
+      return componentClass({ ownerState });
+    case 'object':
+      return componentClass;
+    default:
+      return {};
+  }
+}

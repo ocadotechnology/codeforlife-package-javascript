@@ -5,10 +5,9 @@ const MuiLink: Components['MuiLink'] = {
     underline: 'hover'
   },
   styleOverrides: {
-    // @ts-expect-error always use function
-    root: ({ ownerState }) => ({
+    root: {
       cursor: 'pointer'
-    })
+    }
   }
 };
 

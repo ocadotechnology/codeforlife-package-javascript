@@ -11,7 +11,8 @@ import {
 } from './searchParams';
 import {
   insertDividerBetweenElements,
-  overrideComponentsInTheme
+  overrideComponentsInTheme,
+  getStyleOverrides
 } from './materialUI';
 
 // global
@@ -19,7 +20,8 @@ export {
   openInNewTab,
   wrap,
   insertDividerBetweenElements,
-  overrideComponentsInTheme
+  overrideComponentsInTheme,
+  getStyleOverrides
 };
 
 // Namespace
