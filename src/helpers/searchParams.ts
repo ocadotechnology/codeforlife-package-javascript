@@ -53,5 +53,5 @@ export function valueMatchesSchema(schema: Schema): ValidateFunc {
   return (value) => {
     schema.validateSync(value);
     return true;
-  }
+  };
 }
