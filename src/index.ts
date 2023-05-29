@@ -1,5 +1,8 @@
-import theme, { themeOptions } from './theme';
+import theme, { themeOptions, PropsColorOverrides } from './theme';
 
 export {
-  theme, themeOptions
+  // from './theme'
+  theme,
+  themeOptions,
+  type PropsColorOverrides
 };
