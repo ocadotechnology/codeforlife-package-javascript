@@ -1,3 +1,11 @@
+## [1.12.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.1...v1.12.2) (2023-05-29)
+
+
+### Bug Fixes
+
+* always style override with function ([f8e8852](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f8e88522f544a2a6434102567c2a4964999bd97c))
+* linting ([ab60538](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ab605386263d1739593503db1e29c352a7a818e4))
+
 ## [1.12.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.0...v1.12.1) (2023-05-29)
 
 
