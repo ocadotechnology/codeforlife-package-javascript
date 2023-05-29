@@ -1,3 +1,11 @@
+## [1.11.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.6...v1.11.7) (2023-05-29)
+
+
+### Bug Fixes
+
+* break theme into smaller files ([9cf42f8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9cf42f891efda395925462796c4961b44a33bd40))
+* paths ([5c750e9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5c750e9efb9013733642799f3f36e695e815bfb9))
+
 ## [1.11.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.5...v1.11.6) (2023-05-29)
 
 
