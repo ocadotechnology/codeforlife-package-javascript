@@ -1,15 +1,22 @@
 import {
   ThemeOptions,
   tableCellClasses,
-  typographyClasses
+  typographyClasses,
+  inputClasses,
+  ComponentsPropsList
 } from '@mui/material';
+import { CommonProps } from '@mui/material/OverridableComponent';
 
-function getClassStyleOverrides(className?: string): Record<string, string> {
+export type OwnerState<ComponentName extends keyof ComponentsPropsList> = (
+  ComponentsPropsList[ComponentName] & Record<string, unknown>
+);
+
+function getClassStyleOverrides(props: CommonProps): object {
   const styleOverrides = {};
 
-  if (className?.startsWith('flex')) {
+  if (props.className?.startsWith('flex')) {
     styleOverrides['display'] = 'flex';
-    switch (className) {
+    switch (props.className) {
       case 'flex-center':
         styleOverrides['justifyContent'] = 'center';
         styleOverrides['alignItems'] = 'center';
@@ -48,14 +55,14 @@ const components: ThemeOptions['components'] = {
     },
     styleOverrides: {
       root: ({ ownerState }) => ({
-        ...getClassStyleOverrides(ownerState.className)
+        ...getClassStyleOverrides(ownerState)
       })
     }
   },
   MuiContainer: {
     styleOverrides: {
       root: ({ ownerState }) => ({
-        ...getClassStyleOverrides(ownerState.className)
+        ...getClassStyleOverrides(ownerState)
       })
     }
   },
@@ -70,10 +77,31 @@ const components: ThemeOptions['components'] = {
   },
   MuiTextField: {
     styleOverrides: {
-      root: {
+      root: ({ ownerState }) => ({
         width: '100%',
-        backgroundColor: 'white'
-      }
+        backgroundColor: 'white',
+        ...(ownerState.multiline === true && {
+          ...(ownerState.className !== undefined && {
+            ...(['resize', 'resize-both'].includes(ownerState.className) && {
+              width: 'auto',
+              [`.${inputClasses.inputMultiline}`]: {
+                resize: 'both'
+              }
+            }),
+            ...(ownerState.className === 'resize-horizontal' && {
+              width: 'auto',
+              [`.${inputClasses.inputMultiline}`]: {
+                resize: 'horizontal'
+              }
+            }),
+            ...(ownerState.className === 'resize-vertical' && {
+              [`.${inputClasses.inputMultiline}`]: {
+                resize: 'vertical'
+              }
+            })
+          })
+        })
+      })
     }
   },
   MuiLink: {
