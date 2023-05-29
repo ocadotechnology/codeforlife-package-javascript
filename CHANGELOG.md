@@ -1,3 +1,11 @@
+## [1.11.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.4...v1.11.5) (2023-05-29)
+
+
+### Bug Fixes
+
+* add semi-colon ([e31dd2a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e31dd2a57524d4a84d032cd403a9a54f242c6fab))
+* support yup schemas ([a3601e7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a3601e77063981a95b3972a313ce57bf2041e39e))
+
 ## [1.11.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.3...v1.11.4) (2023-05-25)
 
 
