@@ -1,3 +1,10 @@
+## [1.11.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.7...v1.11.8) (2023-05-29)
+
+
+### Bug Fixes
+
+* @mui/material module declarations ([8ba08a7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8ba08a7e2d1929749210a2c47eaa2c634bf67553))
+
 ## [1.11.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.11.6...v1.11.7) (2023-05-29)
 
 
