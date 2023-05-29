@@ -69,6 +69,5 @@ declare module '@mui/material' {
     interface ToggleButtonGroupPropsColorOverrides extends PropsColorOverrides {
     }
 }
-export declare const themeOptions: ThemeOptions;
-declare const theme: import("@mui/material").Theme;
-export default theme;
+declare const palette: ThemeOptions['palette'];
+export default palette;
