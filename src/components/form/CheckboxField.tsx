@@ -80,7 +80,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
         return (
           <Stack
             direction='row'
-            justifyContent='center'
+            alignItems='center'
             {...stackProps}
           >
             <FormControlLabel
