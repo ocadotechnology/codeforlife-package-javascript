@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.3...v1.12.4) (2023-05-30)
+
+
+### Bug Fixes
+
+* getStyleOverrides ([46f0076](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/46f007657a4e9d54af91312d44604db7acc1a558))
+
 ## [1.12.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.2...v1.12.3) (2023-05-29)
 
 
