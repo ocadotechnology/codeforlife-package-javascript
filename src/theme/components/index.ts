@@ -9,6 +9,7 @@ import MuiTable from './MuiTable';
 import MuiTableBody from './MuiTableBody';
 import MuiTableHead from './MuiTableHead';
 import MuiTextField from './MuiTextField';
+import MuiTypography from './MuiTypography';
 
 const components: ThemeOptions['components'] = {
   MuiButton,
@@ -19,7 +20,8 @@ const components: ThemeOptions['components'] = {
   MuiTable,
   MuiTableBody,
   MuiTableHead,
-  MuiTextField
+  MuiTextField,
+  MuiTypography
 };
 
 export default components;
