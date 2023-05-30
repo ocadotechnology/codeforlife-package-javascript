@@ -1,6 +1,7 @@
 import {
   ThemeOptions,
-  ComponentsPropsList
+  ComponentsPropsList,
+  CSSInterpolation
 } from '@mui/material';
 import { CommonProps } from '@mui/material/OverridableComponent';
 
@@ -12,36 +13,50 @@ export type OwnerState<ComponentName extends keyof ComponentsPropsList> = (
 );
 
 export function getFlexStyleOverrides(props: CommonProps): object {
-  const styleOverrides = {};
+  const styleOverrides: CSSInterpolation = {};
 
   if (props.className?.startsWith('flex')) {
-    styleOverrides['display'] = 'flex';
+    styleOverrides.display = 'flex';
     switch (props.className) {
       case 'flex-center':
-        styleOverrides['justifyContent'] = 'center';
-        styleOverrides['alignItems'] = 'center';
+        styleOverrides.justifyContent = 'center';
+        styleOverrides.alignItems = 'center';
         break;
       case 'flex-center-x':
-        styleOverrides['justifyContent'] = 'center';
-        styleOverrides['alignItems'] = 'start';
+        styleOverrides.justifyContent = 'center';
+        styleOverrides.alignItems = 'start';
         break;
       case 'flex-center-y':
-        styleOverrides['justifyContent'] = 'start';
-        styleOverrides['alignItems'] = 'center';
+        styleOverrides.justifyContent = 'start';
+        styleOverrides.alignItems = 'center';
         break;
       case 'flex-end':
-        styleOverrides['justifyContent'] = 'end';
-        styleOverrides['alignItems'] = 'end';
+        styleOverrides.justifyContent = 'end';
+        styleOverrides.alignItems = 'end';
         break;
       case 'flex-end-x':
-        styleOverrides['justifyContent'] = 'end';
-        styleOverrides['alignItems'] = 'start';
+        styleOverrides.justifyContent = 'end';
+        styleOverrides.alignItems = 'start';
         break;
       case 'flex-end-y':
-        styleOverrides['justifyContent'] = 'start';
-        styleOverrides['alignItems'] = 'end';
+        styleOverrides.justifyContent = 'start';
+        styleOverrides.alignItems = 'end';
         break;
     }
+  }
+
+  return styleOverrides;
+}
+
+export function getTextStyleOverrides(props: CommonProps): object {
+  const styleOverrides: CSSInterpolation = {};
+
+  switch (props.className) {
+    case 'nowrap-ellipsis':
+      styleOverrides.whiteSpace = 'nowrap';
+      styleOverrides.overflow = 'hidden';
+      styleOverrides.textOverflow = 'ellipsis';
+      break;
   }
 
   return styleOverrides;

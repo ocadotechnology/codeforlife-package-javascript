@@ -1,13 +1,9 @@
-import Components from './_components';
+import Components, { getTextStyleOverrides } from './_components';
 
 const MuiTypography: Components['MuiTypography'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...(ownerState.className === 'nowrap-ellipsis' && {
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
-      })
+      ...getTextStyleOverrides(ownerState)
     })
   }
 };
