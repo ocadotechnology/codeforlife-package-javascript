@@ -1,4 +1,5 @@
 import ClickableTooltip, { ClickableTooltipProps } from './ClickableTooltip';
+import CopyIconButton, { CopyIconButtonProps } from './CopyIconButton';
 import ElevatedAppBar, { ElevatedAppBarProps } from './ElevatedAppBar';
 import Image, { ImageProps } from './Image';
 import ItemizedList, { ItemizedListProps } from './ItemizedList';
@@ -7,6 +8,7 @@ import YouTubeVideo, { YouTubeVideoProps } from './YouTubeVideo';
 
 export {
   ClickableTooltip, type ClickableTooltipProps,
+  CopyIconButton, type CopyIconButtonProps,
   ElevatedAppBar, type ElevatedAppBarProps,
   Image, type ImageProps,
   ItemizedList, type ItemizedListProps,
