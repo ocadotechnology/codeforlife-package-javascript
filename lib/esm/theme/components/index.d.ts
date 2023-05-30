@@ -1,3 +1,3 @@
-import Components from './_components';
-declare const components: Components;
+import { ThemeOptions } from '@mui/material';
+declare const components: ThemeOptions['components'];
 export default components;
