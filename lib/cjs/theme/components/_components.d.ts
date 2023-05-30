@@ -4,3 +4,4 @@ export default interface Components extends NonNullable<ThemeOptions['components
 }
 export type OwnerState<ComponentName extends keyof ComponentsPropsList> = (ComponentsPropsList[ComponentName] & Record<string, unknown>);
 export declare function getFlexStyleOverrides(props: CommonProps): object;
+export declare function getTextStyleOverrides(props: CommonProps): object;
