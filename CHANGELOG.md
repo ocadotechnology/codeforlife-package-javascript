@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.5...v1.13.0) (2023-05-30)
+
+
+### Features
+
+* add CopyIconButton component ([06fcdcc](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/06fcdccf3cf1094146c1461f882edf0878de4521))
+
 ## [1.12.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.4...v1.12.5) (2023-05-30)
 
 
