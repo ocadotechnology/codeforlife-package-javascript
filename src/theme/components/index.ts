@@ -1,4 +1,4 @@
-import Components from './_components';
+import { ThemeOptions } from '@mui/material';
 
 import MuiButton from './MuiButton';
 import MuiContainer from './MuiContainer';
@@ -10,7 +10,7 @@ import MuiTableBody from './MuiTableBody';
 import MuiTableHead from './MuiTableHead';
 import MuiTextField from './MuiTextField';
 
-const components: Components = {
+const components: ThemeOptions['components'] = {
   MuiButton,
   MuiContainer,
   MuiGrid2,

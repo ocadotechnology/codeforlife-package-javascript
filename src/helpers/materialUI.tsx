@@ -6,8 +6,11 @@ import {
   createTheme,
   Theme,
   Components,
-  ComponentsPropsList
+  ComponentsPropsList,
+  ThemeOptions
 } from '@mui/material';
+
+import _components from '../theme/components';
 
 export function insertDividerBetweenElements({
   elements,
@@ -82,15 +85,29 @@ export function overrideComponentsInTheme(
 }
 
 export function getStyleOverrides(
-  componentClass: any,
-  ownerState: Record<string, unknown>
+  ownerState: Record<string, unknown>,
+  componentKey: keyof NonNullable<ThemeOptions['components']>,
+  muiClassName: string = 'root',
+  components: ThemeOptions['components'] = _components
 ): object {
-  switch (typeof componentClass) {
-    case 'function':
-      return componentClass({ ownerState });
-    case 'object':
-      return componentClass;
-    default:
-      return {};
+  if (components !== undefined) {
+    const component = components[componentKey];
+
+    if (component !== undefined &&
+      'styleOverrides' in component &&
+      typeof component.styleOverrides === 'object' &&
+      muiClassName in component.styleOverrides
+    ) {
+      const muiClass = (component.styleOverrides as Record<string, any>)[muiClassName];
+
+      switch (typeof muiClass) {
+        case 'function':
+          return muiClass({ ownerState });
+        case 'object':
+          return muiClass;
+      }
+    }
   }
+
+  return {};
 }
