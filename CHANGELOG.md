@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.13.0...v1.13.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* MuiTable border style ([ffa1ddb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ffa1ddbc7bb9b0453bf40052e8ff3a8393b2e82c))
+
 # [1.13.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.12.5...v1.13.0) (2023-05-30)
 
 
