@@ -21,12 +21,12 @@ const MultiValueTextField: React.FC<MultiValueTextFieldProps> = ({
 }) => {
   const multiValidate: FieldValidator = async (value: string) => {
     const newlines = value.split(/\r\n|\n|\r/);
-    for (let i = 0; i < newlines.length; i++) {
-      const values = newlines[i].split(delimiter);
-      for (let j = 0; j < values.length; j++) {
+    for (let n = 0; n < newlines.length; n++) {
+      const values = newlines[n].split(delimiter);
+      for (let v = 0; v < values.length; v++) {
         if (validate instanceof StringSchema) {
           try {
-            validate.validateSync(values[j]);
+            validate.validateSync(values[v]);
           } catch (error) {
             if (error instanceof ValidationError) {
               return error.errors[0];
@@ -34,7 +34,7 @@ const MultiValueTextField: React.FC<MultiValueTextFieldProps> = ({
             throw error;
           }
         } else {
-          return await validate(values[j]);
+          return await validate(values[v]);
         }
       }
     }
