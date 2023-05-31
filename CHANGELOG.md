@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.0...v1.14.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* export MultiValueTextField ([a448598](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a44859856f85e6ed9ea122270eb54ffb859c11ea))
+
 # [1.14.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.13.1...v1.14.0) (2023-05-31)
 
 
