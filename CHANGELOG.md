@@ -1,3 +1,11 @@
+## [1.14.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.1...v1.14.2) (2023-06-01)
+
+
+### Bug Fixes
+
+* imports ([574f271](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/574f271648550c85b056b40fc8f67e0b0dcef552))
+* support text splitting in TextField ([63449c2](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/63449c2d053d853c5b502248522ba2ec2d5f6f99))
+
 ## [1.14.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.0...v1.14.1) (2023-05-31)
 
 
