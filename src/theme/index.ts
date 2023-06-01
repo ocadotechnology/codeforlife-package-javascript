@@ -6,6 +6,7 @@ import {
 
 import palette, { PropsColorOverrides } from './palette';
 import components from './components';
+import typography from './typography';
 
 export {
   // Needed to modify '@mui/material' module declarations.
@@ -14,7 +15,8 @@ export {
 
 export const themeOptions: ThemeOptions = {
   palette,
-  components
+  components,
+  typography
 };
 
 const theme = responsiveFontSizes(createTheme(themeOptions));
