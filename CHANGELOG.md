@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.3...v1.15.0) (2023-06-01)
+
+
+### Features
+
+* path generator ([c75bdf4](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c75bdf4d23868d6896a3d832468cae85a8472c43))
+
 ## [1.14.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.2...v1.14.3) (2023-06-01)
 
 
