@@ -1,6 +1,8 @@
 import {
   openInNewTab,
-  wrap
+  wrap,
+  path,
+  Path
 } from './general';
 import {
   getSearchParams,
@@ -19,6 +21,7 @@ import {
 export {
   openInNewTab,
   wrap,
+  path, type Path,
   insertDividerBetweenElements,
   overrideComponentsInTheme,
   getStyleOverrides
