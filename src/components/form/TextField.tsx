@@ -16,7 +16,11 @@ import {
 } from 'formik';
 import {
   string as YupString,
+  array as YupArray,
+  Schema,
   StringSchema,
+  ArraySchema,
+  AnyObject,
   ValidationError
 } from 'yup';
 
@@ -28,8 +32,25 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'defaultValue'> & {
   name: string;
 };
 
-const TextField: React.FC<TextFieldProps> = ({
-  validate = YupString(),
+type StringArraySchema = ArraySchema<Array<string | undefined> | undefined, AnyObject, '', ''>;
+
+interface ITextField {
+  (
+    props: TextFieldProps,
+    context?: any
+  ): React.ReactElement<any, any> | null;
+  (
+    props: Omit<TextFieldProps, 'validate'> & {
+      validate?: FieldValidator | StringArraySchema;
+      split: string | RegExp;
+    },
+    context?: any
+  ): React.ReactElement<any, any> | null;
+}
+
+const TextField: ITextField = ({
+  validate,
+  split,
   required = false,
   name,
   type = 'text',
@@ -38,10 +59,19 @@ const TextField: React.FC<TextFieldProps> = ({
   onBlur,
   sx,
   ...otherTextFieldProps
+}: Omit<TextFieldProps, 'validate'> & {
+  validate?: FieldValidator | StringSchema | StringArraySchema;
+  split?: string | RegExp
 }) => {
   const theme = useTheme();
 
-  if (required && validate instanceof StringSchema) {
+  if (validate === undefined) {
+    validate = (split === undefined)
+      ? YupString()
+      : YupArray().of(YupString());
+  }
+
+  if (required && validate instanceof Schema) {
     validate = validate.required();
   }
 
@@ -49,7 +79,7 @@ const TextField: React.FC<TextFieldProps> = ({
     name,
     type,
     validate: async (value) => {
-      if (validate instanceof StringSchema) {
+      if (validate instanceof Schema) {
         try {
           validate.validateSync(value);
         } catch (error) {
@@ -58,7 +88,7 @@ const TextField: React.FC<TextFieldProps> = ({
           }
           throw error;
         }
-      } else {
+      } else if (validate !== undefined) {
         return await validate(value);
       }
     }
@@ -97,7 +127,8 @@ const TextField: React.FC<TextFieldProps> = ({
 
         onKeyUp = wrap({
           after: (event: React.KeyboardEvent<HTMLDivElement>) => {
-            const value = (event.target as HTMLTextAreaElement).value;
+            let value: string | string[] = (event.target as HTMLTextAreaElement).value;
+            if (split !== undefined) value = value.split(split);
             form.setFieldValue(name, value, true);
           }
         }, onKeyUp);
