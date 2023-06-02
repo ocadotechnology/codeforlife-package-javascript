@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.1...v1.15.2) (2023-06-02)
+
+
+### Bug Fixes
+
+* only allow path as subpath ([4cacc14](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4cacc142b7df800d5f6c2b69ca935dcb3b986a67))
+
 ## [1.15.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.0...v1.15.1) (2023-06-02)
 
 
