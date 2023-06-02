@@ -8,12 +8,17 @@ import {
   ContainerProps
 } from '@mui/material';
 
-export interface ElevatedAppBarProps extends AppBarProps {
+export interface ElevatedAppBarProps extends Omit<AppBarProps, (
+  'position'
+)> {
   containerProps: ContainerProps
 }
 
 const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
-  containerProps, children, ...otherProps
+  containerProps,
+  elevation = 4,
+  children,
+  ...otherProps
 }) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -21,7 +26,7 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
   });
 
   return React.cloneElement(
-    <AppBar {...otherProps}>
+    <AppBar elevation={elevation} {...otherProps}>
       <Container {...containerProps}>
         <Toolbar>
           {children}
@@ -29,7 +34,6 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
       </Container>
     </AppBar>,
     {
-      elevation: trigger ? 4 : 0,
       position: trigger ? 'fixed' : 'sticky'
     }
   );
