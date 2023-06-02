@@ -9,6 +9,7 @@ import {
   ComponentsPropsList,
   ThemeOptions
 } from '@mui/material';
+import { CommonProps } from '@mui/material/OverridableComponent';
 
 import _components from '../theme/components';
 
@@ -110,4 +111,14 @@ export function getStyleOverrides(
   }
 
   return {};
+}
+
+export function includesClassNames(
+  props: CommonProps, classNames: string[]
+): boolean {
+  if (props.className === undefined) return false;
+  const _classNames = props.className.split(' ');
+  return classNames.every(className =>
+    _classNames.includes(className)
+  );
 }
