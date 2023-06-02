@@ -32,17 +32,17 @@ export interface Path {
 export function path<
   Subpaths extends Record<string, string | Path>
 >(_: string, subpaths: Subpaths): Path & Subpaths {
-  function updatePath(_: string, path: Path, root: boolean): void {
+  function updatePath(path: Path, root: boolean): void {
     Object.entries(path).forEach(([key, subpath]) => {
       if (typeof subpath === 'string') {
         if (!root || key !== '_') path[key] = _ + subpath;
       } else {
-        updatePath(_, subpath, false);
+        updatePath(subpath, false);
       }
     });
   }
 
   const path = { ...subpaths, _ };
-  updatePath(_, path, true);
+  updatePath(path, true);
   return path;
 }
