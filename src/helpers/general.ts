@@ -30,8 +30,12 @@ export interface Path {
 };
 
 export function path<
-  Subpaths extends Record<string, string | Path>
->(_: string, subpaths: Subpaths): Path & Subpaths {
+  Subpaths extends Record<string, Path>
+>(
+  _: string,
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  subpaths: Subpaths | undefined = {} as Subpaths
+): Path & Subpaths {
   function updatePath(path: Path, root: boolean): void {
     Object.entries(path).forEach(([key, subpath]) => {
       if (typeof subpath === 'string') {
