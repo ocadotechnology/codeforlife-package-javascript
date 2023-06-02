@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.2...v1.15.3) (2023-06-02)
+
+
+### Bug Fixes
+
+* root url ([9a14fae](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9a14fae1213b8947e66000c5e55604a88d795705))
+
 ## [1.15.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.1...v1.15.2) (2023-06-02)
 
 
