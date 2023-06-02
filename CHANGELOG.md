@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.0...v1.15.1) (2023-06-02)
+
+
+### Bug Fixes
+
+* simplify path helper ([5e84a32](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5e84a322a72e00d0ccdb2284680a74cfb10774a9))
+
 # [1.15.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.14.3...v1.15.0) (2023-06-01)
 
 
