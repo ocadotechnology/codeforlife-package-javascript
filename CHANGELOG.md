@@ -1,3 +1,10 @@
+## [1.15.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.4...v1.15.5) (2023-06-02)
+
+
+### Bug Fixes
+
+* MuiButton ([b6f800b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b6f800b035bb2b780c81940ebd879519d11b3152))
+
 ## [1.15.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.3...v1.15.4) (2023-06-02)
 
 
