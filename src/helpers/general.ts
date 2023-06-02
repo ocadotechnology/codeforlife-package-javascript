@@ -34,7 +34,7 @@ export function path<
 >(
   _: string,
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  subpaths: Subpaths | undefined = {} as Subpaths
+  subpaths: Subpaths = {} as Subpaths
 ): Path & Subpaths {
   function updatePath(path: Path, root: boolean): void {
     Object.entries(path).forEach(([key, subpath]) => {
@@ -47,6 +47,10 @@ export function path<
   }
 
   const path = { ...subpaths, _ };
-  updatePath(path, true);
+  if (_ === '') {
+    path._ = '/';
+  } else {
+    updatePath(path, true);
+  }
   return path;
 }
