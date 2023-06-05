@@ -3,6 +3,7 @@ import {
   AppBar,
   AppBarProps,
   Toolbar,
+  ToolbarProps,
   useScrollTrigger,
   Container,
   ContainerProps
@@ -11,11 +12,13 @@ import {
 export interface ElevatedAppBarProps extends Omit<AppBarProps, (
   'position'
 )> {
-  containerProps: ContainerProps
+  containerProps: ContainerProps;
+  toolbarProps?: ToolbarProps;
 }
 
 const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
   containerProps,
+  toolbarProps,
   elevation = 4,
   children,
   ...otherProps
@@ -28,7 +31,7 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
   return React.cloneElement(
     <AppBar elevation={elevation} {...otherProps}>
       <Container {...containerProps}>
-        <Toolbar>
+        <Toolbar {...toolbarProps}>
           {children}
         </Toolbar>
       </Container>
