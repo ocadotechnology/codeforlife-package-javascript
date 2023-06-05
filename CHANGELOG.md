@@ -1,3 +1,10 @@
+## [1.16.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.2...v1.16.3) (2023-06-05)
+
+
+### Bug Fixes
+
+* padding ([9294dbc](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9294dbc5ddeca4d935aab066c61f2d2213e33784))
+
 ## [1.16.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.1...v1.16.2) (2023-06-05)
 
 
