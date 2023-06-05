@@ -1,3 +1,4 @@
+import App, { AppProps } from './App';
 import ClickableTooltip, { ClickableTooltipProps } from './ClickableTooltip';
 import CopyIconButton, { CopyIconButtonProps } from './CopyIconButton';
 import ElevatedAppBar, { ElevatedAppBarProps } from './ElevatedAppBar';
@@ -7,6 +8,7 @@ import OrderedGrid, { OrderedGridProps } from './OrderedGrid';
 import YouTubeVideo, { YouTubeVideoProps } from './YouTubeVideo';
 
 export {
+  App, type AppProps,
   ClickableTooltip, type ClickableTooltipProps,
   CopyIconButton, type CopyIconButtonProps,
   ElevatedAppBar, type ElevatedAppBarProps,
