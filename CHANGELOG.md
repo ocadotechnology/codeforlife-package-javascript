@@ -1,3 +1,18 @@
+# [1.16.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.6...v1.16.0) (2023-06-05)
+
+
+### Bug Fixes
+
+* MuiTab and MuiTabs components ([dadc3f0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dadc3f049a537f315466e963692d15bbd19b822a))
+* page components ([1b3b364](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1b3b36489db5edea9e4ca018c1730e15ff698009))
+* palette colors ([d315ad9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d315ad9324ce68c8b1e505997c5e17647bf41b29))
+* styling ([d78dc5c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d78dc5c18e02c07d76875f39f57907863e2a55c6))
+
+
+### Features
+
+* reusable page components ([cbcdfc9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/cbcdfc95f5bf59f6e54c94dc394dd8a821c08147))
+
 ## [1.15.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.5...v1.15.6) (2023-06-05)
 
 
