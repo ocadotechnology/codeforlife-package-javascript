@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, BoxProps } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 import { openInNewTab } from '../helpers';
 
@@ -30,8 +29,7 @@ const Image: React.FC<ImageProps> = ({
     if (hrefInNewTab) {
       onClick = () => { openInNewTab(href); };
     } else {
-      const navigate = useNavigate();
-      onClick = () => { navigate(href); };
+      onClick = () => { window.location.replace(href); };
     }
   }
 
