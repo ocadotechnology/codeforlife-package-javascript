@@ -5,6 +5,8 @@ import {
 } from '@mui/material';
 import { red, common } from '@mui/material/colors';
 
+import { primary, secondary, tertiary } from './colors';
+
 // Extend palette to include a custom colors.
 declare module '@mui/material/styles' {
   interface CustomPaletteColors {
@@ -55,20 +57,17 @@ const { palette: { augmentColor } } = createTheme();
 
 const palette: ThemeOptions['palette'] = {
   primary: {
-    main: '#e0004d',
-    light: '#fa1664',
+    main: primary[500],
     contrastText: common.white
   },
   secondary: {
-    main: '#00a3e0',
-    light: '#08bafc',
-    contrastText: common.white
+    main: secondary[500],
+    contrastText: common.black
   },
   tertiary: augmentColor({
     color: {
-      main: '#ffc709',
-      light: '#ffd23b',
-      contrastText: common.black
+      main: tertiary[500],
+      contrastText: common.white
     }
   }),
   white: augmentColor({
