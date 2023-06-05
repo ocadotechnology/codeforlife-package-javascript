@@ -1,3 +1,10 @@
+## [1.16.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.3...v1.16.4) (2023-06-05)
+
+
+### Bug Fixes
+
+* replace location ([ac46914](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ac4691454647b851fae8ae71c8204b316c1a9f4e))
+
 ## [1.16.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.2...v1.16.3) (2023-06-05)
 
 
