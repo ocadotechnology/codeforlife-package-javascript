@@ -16,15 +16,15 @@ import Section from './Section';
 export interface NotificationProps {
   open?: boolean;
   onClose?: () => void;
-  message: string;
-  bgcolor: 'secondary' | 'tertiary';
+  children: string;
+  bgcolor?: 'secondary' | 'tertiary';
 }
 
 const Notification: React.FC<NotificationProps> = ({
   open = true,
   onClose,
-  message,
-  bgcolor
+  children,
+  bgcolor = 'secondary'
 }) => {
   const [_open, _setOpen] = React.useState(open);
 
@@ -38,7 +38,7 @@ const Notification: React.FC<NotificationProps> = ({
   return (
     <Section gridProps={{
       bgcolor: (bgcolor === 'secondary') ? '#ffd23b' : '#08bafc',
-      paddingY: '15px'
+      paddingY: '5px'
     }}>
       <Stack
         direction='row'
@@ -47,11 +47,11 @@ const Notification: React.FC<NotificationProps> = ({
       >
         <InfoOutlinedIcon htmlColor={contrastText} />
         <Typography
+          variant='body2'
           color={contrastText}
-          fontWeight={600}
           mb={0}
         >
-          {message}
+          {children}
         </Typography>
         <IconButton
           style={{ marginLeft: 'auto' }}

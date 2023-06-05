@@ -25,7 +25,12 @@ const Section: React.FC<SectionProps> = ({
   ...otherContainerProps
 }) => {
   return (
-    <Grid xs={12} {...gridProps}>
+    <Grid
+      xs={12}
+      paddingY='25px'
+      paddingX='15px'
+      {...gridProps}
+    >
       <Container
         maxWidth={maxWidth}
         {...otherContainerProps}

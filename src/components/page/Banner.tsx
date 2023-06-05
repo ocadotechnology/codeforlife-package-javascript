@@ -49,7 +49,8 @@ const Banner: React.FC<BannerProps> = ({
 
   return <>
     <Section gridProps={{
-      bgcolor: _bgcolor
+      bgcolor: _bgcolor,
+      paddingY: 0
     }}>
       <Stack
         direction='row'
@@ -59,8 +60,8 @@ const Banner: React.FC<BannerProps> = ({
       >
         <Stack
           py={{
-            xs: 8,
-            md: imageProps !== undefined ? 0 : 10
+            xs: '80px',
+            md: imageProps !== undefined ? 0 : '100px'
           }}
           textAlign={textAlign}
         >
@@ -73,7 +74,7 @@ const Banner: React.FC<BannerProps> = ({
           <Typography
             color={contrastText}
             variant='h5'
-            mb={0}
+            mb={buttonProps !== undefined ? undefined : 0}
           >
             {subheader}
           </Typography>
