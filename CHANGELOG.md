@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.4...v1.17.0) (2023-06-05)
+
+
+### Features
+
+* App component ([ce194b2](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ce194b2ebf7ad7f9fb1444818d9ac506ff4a5da8))
+
 ## [1.16.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.3...v1.16.4) (2023-06-05)
 
 
