@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.0...v1.17.1) (2023-06-05)
+
+
+### Bug Fixes
+
+* relocate app component ([7c258fb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7c258fb0f67f98ce7d8e6e52cf2026547f0d4cbf))
+
 # [1.17.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.4...v1.17.0) (2023-06-05)
 
 
