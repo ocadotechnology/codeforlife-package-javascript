@@ -11,6 +11,7 @@ import MuiTableBody from './MuiTableBody';
 import MuiTableHead from './MuiTableHead';
 import MuiTabs from './MuiTabs';
 import MuiTextField from './MuiTextField';
+import MuiToolbar from './MuiToolbar';
 import MuiTypography from './MuiTypography';
 
 const components: ThemeOptions['components'] = {
@@ -25,6 +26,7 @@ const components: ThemeOptions['components'] = {
   MuiTableHead,
   MuiTabs,
   MuiTextField,
+  MuiToolbar,
   MuiTypography
 };
 
