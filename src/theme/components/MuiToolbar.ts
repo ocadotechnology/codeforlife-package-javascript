@@ -3,7 +3,7 @@ import Components from './_components';
 const MuiToolbar: Components['MuiToolbar'] = {
   styleOverrides: {
     root: {
-      padding: '0px !important'
+      padding: '15px 0px !important'
     }
   }
 };
