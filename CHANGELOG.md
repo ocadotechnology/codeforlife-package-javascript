@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.0...v1.16.1) (2023-06-05)
+
+
+### Bug Fixes
+
+* MuiToolbar padding ([8efbc6d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8efbc6db579452df804b55acee6390de285fae7d))
+
 # [1.16.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.6...v1.16.0) (2023-06-05)
 
 
