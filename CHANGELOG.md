@@ -1,3 +1,10 @@
+## [1.16.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.1...v1.16.2) (2023-06-05)
+
+
+### Bug Fixes
+
+* add toolbarProps ([538f68b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/538f68b8aa36c8148cc3a7923d1615cd5359bccf))
+
 ## [1.16.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.16.0...v1.16.1) (2023-06-05)
 
 
