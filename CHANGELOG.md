@@ -1,3 +1,10 @@
+## [1.15.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.5...v1.15.6) (2023-06-05)
+
+
+### Bug Fixes
+
+* no padding on MuiContainer ([2b8663f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2b8663f731e23e2e9f0be07850e46dfee7585a24))
+
 ## [1.15.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.15.4...v1.15.5) (2023-06-02)
 
 
