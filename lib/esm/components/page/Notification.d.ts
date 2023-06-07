@@ -2,7 +2,7 @@ import React from 'react';
 export interface NotificationProps {
     open?: boolean;
     onClose?: () => void;
-    children: string;
+    children: React.ReactNode;
     bgcolor?: 'secondary' | 'tertiary';
 }
 declare const Notification: React.FC<NotificationProps>;
