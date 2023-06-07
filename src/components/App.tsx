@@ -30,6 +30,12 @@ const App = <
 }: AppProps<A, S>): JSX.Element => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
+    <style>{`
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    `}</style>
     <Provider store={store}>
       {children}
     </Provider>
