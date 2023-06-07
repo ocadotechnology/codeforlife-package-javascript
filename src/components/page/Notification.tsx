@@ -36,10 +36,12 @@ const Notification: React.FC<NotificationProps> = ({
   ).contrastText;
 
   return (
-    <Section gridProps={{
-      bgcolor: (bgcolor === 'secondary') ? '#ffd23b' : '#08bafc',
-      paddingY: '5px'
-    }}>
+    <Section
+      gridProps={{
+        bgcolor: (bgcolor === 'secondary') ? '#ffd23b' : '#08bafc'
+      }}
+      sx={{ paddingY: '5px' }}
+    >
       <Stack
         direction='row'
         alignItems='center'

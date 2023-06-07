@@ -20,20 +20,12 @@ export interface SectionProps extends ContainerProps {
 
 const Section: React.FC<SectionProps> = ({
   gridProps,
-  maxWidth = 'lg',
   children,
-  ...otherContainerProps
+  ...containerProps
 }) => {
   return (
-    <Grid
-      xs={12}
-      paddingY='25px'
-      {...gridProps}
-    >
-      <Container
-        maxWidth={maxWidth}
-        {...otherContainerProps}
-      >
+    <Grid xs={12} {...gridProps}>
+      <Container {...containerProps}>
         {children}
       </Container>
     </Grid>

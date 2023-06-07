@@ -37,10 +37,8 @@ const TabBar: React.FC<TabBarProps> = ({
 
   return <>
     <Section
-      gridProps={{
-        bgcolor: primary[500],
-        paddingY: '100px'
-      }}
+      gridProps={{ bgcolor: primary[500] }}
+      sx={{ paddingY: '100px' }}
       className='flex-center'
     >
       <Typography
@@ -53,10 +51,8 @@ const TabBar: React.FC<TabBarProps> = ({
       </Typography>
     </Section>
     <Section
-      gridProps={{
-        bgcolor: primary[300],
-        paddingY: '6px'
-      }}
+      gridProps={{ bgcolor: primary[300] }}
+      sx={{ paddingY: '6px' }}
       className='flex-center'
     >
       <Tabs
