@@ -1,3 +1,10 @@
+## [1.17.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.2...v1.17.3) (2023-06-07)
+
+
+### Bug Fixes
+
+* mui container padding ([1212f4b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1212f4b858f40e1de52512042f2565db0dd0afab))
+
 ## [1.17.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.1...v1.17.2) (2023-06-07)
 
 
