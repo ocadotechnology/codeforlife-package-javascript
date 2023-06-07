@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.1...v1.17.2) (2023-06-07)
+
+
+### Bug Fixes
+
+* Notification children type ([5ed1c01](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5ed1c01b7516194d19c203264c3e04e9b4acbca4))
+
 ## [1.17.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.0...v1.17.1) (2023-06-05)
 
 
