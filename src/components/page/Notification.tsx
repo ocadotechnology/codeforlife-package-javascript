@@ -16,7 +16,7 @@ import Section from './Section';
 export interface NotificationProps {
   open?: boolean;
   onClose?: () => void;
-  children: string;
+  children: React.ReactNode;
   bgcolor?: 'secondary' | 'tertiary';
 }
 
