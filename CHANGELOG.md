@@ -1,3 +1,10 @@
+## [1.17.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.3...v1.17.4) (2023-06-07)
+
+
+### Bug Fixes
+
+* default body style ([d253a0d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d253a0dc309dcd49a7815909aca7dfe6d8468e7e))
+
 ## [1.17.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.2...v1.17.3) (2023-06-07)
 
 
