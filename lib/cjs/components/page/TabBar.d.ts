@@ -1,9 +1,10 @@
 import React from 'react';
-import { SectionProps } from './Section';
+import { SectionElement } from './Section';
 export interface TabBarProps {
     header: string;
-    tabs: Array<SectionProps & {
+    tabs: Array<{
         label: string;
+        children: SectionElement | SectionElement[];
     }>;
 }
 declare const TabBar: React.FC<TabBarProps>;

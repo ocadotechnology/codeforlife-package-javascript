@@ -6,3 +6,4 @@ export interface SectionProps extends ContainerProps {
 }
 declare const Section: React.FC<SectionProps>;
 export default Section;
+export type SectionElement = React.ReactElement<SectionProps, typeof Section>;

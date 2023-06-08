@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid2Props } from '@mui/material';
-import Section, { SectionProps } from './Section';
-type SectionElement = React.ReactElement<SectionProps, typeof Section>;
+import { SectionElement } from './Section';
 export interface ContainerProps extends Omit<Grid2Props, ('container' | 'children')> {
     children: SectionElement | SectionElement[];
 }
