@@ -1,3 +1,10 @@
+## [1.17.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.8...v1.17.9) (2023-06-08)
+
+
+### Bug Fixes
+
+* remove line-height ([55506eb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/55506eb9fedd64f8ec4e84f10a770a2713babad9))
+
 ## [1.17.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.7...v1.17.8) (2023-06-08)
 
 
