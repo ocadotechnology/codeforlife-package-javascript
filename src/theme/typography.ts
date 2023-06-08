@@ -1,6 +1,6 @@
-import { ThemeOptions } from '@mui/material';
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 
-const typography: ThemeOptions['typography'] = {
+const typography: TypographyOptions = {
   h1: {
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,

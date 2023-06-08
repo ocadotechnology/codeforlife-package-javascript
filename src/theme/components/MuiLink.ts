@@ -1,13 +1,16 @@
-import Components from './_components';
+import Components, {
+  getFontStyleOverrides
+} from './_components';
 
 const MuiLink: Components['MuiLink'] = {
   defaultProps: {
     underline: 'hover'
   },
   styleOverrides: {
-    root: {
+    root: ({ ownerState }) => ({
+      ...getFontStyleOverrides(ownerState),
       cursor: 'pointer'
-    }
+    })
   }
 };
 
