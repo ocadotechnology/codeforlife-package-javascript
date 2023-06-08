@@ -1,3 +1,10 @@
+## [1.17.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.5...v1.17.6) (2023-06-08)
+
+
+### Bug Fixes
+
+* reusable font styles ([e91018a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e91018ac1e806c492a12e448e28c5c00e24fa957))
+
 ## [1.17.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.4...v1.17.5) (2023-06-08)
 
 
