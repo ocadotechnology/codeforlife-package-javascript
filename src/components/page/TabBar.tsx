@@ -6,14 +6,15 @@ import {
 } from '@mui/material';
 
 import { primary } from '../../theme/colors';
-import Section, { SectionProps } from './Section';
+import Section, { SectionElement } from './Section';
 
 import { SearchParams } from '../../helpers';
 
 export interface TabBarProps {
   header: string;
-  tabs: Array<SectionProps & {
+  tabs: Array<{
     label: string;
+    children: SectionElement | SectionElement[];
   }>;
 }
 
@@ -22,10 +23,7 @@ const TabBar: React.FC<TabBarProps> = ({
   tabs
 }) => {
   const labels = tabs.map(tab => tab.label);
-  const sectionProps = tabs.map(tab => {
-    const { label, ...sectionProps } = tab;
-    return sectionProps;
-  });
+  const children = tabs.map(tab => tab.children);
 
   const params = SearchParams.get<{ tab: string; }>({
     tab: { validate: SearchParams.validate.inOptions(labels) }
@@ -64,7 +62,7 @@ const TabBar: React.FC<TabBarProps> = ({
         )}
       </Tabs>
     </Section>
-    <Section {...sectionProps[value]} />
+    {children[value]}
   </>;
 };
 
