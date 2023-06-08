@@ -1,3 +1,10 @@
+## [1.17.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.7...v1.17.8) (2023-06-08)
+
+
+### Bug Fixes
+
+* body font weight ([c3da179](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c3da17911bb226a868e64e120748e15f125891f4))
+
 ## [1.17.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.6...v1.17.7) (2023-06-08)
 
 
