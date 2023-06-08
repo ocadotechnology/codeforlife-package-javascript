@@ -1,3 +1,10 @@
+## [1.17.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.6...v1.17.7) (2023-06-08)
+
+
+### Bug Fixes
+
+* add remaining typography settings ([7dbe880](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7dbe8806b3143cc76aad89a9655edfd45eb452af))
+
 ## [1.17.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.5...v1.17.6) (2023-06-08)
 
 
