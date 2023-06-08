@@ -1,3 +1,10 @@
+## [1.17.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.4...v1.17.5) (2023-06-08)
+
+
+### Bug Fixes
+
+* allow multiple section in tab bar children ([d6f82b7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d6f82b7e18c5d271da2ab606ebfd234cbea12b3a))
+
 ## [1.17.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.3...v1.17.4) (2023-06-07)
 
 
