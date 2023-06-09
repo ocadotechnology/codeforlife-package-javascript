@@ -75,11 +75,11 @@ const App = <
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <style>{`
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-    `}</style>
+        body {
+          margin: 0px;
+          padding: 0px;
+        }
+      `}</style>
       <Provider store={store}>
         {children}
       </Provider>
