@@ -1,3 +1,10 @@
+## [1.18.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.2...v1.18.3) (2023-06-09)
+
+
+### Bug Fixes
+
+* don't load external scripts on dev ([75c50fa](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/75c50faa7a90032c738d8aae0473b4794233c36d))
+
 ## [1.18.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.1...v1.18.2) (2023-06-09)
 
 
