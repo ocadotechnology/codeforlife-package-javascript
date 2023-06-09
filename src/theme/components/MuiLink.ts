@@ -2,6 +2,8 @@ import Components, {
   getFontStyleOverrides
 } from './_components';
 
+import { includesClassNames } from '../../helpers';
+
 const MuiLink: Components['MuiLink'] = {
   defaultProps: {
     underline: 'hover'
@@ -9,7 +11,13 @@ const MuiLink: Components['MuiLink'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
       ...getFontStyleOverrides(ownerState),
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ...(includesClassNames(ownerState, ['back-to']) && {
+        color: 'black !important',
+        ':before': {
+          content: '"< Back to "'
+        }
+      })
     })
   }
 };
