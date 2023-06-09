@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
+  ErrorOutline as ErrorOutlineIcon,
   CloseOutlined as CloseOutlinedIcon
 } from '@mui/icons-material';
 
@@ -15,6 +16,7 @@ import Section from './Section';
 
 export interface NotificationProps {
   open?: boolean;
+  error?: boolean;
   onClose?: () => void;
   children: React.ReactNode;
   bgcolor?: 'secondary' | 'tertiary';
@@ -22,6 +24,7 @@ export interface NotificationProps {
 
 const Notification: React.FC<NotificationProps> = ({
   open = true,
+  error = false,
   onClose,
   children,
   bgcolor = 'secondary'
@@ -47,7 +50,10 @@ const Notification: React.FC<NotificationProps> = ({
         alignItems='center'
         gap={2}
       >
-        <InfoOutlinedIcon htmlColor={contrastText} />
+        {error
+          ? <ErrorOutlineIcon htmlColor={contrastText} />
+          : <InfoOutlinedIcon htmlColor={contrastText} />
+        }
         <Typography
           variant='body2'
           color={contrastText}
