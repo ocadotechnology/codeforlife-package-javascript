@@ -1,6 +1,7 @@
 import React from 'react';
 export interface NotificationProps {
     open?: boolean;
+    error?: boolean;
     onClose?: () => void;
     children: React.ReactNode;
     bgcolor?: 'secondary' | 'tertiary';
