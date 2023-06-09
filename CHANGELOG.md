@@ -1,3 +1,10 @@
+## [1.17.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.9...v1.17.10) (2023-06-09)
+
+
+### Bug Fixes
+
+* added back-to class ([e8b8156](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e8b815645783f2078d9e9cd85a325053d7352e0f))
+
 ## [1.17.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.8...v1.17.9) (2023-06-08)
 
 
