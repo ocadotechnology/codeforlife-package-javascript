@@ -1,3 +1,10 @@
+## [1.18.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.1...v1.18.2) (2023-06-09)
+
+
+### Bug Fixes
+
+* race condition ([6f3e888](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6f3e888baf4c6d568f9977e5c21a9ff8dfd5b538))
+
 ## [1.18.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.0...v1.18.1) (2023-06-09)
 
 
