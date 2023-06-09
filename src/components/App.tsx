@@ -11,7 +11,10 @@ import {
   CssBaseline
 } from '@mui/material';
 
-import { useExternalScript } from '../hooks';
+import {
+  useExternalScript,
+  useFreshworksWidget
+} from '../hooks';
 
 export interface AppProps<
   A extends Action = AnyAction,
@@ -67,7 +70,9 @@ const App = <
     },
     eventTypes: ['load', 'error']
   });
-  if (freshworksEventType === 'error') {
+  if (freshworksEventType === 'load') {
+    useFreshworksWidget('hide');
+  } else if (freshworksEventType === 'error') {
     alert('Freshworks failed to load!');
   }
 
