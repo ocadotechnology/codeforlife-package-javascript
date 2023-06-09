@@ -53,6 +53,7 @@ export function useExternalScript<
       script!.addEventListener(eventType, eventListener);
     });
 
+    // Will do nothing if the script already exists.
     document.head.appendChild(script);
 
     return () => {
