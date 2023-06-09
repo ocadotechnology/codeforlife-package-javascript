@@ -1,3 +1,15 @@
+# [1.18.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.11...v1.18.0) (2023-06-09)
+
+
+### Bug Fixes
+
+* add comment ([7278c99](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7278c9949759de4a0f3b25808053a8b4e0707c9e))
+
+
+### Features
+
+* custom hooks and load external scripts in app ([1bd28ae](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1bd28aef3ea0e732c3b4c2aaa4a04601c1de55d6))
+
 ## [1.17.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.10...v1.17.11) (2023-06-09)
 
 
