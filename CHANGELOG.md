@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.0...v1.18.1) (2023-06-09)
+
+
+### Bug Fixes
+
+* hide freshworks widget on load ([17d8fc3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/17d8fc34156a9fb1e6d4079f3827095a07934171))
+
 # [1.18.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.17.11...v1.18.0) (2023-06-09)
 
 
