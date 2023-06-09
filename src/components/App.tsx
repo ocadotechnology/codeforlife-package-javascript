@@ -71,7 +71,10 @@ const App = <
     eventTypes: ['load', 'error']
   });
   if (freshworksEventType === 'load') {
-    useFreshworksWidget('hide');
+    // TODO: figure out better approach.
+    setTimeout(() => {
+      useFreshworksWidget('hide');
+    }, 1000);
   } else if (freshworksEventType === 'error') {
     alert('Freshworks failed to load!');
   }
