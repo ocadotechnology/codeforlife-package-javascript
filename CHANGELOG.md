@@ -1,3 +1,11 @@
+## [1.19.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.3...v1.19.4) (2023-06-12)
+
+
+### Bug Fixes
+
+* delete import ([9d146af](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9d146af43ba83a8fc847863ac4168f2e198fc627))
+* support passing in theme options to extend ([201b250](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/201b2504e6131c163f4b3167db5555ec76527ea9))
+
 ## [1.19.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.2...v1.19.3) (2023-06-12)
 
 
