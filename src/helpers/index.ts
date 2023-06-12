@@ -13,7 +13,6 @@ import {
 } from './searchParams';
 import {
   insertDividerBetweenElements,
-  overrideComponentsInTheme,
   getStyleOverrides,
   includesClassNames
 } from './materialUI';
@@ -24,7 +23,6 @@ export {
   wrap,
   path, type Path,
   insertDividerBetweenElements,
-  overrideComponentsInTheme,
   getStyleOverrides,
   includesClassNames
 };
