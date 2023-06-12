@@ -5,3 +5,9 @@
 declare namespace React {
   type StatelessComponent<P> = React.FunctionComponent<P>;
 }
+
+/*
+ * Don't care about the typings of external libraries.
+ * All libraries without typings will be imported as `any`.
+*/
+declare module '*' { }
