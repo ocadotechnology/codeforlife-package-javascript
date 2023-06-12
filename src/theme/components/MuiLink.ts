@@ -17,6 +17,14 @@ const MuiLink: Components['MuiLink'] = {
         ':before': {
           content: '"< Back to "'
         }
+      }),
+      ...(includesClassNames(ownerState, ['body']) && {
+        color: 'black',
+        textDecorationColor: 'black',
+        textDecoration: 'underline',
+        ':hover': {
+          fontWeight: 'bold'
+        }
       })
     })
   }
