@@ -1,5 +1,5 @@
 import {
-  ThemeOptions,
+  PaletteOptions,
   PaletteColor,
   createTheme
 } from '@mui/material';
@@ -55,7 +55,7 @@ declare module '@mui/material' {
 
 const { palette: { augmentColor } } = createTheme();
 
-const palette: ThemeOptions['palette'] = {
+const palette: PaletteOptions = {
   primary: {
     main: primary[500],
     contrastText: common.white
