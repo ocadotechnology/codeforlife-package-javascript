@@ -17,7 +17,8 @@
     "react"
   ],
   "ignorePatterns": [
-    "lib"
+    "lib",
+    "src/scripts"
   ],
   "rules": {
     "@typescript-eslint/semi": [

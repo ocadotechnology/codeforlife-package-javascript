@@ -16,6 +16,8 @@ import {
   useFreshworksWidget
 } from '../hooks';
 
+import '../scripts';
+
 export interface AppProps<
   A extends Action = AnyAction,
   S = unknown
@@ -57,29 +59,11 @@ const App = <
     if (oneTrustEventTypes.some(t => t === 'error')) {
       alert('OneTrust failed to load!');
     }
-
-    // @ts-expect-error required by freshworks script.
-    window.fwSettings = {
-      widget_id: 77000000397
-    };
-    const freshworksEventType = useExternalScript({
-      props: {
-        src: 'https://euc-widget.freshworks.com/widgets/77000000397.js',
-        type: 'text/javascript',
-        async: true,
-        defer: true
-      },
-      eventTypes: ['load', 'error']
-    });
-    if (freshworksEventType === 'load') {
-      // TODO: figure out better approach.
-      setTimeout(() => {
-        useFreshworksWidget('hide');
-      }, 1000);
-    } else if (freshworksEventType === 'error') {
-      alert('Freshworks failed to load!');
-    }
   }
+
+  React.useEffect(() => {
+    useFreshworksWidget('hide');
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
