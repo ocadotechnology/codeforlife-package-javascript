@@ -1,3 +1,11 @@
+## [1.18.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.6...v1.18.7) (2023-06-12)
+
+
+### Bug Fixes
+
+* add body class ([a55a0d9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a55a0d91948556377c47297a282540493b1a73b4))
+* add MuiInputBase ([7738a2f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7738a2f5e3a623fdb1c8136a49da86b6e65dcf21))
+
 ## [1.18.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.5...v1.18.6) (2023-06-12)
 
 
