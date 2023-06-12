@@ -1,6 +1,7 @@
 import React from 'react';
-import { BoxProps } from '@mui/material';
+import { BoxProps, ThemeOptions } from '@mui/material';
 export interface ThemedBoxProps extends BoxProps {
+    options?: ThemeOptions;
     withIcons?: boolean;
     userType: 'teacher' | 'student' | 'independent';
 }
