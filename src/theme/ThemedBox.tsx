@@ -120,6 +120,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
           }),
           outlined: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiButton', 'outlined'),
+            ...fontStyleOverrides,
             border: `2px solid ${bgcolor.contrastText}`,
             '&:hover': {
               border: `2px solid ${bgcolor.contrastText}`,
