@@ -1,4 +1,4 @@
-import { ThemeOptions, PaletteColor } from '@mui/material';
+import { PaletteOptions, PaletteColor } from '@mui/material';
 declare module '@mui/material/styles' {
     interface CustomPaletteColors {
         tertiary: PaletteColor;
@@ -69,5 +69,5 @@ declare module '@mui/material' {
     interface ToggleButtonGroupPropsColorOverrides extends PropsColorOverrides {
     }
 }
-declare const palette: ThemeOptions['palette'];
+declare const palette: PaletteOptions;
 export default palette;
