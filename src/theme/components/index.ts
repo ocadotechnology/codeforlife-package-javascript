@@ -3,6 +3,7 @@ import { ThemeOptions } from '@mui/material';
 import MuiButton from './MuiButton';
 import MuiContainer from './MuiContainer';
 import MuiGrid2 from './MuiGrid2';
+import MuiInputBase from './MuiInputBase';
 import MuiLink from './MuiLink';
 import MuiMenuItem from './MuiMenuItem';
 import MuiTab from './MuiTab';
@@ -18,6 +19,7 @@ const components: ThemeOptions['components'] = {
   MuiButton,
   MuiContainer,
   MuiGrid2,
+  MuiInputBase,
   MuiLink,
   MuiMenuItem,
   MuiTab,
