@@ -2,8 +2,7 @@ import React from 'react';
 import {
   Stack,
   Typography,
-  IconButton,
-  SimplePaletteColorOptions
+  IconButton
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
@@ -33,10 +32,8 @@ const Notification: React.FC<NotificationProps> = ({
 
   if (!_open) return <></>;
 
-  const contrastText = (
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    palette![bgcolor] as SimplePaletteColorOptions
-  ).contrastText;
+  // @ts-expect-error guaranteed to be in palette
+  const contrastText = palette[bgcolor].contrastText;
 
   return (
     <Section

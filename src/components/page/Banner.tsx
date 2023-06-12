@@ -3,8 +3,7 @@ import {
   Typography,
   Stack,
   Button,
-  ButtonProps,
-  SimplePaletteColorOptions
+  ButtonProps
 } from '@mui/material';
 
 import palette from '../../theme/palette';
@@ -29,10 +28,8 @@ const Banner: React.FC<BannerProps> = ({
   buttonProps,
   bgcolor = 'primary'
 }) => {
-  const contrastText = (
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    palette![bgcolor] as SimplePaletteColorOptions
-  ).contrastText;
+  // @ts-expect-error guaranteed to be in palette
+  const contrastText = palette[bgcolor].contrastText;
 
   let _bgcolor: string;
   switch (bgcolor) {
