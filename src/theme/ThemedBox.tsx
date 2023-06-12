@@ -7,7 +7,8 @@ import {
   buttonClasses,
   PaletteColor,
   responsiveFontSizes,
-  createTheme
+  createTheme,
+  ThemeOptions
 } from '@mui/material';
 import {
   Circle as CircleIcon,
@@ -16,14 +17,19 @@ import {
 
 import { themeOptions } from '.';
 import palette from './palette';
-import { getStyleOverrides } from '../helpers';
+import {
+  getStyleOverrides as _getStyleOverrides
+} from '../helpers';
+import Components from './components/_components';
 
 export interface ThemedBoxProps extends BoxProps {
-  withIcons?: boolean,
-  userType: 'teacher' | 'student' | 'independent'
+  options?: ThemeOptions;
+  withIcons?: boolean;
+  userType: 'teacher' | 'student' | 'independent';
 }
 
 const ThemedBox: React.FC<ThemedBoxProps> = ({
+  options = themeOptions,
   withIcons = false,
   userType,
   children,
@@ -62,14 +68,22 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
     textDecorationColor: bgcolor.contrastText
   };
 
+  function getStyleOverrides(
+    ownerState: Record<string, unknown>,
+    componentKey: keyof Components,
+    muiClassName: string = 'root'
+  ): object {
+    return _getStyleOverrides(ownerState, componentKey, muiClassName, options.components);
+  }
+
   const theme = responsiveFontSizes(createTheme({
-    ...themeOptions,
+    ...options,
     components: {
-      ...themeOptions.components,
+      ...options.components,
       MuiTypography: {
-        ...themeOptions.components?.MuiTypography,
+        ...options.components?.MuiTypography,
         styleOverrides: {
-          ...themeOptions.components?.MuiTypography?.styleOverrides,
+          ...options.components?.MuiTypography?.styleOverrides,
           root: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiTypography'),
             ...fontStyleOverrides
@@ -77,9 +91,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }
       },
       MuiFormHelperText: {
-        ...themeOptions.components?.MuiFormHelperText,
+        ...options.components?.MuiFormHelperText,
         styleOverrides: {
-          ...themeOptions.components?.MuiFormHelperText?.styleOverrides,
+          ...options.components?.MuiFormHelperText?.styleOverrides,
           root: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiFormHelperText'),
             ...fontStyleOverrides
@@ -87,9 +101,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }
       },
       MuiLink: {
-        ...themeOptions.components?.MuiLink,
+        ...options.components?.MuiLink,
         styleOverrides: {
-          ...themeOptions.components?.MuiLink?.styleOverrides,
+          ...options.components?.MuiLink?.styleOverrides,
           root: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiLink'),
             ...fontStyleOverrides
@@ -97,9 +111,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }
       },
       MuiButton: {
-        ...themeOptions.components?.MuiButton,
+        ...options.components?.MuiButton,
         styleOverrides: {
-          ...themeOptions.components?.MuiButton?.styleOverrides,
+          ...options.components?.MuiButton?.styleOverrides,
           contained: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiButton', 'contained'),
             ...(userType === 'independent' && {
@@ -131,9 +145,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }
       },
       MuiCheckbox: {
-        ...themeOptions.components?.MuiCheckbox,
+        ...options.components?.MuiCheckbox,
         styleOverrides: {
-          ...themeOptions.components?.MuiCheckbox?.styleOverrides,
+          ...options.components?.MuiCheckbox?.styleOverrides,
           root: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiCheckbox'),
             color: `${bgcolor.contrastText} !important`
@@ -141,9 +155,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }
       },
       MuiSvgIcon: {
-        ...themeOptions.components?.MuiSvgIcon,
+        ...options.components?.MuiSvgIcon,
         styleOverrides: {
-          ...themeOptions.components?.MuiSvgIcon?.styleOverrides,
+          ...options.components?.MuiSvgIcon?.styleOverrides,
           root: ({ ownerState }) => ({
             ...getStyleOverrides(ownerState, 'MuiSvgIcon'),
             '&.checkbox-error': {
