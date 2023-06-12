@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.0...v1.19.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* textfield styles ([02cda08](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/02cda0872ec465e38b0176bebb5e2908202c5026))
+
 # [1.19.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.7...v1.19.0) (2023-06-12)
 
 
