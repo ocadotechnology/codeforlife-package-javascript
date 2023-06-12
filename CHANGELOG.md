@@ -1,3 +1,16 @@
+# [1.19.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.7...v1.19.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* typing ([b592fb1](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b592fb1dbfc198493fc9bccaa6251c3978a6e337))
+* typings ([7a5b30d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7a5b30d576050f54b2d5a54889dd76284dc43412))
+
+
+### Features
+
+* themed box ([ad0a461](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ad0a461d4a785260f3f9db649e91c4f10dd4ab9b))
+
 ## [1.18.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.6...v1.18.7) (2023-06-12)
 
 
