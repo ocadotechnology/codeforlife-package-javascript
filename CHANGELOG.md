@@ -1,3 +1,10 @@
+## [1.18.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.4...v1.18.5) (2023-06-12)
+
+
+### Bug Fixes
+
+* typing of external libs ([140f9ef](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/140f9efd6d1b36520015dbdfdd6fd18970eac546))
+
 ## [1.18.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.3...v1.18.4) (2023-06-12)
 
 
