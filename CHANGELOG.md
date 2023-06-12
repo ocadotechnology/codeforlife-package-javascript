@@ -1,3 +1,11 @@
+## [1.18.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.3...v1.18.4) (2023-06-12)
+
+
+### Bug Fixes
+
+* change o JS extension ([409c55c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/409c55c606f86456a3afbf2d66924e75bda97722))
+* import freshDesk script ([ee3a949](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ee3a949ca06569713e4dd3c60d61fc7aeee1f6a2))
+
 ## [1.18.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.18.2...v1.18.3) (2023-06-09)
 
 
