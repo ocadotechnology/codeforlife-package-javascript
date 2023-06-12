@@ -1,5 +1,13 @@
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 
+// Pseudo typography variant for all form text.
+export const form = {
+  fontFamily: '"Inter"',
+  fontSize: '14px',
+  fontWeight: 500,
+  marginBottom: '12px'
+};
+
 // TODO: assess if line-height is needed.
 //  Doesn't play well with responsiveFontSizes.
 //  https://mui.com/material-ui/customization/theming/#responsivefontsizes-theme-options-theme
