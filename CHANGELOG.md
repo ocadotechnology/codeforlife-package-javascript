@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.1...v1.19.2) (2023-06-12)
+
+
+### Bug Fixes
+
+* button font style ([fbaf516](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fbaf51632e38189e7d7c4dfd01df8f759a0eb5e1))
+
 ## [1.19.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.0...v1.19.1) (2023-06-12)
 
 
