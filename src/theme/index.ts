@@ -6,11 +6,13 @@ import {
 
 import palette, { PropsColorOverrides } from './palette';
 import components from './components';
+import ThemedBox, { ThemedBoxProps } from './ThemedBox';
 import typography from './typography';
 
 export {
   // Needed to modify '@mui/material' module declarations.
-  type PropsColorOverrides
+  type PropsColorOverrides,
+  ThemedBox, type ThemedBoxProps
 };
 
 export const themeOptions: ThemeOptions = {

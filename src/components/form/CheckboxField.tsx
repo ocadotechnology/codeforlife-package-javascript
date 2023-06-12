@@ -4,8 +4,6 @@ import {
   FormControlLabelProps,
   Checkbox,
   CheckboxProps,
-  Icon,
-  IconProps,
   Stack,
   StackProps
 } from '@mui/material';
@@ -30,7 +28,6 @@ import ClickableTooltip from '../ClickableTooltip';
 export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
   formControlLabelProps: Omit<FormControlLabelProps, 'control'>,
   stackProps?: Omit<StackProps, 'direction' | 'children'>,
-  iconProps?: Omit<IconProps, 'children'>,
   validate?: FieldValidator | BooleanSchema,
   name: string
 }
@@ -38,7 +35,6 @@ export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
   formControlLabelProps,
   stackProps = {},
-  iconProps = {},
   validate = YupBool(),
   required = false,
   name,
@@ -93,9 +89,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
             />
             {meta.error !== undefined && meta.error !== '' &&
               <ClickableTooltip title={meta.error}>
-                <Icon {...iconProps}>
-                  <ErrorIcon color={iconProps.color} />
-                </Icon>
+                <ErrorIcon className='checkbox-error' />
               </ClickableTooltip>
             }
           </Stack>
