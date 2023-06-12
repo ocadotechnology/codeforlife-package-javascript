@@ -1,6 +1,7 @@
 import React from 'react';
 import { Action, AnyAction, Store } from 'redux';
 import { Theme } from '@mui/material';
+import '../scripts';
 export interface AppProps<A extends Action = AnyAction, S = unknown> {
     theme: Theme;
     store: Store<S, A>;
