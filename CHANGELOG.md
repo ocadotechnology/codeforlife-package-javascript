@@ -1,3 +1,10 @@
+## [1.19.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.2...v1.19.3) (2023-06-12)
+
+
+### Bug Fixes
+
+* form typography ([b45a615](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b45a615ffd955ac4397348250b712cbf331412ae))
+
 ## [1.19.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.1...v1.19.2) (2023-06-12)
 
 
