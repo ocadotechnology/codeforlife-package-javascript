@@ -14,6 +14,7 @@ export const form = {
 
 const typography: TypographyOptions = {
   h1: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '60px',
@@ -21,6 +22,7 @@ const typography: TypographyOptions = {
     marginBottom: '24px'
   },
   h2: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '55px',
@@ -28,6 +30,7 @@ const typography: TypographyOptions = {
     marginBottom: '22px'
   },
   h3: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '45px',
@@ -35,6 +38,7 @@ const typography: TypographyOptions = {
     marginBottom: '20px'
   },
   h4: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '30px',
@@ -42,6 +46,7 @@ const typography: TypographyOptions = {
     marginBottom: '18px'
   },
   h5: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '25px',
@@ -49,6 +54,7 @@ const typography: TypographyOptions = {
     marginBottom: '16px'
   },
   h6: {
+    color: '#383b3b',
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
     fontSize: '22px',
@@ -56,6 +62,7 @@ const typography: TypographyOptions = {
     marginBottom: '14px'
   },
   body1: {
+    color: '#383b3b',
     fontFamily: '"Inter"',
     fontWeight: 400,
     fontSize: '18px',
@@ -63,6 +70,7 @@ const typography: TypographyOptions = {
     marginBottom: '16px'
   },
   body2: {
+    color: '#383b3b',
     fontFamily: '"Inter"',
     fontWeight: 400,
     fontSize: '16px',
