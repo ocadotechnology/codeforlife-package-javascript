@@ -1,3 +1,10 @@
+## [1.19.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.6...v1.19.7) (2023-06-13)
+
+
+### Bug Fixes
+
+* checkbox margin bottom ([4928f99](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4928f9928c7e06db6511110f37e65b2d3422f9d5))
+
 ## [1.19.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.5...v1.19.6) (2023-06-13)
 
 
