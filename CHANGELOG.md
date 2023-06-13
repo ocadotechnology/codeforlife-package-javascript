@@ -1,3 +1,10 @@
+## [1.19.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.5...v1.19.6) (2023-06-13)
+
+
+### Bug Fixes
+
+* typography color ([edab79f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/edab79fef68cdee0c896579441aa4c4f6657fd21))
+
 ## [1.19.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.4...v1.19.5) (2023-06-13)
 
 
