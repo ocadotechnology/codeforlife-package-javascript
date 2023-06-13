@@ -10,7 +10,7 @@ const MuiFormControlLabel: Components['MuiFormControlLabel'] = {
         ...form,
         marginBottom: 0
       },
-      marginBottom: form.marginBottom
+      margin: 0
     }
   }
 };

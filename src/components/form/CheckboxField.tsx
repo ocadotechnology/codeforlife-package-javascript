@@ -23,6 +23,7 @@ import {
 } from 'yup';
 
 import { wrap } from '../../helpers';
+import { form } from '../../theme/typography';
 import ClickableTooltip from '../ClickableTooltip';
 
 export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
@@ -34,7 +35,7 @@ export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> 
 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
   formControlLabelProps,
-  stackProps = {},
+  stackProps = { gap: 1, style: { marginBottom: form.marginBottom } },
   validate = YupBool(),
   required = false,
   name,
