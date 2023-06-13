@@ -1,6 +1,7 @@
 import { ThemeOptions } from '@mui/material';
 
 import MuiButton from './MuiButton';
+import MuiCheckbox from './MuiCheckbox';
 import MuiContainer from './MuiContainer';
 import MuiFormControlLabel from './MuiFormControlLabel';
 import MuiFormHelperText from './MuiFormHelperText';
@@ -20,6 +21,7 @@ import MuiTypography from './MuiTypography';
 
 const components: ThemeOptions['components'] = {
   MuiButton,
+  MuiCheckbox,
   MuiContainer,
   MuiFormControlLabel,
   MuiFormHelperText,
