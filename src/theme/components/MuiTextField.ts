@@ -20,8 +20,7 @@ const MuiTextField: Components['MuiTextField'] = {
         borderRadius: '0px !important'
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
-        borderColor: 'black !important',
-        margin: '2px 1px 1px 1px'
+        borderColor: 'black !important'
       },
       ...(ownerState.multiline === true && {
         ...((

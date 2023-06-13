@@ -2,8 +2,7 @@ import React from 'react';
 import {
   TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
-  InputAdornment,
-  useTheme
+  InputAdornment
 } from '@mui/material';
 import {
   ErrorOutline as ErrorOutlineIcon
@@ -57,14 +56,11 @@ const TextField: ITextField = ({
   InputProps = {},
   onKeyUp,
   onBlur,
-  sx,
   ...otherTextFieldProps
 }: Omit<TextFieldProps, 'validate'> & {
   validate?: FieldValidator | StringSchema | StringArraySchema;
   split?: string | RegExp
 }) => {
-  const theme = useTheme();
-
   if (validate === undefined) {
     validate = (split === undefined)
       ? YupString()
@@ -116,13 +112,6 @@ const TextField: ITextField = ({
               </ClickableTooltip>
             </InputAdornment>
           </>;
-
-          sx = {
-            ...sx,
-            '& .MuiOutlinedInput-root.Mui-focused > fieldset': {
-              borderColor: theme.palette.error.main
-            }
-          };
         }
 
         onKeyUp = wrap({
@@ -144,7 +133,6 @@ const TextField: ITextField = ({
             type={type}
             onKeyUp={onKeyUp}
             onBlur={onBlur}
-            sx={sx}
             InputProps={{
               endAdornment,
               ...otherInputProps
