@@ -1,3 +1,10 @@
+## [1.19.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.7...v1.19.8) (2023-06-13)
+
+
+### Bug Fixes
+
+* textfield error style ([1c6e7fa](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1c6e7fa16541ec56c67db1fde319cb7374e71887))
+
 ## [1.19.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.6...v1.19.7) (2023-06-13)
 
 
