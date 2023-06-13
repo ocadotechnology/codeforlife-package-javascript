@@ -1,3 +1,11 @@
+## [1.19.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.4...v1.19.5) (2023-06-13)
+
+
+### Bug Fixes
+
+* border ([3500e58](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3500e5887dfb4ec17dcdc15e4253b3b5c1161f90))
+* border ([e71328f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e71328f4bc887b65f69984952ea565f6cb33e19c))
+
 ## [1.19.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.3...v1.19.4) (2023-06-12)
 
 
