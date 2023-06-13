@@ -1,3 +1,10 @@
+## [1.19.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.8...v1.19.9) (2023-06-13)
+
+
+### Bug Fixes
+
+* checkbox padding ([f00b4fa](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f00b4faddff49909e4518f873e5e6c758c5a64e8))
+
 ## [1.19.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.7...v1.19.8) (2023-06-13)
 
 
