@@ -1,4 +1,8 @@
-import { inputClasses } from '@mui/material';
+import {
+  inputClasses,
+  inputBaseClasses,
+  outlinedInputClasses
+} from '@mui/material';
 
 import Components from './_components';
 
@@ -12,9 +16,12 @@ const MuiTextField: Components['MuiTextField'] = {
     root: ({ ownerState }) => ({
       width: '100%',
       backgroundColor: 'transparent',
-      '& .MuiOutlinedInput-root.Mui-focused > fieldset': {
-        borderColor: 'black',
-        margin: '3px'
+      [`& > .${inputBaseClasses.root}`]: {
+        borderRadius: '0px !important'
+      },
+      [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
+        borderColor: 'black !important',
+        margin: '2px 1px 1px 1px'
       },
       ...(ownerState.multiline === true && {
         ...((
