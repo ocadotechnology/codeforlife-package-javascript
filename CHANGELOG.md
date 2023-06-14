@@ -1,3 +1,11 @@
+## [1.19.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.9...v1.19.10) (2023-06-14)
+
+
+### Bug Fixes
+
+* getFontStyleOverrides ([f41570a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f41570ac0bd0fd8742c3718177a09def1be10135))
+* support getting typography props ([cd2f3de](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/cd2f3defa71ab8c0fb44b2c46a2905314a5f73ff))
+
 ## [1.19.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.8...v1.19.9) (2023-06-13)
 
 
