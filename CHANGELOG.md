@@ -1,3 +1,10 @@
+## [1.19.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.11...v1.19.12) (2023-06-14)
+
+
+### Bug Fixes
+
+* rename withIcons to withShapes ([bbf6388](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bbf638804ff3f49c750175f42cd21780478bbc31))
+
 ## [1.19.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.10...v1.19.11) (2023-06-14)
 
 
