@@ -1,11 +1,15 @@
 import {
   ThemeOptions,
   ComponentsPropsList,
-  CSSInterpolation
+  CSSObject
 } from '@mui/material';
 import { CommonProps } from '@mui/material/OverridableComponent';
 
-import { includesClassNames } from '../../helpers';
+import {
+  getClassNames,
+  includesClassNames,
+  matchClassNames
+} from '../../helpers';
 import typography from '../typography';
 
 export default interface Components
@@ -15,29 +19,29 @@ export type OwnerState<ComponentName extends keyof ComponentsPropsList> = (
   ComponentsPropsList[ComponentName] & Record<string, unknown>
 );
 
-export function getFlexStyleOverrides(props: CommonProps): object {
-  const styleOverrides: CSSInterpolation = {};
+export function getFlexStyleOverrides(props: CommonProps): CSSObject {
+  const styleOverrides: CSSObject = {};
 
-  if (props.className?.split(' ').some(className =>
-    className.startsWith('flex')
-  )) {
+  const classNames = getClassNames(props);
+
+  if (classNames.some(className => className.startsWith('flex-'))) {
     styleOverrides.display = 'flex';
-    if (includesClassNames(props, ['flex-center'])) {
+    if (includesClassNames(classNames, ['flex-center'])) {
       styleOverrides.justifyContent = 'center';
       styleOverrides.alignItems = 'center';
-    } else if (includesClassNames(props, ['flex-center-x'])) {
+    } else if (includesClassNames(classNames, ['flex-center-x'])) {
       styleOverrides.justifyContent = 'center';
       styleOverrides.alignItems = 'start';
-    } else if (includesClassNames(props, ['flex-center-y'])) {
+    } else if (includesClassNames(classNames, ['flex-center-y'])) {
       styleOverrides.justifyContent = 'start';
       styleOverrides.alignItems = 'center';
-    } else if (includesClassNames(props, ['flex-end'])) {
+    } else if (includesClassNames(classNames, ['flex-end'])) {
       styleOverrides.justifyContent = 'end';
       styleOverrides.alignItems = 'end';
-    } else if (includesClassNames(props, ['flex-end-x'])) {
+    } else if (includesClassNames(classNames, ['flex-end-x'])) {
       styleOverrides.justifyContent = 'end';
       styleOverrides.alignItems = 'start';
-    } else if (includesClassNames(props, ['flex-end-y'])) {
+    } else if (includesClassNames(classNames, ['flex-end-y'])) {
       styleOverrides.justifyContent = 'start';
       styleOverrides.alignItems = 'end';
     }
@@ -46,24 +50,31 @@ export function getFlexStyleOverrides(props: CommonProps): object {
   return styleOverrides;
 }
 
-export function getFontStyleOverrides(props: CommonProps): object {
-  let styleOverrides: CSSInterpolation = {};
+export function getFontStyleOverrides(props: CommonProps): CSSObject {
+  let styleOverrides: CSSObject = {};
 
-  if (includesClassNames(props, ['nowrap-ellipsis'])) {
+  const classNames = getClassNames(props);
+
+  if (includesClassNames(classNames, ['nowrap-ellipsis'])) {
     styleOverrides.whiteSpace = 'nowrap';
     styleOverrides.overflow = 'hidden';
     styleOverrides.textOverflow = 'ellipsis';
   }
 
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2'
-  ].forEach(className => {
-    if (
-      className in typography &&
-      includesClassNames(props, [className])
-    ) {
-      styleOverrides = typography[className];
-    }
-  });
+  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2']
+    .filter(className => className in typography)
+    .forEach(className => {
+      if (includesClassNames(classNames, [className])) {
+        styleOverrides = { ...styleOverrides, ...typography[className] };
+      }
+
+      matchClassNames(
+        classNames, new RegExp(`^${className}-(\\w+)$`)
+      ).forEach(match => {
+        const prop = match[1];
+        styleOverrides[prop] = typography[className][prop];
+      });
+    });
 
   return styleOverrides;
 }

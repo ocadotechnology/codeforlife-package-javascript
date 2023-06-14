@@ -52,12 +52,33 @@ export function getStyleOverrides(
   return {};
 }
 
+export function getClassNames(props: CommonProps): string[] {
+  return props.className?.split(' ') ?? [];
+}
+
 export function includesClassNames(
-  props: CommonProps, classNames: string[]
+  propsOrClassNames: CommonProps | string[],
+  includes: string[]
 ): boolean {
-  if (props.className === undefined) return false;
-  const _classNames = props.className.split(' ');
-  return classNames.every(className =>
-    _classNames.includes(className)
+  const classNames = Array.isArray(propsOrClassNames)
+    ? propsOrClassNames
+    : getClassNames(propsOrClassNames);
+
+  return includes.every(className =>
+    classNames.includes(className)
   );
+}
+
+export function matchClassNames(
+  propsOrClassNames: CommonProps | string[],
+  pattern: string | RegExp
+): RegExpMatchArray[] {
+  const classNames = Array.isArray(propsOrClassNames)
+    ? propsOrClassNames
+    : getClassNames(propsOrClassNames);
+
+  return classNames
+    .map(className => className.match(pattern))
+    .filter(match => match !== null)
+    .map(match => match as RegExpMatchArray);
 }

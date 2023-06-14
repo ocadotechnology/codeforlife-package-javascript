@@ -14,7 +14,9 @@ import {
 import {
   insertDividerBetweenElements,
   getStyleOverrides,
-  includesClassNames
+  getClassNames,
+  includesClassNames,
+  matchClassNames
 } from './materialUI';
 
 // global
@@ -24,7 +26,9 @@ export {
   path, type Path,
   insertDividerBetweenElements,
   getStyleOverrides,
-  includesClassNames
+  getClassNames,
+  includesClassNames,
+  matchClassNames
 };
 
 // Namespace
