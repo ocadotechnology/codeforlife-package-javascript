@@ -1,6 +1,6 @@
 import { buttonClasses } from '@mui/material';
 
-import Components from './_components';
+import Components, { getFontStyleOverrides } from './_components';
 
 import { includesClassNames } from '../../helpers';
 
@@ -25,7 +25,8 @@ const MuiButton: Components['MuiButton'] = {
         height: '27px',
         padding: '4.5px 9px',
         letterSpacing: '0'
-      })
+      }),
+      ...getFontStyleOverrides(ownerState)
     }),
     contained: ({ ownerState }) => ({
       backgroundColor: '#ffd23b',
