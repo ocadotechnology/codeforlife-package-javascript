@@ -64,15 +64,19 @@ export function getFontStyleOverrides(props: CommonProps): CSSObject {
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2']
     .filter(className => className in typography)
     .forEach(className => {
+      const typographyClass = typography[className];
+
       if (includesClassNames(classNames, [className])) {
-        styleOverrides = { ...styleOverrides, ...typography[className] };
+        styleOverrides = { ...styleOverrides, ...typographyClass };
       }
 
       matchClassNames(
         classNames, new RegExp(`^${className}-(\\w+)$`)
       ).forEach(match => {
         const prop = match[1];
-        styleOverrides[prop] = typography[className][prop];
+        if (prop in typographyClass) {
+          styleOverrides[prop] = typographyClass[prop];
+        }
       });
     });
 
