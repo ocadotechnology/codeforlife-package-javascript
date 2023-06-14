@@ -24,13 +24,13 @@ import Components from './components/_components';
 
 export interface ThemedBoxProps extends BoxProps {
   options?: ThemeOptions;
-  withIcons?: boolean;
+  withShapes?: boolean;
   userType: 'teacher' | 'student' | 'independent';
 }
 
 const ThemedBox: React.FC<ThemedBoxProps> = ({
   options = themeOptions,
-  withIcons = false,
+  withShapes = false,
   userType,
   children,
   sx,
@@ -174,7 +174,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
       <Box
         sx={{
           ...sx,
-          ...(withIcons && {
+          ...(withShapes && {
             paddingY: { xs: 2, sm: 3, md: 5 },
             paddingX: { xs: 2, sm: 5, md: 10 }
           }),
@@ -184,7 +184,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         }}
         {...otherBoxProps}
       >
-        {withIcons && <>
+        {withShapes && <>
           <CircleIcon
             color={circleColor}
             sx={{
