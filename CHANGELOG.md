@@ -1,3 +1,10 @@
+## [1.19.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.10...v1.19.11) (2023-06-14)
+
+
+### Bug Fixes
+
+* check if prop in typography ([0161ee2](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/0161ee23ee348c8c0ae35f9255c2373e27c5d101))
+
 ## [1.19.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.9...v1.19.10) (2023-06-14)
 
 
