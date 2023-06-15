@@ -1,9 +1,10 @@
+import { includesClassNames } from '../../helpers';
 import Components from './_components';
 
 const MuiMenuItem: Components['MuiMenuItem'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...(ownerState.className === 'header' && {
+      ...(includesClassNames(ownerState, ['header']) && {
         pointerEvents: 'none',
         fontWeight: 'bold'
       })
