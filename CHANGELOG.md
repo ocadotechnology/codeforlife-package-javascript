@@ -1,3 +1,10 @@
+## [1.19.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.13...v1.19.14) (2023-06-15)
+
+
+### Bug Fixes
+
+* use includesClassNames helper ([55dc6de](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/55dc6de19c406746204d82bc5566b6e92ae253eb))
+
 ## [1.19.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.12...v1.19.13) (2023-06-15)
 
 
