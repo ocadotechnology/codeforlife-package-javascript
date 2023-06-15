@@ -8,9 +8,7 @@ const MuiLink: Components['MuiLink'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
       cursor: 'pointer',
-      ...(ownerState.variant !== undefined &&
-        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-          .includes(ownerState.variant)
+      ...(includesClassNames(ownerState, ['no-decor'])
         ? {
           ':hover': {
             textDecoration: 'underline'
