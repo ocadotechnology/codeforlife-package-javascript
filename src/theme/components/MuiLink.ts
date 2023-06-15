@@ -3,8 +3,7 @@ import Components from './_components';
 
 const MuiLink: Components['MuiLink'] = {
   defaultProps: {
-    underline: 'none', // BUG: if not set, MUI fails to run.
-    variant: 'body1'
+    underline: 'none' // BUG: if not set, MUI fails to run.
   },
   styleOverrides: {
     root: ({ ownerState }) => ({
