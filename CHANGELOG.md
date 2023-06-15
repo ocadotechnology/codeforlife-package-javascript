@@ -1,3 +1,10 @@
+## [1.19.23](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.22...v1.19.23) (2023-06-15)
+
+
+### Bug Fixes
+
+* inherit color ([ef8c34b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ef8c34be8e9aa83326b784e0a3187822746a55ff))
+
 ## [1.19.22](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.21...v1.19.22) (2023-06-15)
 
 
