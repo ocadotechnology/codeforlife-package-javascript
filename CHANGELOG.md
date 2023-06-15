@@ -1,3 +1,10 @@
+## [1.19.21](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.20...v1.19.21) (2023-06-15)
+
+
+### Bug Fixes
+
+* inherit variant ([8eaedae](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8eaedaebc3b2a01ed252fc619e9e56afc946a781))
+
 ## [1.19.20](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.19...v1.19.20) (2023-06-15)
 
 
