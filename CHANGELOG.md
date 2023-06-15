@@ -1,3 +1,10 @@
+## [1.19.25](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.24...v1.19.25) (2023-06-15)
+
+
+### Bug Fixes
+
+* header, body and footer ([d46838d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d46838d0d4afb0cc73c292245d7929b709191e23))
+
 ## [1.19.24](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.23...v1.19.24) (2023-06-15)
 
 
