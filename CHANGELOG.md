@@ -1,3 +1,10 @@
+## [1.19.16](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.15...v1.19.16) (2023-06-15)
+
+
+### Bug Fixes
+
+* ripple ([d357469](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d35746984c9195d060e07905962e5e1fc37d03a8))
+
 ## [1.19.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.14...v1.19.15) (2023-06-15)
 
 
