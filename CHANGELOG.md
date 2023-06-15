@@ -1,3 +1,10 @@
+## [1.19.19](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.18...v1.19.19) (2023-06-15)
+
+
+### Bug Fixes
+
+* mui bug ([7fa0fd5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7fa0fd5dd4cc017c0a9e129f4b4ea5bac27ff3c8))
+
 ## [1.19.18](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.17...v1.19.18) (2023-06-15)
 
 
