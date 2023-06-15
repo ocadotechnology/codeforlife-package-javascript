@@ -1,6 +1,6 @@
 {
   "name": "codeforlife",
-  "version": "1.19.19",
+  "version": "1.19.20",
   "private": true,
   "description": "Common frontend code",
   "main": "./lib/cjs/index.js",

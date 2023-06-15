@@ -1,3 +1,10 @@
+## [1.19.20](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.19...v1.19.20) (2023-06-15)
+
+
+### Bug Fixes
+
+* use native variant ([dc08b9b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dc08b9b8e5db255318d1c93792010ac18e9e3902))
+
 ## [1.19.19](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.18...v1.19.19) (2023-06-15)
 
 
