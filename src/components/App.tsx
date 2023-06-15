@@ -99,11 +99,11 @@ const App = <
       `}</style>
       <Provider store={store}>
         {header !== undefined &&
-          <Box id='header'>{header}</Box>
+          React.cloneElement(header, { id: 'header' })
         }
         <Box id='body'>{children}</Box>
         {footer !== undefined &&
-          <Box id='footer'>{footer}</Box>
+          React.cloneElement(footer, { id: 'footer' })
         }
       </Provider>
     </ThemeProvider>
