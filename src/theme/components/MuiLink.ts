@@ -1,24 +1,30 @@
 import { includesClassNames } from '../../helpers';
-import typography from '../typography';
-import Components, { getFontStyleOverrides } from './_components';
+import Components from './_components';
 
 const MuiLink: Components['MuiLink'] = {
   defaultProps: {
-    // BUG: if not set, MUI fails to run.
-    underline: 'none'
+    underline: 'none', // BUG: if not set, MUI fails to run.
+    variant: 'body1'
   },
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...typography.body1,
-      marginBottom: 0,
-      ...getFontStyleOverrides(ownerState),
       cursor: 'pointer',
-      textDecoration: 'underline',
-      ':hover': {
-        fontWeight: 'bold'
-      },
+      ...(ownerState.variant !== undefined &&
+        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+          .includes(ownerState.variant)
+        ? {
+          ':hover': {
+            textDecoration: 'underline'
+          }
+        }
+        : {
+          textDecoration: 'underline',
+          ':hover': {
+            fontWeight: 'bold'
+          }
+        }
+      ),
       ...(includesClassNames(ownerState, ['back-to']) && {
-        ...typography.body1,
         textDecoration: 'none',
         ':hover': {
           fontWeight: 'bold',
