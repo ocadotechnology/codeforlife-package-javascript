@@ -1,6 +1,4 @@
-import Components, {
-  getFontStyleOverrides
-} from './_components';
+import Components, { getFontStyleOverrides } from './_components';
 
 const MuiTypography: Components['MuiTypography'] = {
   styleOverrides: {
