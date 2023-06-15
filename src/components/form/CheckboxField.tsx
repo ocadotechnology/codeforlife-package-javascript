@@ -4,8 +4,7 @@ import {
   FormControlLabelProps,
   Checkbox,
   CheckboxProps,
-  Stack,
-  StackProps
+  Stack
 } from '@mui/material';
 import {
   Error as ErrorIcon
@@ -23,19 +22,17 @@ import {
 } from 'yup';
 
 import { wrap } from '../../helpers';
-import { form } from '../../theme/typography';
+import { form as formTypography } from '../../theme/typography';
 import ClickableTooltip from '../ClickableTooltip';
 
 export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
   formControlLabelProps: Omit<FormControlLabelProps, 'control'>,
-  stackProps?: Omit<StackProps, 'direction' | 'children'>,
   validate?: FieldValidator | BooleanSchema,
   name: string
 }
 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
   formControlLabelProps,
-  stackProps = { gap: 1, style: { marginBottom: form.marginBottom } },
   validate = YupBool(),
   required = false,
   name,
@@ -78,7 +75,9 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           <Stack
             direction='row'
             alignItems='center'
-            {...stackProps}
+            marginLeft='-9px'
+            marginBottom={formTypography.marginBottom}
+            gap={1}
           >
             <FormControlLabel
               control={<Checkbox
