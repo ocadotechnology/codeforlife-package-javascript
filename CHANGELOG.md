@@ -1,3 +1,10 @@
+## [1.19.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.14...v1.19.15) (2023-06-15)
+
+
+### Bug Fixes
+
+* body class ([5bcbd6e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5bcbd6e5879d4cb5acf24ce81fd550d300a47350))
+
 ## [1.19.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.13...v1.19.14) (2023-06-15)
 
 
