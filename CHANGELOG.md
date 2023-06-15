@@ -1,3 +1,10 @@
+## [1.19.24](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.23...v1.19.24) (2023-06-15)
+
+
+### Bug Fixes
+
+* checkbox margins ([d1e6183](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d1e6183e7e7481aeb8ce3415082a4d2e2428de2e))
+
 ## [1.19.23](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.22...v1.19.23) (2023-06-15)
 
 
