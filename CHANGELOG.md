@@ -1,3 +1,10 @@
+## [1.19.18](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.17...v1.19.18) (2023-06-15)
+
+
+### Bug Fixes
+
+* default styles ([3bfb967](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3bfb967ce7af4ef80eb2664b1ad833937ba54eb0))
+
 ## [1.19.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.16...v1.19.17) (2023-06-15)
 
 
