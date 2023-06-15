@@ -8,7 +8,8 @@ import {
 import {
   Theme,
   ThemeProvider,
-  CssBaseline
+  CssBaseline,
+  Box
 } from '@mui/material';
 
 import {
@@ -24,6 +25,8 @@ export interface AppProps<
 > {
   theme: Theme;
   store: Store<S, A>;
+  header?: React.ReactElement;
+  footer?: React.ReactElement;
   children: React.ReactNode;
 }
 
@@ -33,6 +36,8 @@ const App = <
 >({
   theme,
   store,
+  header,
+  footer,
   children
 }: AppProps<A, S>): JSX.Element => {
   if (process.env.NODE_ENV !== 'development') {
@@ -69,13 +74,37 @@ const App = <
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <style>{`
-        body {
-          margin: 0px;
-          padding: 0px;
+        html, body {
+          box-sizing: border-box;
+          height: 100%;
+          padding: 0;
+          margin: 0;
         }
+
+        #root {
+          box-sizing: border-box;
+          min-height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        #header, #footer {
+          flex-grow: 0;
+          flex-shrink: 0;
+        }
+
+        #body {
+          flex-grow: 1;
+        }   
       `}</style>
       <Provider store={store}>
-        {children}
+        {header !== undefined &&
+          <Box id='header'>{header}</Box>
+        }
+        <Box id='body'>{children}</Box>
+        {footer !== undefined &&
+          <Box id='footer'>{footer}</Box>
+        }
       </Provider>
     </ThemeProvider>
   );
