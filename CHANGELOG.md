@@ -1,3 +1,10 @@
+## [1.19.22](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.21...v1.19.22) (2023-06-15)
+
+
+### Bug Fixes
+
+* reusable class ([86653f6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/86653f631ea23c9d9e13de5279936bad01cfd242))
+
 ## [1.19.21](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.20...v1.19.21) (2023-06-15)
 
 
