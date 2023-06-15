@@ -3,6 +3,10 @@ import typography from '../typography';
 import Components, { getFontStyleOverrides } from './_components';
 
 const MuiLink: Components['MuiLink'] = {
+  defaultProps: {
+    // BUG: if not set, MUI fails to run.
+    underline: 'none'
+  },
   styleOverrides: {
     root: ({ ownerState }) => ({
       ...typography.body1,
