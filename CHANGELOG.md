@@ -1,3 +1,10 @@
+## [1.19.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.12...v1.19.13) (2023-06-15)
+
+
+### Bug Fixes
+
+* body css props for table and button ([804a907](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/804a9072998fe219980f5e7422cbc40357768e9f))
+
 ## [1.19.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.11...v1.19.12) (2023-06-14)
 
 
