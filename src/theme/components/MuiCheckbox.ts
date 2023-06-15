@@ -1,15 +1,18 @@
-import { includesClassNames } from '../../helpers';
-import typography from '../typography';
+import { touchRippleClasses } from '@mui/material';
+
 import Components from './_components';
 
 const MuiCheckbox: Components['MuiCheckbox'] = {
   styleOverrides: {
-    root: ({ ownerState }) => ({
+    root: {
       paddingLeft: 0,
-      ...(includesClassNames(ownerState, ['body']) && {
-        marginBottom: typography.body1?.marginBottom
-      })
-    })
+      [`.${touchRippleClasses.root}`]: {
+        left: '-12px'
+      },
+      [`.${touchRippleClasses.root} > *`]: {
+        left: '-12px'
+      }
+    }
   }
 };
 
