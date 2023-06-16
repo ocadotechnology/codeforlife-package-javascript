@@ -1,4 +1,4 @@
-import Components from './_components';
+import Components, { StyleOverridesWithRoot } from './_components';
 
 const MuiSelect: Components['MuiSelect'] = {
   defaultProps: {
@@ -8,7 +8,10 @@ const MuiSelect: Components['MuiSelect'] = {
       },
       borderRadius: '0px'
     }
-  }
+  },
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  styleOverrides: {
+  } as StyleOverridesWithRoot<'MuiSelect'>
 };
 
 export default MuiSelect;
