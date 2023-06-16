@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.28...v1.20.0) (2023-06-16)
+
+
+### Features
+
+* SelectButton component ([d427881](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d4278816204dab05b8cb5c9068a15fa66fac5002))
+
 ## [1.19.28](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.27...v1.19.28) (2023-06-16)
 
 
