@@ -1,3 +1,10 @@
+## [1.19.28](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.27...v1.19.28) (2023-06-16)
+
+
+### Bug Fixes
+
+* button select style ([ba0d2b6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ba0d2b635cc12af3135407f021d2673633b0edf5))
+
 ## [1.19.27](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.26...v1.19.27) (2023-06-16)
 
 
