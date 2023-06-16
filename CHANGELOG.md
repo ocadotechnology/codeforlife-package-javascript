@@ -1,3 +1,10 @@
+## [1.19.27](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.26...v1.19.27) (2023-06-16)
+
+
+### Bug Fixes
+
+* typing for components missing root ([d0c0ca3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d0c0ca3eae80f52f133ebe70e23394567a96d582))
+
 ## [1.19.26](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.25...v1.19.26) (2023-06-15)
 
 
