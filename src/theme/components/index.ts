@@ -8,6 +8,7 @@ import MuiFormHelperText from './MuiFormHelperText';
 import MuiGrid2 from './MuiGrid2';
 import MuiInputBase from './MuiInputBase';
 import MuiLink from './MuiLink';
+import MuiMenu from './MuiMenu';
 import MuiMenuItem from './MuiMenuItem';
 import MuiSelect from './MuiSelect';
 import MuiTab from './MuiTab';
@@ -28,6 +29,7 @@ const components: ThemeOptions['components'] = {
   MuiGrid2,
   MuiInputBase,
   MuiLink,
+  MuiMenu,
   MuiMenuItem,
   MuiSelect,
   MuiTab,
