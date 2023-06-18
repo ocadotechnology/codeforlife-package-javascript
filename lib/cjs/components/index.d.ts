@@ -5,6 +5,5 @@ import ElevatedAppBar, { ElevatedAppBarProps } from './ElevatedAppBar';
 import Image, { ImageProps } from './Image';
 import ItemizedList, { ItemizedListProps } from './ItemizedList';
 import OrderedGrid, { OrderedGridProps } from './OrderedGrid';
-import SelectButton, { SelectButtonProps } from './SelectButton';
 import YouTubeVideo, { YouTubeVideoProps } from './YouTubeVideo';
-export { App, type AppProps, ClickableTooltip, type ClickableTooltipProps, CopyIconButton, type CopyIconButtonProps, ElevatedAppBar, type ElevatedAppBarProps, Image, type ImageProps, ItemizedList, type ItemizedListProps, OrderedGrid, type OrderedGridProps, SelectButton, type SelectButtonProps, YouTubeVideo, type YouTubeVideoProps };
+export { App, type AppProps, ClickableTooltip, type ClickableTooltipProps, CopyIconButton, type CopyIconButtonProps, ElevatedAppBar, type ElevatedAppBarProps, Image, type ImageProps, ItemizedList, type ItemizedListProps, OrderedGrid, type OrderedGridProps, YouTubeVideo, type YouTubeVideoProps };
