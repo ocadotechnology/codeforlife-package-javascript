@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.0...v1.20.1) (2023-06-18)
+
+
+### Bug Fixes
+
+* remove local items ([6bc5968](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6bc59683a61f8b123080c411f521bcab78b4fc6b))
+
 # [1.20.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.19.28...v1.20.0) (2023-06-16)
 
 
