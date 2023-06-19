@@ -13,6 +13,9 @@ const MuiTabs: Components['MuiTabs'] = {
     }),
     indicator: {
       display: 'none'
+    },
+    scroller: {
+      overflow: 'auto'
     }
   }
 };
