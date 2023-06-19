@@ -1,3 +1,10 @@
+## [1.20.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.3...v1.20.4) (2023-06-19)
+
+
+### Bug Fixes
+
+* scrollable tabs ([b00ce93](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b00ce9354619b7b8a1d55f03f49b2628e2de3814))
+
 ## [1.20.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.2...v1.20.3) (2023-06-19)
 
 
