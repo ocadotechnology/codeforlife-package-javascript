@@ -1,3 +1,10 @@
+## [1.20.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.2...v1.20.3) (2023-06-19)
+
+
+### Bug Fixes
+
+* overflow auto ([a75f299](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a75f299ac91bc13263b397db35a1bfb69ed25551))
+
 ## [1.20.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.1...v1.20.2) (2023-06-19)
 
 
