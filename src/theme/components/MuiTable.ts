@@ -8,6 +8,8 @@ const MuiTable: Components['MuiTable'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
       borderStyle: 'hidden',
+      display: 'block',
+      overflowX: 'auto',
       [`.${tableCellClasses.root}`]: {
         border: '2px solid white'
       },

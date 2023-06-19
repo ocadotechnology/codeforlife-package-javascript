@@ -1,5 +1,6 @@
 import { ThemeOptions } from '@mui/material';
 
+import MuiAccordion from './MuiAccordion';
 import MuiButton from './MuiButton';
 import MuiCheckbox from './MuiCheckbox';
 import MuiContainer from './MuiContainer';
@@ -21,6 +22,7 @@ import MuiToolbar from './MuiToolbar';
 import MuiTypography from './MuiTypography';
 
 const components: ThemeOptions['components'] = {
+  MuiAccordion,
   MuiButton,
   MuiCheckbox,
   MuiContainer,
