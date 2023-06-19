@@ -3,6 +3,11 @@ import { tabClasses } from '@mui/material';
 import Components from './_components';
 
 const MuiTabs: Components['MuiTabs'] = {
+  defaultProps: {
+    variant: 'scrollable',
+    scrollButtons: true,
+    allowScrollButtonsMobile: true
+  },
   styleOverrides: {
     root: ({ ownerState }) => ({
       ...([undefined, 'horizontal'].includes(ownerState.orientation) && {
@@ -13,9 +18,6 @@ const MuiTabs: Components['MuiTabs'] = {
     }),
     indicator: {
       display: 'none'
-    },
-    scroller: {
-      overflow: 'auto'
     }
   }
 };

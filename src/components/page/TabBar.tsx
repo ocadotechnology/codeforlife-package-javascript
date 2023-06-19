@@ -2,8 +2,14 @@ import React from 'react';
 import {
   Tabs,
   Tab,
-  Typography
+  TabScrollButtonProps,
+  Typography,
+  IconButton
 } from '@mui/material';
+import {
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon
+} from '@mui/icons-material';
 
 import { primary } from '../../theme/colors';
 import Section, { SectionElement } from './Section';
@@ -56,6 +62,31 @@ const TabBar: React.FC<TabBarProps> = ({
       <Tabs
         value={value}
         onChange={(_, value) => { setValue(value); }}
+        ScrollButtonComponent={({
+          disabled,
+          onClick,
+          direction
+        }: TabScrollButtonProps) => {
+          return <>{disabled === false && (
+            // @ts-expect-error button props not required
+            <IconButton
+              onClick={onClick}
+              style={{
+                padding: 0,
+                [direction === 'left'
+                  ? 'marginRight'
+                  : 'marginLeft'
+                ]: '15px',
+                color: 'white'
+              }}
+            >
+              {direction === 'left'
+                ? <ChevronLeftIcon />
+                : <ChevronRightIcon />
+              }
+            </IconButton>
+          )}</>;
+        }}
       >
         {tabs.map((tab) =>
           <Tab key={tab.label} label={tab.label} />
