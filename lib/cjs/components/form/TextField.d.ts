@@ -8,7 +8,9 @@ type BaseTextFieldProps = Omit<MuiTextFieldProps, 'defaultValue'> & {
     name: string;
 };
 type RepeatTextFieldProps = BaseTextFieldProps & {
-    repeat?: Array<Omit<BaseTextFieldProps, ('required' | 'split')>>;
+    repeat?: Array<Omit<BaseTextFieldProps, ('required' | 'split' | 'type')> & {
+        inheritProps?: boolean;
+    }>;
 };
 export type TextFieldProps<SingleValue extends boolean = true> = RepeatTextFieldProps & (SingleValue extends true ? {
     validate?: FieldValidator | StringSchema;
