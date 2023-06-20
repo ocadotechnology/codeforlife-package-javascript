@@ -1,3 +1,10 @@
+## [1.20.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.5...v1.20.6) (2023-06-20)
+
+
+### Bug Fixes
+
+* rerendering ([d08a24c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d08a24c193542ae90130fa97dca365e8e4439c3f))
+
 ## [1.20.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.4...v1.20.5) (2023-06-20)
 
 
