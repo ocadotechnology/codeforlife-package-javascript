@@ -1,3 +1,10 @@
+## [1.20.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.4...v1.20.5) (2023-06-20)
+
+
+### Bug Fixes
+
+* support textfield repeats ([0e31951](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/0e31951dab4aa07fb6fe97dcecf43fe66f1ca389))
+
 ## [1.20.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.3...v1.20.4) (2023-06-19)
 
 
