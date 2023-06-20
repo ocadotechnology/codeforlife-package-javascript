@@ -1,3 +1,11 @@
+## [1.20.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.6...v1.20.7) (2023-06-20)
+
+
+### Bug Fixes
+
+* show error on change ([ffbce97](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ffbce97e46f1a96cee1f0051aeb519298b54a1eb))
+* simplify password field ([87ed524](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/87ed5245247cc9569651dffd4c46b664152391ff))
+
 ## [1.20.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.5...v1.20.6) (2023-06-20)
 
 
