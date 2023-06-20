@@ -65,8 +65,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
+        const [showError, setShowError] = React.useState(false);
+
         onChange = wrap({
           after: (_, checked) => {
+            setShowError(true);
             form.setFieldValue(name, checked, true);
           }
         }, onChange);
@@ -87,7 +90,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
               />}
               {...formControlLabelProps}
             />
-            {meta.error !== undefined && meta.error !== '' &&
+            {showError && ![undefined, ''].includes(meta.error) &&
               <ClickableTooltip title={meta.error}>
                 <ErrorIcon className='checkbox-error' />
               </ClickableTooltip>
