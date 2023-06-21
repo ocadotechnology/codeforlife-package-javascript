@@ -21,7 +21,7 @@ const ScreenTimeDialog: React.FC<ScreenTimeDialogProps> = ({
     <Dialog open={open} onClose={onClose}
       maxWidth='sm'>
       <Image
-        src={BrainImage as string}
+        src={BrainImage}
         alt='brain'
         maxWidth={100}
         marginY={3}
