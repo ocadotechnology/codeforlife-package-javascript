@@ -11,3 +11,8 @@ declare namespace React {
  * All libraries without typings will be imported as `any`.
 */
 declare module '*' { }
+
+declare module '*.svg' {
+  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  export default content;
+}
