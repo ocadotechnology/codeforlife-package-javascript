@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.0...v1.21.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* MuiDialog styles ([ee586ca](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ee586ca57315f9abf096e86ff5491231921255a0))
+
 # [1.21.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.20.7...v1.21.0) (2023-06-21)
 
 
