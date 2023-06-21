@@ -1,3 +1,10 @@
+## [1.21.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.3...v1.21.4) (2023-06-21)
+
+
+### Bug Fixes
+
+* default props ([eb56c1e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/eb56c1e6273c78e2dcf548bab691305edee95b56))
+
 ## [1.21.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.2...v1.21.3) (2023-06-21)
 
 
