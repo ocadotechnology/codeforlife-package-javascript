@@ -4,6 +4,7 @@ import MuiAccordion from './MuiAccordion';
 import MuiButton from './MuiButton';
 import MuiCheckbox from './MuiCheckbox';
 import MuiContainer from './MuiContainer';
+import MuiDialog from './MuiDialog';
 import MuiFormControlLabel from './MuiFormControlLabel';
 import MuiFormHelperText from './MuiFormHelperText';
 import MuiGrid2 from './MuiGrid2';
@@ -26,6 +27,7 @@ const components: ThemeOptions['components'] = {
   MuiButton,
   MuiCheckbox,
   MuiContainer,
+  MuiDialog,
   MuiFormControlLabel,
   MuiFormHelperText,
   MuiGrid2,
