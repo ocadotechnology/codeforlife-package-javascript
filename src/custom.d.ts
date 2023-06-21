@@ -6,10 +6,10 @@ declare namespace React {
   type StatelessComponent<P> = React.FunctionComponent<P>;
 }
 
-declare module '*.svg' {
-  const content: string;
-  export default content;
-}
+// declare module '*.svg' {
+//   const content: string;
+//   export default content;
+// }
 
 /*
  * Don't care about the typings of external libraries.
