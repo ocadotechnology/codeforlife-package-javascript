@@ -1,4 +1,9 @@
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction
+} from 'react';
 
 export function useFreshworksWidget(display: 'open' | 'hide'): void {
   // @ts-expect-error defined in external script
@@ -70,19 +75,16 @@ export function useExternalScript<
 export function useCountdown(
   seconds: number,
   interval: number = 1
-): [
-    number,
-    React.Dispatch<React.SetStateAction<number>>
-  ] {
+): [number, Dispatch<SetStateAction<number>>] {
   if (seconds <= 0) {
     throw Error('seconds must be > 0');
   } else if (interval <= 0) {
     throw Error('interval must be > 0');
   }
 
-  const [_seconds, _setSeconds] = React.useState(seconds);
+  const [_seconds, _setSeconds] = useState(seconds);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const countdown = setInterval(() => {
       _setSeconds((seconds) => {
         seconds = seconds - interval;
