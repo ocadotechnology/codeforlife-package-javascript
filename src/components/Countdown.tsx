@@ -4,6 +4,8 @@ import {
   TypographyProps
 } from '@mui/material';
 
+import { useCountdown } from '../hooks';
+
 export interface CountdownProps extends Omit<TypographyProps, (
   'children'
 )> {
@@ -19,21 +21,13 @@ const Countdown: React.FC<CountdownProps> = ({
   ...typographyProps
 }) => {
   seconds = Math.floor(seconds);
-  const [_seconds, _setSeconds] = React.useState(
-    seconds < 0 ? 0 : seconds
-  );
+  const _seconds = useCountdown(seconds)[0];
   const [end, setEnd] = React.useState(!start);
 
-  React.useEffect(() => {
-    if (!end) {
-      if (_seconds > 0) {
-        setTimeout(() => { _setSeconds(_seconds - 1); }, 1000);
-      } else {
-        setEnd(true);
-        onEnd();
-      }
-    }
-  }, [_seconds]);
+  if (_seconds === 0 && !end) {
+    setEnd(true);
+    onEnd();
+  }
 
   seconds = Math.floor(_seconds % 60);
   const minutes = Math.floor(_seconds / 60);

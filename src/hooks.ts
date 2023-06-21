@@ -66,3 +66,32 @@ export function useExternalScript<
 
   return eventType;
 }
+
+export function useCountdown(
+  seconds: number,
+  interval: number = 1
+): [
+    number,
+    React.Dispatch<React.SetStateAction<number>>
+  ] {
+  if (seconds <= 0) {
+    throw Error('seconds must be > 0');
+  } else if (interval <= 0) {
+    throw Error('interval must be > 0');
+  }
+
+  const [_seconds, _setSeconds] = React.useState(seconds);
+
+  React.useEffect(() => {
+    const countdown = setInterval(() => {
+      _setSeconds((seconds) => {
+        seconds = seconds - interval;
+        return seconds < 0 ? 0 : seconds;
+      });
+    }, interval * 1000);
+
+    return () => { clearInterval(countdown); };
+  }, []);
+
+  return [_seconds, _setSeconds];
+}
