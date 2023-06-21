@@ -1,3 +1,16 @@
+## [1.22.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.0...v1.22.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* include svg in build ([7fc075c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7fc075c8d2716ab040ffc7b5dea702582688fcec))
+* put back ([4b1e9b5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4b1e9b5382fb62fda822e7a32a59297b3cbaf907))
+* reorder ([2b7826c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2b7826cb868a5c003e677dfcbd89166e7f5b41f7))
+* svg as string ([46c06c8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/46c06c8e140565aba9e2f5b376667053a6a2a7c5))
+* svgs as strings ([59329d6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/59329d6f7d55d1c79a3859bdcba56a688ebe33ca))
+* try without ([3a226f4](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3a226f415039e7bc35d7bb4446fb243cc747086f))
+* typing ([2556887](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2556887fe820125e71ab9d160b66266ed41bc211))
+
 # [1.22.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.4...v1.22.0) (2023-06-21)
 
 
