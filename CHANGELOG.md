@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.4...v1.22.0) (2023-06-21)
+
+
+### Features
+
+* dialogs ([5de0f6f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5de0f6fd342262180aa2ae88e01270ea087b59a9))
+
 ## [1.21.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.3...v1.21.4) (2023-06-21)
 
 
