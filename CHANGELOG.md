@@ -1,3 +1,10 @@
+## [1.21.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.1...v1.21.2) (2023-06-21)
+
+
+### Bug Fixes
+
+* useCountdown hook ([b971998](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b97199867260070af6a92f85682b49c623b48417))
+
 ## [1.21.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.21.0...v1.21.1) (2023-06-21)
 
 
