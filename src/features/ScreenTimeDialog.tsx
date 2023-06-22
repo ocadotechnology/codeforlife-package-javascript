@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 
 import { Image } from '../components';
-import BrainImage from '../images/brain.svg';
+import BrainImage from '../public/images/brain.svg';
 
 export interface ScreenTimeDialogProps {
   open: boolean;

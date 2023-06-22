@@ -12,9 +12,12 @@
   "scripts": {
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf lib && npm run build:esm && npm run build:cjs",
+    "build": "rm -rf lib && npm run build:esm && npm run build:cjs && npm run copy",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs"
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "copy": "npm run copy:esm && npm run copy:cjs",
+    "copy:esm": "cp -r src/public lib/esm/public",
+    "copy:cjs": "cp -r src/public lib/cjs/public"
   },
   "repository": {
     "type": "git",
