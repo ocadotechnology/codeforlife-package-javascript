@@ -1,3 +1,10 @@
+## [1.22.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.1...v1.22.2) (2023-06-22)
+
+
+### Bug Fixes
+
+* copy public files ([a844cd8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a844cd86a73c4b8fbcc5b656469b589ab954e989))
+
 ## [1.22.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.0...v1.22.1) (2023-06-21)
 
 
