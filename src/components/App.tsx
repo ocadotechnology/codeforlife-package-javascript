@@ -14,9 +14,13 @@ import {
 
 import {
   useExternalScript,
-  useFreshworksWidget
+  useFreshworksWidget,
+  useCountdown
 } from '../hooks';
-
+import {
+  InactiveDialog,
+  ScreenTimeDialog
+} from '../features';
 import '../scripts';
 
 export interface AppProps<
@@ -28,6 +32,8 @@ export interface AppProps<
   header?: React.ReactElement;
   footer?: React.ReactElement;
   children: React.ReactNode;
+  maxIdleSeconds?: number;
+  maxTotalSeconds?: number;
 }
 
 const App = <
@@ -38,8 +44,39 @@ const App = <
   store,
   header,
   footer,
-  children
+  children,
+  maxIdleSeconds = 60 * 60,
+  maxTotalSeconds = 60 * 60
 }: AppProps<A, S>): JSX.Element => {
+  // TODO: dynamically check if user is authenticated.
+  const isAuthenticated = true;
+  const [idleSeconds, setIdleSeconds] = useCountdown(maxIdleSeconds);
+  const [totalSeconds, setTotalSeconds] = useCountdown(maxTotalSeconds);
+
+  const isIdle = isAuthenticated && idleSeconds === 0;
+  const tooMuchScreenTime = totalSeconds === 0;
+
+  function resetIdleSeconds(): void { setIdleSeconds(maxIdleSeconds); }
+  function resetTotalSeconds(): void { setTotalSeconds(maxTotalSeconds); }
+
+  React.useEffect(() => {
+    if (isAuthenticated) resetIdleSeconds();
+  }, [isAuthenticated]);
+
+  React.useEffect(() => {
+    useFreshworksWidget('hide');
+
+    const root = document.getElementById('root') as HTMLElement;
+
+    root.addEventListener('mousemove', resetIdleSeconds);
+    root.addEventListener('keypress', resetIdleSeconds);
+
+    return () => {
+      root.removeEventListener('mousemove', resetIdleSeconds);
+      root.removeEventListener('keypress', resetIdleSeconds);
+    };
+  }, []);
+
   if (process.env.NODE_ENV !== 'development') {
     const oneTrustEventTypes = [
       useExternalScript({
@@ -65,10 +102,6 @@ const App = <
       alert('OneTrust failed to load!');
     }
   }
-
-  React.useEffect(() => {
-    useFreshworksWidget('hide');
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -98,6 +131,14 @@ const App = <
         }   
       `}</style>
       <Provider store={store}>
+        <InactiveDialog
+          open={isIdle}
+          onClose={resetIdleSeconds}
+        />
+        <ScreenTimeDialog
+          open={!isIdle && tooMuchScreenTime}
+          onClose={resetTotalSeconds}
+        />
         {header !== undefined &&
           React.cloneElement(header, { id: 'header' })
         }
