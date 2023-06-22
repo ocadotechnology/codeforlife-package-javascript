@@ -1,3 +1,10 @@
+## [1.22.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.2...v1.22.3) (2023-06-22)
+
+
+### Bug Fixes
+
+* add dialogs to app ([9f5242e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9f5242e95ce41d414f6360d254958bdcb348c584))
+
 ## [1.22.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.1...v1.22.2) (2023-06-22)
 
 
