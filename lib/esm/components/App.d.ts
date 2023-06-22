@@ -8,6 +8,8 @@ export interface AppProps<A extends Action = AnyAction, S = unknown> {
     header?: React.ReactElement;
     footer?: React.ReactElement;
     children: React.ReactNode;
+    maxIdleSeconds?: number;
+    maxTotalSeconds?: number;
 }
-declare const App: <A extends Action<any> = AnyAction, S = unknown>({ theme, store, header, footer, children }: AppProps<A, S>) => JSX.Element;
+declare const App: <A extends Action<any> = AnyAction, S = unknown>({ theme, store, header, footer, children, maxIdleSeconds, maxTotalSeconds }: AppProps<A, S>) => JSX.Element;
 export default App;
