@@ -1,3 +1,10 @@
+## [1.22.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.3...v1.22.4) (2023-06-26)
+
+
+### Bug Fixes
+
+* useEventListeners hook ([623031e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/623031e66ac2cc820517af9f361ede911feb5844))
+
 ## [1.22.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.2...v1.22.3) (2023-06-22)
 
 
