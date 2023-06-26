@@ -105,14 +105,16 @@ export function useEventListener<
   element: HTMLElement,
   type: EventType,
   listener: (this: HTMLElement, ev: HTMLElementEventMap[EventType]) => any,
-  {
-    options,
-    deps = []
-  }: {
+  kwArgs: {
     options?: boolean | AddEventListenerOptions,
     deps?: DependencyList
-  }
+  } = {}
 ): void {
+  const {
+    options,
+    deps = []
+  } = kwArgs;
+
   useEffect(() => {
     element.addEventListener(type, listener, options);
 
