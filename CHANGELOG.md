@@ -1,3 +1,10 @@
+## [1.22.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.4...v1.22.5) (2023-06-26)
+
+
+### Bug Fixes
+
+* kwArgs ([31db135](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/31db13567a9fb29810ab88d133ae1c5f594c6c17))
+
 ## [1.22.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.3...v1.22.4) (2023-06-26)
 
 
