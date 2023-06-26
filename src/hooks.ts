@@ -2,7 +2,8 @@ import {
   useEffect,
   useState,
   Dispatch,
-  SetStateAction
+  SetStateAction,
+  DependencyList
 } from 'react';
 
 export function useFreshworksWidget(display: 'open' | 'hide'): void {
@@ -96,4 +97,27 @@ export function useCountdown(
   }, []);
 
   return [_seconds, _setSeconds];
+}
+
+export function useEventListener<
+  EventType extends keyof HTMLElementEventMap
+>(
+  element: HTMLElement,
+  type: EventType,
+  listener: (this: HTMLElement, ev: HTMLElementEventMap[EventType]) => any,
+  {
+    options,
+    deps = []
+  }: {
+    options?: boolean | AddEventListenerOptions,
+    deps?: DependencyList
+  }
+): void {
+  useEffect(() => {
+    element.addEventListener(type, listener, options);
+
+    return () => {
+      element.removeEventListener(type, listener, options);
+    };
+  }, deps);
 }
