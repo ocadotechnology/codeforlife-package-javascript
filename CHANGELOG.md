@@ -1,3 +1,10 @@
+## [1.22.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.6...v1.22.7) (2023-06-26)
+
+
+### Bug Fixes
+
+* allow InputProps default to be overriden ([4b44d00](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4b44d00473ebe38b5762fed7351ac6e6615af9f8))
+
 ## [1.22.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.5...v1.22.6) (2023-06-26)
 
 
