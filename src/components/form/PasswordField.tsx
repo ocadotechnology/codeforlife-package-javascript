@@ -11,8 +11,7 @@ import TextField, { TextFieldProps } from './TextField';
 
 export interface PasswordFieldProps extends Omit<TextFieldProps, (
   'type' |
-  'name' |
-  'required'
+  'name'
 )> {
   name?: string;
 }
@@ -25,7 +24,6 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
 }) => {
   return (
     <TextField
-      required
       type='password'
       name={name}
       validate={validate}
