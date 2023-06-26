@@ -28,12 +28,12 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
       name={name}
       validate={validate}
       InputProps={{
-        ...InputProps,
         endAdornment: (
           <InputAdornment position='end'>
             <SecurityIcon />
           </InputAdornment>
-        )
+        ),
+        ...InputProps
       }}
       {...otherTextFieldProps}
     />

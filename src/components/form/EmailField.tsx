@@ -22,25 +22,18 @@ const EmailField: React.FC<EmailFieldProps> = ({
   validate = YupString().email(),
   ...otherTextFieldProps
 }) => {
-  let {
-    endAdornment,
-    ...otherInputProps
-  } = InputProps;
-
-  endAdornment = (
-    <InputAdornment position='end'>
-      <EmailOutlinedIcon />
-    </InputAdornment>
-  );
-
   return (
     <TextField
       type='email'
       name={name}
       validate={validate}
       InputProps={{
-        endAdornment,
-        ...otherInputProps
+        endAdornment: (
+          <InputAdornment position='end'>
+            <EmailOutlinedIcon />
+          </InputAdornment>
+        ),
+        ...InputProps
       }}
       {...otherTextFieldProps}
     />
