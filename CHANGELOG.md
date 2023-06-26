@@ -1,3 +1,10 @@
+## [1.22.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.5...v1.22.6) (2023-06-26)
+
+
+### Bug Fixes
+
+* allow for optional password field ([365958e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/365958ee36ba722dccbc44bb8383029796194668))
+
 ## [1.22.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.4...v1.22.5) (2023-06-26)
 
 
