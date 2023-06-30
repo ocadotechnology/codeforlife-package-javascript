@@ -1,3 +1,10 @@
+## [1.22.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.8...v1.22.9) (2023-06-30)
+
+
+### Bug Fixes
+
+* marginX with shapes ([1a31ef6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1a31ef66d5dc969bac40e3e298c3f266c9c8ac3a))
+
 ## [1.22.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.7...v1.22.8) (2023-06-30)
 
 
