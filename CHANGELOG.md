@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.9...v1.23.0) (2023-06-30)
+
+
+### Features
+
+* yup helper ([ee24c28](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ee24c288a9553f89c85acbcdaa2c2f83f6901384))
+
 ## [1.22.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.8...v1.22.9) (2023-06-30)
 
 
