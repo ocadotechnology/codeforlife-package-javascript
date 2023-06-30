@@ -1,3 +1,10 @@
+## [1.22.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.7...v1.22.8) (2023-06-30)
+
+
+### Bug Fixes
+
+* table display ([b11335f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b11335fed638fd58fde4d160a7a375df82bda146))
+
 ## [1.22.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.6...v1.22.7) (2023-06-26)
 
 
