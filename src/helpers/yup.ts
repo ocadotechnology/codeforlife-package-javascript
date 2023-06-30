@@ -1,6 +1,4 @@
 import {
-  Maybe,
-  AnyObject,
   InferType,
   ValidateOptions,
   ValidationError,
@@ -8,10 +6,9 @@ import {
 } from 'yup';
 
 export function tryValidateSync<
-  T extends Maybe<AnyObject>,
-  Schema extends ObjectSchema<T>
+  Schema extends ObjectSchema<any>
 >(
-  value: T,
+  value: any,
   schema: Schema,
   kwArgs?: {
     options?: ValidateOptions
@@ -19,11 +16,10 @@ export function tryValidateSync<
 ): InferType<Schema> | undefined;
 
 export function tryValidateSync<
-  T extends Maybe<AnyObject>,
-  Schema extends ObjectSchema<T>,
+  Schema extends ObjectSchema<any>,
   OnErrorRT extends InferType<Schema> | void
 >(
-  value: T,
+  value: any,
   schema: Schema,
   kwArgs?: {
     options?: ValidateOptions,
@@ -34,11 +30,10 @@ export function tryValidateSync<
   : InferType<Schema> | undefined;
 
 export function tryValidateSync<
-  T extends Maybe<AnyObject>,
-  Schema extends ObjectSchema<T>,
+  Schema extends ObjectSchema<any>,
   OnErrorRT extends InferType<Schema> | void
 >(
-  value: T,
+  value: any,
   schema: Schema,
   kwArgs?: {
     options?: ValidateOptions,
