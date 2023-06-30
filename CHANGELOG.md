@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.0...v1.23.1) (2023-06-30)
+
+
+### Bug Fixes
+
+* yup typing and router helper ([3d28308](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3d283088a5fe968d354f756e4135ba470932b93d))
+
 # [1.23.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.22.9...v1.23.0) (2023-06-30)
 
 
