@@ -1,10 +1,11 @@
 import React from 'react';
-import { Action, AnyAction, Store } from 'redux';
-import { Theme } from '@mui/material';
+import { ProviderProps } from 'react-redux';
+import { Action, AnyAction } from 'redux';
+import { ThemeProviderProps } from '@mui/material/styles/ThemeProvider';
 import '../scripts';
 export interface AppProps<A extends Action = AnyAction, S = unknown> {
-    theme: Theme;
-    store: Store<S, A>;
+    theme: ThemeProviderProps['theme'];
+    store: ProviderProps<A, S>['store'];
     header?: React.ReactElement;
     footer?: React.ReactElement;
     children: React.ReactNode;
