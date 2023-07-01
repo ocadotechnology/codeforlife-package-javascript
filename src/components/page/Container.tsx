@@ -7,6 +7,7 @@ import {
 import { SectionElement } from './Section';
 
 export interface ContainerProps extends Omit<Grid2Props, (
+  'id' |
   'container' |
   'children'
 )> {
@@ -18,7 +19,11 @@ const Container: React.FC<ContainerProps> = ({
   ...otherGridProps
 }) => {
   return (
-    <Grid container {...otherGridProps}>
+    <Grid
+      id='body'
+      container
+      {...otherGridProps}
+    >
       {children}
     </Grid>
   );
