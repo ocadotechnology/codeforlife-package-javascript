@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.2...v1.24.0) (2023-07-01)
+
+
+### Features
+
+* new app structure ([f49a62d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f49a62d599a183c34d55f43027df09ea01ea6a23))
+
 ## [1.23.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.1...v1.23.2) (2023-07-01)
 
 
