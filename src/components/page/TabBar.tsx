@@ -1,5 +1,10 @@
 import React from 'react';
 import {
+  useParams,
+  useNavigate,
+  generatePath
+} from 'react-router-dom';
+import {
   Tabs,
   Tab,
   TabScrollButtonProps,
@@ -10,34 +15,47 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon
 } from '@mui/icons-material';
+import {
+  object as YupObject,
+  string as YupString
+} from 'yup';
 
 import { primary } from '../../theme/colors';
+import { tryValidateSync } from '../../helpers/yup';
 import Section, { SectionElement } from './Section';
-
-import { SearchParams } from '../../helpers';
 
 export interface TabBarProps {
   header: string;
   tabs: Array<{
     label: string;
     children: SectionElement | SectionElement[];
+    path: string;
   }>;
+  originalPath: string;
 }
 
 const TabBar: React.FC<TabBarProps> = ({
   header,
-  tabs
+  tabs,
+  originalPath
 }) => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const [value, setValue] = React.useState(0);
+
   const labels = tabs.map(tab => tab.label);
   const children = tabs.map(tab => tab.children);
+  const paths = tabs.map(tab => tab.path);
 
-  const params = SearchParams.get<{ tab: string; }>({
-    tab: { validate: SearchParams.validate.inOptions(labels) }
-  });
+  React.useEffect(() => {
+    const tab = tryValidateSync(params, YupObject({
+      tab: YupString().oneOf(paths).required()
+    }))?.tab;
 
-  const [value, setValue] = React.useState(
-    params === null ? 0 : labels.indexOf(params.tab)
-  );
+    if (tab !== undefined) {
+      setValue(paths.indexOf(tab));
+    }
+  }, [params]);
 
   return <>
     <Section
@@ -61,7 +79,11 @@ const TabBar: React.FC<TabBarProps> = ({
     >
       <Tabs
         value={value}
-        onChange={(_, value) => { setValue(value); }}
+        onChange={(_, value) => {
+          navigate(generatePath(originalPath, {
+            tab: paths[value]
+          }));
+        }}
         ScrollButtonComponent={({
           disabled,
           onClick,
@@ -88,8 +110,8 @@ const TabBar: React.FC<TabBarProps> = ({
           )}</>;
         }}
       >
-        {tabs.map((tab) =>
-          <Tab key={tab.label} label={tab.label} />
+        {labels.map((label) =>
+          <Tab key={label} label={label} />
         )}
       </Tabs>
     </Section>
