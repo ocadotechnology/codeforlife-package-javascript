@@ -1,3 +1,10 @@
+## [1.23.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.1...v1.23.2) (2023-07-01)
+
+
+### Bug Fixes
+
+* navigate tabs as params ([7ac963d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7ac963dc340c5e79192ca110be1f14aa94bd1929))
+
 ## [1.23.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.0...v1.23.1) (2023-06-30)
 
 
