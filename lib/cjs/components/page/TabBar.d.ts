@@ -5,7 +5,9 @@ export interface TabBarProps {
     tabs: Array<{
         label: string;
         children: SectionElement | SectionElement[];
+        path: string;
     }>;
+    originalPath: string;
 }
 declare const TabBar: React.FC<TabBarProps>;
 export default TabBar;
