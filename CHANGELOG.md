@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.0...v1.24.1) (2023-07-02)
+
+
+### Bug Fixes
+
+* remove browser router from app ([5b92d86](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5b92d86d7b31b85d34ef5b30a1faddb89b054aec))
+
 # [1.24.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.23.2...v1.24.0) (2023-07-01)
 
 
