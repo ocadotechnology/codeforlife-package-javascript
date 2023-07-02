@@ -4,9 +4,6 @@ import {
   ProviderProps
 } from 'react-redux';
 import {
-  BrowserRouter
-} from 'react-router-dom';
-import {
   Action,
   AnyAction
 } from 'redux';
@@ -29,7 +26,6 @@ import {
   ScreenTimeDialog
 } from '../features';
 import '../scripts';
-import ScrollRoutes from './ScrollRoutes';
 
 export interface AppProps<
   A extends Action = AnyAction,
@@ -37,8 +33,6 @@ export interface AppProps<
 > {
   theme: ThemeProviderProps['theme'];
   store: ProviderProps<A, S>['store'];
-  header?: React.ReactElement;
-  footer?: React.ReactElement;
   children: React.ReactNode;
   maxIdleSeconds?: number;
   maxTotalSeconds?: number;
@@ -50,8 +44,6 @@ const App = <
 >({
   theme,
   store,
-  header,
-  footer,
   children,
   maxIdleSeconds = 60 * 60,
   maxTotalSeconds = 60 * 60
@@ -142,13 +134,7 @@ const App = <
           open={!isIdle && tooMuchScreenTime}
           onClose={resetTotalSeconds}
         />
-        <BrowserRouter>
-          {header}
-          <ScrollRoutes>
-            {children}
-          </ScrollRoutes>
-          {footer}
-        </BrowserRouter>
+        {children}
       </Provider>
     </ThemeProvider>
   );
