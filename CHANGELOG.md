@@ -1,3 +1,11 @@
+## [1.24.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.1...v1.24.2) (2023-07-02)
+
+
+### Bug Fixes
+
+* OneTrust hook calls ([22e4b73](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/22e4b73e9dc149af4349a560e97ee7aa8402c5d9))
+* remove external script ([1871995](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1871995e42ae031b623aa71b8b5bc1ab9401e8e3))
+
 ## [1.24.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.0...v1.24.1) (2023-07-02)
 
 
