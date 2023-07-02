@@ -70,33 +70,11 @@ const App = <
 
   React.useEffect(() => {
     useFreshworksWidget('hide');
-
-    if (process.env.NODE_ENV !== 'development') {
-      const oneTrustEventTypes = [
-        useExternalScript({
-          props: {
-            src: 'https://cdn-ukwest.onetrust.com/consent/5da42396-cb12-4493-8d04-5179033cfbad/OtAutoBlock.js',
-            type: 'text/javascript'
-          },
-          eventTypes: ['load', 'error']
-        }),
-        useExternalScript({
-          props: {
-            src: 'https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js',
-            type: 'text/javascript',
-            charset: 'UTF-8'
-          },
-          attrs: {
-            'data-domain-script': '5da42396-cb12-4493-8d04-5179033cfbad'
-          },
-          eventTypes: ['load', 'error']
-        })
-      ];
-      if (oneTrustEventTypes.some(t => t === 'error')) {
-        alert('OneTrust failed to load!');
-      }
-    }
   }, []);
+
+  if (process.env.NODE_ENV !== 'development') {
+    useOneTrustScripts();
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -141,3 +119,37 @@ const App = <
 };
 
 export default App;
+
+function useOneTrustScripts(): void {
+  const oneTrustEventTypes = [
+    useExternalScript({
+      props: {
+        src: 'https://cdn-ukwest.onetrust.com/consent/5da42396-cb12-4493-8d04-5179033cfbad/OtAutoBlock.js',
+        type: 'text/javascript'
+      },
+      eventTypes: ['load', 'error']
+    }),
+    useExternalScript({
+      props: {
+        src: 'https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js',
+        type: 'text/javascript',
+        charset: 'UTF-8'
+      },
+      attrs: {
+        'data-domain-script': '5da42396-cb12-4493-8d04-5179033cfbad'
+      },
+      eventTypes: ['load', 'error']
+    }),
+    useExternalScript({
+      props: {
+        src: 'https://cdn-ukwest.onetrust.com/scripttemplates/202302.1.0/otBannerSdk.js',
+        async: true,
+        type: 'text/javascript'
+      },
+      eventTypes: ['load', 'error']
+    })
+  ];
+  if (oneTrustEventTypes.some(t => t === 'error')) {
+    alert('OneTrust failed to load!');
+  }
+}
