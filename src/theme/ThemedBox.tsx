@@ -177,7 +177,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
           ...(withShapes && {
             paddingY: { xs: 2, sm: 3, md: 5 },
             paddingX: { xs: 2, sm: 5, md: 10 },
-            marginX: '100px'
+            marginX: { md: '100px' }
           }),
           bgcolor: bgcolor.main,
           alignItems: 'center',
