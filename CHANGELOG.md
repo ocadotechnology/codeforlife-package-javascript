@@ -1,3 +1,10 @@
+## [1.24.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.2...v1.24.3) (2023-07-02)
+
+
+### Bug Fixes
+
+* marginX only up MD ([98f9776](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/98f9776df19a507a79c9fe3662cdf80a4337d368))
+
 ## [1.24.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.1...v1.24.2) (2023-07-02)
 
 
