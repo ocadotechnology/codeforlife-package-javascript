@@ -30,24 +30,20 @@ export function useExternalScript<
   const [eventType, setEventType] = useState<EventType>();
 
   useEffect(() => {
-    let script = document.querySelector<HTMLScriptElement>(
+    if (document.querySelector<HTMLScriptElement>(
       `script[src="${props.src}"]`
-    );
+    )) { throw Error('already exists'); }
 
-    if (script === null) {
-      script = document.createElement('script');
+    const script = document.createElement('script');
 
-      Object.entries(props).forEach(([key, value]) => {
-        // @ts-expect-error key is type checked
-        script[key] = value;
+    Object.entries(props).forEach(([key, value]) => {
+      script[key] = value;
+    });
+
+    if (attrs !== undefined) {
+      Object.entries(attrs).forEach(([key, value]) => {
+        script.setAttribute(key, value);
       });
-
-      if (attrs !== undefined) {
-        Object.entries(attrs).forEach(([key, value]) => {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          script!.setAttribute(key, value);
-        });
-      }
     }
 
     function eventListener(event: Event): void {
@@ -55,18 +51,17 @@ export function useExternalScript<
     };
 
     eventTypes?.forEach((eventType) => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      script!.addEventListener(eventType, eventListener);
+      script.addEventListener(eventType, eventListener);
     });
 
-    // Will do nothing if the script already exists.
     document.head.appendChild(script);
 
     return () => {
       eventTypes?.forEach((eventType) => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        script!.removeEventListener(eventType, eventListener);
+        script.removeEventListener(eventType, eventListener);
       });
+
+      document.head.removeChild(script);
     };
   }, []);
 
