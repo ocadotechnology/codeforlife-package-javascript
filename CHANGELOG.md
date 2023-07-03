@@ -1,3 +1,10 @@
+## [1.24.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.5...v1.24.6) (2023-07-03)
+
+
+### Bug Fixes
+
+* margin bottom on back-to links ([7ad5d94](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7ad5d940da2c8acd505b9f8e330268ab2511a15c))
+
 ## [1.24.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.4...v1.24.5) (2023-07-03)
 
 
