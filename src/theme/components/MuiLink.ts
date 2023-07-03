@@ -1,4 +1,5 @@
 import { includesClassNames } from '../../helpers';
+import typography from '../typography';
 import Components from './_components';
 
 const MuiLink: Components['MuiLink'] = {
@@ -24,6 +25,7 @@ const MuiLink: Components['MuiLink'] = {
       ),
       ...(includesClassNames(ownerState, ['back-to']) && {
         textDecoration: 'none',
+        marginBottom: typography.body1?.marginBottom,
         ':hover': {
           fontWeight: 'bold',
           textDecoration: 'underline'
