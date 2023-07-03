@@ -5,13 +5,6 @@ import {
   Path
 } from './general';
 import {
-  getSearchParams,
-  stringToBoolean,
-  stringToProperty,
-  valueInOptions,
-  valueMatchesSchema
-} from './searchParams';
-import {
   insertDividerBetweenElements,
   getStyleOverrides,
   getClassNames,
@@ -29,17 +22,4 @@ export {
   getClassNames,
   includesClassNames,
   matchClassNames
-};
-
-// Namespace
-export const SearchParams = {
-  get: getSearchParams,
-  cast: {
-    toBoolean: stringToBoolean,
-    toProperty: stringToProperty
-  },
-  validate: {
-    inOptions: valueInOptions,
-    matchesSchema: valueMatchesSchema
-  }
 };
