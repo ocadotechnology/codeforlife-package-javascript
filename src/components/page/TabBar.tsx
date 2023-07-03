@@ -32,16 +32,24 @@ export interface TabBarProps {
     path: string;
   }>;
   originalPath: string;
+  initialValue?: number;
 }
 
 const TabBar: React.FC<TabBarProps> = ({
   header,
   tabs,
-  originalPath
+  originalPath,
+  initialValue = 0
 }) => {
   const params = useParams();
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(
+    initialValue < 0
+      ? 0
+      : initialValue >= tabs.length
+        ? tabs.length - 1
+        : initialValue
+  );
 
   const labels = tabs.map(tab => tab.label);
   const children = tabs.map(tab => tab.children);
