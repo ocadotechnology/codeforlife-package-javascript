@@ -25,7 +25,7 @@ const MuiLink: Components['MuiLink'] = {
       ),
       ...(includesClassNames(ownerState, ['back-to']) && {
         textDecoration: 'none',
-        display: 'block',
+        display: 'inline-block',
         marginBottom: typography.body1?.marginBottom,
         ':hover': {
           fontWeight: 'bold',
