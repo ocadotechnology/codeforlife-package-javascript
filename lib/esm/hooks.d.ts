@@ -13,3 +13,4 @@ export declare function useEventListener<EventType extends keyof HTMLElementEven
     options?: boolean | AddEventListenerOptions;
     deps?: DependencyList;
 }): void;
+export declare function fromSearchParams(): object;
