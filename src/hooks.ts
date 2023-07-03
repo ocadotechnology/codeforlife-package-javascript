@@ -5,6 +5,9 @@ import {
   SetStateAction,
   DependencyList
 } from 'react';
+import {
+  useSearchParams
+} from 'react-router-dom';
 
 export function useFreshworksWidget(display: 'open' | 'hide'): void {
   // @ts-expect-error defined in external script
@@ -117,4 +120,9 @@ export function useEventListener<
       element.removeEventListener(type, listener, options);
     };
   }, deps);
+}
+
+export function fromSearchParams(): object {
+  const searchParams = useSearchParams()[0].entries();
+  return Object.fromEntries(searchParams);
 }
