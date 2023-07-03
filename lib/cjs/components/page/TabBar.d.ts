@@ -8,6 +8,7 @@ export interface TabBarProps {
         path: string;
     }>;
     originalPath: string;
+    initialValue?: number;
 }
 declare const TabBar: React.FC<TabBarProps>;
 export default TabBar;
