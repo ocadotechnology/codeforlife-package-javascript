@@ -1,3 +1,10 @@
+## [1.24.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.4...v1.24.5) (2023-07-03)
+
+
+### Bug Fixes
+
+* set value on prop change ([142f8a8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/142f8a83fc5b0a5f363c26ff337b58f9fca6c9a5))
+
 ## [1.24.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.3...v1.24.4) (2023-07-03)
 
 
