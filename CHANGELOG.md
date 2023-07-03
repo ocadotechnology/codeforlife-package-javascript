@@ -1,3 +1,12 @@
+## [1.24.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.7...v1.24.8) (2023-07-03)
+
+
+### Bug Fixes
+
+* back-to display is inline-block ([01c4d70](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/01c4d704211ffbfa2f809a077ead95f73dd0e6e1))
+* move router hook ([17f115c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/17f115cbfe6ee156e824fe72ea720f72a72189fd))
+* remove SearchParams helper ([02baa9e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/02baa9ec5270a17afdcaa91f760d6d4cf1cf1f6a))
+
 ## [1.24.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.6...v1.24.7) (2023-07-03)
 
 
