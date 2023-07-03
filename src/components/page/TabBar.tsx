@@ -32,23 +32,23 @@ export interface TabBarProps {
     path: string;
   }>;
   originalPath: string;
-  initialValue?: number;
+  value?: number;
 }
 
 const TabBar: React.FC<TabBarProps> = ({
   header,
   tabs,
   originalPath,
-  initialValue = 0
+  value = 0
 }) => {
   const params = useParams();
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(
-    initialValue < 0
+  const [_value, _setValue] = React.useState(
+    value < 0
       ? 0
-      : initialValue >= tabs.length
+      : value >= tabs.length
         ? tabs.length - 1
-        : initialValue
+        : value
   );
 
   const labels = tabs.map(tab => tab.label);
@@ -56,12 +56,16 @@ const TabBar: React.FC<TabBarProps> = ({
   const paths = tabs.map(tab => tab.path);
 
   React.useEffect(() => {
+    _setValue(value);
+  }, [value]);
+
+  React.useEffect(() => {
     const tab = tryValidateSync(params, YupObject({
       tab: YupString().oneOf(paths).required()
     }))?.tab;
 
     if (tab !== undefined) {
-      setValue(paths.indexOf(tab));
+      _setValue(paths.indexOf(tab));
     }
   }, [params]);
 
@@ -86,7 +90,7 @@ const TabBar: React.FC<TabBarProps> = ({
       className='flex-center'
     >
       <Tabs
-        value={value}
+        value={_value}
         onChange={(_, value) => {
           navigate(generatePath(originalPath, {
             tab: paths[value]
@@ -123,7 +127,7 @@ const TabBar: React.FC<TabBarProps> = ({
         )}
       </Tabs>
     </Section>
-    {children[value]}
+    {children[_value]}
   </>;
 };
 
