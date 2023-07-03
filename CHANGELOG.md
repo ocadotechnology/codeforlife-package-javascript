@@ -1,3 +1,10 @@
+## [1.24.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.6...v1.24.7) (2023-07-03)
+
+
+### Bug Fixes
+
+* back-to display as block ([4b0b48e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4b0b48ed99916e63afb21cfb3991814a436863f8))
+
 ## [1.24.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.5...v1.24.6) (2023-07-03)
 
 
