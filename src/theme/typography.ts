@@ -19,7 +19,8 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '60px',
     // lineHeight: '60px',
-    marginBottom: '24px'
+    marginBottom: '24px',
+    letterSpacing: 0
   },
   h2: {
     color: '#383b3b',
@@ -27,7 +28,8 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '55px',
     // lineHeight: '55px',
-    marginBottom: '22px'
+    marginBottom: '22px',
+    letterSpacing: 0
   },
   h3: {
     color: '#383b3b',
@@ -35,7 +37,8 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '45px',
     // lineHeight: '47px',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    letterSpacing: 0
   },
   h4: {
     color: '#383b3b',
@@ -43,7 +46,8 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '30px',
     // lineHeight: '38px',
-    marginBottom: '18px'
+    marginBottom: '18px',
+    letterSpacing: 0
   },
   h5: {
     color: '#383b3b',
@@ -51,7 +55,8 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '25px',
     // lineHeight: '32px',
-    marginBottom: '16px'
+    marginBottom: '16px',
+    letterSpacing: 0
   },
   h6: {
     color: '#383b3b',
@@ -59,28 +64,32 @@ const typography: TypographyOptions = {
     fontWeight: 500,
     fontSize: '22px',
     // lineHeight: '26px',
-    marginBottom: '14px'
+    marginBottom: '14px',
+    letterSpacing: 0
   },
   body1: {
     color: '#383b3b',
     fontFamily: '"Inter"',
-    fontWeight: 400,
+    fontWeight: 450,
     fontSize: '18px',
     // lineHeight: '22px',
-    marginBottom: '16px'
+    marginBottom: '16px',
+    letterSpacing: 0
   },
   body2: {
     color: '#383b3b',
     fontFamily: '"Inter"',
-    fontWeight: 400,
+    fontWeight: 450,
     fontSize: '16px',
     // lineHeight: '20px',
-    marginBottom: '14px'
+    marginBottom: '14px',
+    letterSpacing: 0
   },
   button: {
     fontFamily: '"Inter"',
-    fontSize: '14px',
-    fontWeight: 550
+    fontSize: '15px',
+    fontWeight: 600,
+    letterSpacing: 0
   }
 };
 
