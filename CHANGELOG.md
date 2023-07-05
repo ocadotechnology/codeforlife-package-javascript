@@ -1,3 +1,10 @@
+## [1.24.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.11...v1.24.12) (2023-07-05)
+
+
+### Bug Fixes
+
+* use theme spacing for container padding ([45cc88f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/45cc88f85aa6427325f3773f27e0c94623a87f2b))
+
 ## [1.24.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.10...v1.24.11) (2023-07-05)
 
 
