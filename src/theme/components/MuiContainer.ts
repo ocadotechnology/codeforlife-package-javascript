@@ -1,3 +1,4 @@
+import spacing from '../spacing';
 import Components, { getFlexStyleOverrides } from './_components';
 
 const MuiContainer: Components['MuiContainer'] = {
@@ -7,9 +8,9 @@ const MuiContainer: Components['MuiContainer'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
       ...getFlexStyleOverrides(ownerState),
-      paddingLeft: '15px !important',
-      paddingRight: '15px !important',
-      padding: '25px'
+      paddingLeft: spacing(2, true),
+      paddingRight: spacing(2, true),
+      padding: spacing(3)
     })
   }
 };
