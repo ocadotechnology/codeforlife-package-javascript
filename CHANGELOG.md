@@ -1,3 +1,11 @@
+## [1.24.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.10...v1.24.11) (2023-07-05)
+
+
+### Bug Fixes
+
+* add spacing to theme ([1544102](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/154410221c0b3a384cd9651a92bdef525bc65f17))
+* card actions padding ([b136c06](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b136c0679c2b31f020151936efa6ed064f85ac05))
+
 ## [1.24.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.9...v1.24.10) (2023-07-05)
 
 
