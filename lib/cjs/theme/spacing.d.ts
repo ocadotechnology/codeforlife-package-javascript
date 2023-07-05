@@ -1,2 +1,1 @@
-declare const spacing: (factor: number) => string;
-export default spacing;
+export default function spacing(factor: number, important?: boolean): string;
