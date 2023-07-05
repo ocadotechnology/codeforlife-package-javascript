@@ -7,6 +7,7 @@ import {
 import palette, { PropsColorOverrides } from './palette';
 import components from './components';
 import ThemedBox, { ThemedBoxProps } from './ThemedBox';
+import spacing from './spacing';
 import typography from './typography';
 
 export {
@@ -18,6 +19,7 @@ export {
 export const themeOptions: ThemeOptions = {
   palette,
   components,
+  spacing,
   typography
 };
 
