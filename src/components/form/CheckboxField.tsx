@@ -78,7 +78,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           <Stack
             direction='row'
             alignItems='center'
-            marginLeft='-9px'
+            marginLeft='-12px'
             marginBottom={formTypography.marginBottom}
             gap={1}
           >
