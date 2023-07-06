@@ -30,6 +30,8 @@ const Notification: React.FC<NotificationProps> = ({
 }) => {
   const [_open, _setOpen] = React.useState(open);
 
+  React.useEffect(() => { _setOpen(open); }, [open]);
+
   if (!_open) return <></>;
 
   // @ts-expect-error guaranteed to be in palette

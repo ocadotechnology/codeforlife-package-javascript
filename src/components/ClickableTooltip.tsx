@@ -15,6 +15,8 @@ const ClickableTooltip: React.FC<ClickableTooltipProps> = ({
 }) => {
   const [_open, _setOpen] = React.useState(open);
 
+  React.useEffect(() => { _setOpen(open); }, [open]);
+
   return (
     <Tooltip
       open={_open}
