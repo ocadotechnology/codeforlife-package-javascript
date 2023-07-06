@@ -5,6 +5,7 @@ import { BooleanSchema } from 'yup';
 export interface CheckboxFieldProps extends Omit<CheckboxProps, 'defaultValue'> {
     formControlLabelProps: Omit<FormControlLabelProps, 'control'>;
     validate?: FieldValidator | BooleanSchema;
+    marginBottom?: number | string;
     name: string;
 }
 declare const CheckboxField: React.FC<CheckboxFieldProps>;
