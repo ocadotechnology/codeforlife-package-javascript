@@ -12,6 +12,7 @@ import MuiGrid2 from './MuiGrid2';
 import MuiInputAdornment from './MuiInputAdornment';
 import MuiInputBase from './MuiInputBase';
 import MuiLink from './MuiLink';
+import MuiListItemText from './MuiListItemText';
 import MuiMenu from './MuiMenu';
 import MuiMenuItem from './MuiMenuItem';
 import MuiSelect from './MuiSelect';
@@ -37,6 +38,7 @@ const components: ThemeOptions['components'] = {
   MuiInputAdornment,
   MuiInputBase,
   MuiLink,
+  MuiListItemText,
   MuiMenu,
   MuiMenuItem,
   MuiSelect,
