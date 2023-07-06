@@ -1,3 +1,11 @@
+## [1.24.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.12...v1.24.13) (2023-07-06)
+
+
+### Bug Fixes
+
+* footer feedback ([953aca6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/953aca660079d694d9360772383bb87234869aec))
+* margin left ([18f42fc](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/18f42fccd06e706a07b559e5c5acca50ab60cb44))
+
 ## [1.24.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.11...v1.24.12) (2023-07-05)
 
 
