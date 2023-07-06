@@ -1,11 +1,16 @@
-import { TypographyOptions } from '@mui/material/styles/createTypography';
+import {
+  TypographyOptions,
+  CSSProperties
+} from '@mui/material/styles/createTypography';
 
 // Pseudo typography variant for all form text.
-export const form = {
+export const form: CSSProperties = {
   fontFamily: '"Inter"',
-  fontSize: '14px',
-  fontWeight: 500,
-  marginBottom: '12px'
+  fontSize: '14px !important',
+  fontWeight: 600,
+  margin: 0,
+  marginBottom: '12px',
+  letterSpacing: 0
 };
 
 // TODO: assess if line-height is needed.

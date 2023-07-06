@@ -1,7 +1,8 @@
 import {
   inputClasses,
   inputBaseClasses,
-  outlinedInputClasses
+  outlinedInputClasses,
+  formHelperTextClasses
 } from '@mui/material';
 
 import Components from './_components';
@@ -21,6 +22,9 @@ const MuiTextField: Components['MuiTextField'] = {
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
         borderColor: 'black !important'
+      },
+      [`.${formHelperTextClasses.root}`]: {
+        fontSize: '12px !important'
       },
       ...(ownerState.multiline === true && {
         ...((

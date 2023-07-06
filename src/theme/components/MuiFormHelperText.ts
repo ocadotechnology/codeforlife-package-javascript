@@ -4,9 +4,7 @@ import Components from './_components';
 const MuiFormHelperText: Components['MuiFormHelperText'] = {
   styleOverrides: {
     root: {
-      ...form,
-      marginTop: 4,
-      marginLeft: 4
+      ...form
     }
   }
 };
