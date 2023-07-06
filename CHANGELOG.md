@@ -1,3 +1,10 @@
+## [1.24.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.13...v1.24.14) (2023-07-06)
+
+
+### Bug Fixes
+
+* configure margin bottom ([b658664](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b658664033ea96c12659df63dcefe84852d690e8))
+
 ## [1.24.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.12...v1.24.13) (2023-07-06)
 
 
