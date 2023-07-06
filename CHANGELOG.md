@@ -1,3 +1,10 @@
+## [1.24.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.14...v1.24.15) (2023-07-06)
+
+
+### Bug Fixes
+
+* use effect to set prop change value ([265bcfe](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/265bcfe4c78476a3a72cc05fc5fede08e77179e8))
+
 ## [1.24.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.13...v1.24.14) (2023-07-06)
 
 
