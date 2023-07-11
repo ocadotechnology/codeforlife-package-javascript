@@ -1,3 +1,10 @@
+## [1.24.18](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.17...v1.24.18) (2023-07-11)
+
+
+### Bug Fixes
+
+* increase top and bottom padding ([16fbf38](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/16fbf38bc9cadc2f8401234a2141b875c4b5c1e8))
+
 ## [1.24.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.16...v1.24.17) (2023-07-06)
 
 
