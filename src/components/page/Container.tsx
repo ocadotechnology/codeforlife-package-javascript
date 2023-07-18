@@ -4,28 +4,18 @@ import {
   Grid2Props
 } from '@mui/material';
 
-import { SectionElement } from './Section';
-
 export interface ContainerProps extends Omit<Grid2Props, (
   'id' |
-  'container' |
-  'children'
-)> {
-  children: SectionElement | SectionElement[];
-}
+  'container'
+)> { }
 
-const Container: React.FC<ContainerProps> = ({
-  children,
-  ...otherGridProps
-}) => {
+const Container: React.FC<ContainerProps> = (props) => {
   return (
     <Grid
       id='body'
       container
-      {...otherGridProps}
-    >
-      {children}
-    </Grid>
+      {...props}
+    />
   );
 };
 
