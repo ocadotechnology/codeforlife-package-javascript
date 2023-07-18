@@ -1,10 +1,9 @@
 import React from 'react';
-import { SectionElement } from './Section';
 export interface TabBarProps {
     header: string;
     tabs: Array<{
         label: string;
-        children: SectionElement | SectionElement[];
+        children: React.ReactNode;
         path: string;
     }>;
     originalPath: string;
