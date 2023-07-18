@@ -1,3 +1,11 @@
+## [1.24.19](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.18...v1.24.19) (2023-07-18)
+
+
+### Bug Fixes
+
+* children type ([6a7e9e8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6a7e9e89bebd3ce015397703e571f13650592cdb))
+* tab children type ([bb5c252](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bb5c252115ef6852f10c7bd8c9234dcfb73f12dc))
+
 ## [1.24.18](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.17...v1.24.18) (2023-07-11)
 
 
