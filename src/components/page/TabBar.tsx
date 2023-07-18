@@ -22,13 +22,13 @@ import {
 
 import { primary } from '../../theme/colors';
 import { tryValidateSync } from '../../helpers/yup';
-import Section, { SectionElement } from './Section';
+import Section from './Section';
 
 export interface TabBarProps {
   header: string;
   tabs: Array<{
     label: string;
-    children: SectionElement | SectionElement[];
+    children: React.ReactNode;
     path: string;
   }>;
   originalPath: string;
