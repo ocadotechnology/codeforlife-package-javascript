@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.19...v1.25.0) (2023-07-19)
+
+
+### Features
+
+* snake to camel case helper ([809d6be](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/809d6be110a0c2da358df93414efa9b4e3853326))
+
 ## [1.24.19](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.18...v1.24.19) (2023-07-18)
 
 
