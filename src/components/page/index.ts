@@ -4,12 +4,12 @@ import Notification, { NotificationProps } from './Notification';
 import Section, { SectionProps } from './Section';
 import TabBar, { TabBarProps } from './TabBar';
 
-export {
-  type BannerProps,
-  type ContainerProps,
-  type NotificationProps,
-  type SectionProps,
-  type TabBarProps
+export type {
+  BannerProps,
+  ContainerProps,
+  NotificationProps,
+  SectionProps,
+  TabBarProps
 };
 
 const Page = {
