@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.0...v1.25.1) (2023-07-19)
+
+
+### Bug Fixes
+
+* typing ([ff99d3c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ff99d3c2c899d5d500dd9e79a0410ce3fdfc3d9d))
+
 # [1.25.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.24.19...v1.25.0) (2023-07-19)
 
 
