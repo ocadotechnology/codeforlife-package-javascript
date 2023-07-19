@@ -2,7 +2,8 @@ import {
   openInNewTab,
   wrap,
   path,
-  Path
+  Path,
+  snakeCaseToCamelCase
 } from './general';
 import {
   insertDividerBetweenElements,
@@ -14,9 +15,12 @@ import {
 
 // global
 export {
+  // general
   openInNewTab,
   wrap,
   path, type Path,
+  snakeCaseToCamelCase,
+  // materialUI
   insertDividerBetweenElements,
   getStyleOverrides,
   getClassNames,

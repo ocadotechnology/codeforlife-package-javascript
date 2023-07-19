@@ -54,3 +54,23 @@ export function path<
   }
   return path;
 }
+
+export function snakeCaseToCamelCase(obj: Record<string, any>): void {
+  Object.entries(obj).forEach(([snakeKey, value]) => {
+    if (typeof value === 'object') snakeCaseToCamelCase(value);
+
+    const keys = snakeKey.split('_').filter((key) => key !== '');
+
+    if (keys.length >= 1) {
+      const camelCaseKey = keys.reduce((previousValue, currentValue) =>
+        previousValue +
+        currentValue.charAt(0).toUpperCase() +
+        currentValue.slice(1)
+      );
+
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete obj[snakeKey];
+      obj[camelCaseKey] = value;
+    }
+  });
+}
