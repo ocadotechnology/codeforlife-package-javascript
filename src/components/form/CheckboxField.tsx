@@ -51,7 +51,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
     validate: async (value) => {
       if (validate instanceof BooleanSchema) {
         try {
-          validate.validateSync(value);
+          await validate.validate(value);
         } catch (error) {
           if (error instanceof ValidationError) {
             return error.errors[0];
