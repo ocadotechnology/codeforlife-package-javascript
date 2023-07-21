@@ -25,7 +25,7 @@ export function insertDividerBetweenElements({
 }
 
 export function getStyleOverrides(
-  ownerState: Record<string, unknown>,
+  ownerState: CommonProps,
   componentKey: keyof NonNullable<ThemeOptions['components']>,
   muiClassName: string = 'root',
   components: ThemeOptions['components'] = _components
