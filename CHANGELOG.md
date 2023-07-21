@@ -1,3 +1,10 @@
+## [1.25.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.3...v1.25.4) (2023-07-21)
+
+
+### Bug Fixes
+
+* async schema validation ([ce632b1](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ce632b1482220f3f4bcb713373b8b119b8eff2a7))
+
 ## [1.25.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.2...v1.25.3) (2023-07-21)
 
 
