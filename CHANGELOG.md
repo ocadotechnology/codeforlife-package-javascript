@@ -1,3 +1,10 @@
+## [1.25.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.2...v1.25.3) (2023-07-21)
+
+
+### Bug Fixes
+
+* support no-override class name in themed box ([25075b3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/25075b3c08ca7e5246b6acc0dff4a784566ca5ed))
+
 ## [1.25.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.1...v1.25.2) (2023-07-20)
 
 
