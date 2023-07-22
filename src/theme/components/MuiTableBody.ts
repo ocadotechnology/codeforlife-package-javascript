@@ -4,7 +4,7 @@ import Components from './_components';
 const MuiTableBody: Components['MuiTableBody'] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      backgroundColor: '#F2F2F2',
+      backgroundColor: '#F1ECEC',
       ...(includesClassNames(ownerState, ['text']) && {
         backgroundColor: 'white'
       })
