@@ -1,3 +1,10 @@
+## [1.25.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.4...v1.25.5) (2023-07-22)
+
+
+### Bug Fixes
+
+* table body background color ([bee0c85](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bee0c85a3bfc55ccec64b3871565bb473387399b))
+
 ## [1.25.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.3...v1.25.4) (2023-07-21)
 
 
