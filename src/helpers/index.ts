@@ -3,7 +3,8 @@ import {
   wrap,
   path,
   Path,
-  snakeCaseToCamelCase
+  snakeCaseToCamelCase,
+  camelCaseToSnakeCase
 } from './general';
 import {
   insertDividerBetweenElements,
@@ -20,6 +21,7 @@ export {
   wrap,
   path, type Path,
   snakeCaseToCamelCase,
+  camelCaseToSnakeCase,
   // materialUI
   insertDividerBetweenElements,
   getStyleOverrides,
