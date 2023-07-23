@@ -1,3 +1,10 @@
+## [1.25.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.5...v1.25.6) (2023-07-23)
+
+
+### Bug Fixes
+
+* camel to snake case ([9f61562](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9f61562860da8c816f3c8eacf508e0bdb52cdef9))
+
 ## [1.25.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.4...v1.25.5) (2023-07-22)
 
 
