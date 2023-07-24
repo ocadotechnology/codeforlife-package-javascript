@@ -5,14 +5,12 @@ name: Node.js Package
 
 on:
   push:
-    branches: ["main"]
     paths-ignore:
       - "README.md"
       - "CHANGELOG.md"
 
 jobs:
   test:
-    name: Test Code
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,6 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      # TODO: cache node packages
       - name: Install Node Packages
         run: npm install
 
@@ -35,16 +34,11 @@ jobs:
       # - name: Test Code
       #   run: npm run test -- --watchAll=false
 
-  release:
-    name: Publish Release
+  build:
     needs: [test]
-    concurrency: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          fetch-depth: 0
 
       - uses: actions/setup-node@v3
         with:
@@ -55,12 +49,13 @@ jobs:
           git config --local user.name github-actions
           git config --local user.email github-actions@github.com
 
+      # TODO: cache node packages
       - name: Install Node Packages
         run: npm install --only=dev
 
       - name: Build Package
         run: npm run build
-      
+
       - name: Push Build Files
         run: |
           git add lib/*
@@ -68,6 +63,25 @@ jobs:
             git commit -m "push build files [skip ci]"
             git push
           fi
+
+  release:
+    needs: [test, build]
+    concurrency: release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19.7
+      
+      # TODO: group release dependencies
+      - name: Install Node Packages
+        run: npm install --only=dev
 
       - name: Publish Semantic Release
         env:
