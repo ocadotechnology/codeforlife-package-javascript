@@ -8,10 +8,16 @@ on:
     paths-ignore:
       - "README.md"
       - "CHANGELOG.md"
+  pull_request:
+    types:
+      - closed
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: |
+      github.event_name != 'pull_request' || 
+      github.event.pull_request.merged == true
     strategy:
       matrix:
         node: [19.7]
@@ -65,7 +71,7 @@ jobs:
           fi
 
   release:
-    needs: [test, build]
+    needs: [build]
     concurrency: release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
