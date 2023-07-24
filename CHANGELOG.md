@@ -1,3 +1,10 @@
+## [1.25.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.9...v1.25.10) (2023-07-24)
+
+
+### Bug Fixes
+
+* remove test helper ([9c0ec04](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9c0ec047ee4367b9d7c2fa6d7f14ca719e966ac4))
+
 ## [1.25.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.8...v1.25.9) (2023-07-24)
 
 
