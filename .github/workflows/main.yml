@@ -31,7 +31,7 @@ jobs:
       - name: Check Code Format
         run: npm run lint
       
-      # // TODO: https://www.pluralsight.com/guides/how-to-test-react-components-in-typescript
+      # TODO: https://www.pluralsight.com/guides/how-to-test-react-components-in-typescript
       # - name: Test Code
       #   run: npm run test -- --watchAll=false
 
