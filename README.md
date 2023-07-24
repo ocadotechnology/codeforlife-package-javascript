@@ -35,7 +35,8 @@ To make changes, you must:
 1. Push your changes on your branch.
 1. Ensure the pipeline runs successfully on your branch.
 1. Have your changes reviewed and approved by a peer.
-1. Merge your branch into the main branch.
+1. Merge your branch into the `main` branch.
+1. Manually trigger the `Main` pipeline for the `main` branch.
 
 ### Installing your branch
 
