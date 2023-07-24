@@ -51,7 +51,6 @@ jobs:
         run: |
           git config --local user.name cfl-bot
           git config --local user.email codeforlife-bot@ocado.com
-          git remote set-url origin https://cfl-bot:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/ocadotechnology/codeforlife-package-javascript.git
 
       # TODO: cache node packages
       - name: Install Node Packages
@@ -60,28 +59,13 @@ jobs:
       - name: Build Package
         run: npm run build
 
-      # - name: Push Build Files
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: 'lib/*'
-      #     push: true
-      #     author_name: cfl-bot
-      #     author_email: codeforlife-bot@ocado.com
-      #     message: 'push build files [skip ci]'
       - name: Push Build Files
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'lib/*'
-          push: true
-          author_name: cfl-bot
-          author_email: codeforlife-bot@ocado.com
-          message: 'push build files [skip ci]'
-        # run: |
-        #   git add lib/*
-        #   if ! git diff --staged --quiet; then
-        #     git commit -m "push build files [skip ci]"
-        #     git push
-        #   fi
+        run: |
+          git add lib/*
+          if ! git diff --staged --quiet; then
+            git commit -m "push build files [skip ci]"
+            git push
+          fi
 
   release:
     needs: [build]
