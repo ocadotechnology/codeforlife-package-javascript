@@ -45,6 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - uses: actions/setup-node@v3
         with:
@@ -52,8 +54,8 @@ jobs:
       
       - name: Setup Git
         run: |
-          git config --local user.name github-actions
-          git config --local user.email github-actions@github.com
+          git config --local user.name cfl-bot
+          git config --local user.email codeforlife-bot@users.noreply.github.com
 
       # TODO: cache node packages
       - name: Install Node Packages
