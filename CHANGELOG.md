@@ -1,3 +1,19 @@
+## [1.25.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.11...v1.25.12) (2023-07-24)
+
+
+### Bug Fixes
+
+* add hello helper ([#13](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/13)) ([4eea3b0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4eea3b0482325eab8842dba81a429a266cced7d4))
+* just test ([#10](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/10)) ([50bb329](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/50bb3296152d1e95f22cad87740c9e3445a863a8))
+* pipeline ([#11](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/11)) ([12b4e26](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/12b4e26d130547af22a3379936b76702a56ed1d1))
+* pipeline ([#12](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/12)) ([a91676d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a91676d0365bf42fe7e7d2a6dfcaca8ea5c2949a))
+* pipeline ([#18](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/18)) ([2f95d21](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2f95d219fe99dbc58eb099aafd99efa7234132a9))
+* remove hello helper ([#14](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/14)) ([24f7618](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/24f7618fcbe04771f591eb0bea608784485b19b8))
+* test ([#16](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/16)) ([fefde5d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fefde5d52bc1a9d1f525c392faf6fa74310ae4e9))
+* test ([#17](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/17)) ([ad91afd](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ad91afd062806f00837a249a9e65ad1ed2c8180f))
+* update readme ([2e2368d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2e2368d02a1f5666a92accc990ff55db8574bb25))
+* use action ([#15](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/15)) ([19e5c91](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/19e5c918d68b57b356684fe371c8f13f47a29291))
+
 ## [1.25.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.10...v1.25.11) (2023-07-24)
 
 
