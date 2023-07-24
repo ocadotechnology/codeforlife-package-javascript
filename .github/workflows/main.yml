@@ -47,6 +47,12 @@ jobs:
         with:
           node-version: 19.7
 
+      - name: Setup Git
+        run: |
+          git config --local user.name cfl-bot
+          git config --local user.email codeforlife-bot@ocado.com
+          git remote set-url origin https://cfl-bot:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/ocadotechnology/codeforlife-package-javascript.git
+
       # TODO: cache node packages
       - name: Install Node Packages
         run: npm install --only=dev
@@ -54,6 +60,14 @@ jobs:
       - name: Build Package
         run: npm run build
 
+      # - name: Push Build Files
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     add: 'lib/*'
+      #     push: true
+      #     author_name: cfl-bot
+      #     author_email: codeforlife-bot@ocado.com
+      #     message: 'push build files [skip ci]'
       - name: Push Build Files
         uses: EndBug/add-and-commit@v9
         with:
