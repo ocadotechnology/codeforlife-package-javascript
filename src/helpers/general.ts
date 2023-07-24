@@ -60,8 +60,8 @@ export function snakeCaseToCamelCase(obj: Record<string, any>): void {
     if (typeof value === 'object') snakeCaseToCamelCase(value);
 
     const camelKey = snakeKey.replace(
-      /_[a-z]/g,
-      (_char) => _char[1].toUpperCase()
+      /_+[a-z]/g,
+      (_char) => _char[_char.length - 1].toUpperCase()
     );
 
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
