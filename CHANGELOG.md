@@ -1,3 +1,14 @@
+## [1.25.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.10...v1.25.11) (2023-07-24)
+
+
+### Bug Fixes
+
+* add test helper ([#6](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/6)) ([1b60256](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1b602562f3c3eea0edc585c9cb71fdc7452d9c38))
+* delete some paths ([c4dc194](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c4dc19430a65e26a5e21d0eee0557de5a0d9790d))
+* remove helper ([#7](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/7)) ([dabd297](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dabd297aad31232298b2b46ad97260c6ca6e7247))
+* remove if ([#9](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/9)) ([da0a61a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/da0a61a9c8084b812438a7e3e499bc52ff648a07))
+* triggers ([#8](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/8)) ([cccca5a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/cccca5a3fab90938091470aff497aca96f522511))
+
 ## [1.25.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.9...v1.25.10) (2023-07-24)
 
 
