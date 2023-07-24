@@ -1,3 +1,11 @@
+## [1.25.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.7...v1.25.8) (2023-07-24)
+
+
+### Bug Fixes
+
+* remove test helper ([#5](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/5)) ([60c707d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/60c707df8d758e1c23d572d09ea4eab70d0c9e0d))
+* use cfl-bot ([677b53a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/677b53af7af1134ba27f50a11f7eeed54ca1f7da))
+
 ## [1.25.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.6...v1.25.7) (2023-07-24)
 
 
