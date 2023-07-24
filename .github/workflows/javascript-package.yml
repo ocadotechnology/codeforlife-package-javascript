@@ -51,7 +51,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19.7
-      
+
       - name: Setup Git
         run: |
           git config --local user.name cfl-bot
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19.7
-      
+
       # TODO: group release dependencies
       - name: Install Node Packages
         run: npm install --only=dev
