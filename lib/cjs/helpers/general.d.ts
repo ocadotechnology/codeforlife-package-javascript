@@ -10,3 +10,4 @@ export interface Path {
 export declare function path<Subpaths extends Record<string, Path>>(_: string, subpaths?: Subpaths): Path & Subpaths;
 export declare function snakeCaseToCamelCase(obj: Record<string, any>): void;
 export declare function camelCaseToSnakeCase(obj: Record<string, any>): void;
+export declare function helloWorld(): string;
