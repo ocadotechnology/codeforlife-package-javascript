@@ -1,3 +1,12 @@
+## [1.25.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.6...v1.25.7) (2023-07-24)
+
+
+### Bug Fixes
+
+* added hello world helper ([#4](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/4)) ([3e68bda](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3e68bdae1676451c9571fe8acda1209a95763876))
+* pipeline ([#3](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/3)) ([5ba58fa](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5ba58fa9e1146c22d10d3fa9de34381a385882d1))
+* trigger pipeline on merge pull request ([fcf2a38](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fcf2a38f9e3ceff1e3bd46f59bb4cb19a2374759))
+
 ## [1.25.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.5...v1.25.6) (2023-07-23)
 
 
