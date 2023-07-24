@@ -84,3 +84,7 @@ export function camelCaseToSnakeCase(obj: Record<string, any>): void {
     obj[snakeKey] = value;
   });
 }
+
+export function hello(name: string): string {
+  return `Hello, ${name}`;
+}
