@@ -46,7 +46,7 @@ const Banner: React.FC<BannerProps> = ({
 
   return <>
     <Section
-      gridProps={{ bgcolor: _bgcolor }}
+      gridProps={{ bgcolor: _bgcolor, paddingY: 0 }}
       sx={{ paddingY: 0 }}
     >
       <Stack
