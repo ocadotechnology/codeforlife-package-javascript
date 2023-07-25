@@ -62,7 +62,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
 
   const commonIconSxProps: SxProps = {
     display: { xs: 'none', md: 'block' },
-    fontSize: '200px',
+    fontSize: '180px',
     position: 'absolute'
   };
 
@@ -186,7 +186,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
             paddingX: { xs: 2, sm: 5, md: 10 },
             marginX: { md: '100px' }
           }),
-          bgcolor: bgcolor.main,
+          bgcolor: (userType === 'teacher') ? bgcolor[400] : bgcolor.main,
           alignItems: 'center',
           position: 'relative'
         }}
