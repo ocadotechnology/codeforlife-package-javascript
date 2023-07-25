@@ -24,7 +24,7 @@ const Section: React.FC<SectionProps> = ({
   ...containerProps
 }) => {
   return (
-    <Grid xs={12} paddingY={5} {...gridProps}>
+    <Grid xs={12} paddingY={3} {...gridProps}>
       <Container {...containerProps}>
         {children}
       </Container>
