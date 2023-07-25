@@ -186,7 +186,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
             paddingX: { xs: 2, sm: 5, md: 10 },
             marginX: { md: '100px' }
           }),
-          bgcolor: (userType === 'teacher') ? bgcolor[400] : bgcolor.main,
+          bgcolor: (userType === 'teacher') ? bgcolor.light : bgcolor.main,
           alignItems: 'center',
           position: 'relative'
         }}
