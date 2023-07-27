@@ -1,3 +1,10 @@
+## [1.25.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.13...v1.25.14) (2023-07-27)
+
+
+### Bug Fixes
+
+* home views ([#21](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/21)) ([5d08d58](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5d08d5818414ad37195d68da1f290db5a96d6c9a))
+
 ## [1.25.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.12...v1.25.13) (2023-07-24)
 
 
