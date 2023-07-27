@@ -84,3 +84,5 @@ export function camelCaseToSnakeCase(obj: Record<string, any>): void {
     obj[snakeKey] = value;
   });
 }
+
+export const MIN_DATE = new Date(0, 0, 0);
