@@ -17,6 +17,7 @@ import {
 import {
   form as formTypography
 } from '../../theme/typography';
+import { MIN_DATE } from '../../helpers/general';
 
 const monthOptions = [
   'January',
@@ -52,13 +53,11 @@ const DateField: React.FC<DateFieldProps> = ({
   const [month, setMonth] = React.useState(0);
   const [year, setYear] = React.useState(0);
 
-  const defaultDate = new Date(0, 0, 0);
-
   const fieldConfig: FieldConfig<Date> = {
     type: 'date',
     name,
     validate: (value: Date): void | string => {
-      if (required && value.getTime() === defaultDate.getTime()) {
+      if (required && value.getTime() === MIN_DATE.getTime()) {
         return 'date required';
       }
     }
@@ -69,7 +68,7 @@ const DateField: React.FC<DateFieldProps> = ({
       {({ form }: FieldProps<Date>) => {
         React.useEffect(() => {
           const date = [day, month, year].includes(0)
-            ? defaultDate
+            ? MIN_DATE
             : new Date(year, month - 1, day);
 
           form.setFieldValue(name, date, true);
