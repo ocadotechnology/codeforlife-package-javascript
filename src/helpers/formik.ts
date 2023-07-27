@@ -1,6 +1,7 @@
 import {
   FormikHelpers
 } from 'formik';
+import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 
 export function setFormErrors(
@@ -20,24 +21,25 @@ export function setFormErrors(
   setErrors(error.data);
 }
 
-export function submitForm(
-  trigger: MutationTrigger<any>,
+export function submitForm<
+  QueryArg,
+  ResultType,
+  FormValues extends QueryArg
+>(
+  trigger: MutationTrigger<MutationDefinition<
+    QueryArg, any, any, ResultType, any
+  >>,
   query: {
-    build?: (values: Record<string, any>) => Record<string, any>;
-    then: () => void;
+    then: (result: ResultType) => void;
     catch?: (error: Error) => void;
     finally?: () => void;
   }
 ): (
-  values: Record<string, any>,
-  helpers: FormikHelpers<any>
-) => void {
-  const {
-    build = (values) => values
-  } = query;
-
+  values: FormValues,
+  helpers: FormikHelpers<FormValues>
+) => void | Promise<any> {
   return (values, helpers) => {
-    trigger(build(values))
+    trigger(values)
       .unwrap()
       .then(query.then)
       .catch((error) => {
