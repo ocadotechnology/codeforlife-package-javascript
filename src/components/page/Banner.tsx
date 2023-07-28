@@ -70,7 +70,7 @@ const Banner: React.FC<BannerProps> = ({
           </Typography>
           <Typography
             color={contrastText}
-            variant='h5'
+            variant='h4'
             mb={buttonProps !== undefined ? undefined : 0}
           >
             {subheader}
