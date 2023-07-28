@@ -10,7 +10,7 @@ const MuiContainer: Components['MuiContainer'] = {
       ...getFlexStyleOverrides(ownerState),
       paddingLeft: spacing(2, true),
       paddingRight: spacing(2, true),
-      padding: spacing(4)
+      padding: spacing(7)
     })
   }
 };

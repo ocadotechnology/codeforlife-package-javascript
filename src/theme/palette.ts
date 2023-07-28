@@ -58,7 +58,6 @@ const { palette: { augmentColor } } = createTheme();
 const palette: PaletteOptions = {
   primary: {
     main: primary[500],
-    light: primary[400],
     contrastText: common.white
   },
   secondary: {
