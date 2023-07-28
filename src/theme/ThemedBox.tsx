@@ -24,6 +24,7 @@ import {
   includesClassNames
 } from '../helpers';
 import Components from './components/_components';
+import { primary, secondary, tertiary } from './colors';
 
 export interface ThemedBoxProps extends BoxProps {
   options?: ThemeOptions;
@@ -39,36 +40,40 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
   sx,
   ...otherBoxProps
 }) => {
-  let bgcolor: PaletteColor;
+  let bgcolor: string;
   let circleColor: 'primary' | 'secondary' | 'tertiary';
   let hexagonColor: 'primary' | 'secondary' | 'tertiary';
+  let contrastText: string;
   switch (userType) {
     case 'teacher':
-      bgcolor = palette.primary as PaletteColor;
+      bgcolor = primary[400];
       circleColor = 'tertiary';
       hexagonColor = 'secondary';
+      contrastText = (palette.primary as PaletteColor).contrastText;
       break;
     case 'student':
-      bgcolor = palette.tertiary;
+      bgcolor = tertiary[500];
       circleColor = 'secondary';
       hexagonColor = 'primary';
+      contrastText = palette.tertiary.contrastText;
       break;
     case 'independent':
-      bgcolor = palette.secondary as PaletteColor;
+      bgcolor = secondary[500];
       circleColor = 'primary';
       hexagonColor = 'tertiary';
+      contrastText = (palette.secondary as PaletteColor).contrastText;
       break;
   }
 
   const commonIconSxProps: SxProps = {
     display: { xs: 'none', md: 'block' },
-    fontSize: '200px',
+    fontSize: '180px',
     position: 'absolute'
   };
 
   const fontStyleOverrides = {
-    color: bgcolor.contrastText,
-    textDecorationColor: bgcolor.contrastText
+    color: contrastText,
+    textDecorationColor: contrastText
   };
 
   function overrideStyles(
@@ -138,15 +143,15 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
               },
               [`&.${buttonClasses.disabled}`]: {
                 backgroundColor: 'white',
-                color: bgcolor.contrastText
+                color: contrastText
               }
             })
           }, 'MuiButton', 'contained'),
           outlined: ({ ownerState }) => overrideStyles(ownerState, {
             ...fontStyleOverrides,
-            border: `2px solid ${bgcolor.contrastText}`,
+            border: `2px solid ${contrastText}`,
             '&:hover': {
-              border: `2px solid ${bgcolor.contrastText}`,
+              border: `2px solid ${contrastText}`,
               backgroundColor: 'transparent',
               textDecoration: 'underline'
             }
@@ -158,7 +163,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
         styleOverrides: {
           ...options.components?.MuiCheckbox?.styleOverrides,
           root: ({ ownerState }) => overrideStyles(ownerState, {
-            color: `${bgcolor.contrastText} !important`
+            color: `${contrastText} !important`
           }, 'MuiCheckbox')
         }
       },
@@ -168,7 +173,7 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
           ...options.components?.MuiSvgIcon?.styleOverrides,
           root: ({ ownerState }) => overrideStyles(ownerState, {
             '&.checkbox-error': {
-              color: `${bgcolor.contrastText} !important`
+              color: `${contrastText} !important`
             }
           }, 'MuiSvgIcon')
         }
@@ -184,9 +189,9 @@ const ThemedBox: React.FC<ThemedBoxProps> = ({
           ...(withShapes && {
             paddingY: { xs: 2, sm: 3, md: 5 },
             paddingX: { xs: 2, sm: 5, md: 10 },
-            marginX: { md: '100px' }
+            marginX: { md: '90px' }
           }),
-          bgcolor: bgcolor.main,
+          bgcolor,
           alignItems: 'center',
           position: 'relative'
         }}
