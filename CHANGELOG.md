@@ -1,3 +1,11 @@
+## [1.25.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.14...v1.25.15) (2023-07-28)
+
+
+### Bug Fixes
+
+* 105 new portal edits loginteacher 1 ([#20](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/20)) ([a87bc5f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a87bc5f01934864dc8c2e774f7cbb48ce4ecba30))
+* new about us page edits ([#19](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/19)) ([16082d6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/16082d65f4f1303081f88ac7fd7af4f4ea39db44))
+
 ## [1.25.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.13...v1.25.14) (2023-07-27)
 
 
