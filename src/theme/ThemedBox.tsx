@@ -30,35 +30,36 @@ export interface ThemedBoxProps extends BoxProps {
   options?: ThemeOptions;
   withShapes?: boolean;
   userType: 'teacher' | 'student' | 'independent';
+  bgcolor?: string;
 }
 
 const ThemedBox: React.FC<ThemedBoxProps> = ({
   options = themeOptions,
   withShapes = false,
   userType,
+  bgcolor,
   children,
   sx,
   ...otherBoxProps
 }) => {
-  let bgcolor: string;
   let circleColor: 'primary' | 'secondary' | 'tertiary';
   let hexagonColor: 'primary' | 'secondary' | 'tertiary';
   let contrastText: string;
   switch (userType) {
     case 'teacher':
-      bgcolor = primary[400];
+      bgcolor = bgcolor ?? primary[400];
       circleColor = 'tertiary';
       hexagonColor = 'secondary';
       contrastText = (palette.primary as PaletteColor).contrastText;
       break;
     case 'student':
-      bgcolor = tertiary[500];
+      bgcolor = bgcolor ?? tertiary[500];
       circleColor = 'secondary';
       hexagonColor = 'primary';
       contrastText = palette.tertiary.contrastText;
       break;
     case 'independent':
-      bgcolor = secondary[500];
+      bgcolor = bgcolor ?? secondary[500];
       circleColor = 'primary';
       hexagonColor = 'tertiary';
       contrastText = (palette.secondary as PaletteColor).contrastText;
