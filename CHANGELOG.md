@@ -1,3 +1,10 @@
+## [1.26.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.0...v1.26.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* bgcolor ([#23](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/23)) ([e060543](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e0605436f5e1817c6e2ba4d581a9f510694c70ba))
+
 # [1.26.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.15...v1.26.0) (2023-07-31)
 
 
