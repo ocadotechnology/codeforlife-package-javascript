@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.15...v1.26.0) (2023-07-31)
+
+
+### Features
+
+* include notifications on page navigation ([#22](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/22)) ([051a4b7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/051a4b76b37f4fcddb05bf9a06b79613cc0cd34c))
+
 ## [1.25.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.25.14...v1.25.15) (2023-07-28)
 
 
