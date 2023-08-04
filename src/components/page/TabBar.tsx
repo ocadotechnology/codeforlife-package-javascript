@@ -110,12 +110,13 @@ const TabBar: React.FC<TabBarProps> = ({
                     }}
                   >
                     {direction === 'left'
-? (
-                      <ChevronLeftIcon />
-                    )
-: (
-                      <ChevronRightIcon />
-                    )}
+                      ? <>
+                        <ChevronLeftIcon />
+                      </>
+                      : <>
+                        <ChevronRightIcon />
+                      </>
+                    }
                   </IconButton>
                 )}
               </>
