@@ -72,7 +72,7 @@ const DateField: React.FC<DateFieldProps> = ({
             ? MIN_DATE
             : new Date(year, month - 1, day);
 
-          void form.setFieldValue(name, date, true);
+          form.setFieldValue(name, date, true);
         }, [day, month, year]);
 
         function getLastDay(month: number, year: number): number {
