@@ -52,6 +52,7 @@ const DateField: React.FC<DateFieldProps> = ({
   const [day, setDay] = React.useState(0);
   const [month, setMonth] = React.useState(0);
   const [year, setYear] = React.useState(0);
+  const [isDateValid, setIsDateValid] = React.useState(true);
 
   const fieldConfig: FieldConfig<Date> = {
     type: 'date',
@@ -67,11 +68,11 @@ const DateField: React.FC<DateFieldProps> = ({
     <Field {...fieldConfig}>
       {({ form }: FieldProps<Date>) => {
         React.useEffect(() => {
-          const date = [day, month, year].includes(0)
+          const date = ([day, month, year].includes(0) || !isDateValid)
             ? MIN_DATE
             : new Date(year, month - 1, day);
 
-          form.setFieldValue(name, date, true);
+          void form.setFieldValue(name, date, true);
         }, [day, month, year]);
 
         function getLastDay(month: number, year: number): number {
@@ -84,27 +85,32 @@ const DateField: React.FC<DateFieldProps> = ({
           return (event: SelectChangeEvent<number>) => {
             const value = Number(event.target.value);
 
-            if (dispatch !== setDay && day !== 0) {
-              const [_month, _year] = dispatch === setMonth
-                ? [value, year]
-                : [month, value];
+            let [_day, _month, _year] = [day, month, year];
+            switch (dispatch) {
+              case setDay:
+                _day = value;
+                break;
+              case setMonth:
+                _month = value;
+                break;
+              case setYear:
+                _year = value;
+                break;
+            }
 
-              if (_month !== 0 &&
-                _year !== 0 &&
-                day > getLastDay(_month, _year)
-              ) { setDay(0); }
+            if (_day !== 0 && _month !== 0 && _year !== 0) {
+              if (_day > getLastDay(_month, _year)) {
+                setIsDateValid(false);
+              } else {
+                setIsDateValid(true);
+              }
             }
 
             dispatch(value);
           };
         }
 
-        const dayIsDisabled = month === 0 || year === 0;
-
-        const dayOptions = dayIsDisabled
-          ? []
-          : Array.from(Array(getLastDay(month, year)).keys())
-            .map(day => day + 1);
+        const dayOptions = Array.from(Array(31).keys()).map(day => day + 1);
 
         const yearOptions = Array
           .from(Array(previousYears).keys())
@@ -134,7 +140,6 @@ const DateField: React.FC<DateFieldProps> = ({
                 id='select-day'
                 value={day}
                 onChange={dispatchSelectChangeEvent(setDay)}
-                disabled={dayIsDisabled}
                 {...commonSelectProps}
               >
                 <MenuItem className='header' value={0}>
@@ -181,6 +186,13 @@ const DateField: React.FC<DateFieldProps> = ({
                 )}
               </Select>
             </Grid>
+            {!isDateValid &&
+              <Grid xs={12} marginTop={1}>
+                <FormHelperText sx={{ color: 'red' }}>
+                  Invalid date
+                </FormHelperText>
+              </Grid>
+            }
           </Grid>
         );
       }}
