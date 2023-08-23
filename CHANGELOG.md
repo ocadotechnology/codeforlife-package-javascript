@@ -1,3 +1,11 @@
+## [1.26.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.1...v1.26.2) (2023-08-23)
+
+
+### Bug Fixes
+
+* 84 modify datefield ([#25](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/25)) ([c9f504c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c9f504c4a2a635bdec38405df8d942837f165aa6))
+* disable ripple ([#24](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/24)) ([6a86f5f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6a86f5faf6854ba66cbc8cb290497a773427db45))
+
 ## [1.26.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.0...v1.26.1) (2023-07-31)
 
 
