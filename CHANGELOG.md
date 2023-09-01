@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.2...v1.27.0) (2023-09-01)
+
+
+### Features
+
+* base api and CSRF ([#27](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/27)) ([3b07ff9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3b07ff95afcb4974731617522eadf4d8510367ec))
+
 ## [1.26.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.1...v1.26.2) (2023-08-23)
 
 
