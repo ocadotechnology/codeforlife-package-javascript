@@ -1,23 +1,24 @@
 import {
-  fetchBaseQuery,
+  QueryReturnValue
+} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
-  FetchBaseQueryMeta
+  FetchBaseQueryMeta,
+  fetchBaseQuery
 } from '@reduxjs/toolkit/query';
-import {
-  QueryReturnValue
-} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import Cookies from 'js-cookie';
 import qs from 'qs';
 
-import {
-  camelCaseToSnakeCase,
-  snakeCaseToCamelCase
-} from '../helpers/general';
 import {
   API_BASE_URL,
   PORTAL_BASE_URL
 } from '../env';
+import {
+  camelCaseToSnakeCase,
+  snakeCaseToCamelCase
+} from '../helpers/general';
 
 type Result = QueryReturnValue<
   unknown,
@@ -47,6 +48,24 @@ export function parseRequestBody(args: FetchArgs): void {
         break;
     }
   }
+}
+
+export function injectCsrfToken(args: FetchArgs): void {
+  // Check if the request method is safe.
+  // https://datatracker.ietf.org/doc/html/rfc9110.html#section-9.2.1
+  if (args.method !== undefined &&
+    ['GET', 'HEAD', 'OPTIONS', 'TRACE'].includes(args.method)
+  ) return;
+
+  // https://docs.djangoproject.com/en/3.2/ref/csrf/
+  const csrfToken = Cookies.get('csrftoken');
+  if (csrfToken === undefined) return;
+
+  // Inject the CSRF token.
+  args.body = {
+    ...(typeof args.body !== 'object' || args.body === null ? {} : args.body),
+    csrfmiddlewaretoken: csrfToken
+  };
 }
 
 export function handleResponseError(result: Result): void {
@@ -85,6 +104,8 @@ const baseQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
+  injectCsrfToken(args);
+
   parseRequestBody(args);
 
   // Send the HTTP request and fetch the response.
