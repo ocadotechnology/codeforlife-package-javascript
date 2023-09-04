@@ -53,6 +53,7 @@ const DateField: React.FC<DateFieldProps> = ({
   const [month, setMonth] = React.useState(0);
   const [year, setYear] = React.useState(0);
   const [isDateValid, setIsDateValid] = React.useState(true);
+  const menuMaxHeight = 400;
 
   const fieldConfig: FieldConfig<Date> = {
     type: 'date',
@@ -141,6 +142,11 @@ const DateField: React.FC<DateFieldProps> = ({
                 value={day}
                 onChange={dispatchSelectChangeEvent(setDay)}
                 {...commonSelectProps}
+                MenuProps={{
+                  style: {
+                    maxHeight: menuMaxHeight
+                  }
+                }}
               >
                 <MenuItem className='header' value={0}>
                   Day
@@ -158,6 +164,11 @@ const DateField: React.FC<DateFieldProps> = ({
                 value={month}
                 onChange={dispatchSelectChangeEvent(setMonth)}
                 {...commonSelectProps}
+                MenuProps={{
+                  style: {
+                    maxHeight: menuMaxHeight
+                  }
+                }}
               >
                 <MenuItem className='header' value={0}>
                   Month
@@ -175,6 +186,11 @@ const DateField: React.FC<DateFieldProps> = ({
                 value={year}
                 onChange={dispatchSelectChangeEvent(setYear)}
                 {...commonSelectProps}
+                MenuProps={{
+                  style: {
+                    maxHeight: menuMaxHeight
+                  }
+                }}
               >
                 <MenuItem className='header' value={0}>
                   Year
