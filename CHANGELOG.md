@@ -1,3 +1,10 @@
+## [1.27.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.0...v1.27.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* set maxHeight for register form select ([#26](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/26)) ([2d402d3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2d402d3b33e415f6edaf9ee30aae48ea66e4f67e))
+
 # [1.27.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.26.2...v1.27.0) (2023-09-01)
 
 
