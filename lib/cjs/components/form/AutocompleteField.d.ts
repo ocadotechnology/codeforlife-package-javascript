@@ -5,6 +5,7 @@ Multiple, DisableClearable, FreeSolo, ChipComponent>, ('renderInput' | 'onChange
     textFieldProps: Omit<TextFieldProps, ('type' | 'defaultValue' | 'InputProps')> & {
         name: string;
     };
+    selectOnly?: boolean;
 }
-declare const AutocompleteField: <Multiple extends boolean | undefined = false, DisableClearable extends boolean | undefined = false, FreeSolo extends boolean | undefined = false, ChipComponent extends React.ElementType<any> = "div">({ textFieldProps, options, ...otherAutocompleteProps }: AutocompleteFieldProps<Multiple, DisableClearable, FreeSolo, ChipComponent>) => JSX.Element;
+declare const AutocompleteField: <Multiple extends boolean | undefined = false, DisableClearable extends boolean | undefined = false, FreeSolo extends boolean | undefined = false, ChipComponent extends React.ElementType<any> = "div">({ textFieldProps, selectOnly, options, ...otherAutocompleteProps }: AutocompleteFieldProps<Multiple, DisableClearable, FreeSolo, ChipComponent>) => JSX.Element;
 export default AutocompleteField;
