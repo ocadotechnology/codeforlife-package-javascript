@@ -1,3 +1,10 @@
+## [1.27.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.1...v1.27.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* default checkbox value ([#28](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/28)) ([e34650d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e34650d099003471c4335ee73c5b673cc76b5a16))
+
 ## [1.27.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.0...v1.27.1) (2023-09-04)
 
 
