@@ -86,7 +86,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           >
             <FormControlLabel
               control={<Checkbox
-                defaultValue={meta.initialValue}
+                defaultChecked={meta.initialValue}
                 onChange={onChange}
                 {...otherCheckboxProps}
               />}
