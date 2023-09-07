@@ -2,6 +2,7 @@ import {
   QueryReturnValue
 } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {
+  BaseQueryApi,
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
@@ -50,7 +51,10 @@ export function parseRequestBody(args: FetchArgs): void {
   }
 }
 
-export function injectCsrfToken(args: FetchArgs): void {
+export async function injectCsrfToken(
+  args: FetchArgs,
+  api: BaseQueryApi
+): Promise<void> {
   // Check if the request method is safe.
   // https://datatracker.ietf.org/doc/html/rfc9110.html#section-9.2.1
   if (args.method !== undefined &&
@@ -58,8 +62,23 @@ export function injectCsrfToken(args: FetchArgs): void {
   ) return;
 
   // https://docs.djangoproject.com/en/3.2/ref/csrf/
-  const csrfToken = Cookies.get('csrftoken');
-  if (csrfToken === undefined) return;
+  let csrfToken = Cookies.get('csrftoken');
+  if (csrfToken === undefined) {
+    // Get the CSRF token.
+    const { error } = await fetch({
+      url: 'csrf/cookie/',
+      method: 'GET'
+    }, api, {});
+
+    // Validate we got the CSRF token.
+    if (error !== undefined) {
+      window.location.href = `${PORTAL_BASE_URL}/error/500`;
+    }
+    csrfToken = Cookies.get('csrftoken');
+    if (csrfToken === undefined) {
+      window.location.href = `${PORTAL_BASE_URL}/error/500`;
+    }
+  };
 
   // Inject the CSRF token.
   args.body = {
@@ -104,7 +123,7 @@ const baseQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  injectCsrfToken(args);
+  await injectCsrfToken(args, api);
 
   parseRequestBody(args);
 

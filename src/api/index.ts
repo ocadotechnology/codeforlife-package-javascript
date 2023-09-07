@@ -8,7 +8,6 @@ import {
   EndpointDefinitions,
   FetchArgs,
   FetchBaseQueryError,
-  QueryDefinition,
   createApi as _createApi
 } from '@reduxjs/toolkit/query/react';
 
@@ -23,7 +22,7 @@ type GlobalTagTypes = (
   'student'
 );
 
-export function createApi<
+export default function createApi<
   Definitions extends EndpointDefinitions,
   ReducerPath extends string = 'api',
   TagTypes extends string = never
@@ -41,15 +40,7 @@ export function createApi<
   TagTypes | GlobalTagTypes
 >>): Api<
   FetchBaseQuery,
-  Definitions & {
-    getCsrfCookie: QueryDefinition<
-      null,
-      FetchBaseQuery,
-      TagTypes | GlobalTagTypes,
-      null,
-      ReducerPath
-    >;
-  },
+  Definitions,
   ReducerPath,
   TagTypes | GlobalTagTypes,
   (
@@ -60,6 +51,7 @@ export function createApi<
   return _createApi({
     reducerPath,
     baseQuery,
+    endpoints,
     tagTypes: [
       ...tagTypes,
       'user',
@@ -68,16 +60,6 @@ export function createApi<
       'teacher',
       'student'
     ],
-    endpoints: (build) => ({
-      ...endpoints(build),
-      getCsrfCookie: build.query<null, null>({
-        query: () => ({
-          url: 'csrf/cookie/',
-          method: 'GET'
-        }),
-        providesTags: ['user']
-      })
-    }),
     ...otherOptions
   });
 };
