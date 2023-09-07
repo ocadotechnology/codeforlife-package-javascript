@@ -1,6 +1,5 @@
-import { reactHooksModuleName } from '@reduxjs/toolkit/dist/query/react/module';
-import { Api, BaseQueryFn, CreateApiOptions, EndpointDefinitions, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
-type FetchBaseQuery = BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>;
-type GlobalTagTypes = ('user' | 'school' | 'class' | 'teacher' | 'student');
-export default function createApi<Definitions extends EndpointDefinitions, ReducerPath extends string = 'api', TagTypes extends string = never>({ reducerPath, baseQuery, endpoints, tagTypes, ...otherOptions }: Partial<CreateApiOptions<FetchBaseQuery, Definitions, ReducerPath, TagTypes | GlobalTagTypes>>): Api<FetchBaseQuery, Definitions, ReducerPath, TagTypes | GlobalTagTypes, (typeof import('@reduxjs/toolkit/dist/query/core/module').coreModuleName | typeof reactHooksModuleName)>;
-export {};
+import baseQuery from './baseQuery';
+export declare const TAG_TYPES: readonly ["user", "school", "class", "teacher", "student"];
+declare const api: import("@reduxjs/toolkit/query/react").Api<import("@reduxjs/toolkit/query/react").BaseQueryFn<import("@reduxjs/toolkit/query/react").FetchArgs, unknown, import("@reduxjs/toolkit/query/react").FetchBaseQueryError, {}, {}>, {}, "api", "user" | "teacher" | "student" | "school" | "class", typeof import("@reduxjs/toolkit/dist/query/core/module").coreModuleName | typeof import("@reduxjs/toolkit/dist/query/react/module").reactHooksModuleName>;
+export default api;
+export { baseQuery };
