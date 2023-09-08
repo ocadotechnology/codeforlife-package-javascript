@@ -1,3 +1,10 @@
+## [1.27.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.2...v1.27.3) (2023-09-08)
+
+
+### Bug Fixes
+
+* select only autocomplete ([#29](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/29)) ([3c7c64f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3c7c64f64eda29d002a78f59056c8411c918a182))
+
 ## [1.27.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.1...v1.27.2) (2023-09-05)
 
 
