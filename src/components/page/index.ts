@@ -1,12 +1,12 @@
 import Banner, { BannerProps } from './Banner';
-import Container, { ContainerProps } from './Container';
+import Container, { ContainerProps, ContainerState } from './Container';
 import Notification, { NotificationProps } from './Notification';
 import Section, { SectionProps } from './Section';
 import TabBar, { TabBarProps } from './TabBar';
 
 export type {
   BannerProps,
-  ContainerProps,
+  ContainerProps, ContainerState,
   NotificationProps,
   SectionProps,
   TabBarProps

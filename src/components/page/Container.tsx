@@ -11,7 +11,7 @@ export interface ContainerState {
   notifications?: Array<{
     index?: number;
     props: NotificationProps;
-  }>
+  }>;
 }
 
 export interface ContainerProps extends Omit<Grid2Props, (
