@@ -1,10 +1,10 @@
 /// <reference types="react" />
 import { BannerProps } from './Banner';
-import { ContainerProps } from './Container';
+import { ContainerProps, ContainerState } from './Container';
 import { NotificationProps } from './Notification';
 import { SectionProps } from './Section';
 import { TabBarProps } from './TabBar';
-export type { BannerProps, ContainerProps, NotificationProps, SectionProps, TabBarProps };
+export type { BannerProps, ContainerProps, ContainerState, NotificationProps, SectionProps, TabBarProps };
 declare const Page: {
     Banner: React.FC<BannerProps>;
     Container: React.FC<ContainerProps>;
