@@ -5,45 +5,42 @@ import {
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useLazyGetCsrfCookieQuery } from '../../api';
 import Notification, { NotificationProps } from './Notification';
+
+export interface ContainerState {
+  notifications?: Array<{
+    index?: number;
+    props: NotificationProps;
+  }>;
+}
 
 export interface ContainerProps extends Omit<Grid2Props, (
   'id' |
   'container'
-)> {
-  getCsrfCookie?: boolean;
-}
+)> { }
 
 const Container: React.FC<ContainerProps> = ({
-  getCsrfCookie = true,
   children,
   ...otherGridProps
 }) => {
-  const [_getCsrfCookie] = useLazyGetCsrfCookieQuery();
   const location = useLocation();
   const childrenArray = React.Children.toArray(children);
 
-  if (location.state !== null &&
-    Array.isArray(location.state.notifications)
-  ) {
-    (location.state.notifications as Array<{
-      props: NotificationProps;
-      index?: number;
-    }>)
-      .filter((notification) => 'props' in notification)
-      .forEach((notification, index) => {
-        childrenArray.splice(
-          notification.index ?? index,
-          0,
-          <Notification {...notification.props} />
-        );
-      });
-  }
+  if (location.state !== null) {
+    const state: ContainerState = location.state;
 
-  React.useEffect(() => {
-    if (getCsrfCookie) void _getCsrfCookie(null);
-  }, [getCsrfCookie]);
+    if (Array.isArray(state.notifications)) {
+      state.notifications
+        .filter((notification) => 'props' in notification)
+        .forEach((notification, index) => {
+          childrenArray.splice(
+            notification.index ?? index,
+            0,
+            <Notification {...notification.props} />
+          );
+        });
+    }
+  }
 
   return (
     <Grid

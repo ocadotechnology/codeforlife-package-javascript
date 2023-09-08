@@ -49,7 +49,8 @@ export interface AutocompleteFieldProps<
     'InputProps'
   )> & {
     name: string;
-  }
+  };
+  selectOnly?: boolean;
 }
 
 const AutocompleteField = <
@@ -59,6 +60,7 @@ const AutocompleteField = <
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
 >({
   textFieldProps,
+  selectOnly = false,
   options,
   ...otherAutocompleteProps
 }: AutocompleteFieldProps<
@@ -108,11 +110,15 @@ const AutocompleteField = <
           <Autocomplete
             options={options}
             defaultValue={meta.initialValue}
-            renderInput={(params) => {
+            renderInput={({
+              inputProps,
+              InputProps,
+              ...otherParams
+            }) => {
               let {
                 endAdornment,
                 ...otherInputProps
-              } = params.InputProps;
+              } = InputProps;
 
               if (showError &&
                 meta.error !== undefined &&
@@ -137,13 +143,17 @@ const AutocompleteField = <
 
               return (
                 <TextField
-                  {...params}
+                  {...otherParams}
                   {...otherTextFieldProps}
                   sx={sx}
                   onBlur={onBlur}
                   InputProps={{
                     endAdornment,
                     ...otherInputProps
+                  }}
+                  inputProps={{
+                    ...inputProps,
+                    readOnly: selectOnly
                   }}
                 />
               );
