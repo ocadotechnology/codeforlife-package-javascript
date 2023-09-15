@@ -1,9 +1,11 @@
 import { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import { BaseQueryApi, BaseQueryFn, FetchArgs, FetchBaseQueryError, FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
-type Result = QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>;
+export type FetchBaseQuery = BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>;
+export type Result = QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>;
+export declare const fetch: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>;
 export declare function parseRequestBody(args: FetchArgs): void;
-export declare function injectCsrfToken(args: FetchArgs, api: BaseQueryApi): Promise<void>;
+export declare function injectCsrfToken(fetch: FetchBaseQuery, args: FetchArgs, api: BaseQueryApi, cookieName?: string): Promise<void>;
 export declare function handleResponseError(result: Result): void;
 export declare function parseResponseBody(result: Result): void;
-declare const baseQuery: BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>;
+declare const baseQuery: FetchBaseQuery;
 export default baseQuery;
