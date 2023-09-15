@@ -21,13 +21,18 @@ import {
   snakeCaseToCamelCase
 } from '../helpers/general';
 
-type Result = QueryReturnValue<
+export type FetchBaseQuery = BaseQueryFn<
+  FetchArgs,
+  unknown,
+  FetchBaseQueryError
+>;
+export type Result = QueryReturnValue<
   unknown,
   FetchBaseQueryError,
   FetchBaseQueryMeta
 >;
 
-const fetch = fetchBaseQuery({
+export const fetch = fetchBaseQuery({
   baseUrl: API_BASE_URL,
   credentials: 'include'
 });
@@ -52,8 +57,10 @@ export function parseRequestBody(args: FetchArgs): void {
 }
 
 export async function injectCsrfToken(
+  fetch: FetchBaseQuery,
   args: FetchArgs,
-  api: BaseQueryApi
+  api: BaseQueryApi,
+  cookieName: string = 'csrftoken'
 ): Promise<void> {
   // Check if the request method is safe.
   // https://datatracker.ietf.org/doc/html/rfc9110.html#section-9.2.1
@@ -62,7 +69,7 @@ export async function injectCsrfToken(
   ) return;
 
   // https://docs.djangoproject.com/en/3.2/ref/csrf/
-  let csrfToken = Cookies.get('csrftoken');
+  let csrfToken = Cookies.get(cookieName);
   if (csrfToken === undefined) {
     // Get the CSRF token.
     const { error } = await fetch({
@@ -74,7 +81,7 @@ export async function injectCsrfToken(
     if (error !== undefined) {
       window.location.href = `${PORTAL_BASE_URL}/error/500`;
     }
-    csrfToken = Cookies.get('csrftoken');
+    csrfToken = Cookies.get(cookieName);
     if (csrfToken === undefined) {
       window.location.href = `${PORTAL_BASE_URL}/error/500`;
     }
@@ -118,12 +125,8 @@ export function parseResponseBody(result: Result): void {
   snakeCaseToCamelCase(result.data);
 }
 
-const baseQuery: BaseQueryFn<
-  FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
-  await injectCsrfToken(args, api);
+const baseQuery: FetchBaseQuery = async (args, api, extraOptions) => {
+  await injectCsrfToken(fetch, args, api);
 
   parseRequestBody(args);
 
