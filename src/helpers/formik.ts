@@ -18,7 +18,14 @@ export function setFormErrors(
     error.data === null
   ) { throw error; }
 
-  setErrors(error.data);
+  const data = Object.fromEntries(
+    Object.entries(error.data).map(([field, errors]) => {
+      if (Array.isArray(errors)) errors = errors.join(', ');
+      return [field, errors];
+    })
+  );
+
+  setErrors(data);
 }
 
 export function submitForm<
