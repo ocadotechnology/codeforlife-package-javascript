@@ -1,6 +1,6 @@
-import { FormikHelpers } from 'formik';
 import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
+import { FormikHelpers } from 'formik';
 export declare function setFormErrors(error: unknown, setErrors: (errors: object) => void): void;
 export declare function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(trigger: MutationTrigger<MutationDefinition<QueryArg, any, any, ResultType, any>>, query: {
     then: (result: ResultType) => void;
