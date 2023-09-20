@@ -14,7 +14,8 @@ import qs from 'qs';
 
 import {
   API_BASE_URL,
-  PORTAL_BASE_URL
+  PORTAL_BASE_URL,
+  SERVICE_NAME
 } from '../env';
 import {
   camelCaseToSnakeCase,
@@ -60,7 +61,7 @@ export async function injectCsrfToken(
   fetch: FetchBaseQuery,
   args: FetchArgs,
   api: BaseQueryApi,
-  cookieName: string = 'csrftoken'
+  serviceName: string = SERVICE_NAME
 ): Promise<void> {
   // Check if the request method is safe.
   // https://datatracker.ietf.org/doc/html/rfc9110.html#section-9.2.1
@@ -69,6 +70,7 @@ export async function injectCsrfToken(
   ) return;
 
   // https://docs.djangoproject.com/en/3.2/ref/csrf/
+  const cookieName = `${serviceName}_csrftoken`;
   let csrfToken = Cookies.get(cookieName);
   if (csrfToken === undefined) {
     // Get the CSRF token.
