@@ -1,3 +1,10 @@
+## [1.27.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.3...v1.27.4) (2023-09-20)
+
+
+### Bug Fixes
+
+* sso ([#30](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/30)) ([ae92773](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/ae92773bcb3cb46425d03002805ad44eb7bcad49))
+
 ## [1.27.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.2...v1.27.3) (2023-09-08)
 
 
