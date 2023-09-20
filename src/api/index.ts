@@ -1,13 +1,9 @@
 import baseQuery from './baseQuery';
-
-export const TAG_TYPES = [
-  'user',
-  'school',
-  'class',
-  'teacher',
-  'student'
-] as const;
+import endpoints from './endpoints';
+import tagTypes from './tagTypes';
 
 export {
-  baseQuery
+  baseQuery,
+  endpoints,
+  tagTypes
 };

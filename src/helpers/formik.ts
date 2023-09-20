@@ -1,8 +1,8 @@
+import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
+import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import {
   FormikHelpers
 } from 'formik';
-import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 
 export function setFormErrors(
   error: unknown,
@@ -18,7 +18,14 @@ export function setFormErrors(
     error.data === null
   ) { throw error; }
 
-  setErrors(error.data);
+  const data = Object.fromEntries(
+    Object.entries(error.data).map(([field, errors]) => {
+      if (Array.isArray(errors)) errors = errors.join('. ');
+      return [field, errors];
+    })
+  );
+
+  setErrors(data);
 }
 
 export function submitForm<
