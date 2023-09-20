@@ -4,7 +4,7 @@ export type FetchBaseQuery = BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError
 export type Result = QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>;
 export declare const fetch: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>;
 export declare function parseRequestBody(args: FetchArgs): void;
-export declare function injectCsrfToken(fetch: FetchBaseQuery, args: FetchArgs, api: BaseQueryApi, cookieName?: string): Promise<void>;
+export declare function injectCsrfToken(fetch: FetchBaseQuery, args: FetchArgs, api: BaseQueryApi, serviceName?: string): Promise<void>;
 export declare function handleResponseError(result: Result): void;
 export declare function parseResponseBody(result: Result): void;
 declare const baseQuery: FetchBaseQuery;
