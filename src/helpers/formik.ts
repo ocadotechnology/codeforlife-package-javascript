@@ -4,23 +4,21 @@ import {
   FormikHelpers
 } from 'formik';
 
-export function isFormError(error: unknown): boolean {
-  return (
-    typeof error === 'object' &&
+export function isFormError2(error: unknown): boolean {
+  return typeof error === 'object' &&
     error !== null &&
     'status' in error &&
     error.status === 400 &&
     'data' in error &&
     typeof error.data === 'object' &&
-    error.data !== null
-  );
+    error.data !== null;
 }
 
 export function setFormErrors(
   error: unknown,
   setErrors: (errors: object) => void
 ): void {
-  if (!isFormError(error)) { throw error; }
+  if (!isFormError2(error)) { throw error; }
 
   const data = Object.fromEntries(
     Object.entries((error as { data: object; }).data).map(([field, errors]) => {
