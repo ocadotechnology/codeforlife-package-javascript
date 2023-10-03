@@ -59,7 +59,7 @@
   },
   "release": {
     "branches": [
-      "main"
+      "use_bot_in_release"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
