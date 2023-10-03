@@ -8,7 +8,7 @@ on:
     paths-ignore:
       - "README.md"
       - "CHANGELOG.md"
-      - "lib/**"
+      - "lib/**" # TODO: remove lib folder
   workflow_dispatch:
 
 jobs:
@@ -36,6 +36,7 @@ jobs:
       # - name: Test Code
       #   run: npm run test -- --watchAll=false
 
+  # TODO: remove this job
   build:
     needs: [test]
     runs-on: ubuntu-latest

@@ -4,7 +4,7 @@ import {
   FormikHelpers
 } from 'formik';
 
-export function isFormError2(error: unknown): boolean {
+export function isFormError(error: unknown): boolean {
   return typeof error === 'object' &&
     error !== null &&
     'status' in error &&
@@ -18,7 +18,7 @@ export function setFormErrors(
   error: unknown,
   setErrors: (errors: object) => void
 ): void {
-  if (!isFormError2(error)) { throw error; }
+  if (!isFormError(error)) { throw error; }
 
   const data = Object.fromEntries(
     Object.entries((error as { data: object; }).data).map(([field, errors]) => {
