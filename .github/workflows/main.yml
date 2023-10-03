@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - "README.md"
       - "CHANGELOG.md"
+      - "lib/**" # TODO: remove lib folder
   workflow_dispatch:
 
 jobs:
@@ -35,6 +36,7 @@ jobs:
       # - name: Test Code
       #   run: npm run test -- --watchAll=false
 
+  # TODO: remove this job
   build:
     needs: [test]
     runs-on: ubuntu-latest
@@ -63,7 +65,7 @@ jobs:
         run: |
           git add lib/*
           if ! git diff --staged --quiet; then
-            git commit -m "push build files [skip ci]"
+            git commit -m "push build files"
             git push
           fi
 
