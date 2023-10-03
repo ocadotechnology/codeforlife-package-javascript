@@ -5,13 +5,15 @@ import {
 } from 'formik';
 
 export function isFormError(error: unknown): boolean {
-  return typeof error === 'object' &&
+  return (
+    typeof error === 'object' &&
     error !== null &&
     'status' in error &&
     error.status === 400 &&
     'data' in error &&
     typeof error.data === 'object' &&
-    error.data !== null;
+    error.data !== null
+  );
 }
 
 export function setFormErrors(
