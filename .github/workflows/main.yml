@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - "README.md"
       - "CHANGELOG.md"
+      - "lib/**"
   workflow_dispatch:
 
 jobs:
@@ -63,7 +64,7 @@ jobs:
         run: |
           git add lib/*
           if ! git diff --staged --quiet; then
-            git commit -m "push build files [skip ci]"
+            git commit -m "push build files"
             git push
           fi
 
