@@ -1,3 +1,11 @@
+## [1.27.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.4...v1.27.5) (2023-10-03)
+
+
+### Bug Fixes
+
+* add is form error helper ([#31](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/31)) ([c89499d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c89499db354d48b6144569b326725ee285538436))
+* initial ([f76ee3d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f76ee3d72af86b2816f62d521435a9c430b7fad4))
+
 ## [1.27.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.3...v1.27.4) (2023-09-20)
 
 
