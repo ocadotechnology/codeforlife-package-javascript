@@ -1,3 +1,10 @@
+## [1.27.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.6...v1.27.7) (2023-10-04)
+
+
+### Bug Fixes
+
+* jobs ([2fe04bb](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2fe04bb779600c0515ea8f98cfc4e9167b55932f))
+
 ## [1.27.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.5...v1.27.6) (2023-10-04)
 
 
