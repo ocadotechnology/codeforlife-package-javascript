@@ -22,26 +22,26 @@ export type TagArray<Type extends string, M extends Model<any>> = Array<{
 }>;
 export type CreateResult<M extends Model<any>> = ReadFields<M>;
 export type CreateArg<M extends Model<any>> = WriteFields<M>;
-export type ReadResult<M extends Model<any>> = ReadFields<M>;
-export interface ReadArg<M extends Model<any>> {
+export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
+export interface RetrieveArg<M extends Model<any>> {
     id: ID<M>;
 }
-export interface ReadManyResult<M extends Model<any>> {
+export interface ListResult<M extends Model<any>> {
     count: number;
     offset: number;
     limit: number;
     maxLimit: number;
     data: Array<ReadFields<M>>;
 }
-export type ReadManyArg<SearchParams extends Fields = Fields> = null | Partial<SearchParams>;
+export type ListArg<SearchParams extends Fields = Fields> = null | Partial<SearchParams>;
 export type UpdateResult<M extends Model<any>> = ReadFields<M>;
 export interface UpdateArg<M extends Model<any>, Required extends Fields = Fields> {
     id: ID<M>;
     body: Partial<WriteFields<M>> & Required;
 }
-export type DeleteResult = null;
-export interface DeleteArg<M extends Model<any>> {
+export type DestroyResult = null;
+export interface DestroyArg<M extends Model<any>> {
     id: ID<M>;
 }
-export declare function searchParamsToString(arg: ReadManyArg): string;
-export declare function mapIdsToTag<Type extends string, M extends Model<any>>(result: ReadManyResult<M>, type: Type): TagArray<Type, M>;
+export declare function searchParamsToString(arg: ListArg): string;
+export declare function mapIdsToTag<Type extends string, M extends Model<any>>(result: ListResult<M>, type: Type): TagArray<Type, M>;
