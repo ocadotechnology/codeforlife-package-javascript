@@ -45,6 +45,7 @@ export type TagArray<
 
 // -----------------------------------------------------------------------------
 // CRUD Types
+// https://www.django-rest-framework.org/api-guide/viewsets/#viewset-actions
 // -----------------------------------------------------------------------------
 
 // Create
@@ -55,11 +56,11 @@ export type CreateArg<M extends Model<any>> = WriteFields<M>;
 
 // Read
 
-export type ReadResult<M extends Model<any>> = ReadFields<M>;
+export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
 
-export interface ReadArg<M extends Model<any>> { id: ID<M>; }
+export interface RetrieveArg<M extends Model<any>> { id: ID<M>; }
 
-export interface ReadManyResult<M extends Model<any>> {
+export interface ListResult<M extends Model<any>> {
   count: number;
   offset: number;
   limit: number;
@@ -67,7 +68,7 @@ export interface ReadManyResult<M extends Model<any>> {
   data: Array<ReadFields<M>>;
 }
 
-export type ReadManyArg<SearchParams extends Fields = Fields> =
+export type ListArg<SearchParams extends Fields = Fields> =
   null | Partial<SearchParams>;
 
 // Update
@@ -84,15 +85,15 @@ export interface UpdateArg<
 
 // Delete
 
-export type DeleteResult = null;
+export type DestroyResult = null;
 
-export interface DeleteArg<M extends Model<any>> { id: ID<M>; }
+export interface DestroyArg<M extends Model<any>> { id: ID<M>; }
 
 // -----------------------------------------------------------------------------
 // Functions
 // -----------------------------------------------------------------------------
 
-export function searchParamsToString(arg: ReadManyArg): string {
+export function searchParamsToString(arg: ListArg): string {
   if (arg !== null) {
     const searchParams = Object.entries(arg)
       .filter(([_, value]) => value !== undefined)
@@ -110,7 +111,7 @@ export function mapIdsToTag<
   Type extends string,
   M extends Model<any>
 >(
-  result: ReadManyResult<M>,
+  result: ListResult<M>,
   type: Type
 ): TagArray<Type, M> {
   return result.data.map(({ id }) => ({ type, id })) as TagArray<Type, M>;
