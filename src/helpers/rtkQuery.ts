@@ -84,11 +84,8 @@ export type UpdateResult<M extends Model<any>> = ReadFields<M>;
 
 export type UpdateArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id',
-  Required extends Fields = Fields
-> = Pick<ReadAndWriteFields<M>, LookupField> & {
-  body: Partial<WriteFields<M>> & Required;
-};
+  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
 
 // Delete
 
