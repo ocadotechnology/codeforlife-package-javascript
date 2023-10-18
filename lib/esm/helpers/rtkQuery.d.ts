@@ -34,9 +34,7 @@ export interface ListResult<M extends Model<any>> {
 }
 export type ListArg<SearchParams extends Fields = Fields> = null | Partial<SearchParams>;
 export type UpdateResult<M extends Model<any>> = ReadFields<M>;
-export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id', Required extends Fields = Fields> = Pick<ReadAndWriteFields<M>, LookupField> & {
-    body: Partial<WriteFields<M>> & Required;
-};
+export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
 export type DestroyResult = null;
 export type DestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
 export declare function searchParamsToString(arg: ListArg): string;
