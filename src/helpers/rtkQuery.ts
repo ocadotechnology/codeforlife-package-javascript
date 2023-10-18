@@ -34,6 +34,10 @@ export type ReadFields<M extends Model<any>> =
 export type WriteFields<M extends Model<any>> =
   Omit<M, '_readOnly' | '_writeOnly'> & M['_writeOnly'];
 
+// Gets the types of a model's readable and writeable fields.
+export type ReadAndWriteFields<M extends Model<any>> =
+  Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'] & M['_writeOnly'];
+
 // An array of tags with ID's.
 export type TagArray<
   Type extends string,
@@ -58,7 +62,10 @@ export type CreateArg<M extends Model<any>> = WriteFields<M>;
 
 export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
 
-export interface RetrieveArg<M extends Model<any>> { id: ID<M>; }
+export type RetrieveArg<
+  M extends Model<any>,
+  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+> = Pick<ReadAndWriteFields<M>, LookupField>;
 
 export interface ListResult<M extends Model<any>> {
   count: number;
