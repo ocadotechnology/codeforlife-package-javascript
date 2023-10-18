@@ -82,19 +82,22 @@ export type ListArg<SearchParams extends Fields = Fields> =
 
 export type UpdateResult<M extends Model<any>> = ReadFields<M>;
 
-export interface UpdateArg<
+export type UpdateArg<
   M extends Model<any>,
+  LookupField extends keyof ReadAndWriteFields<M> = 'id',
   Required extends Fields = Fields
-> {
-  id: ID<M>;
+> = Pick<ReadAndWriteFields<M>, LookupField> & {
   body: Partial<WriteFields<M>> & Required;
-}
+};
 
 // Delete
 
 export type DestroyResult = null;
 
-export interface DestroyArg<M extends Model<any>> { id: ID<M>; }
+export type DestroyArg<
+  M extends Model<any>,
+  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+> = Pick<ReadAndWriteFields<M>, LookupField>;
 
 // -----------------------------------------------------------------------------
 // Functions
