@@ -14,9 +14,9 @@ import {
 
 import { ContainerState } from './components/page';
 
-export function useNavigate<
+export function useNavigate(): <
   State extends Record<string, any> = Record<string, any>
->(): (
+>(
   to: NavigateTo,
   options?: Omit<NavigateOptions, 'state'> & {
     state?: State & ContainerState
