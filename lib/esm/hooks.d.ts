@@ -1,7 +1,7 @@
 import { DependencyList, Dispatch, SetStateAction } from 'react';
 import { NavigateOptions, To as NavigateTo } from 'react-router-dom';
 import { ContainerState } from './components/page';
-export declare function useNavigate<State extends Record<string, any> = Record<string, any>>(): (to: NavigateTo, options?: Omit<NavigateOptions, 'state'> & {
+export declare function useNavigate(): <State extends Record<string, any> = Record<string, any>>(to: NavigateTo, options?: Omit<NavigateOptions, 'state'> & {
     state?: State & ContainerState;
 }) => void;
 export declare function useFreshworksWidget(display: 'open' | 'hide'): void;
