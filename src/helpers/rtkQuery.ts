@@ -41,10 +41,11 @@ export type ReadAndWriteFields<M extends Model<any>> =
 // An array of tags with ID's.
 export type TagArray<
   Type extends string,
-  M extends Model<any>
+  M extends Model<any>,
+  LookupField extends keyof ReadFields<M> = 'id'
 > = Array<{
   type: Type;
-  id: ID<M>;
+  id: ReadFields<M>[LookupField];
 }>;
 
 // -----------------------------------------------------------------------------
@@ -114,12 +115,17 @@ export function searchParamsToString(arg: ListArg): string {
   return '';
 }
 
-export function mapIdsToTag<
+export function tagModels<
   Type extends string,
-  M extends Model<any>
+  M extends Model<any>,
+  LookupField extends keyof ReadFields<M> = 'id'
 >(
   result: ListResult<M>,
-  type: Type
-): TagArray<Type, M> {
-  return result.data.map(({ id }) => ({ type, id })) as TagArray<Type, M>;
+  type: Type,
+  lookupField: LookupField = 'id' as LookupField
+): TagArray<Type, M, LookupField> {
+  return result.data.map((result) => ({
+    type,
+    id: result[lookupField]
+  })) as TagArray<Type, M, LookupField>;
 }
