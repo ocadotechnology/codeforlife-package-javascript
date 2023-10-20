@@ -17,9 +17,9 @@ export type ID<M extends Model<any>> = M['_readOnly']['id'];
 export type ReadFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'];
 export type WriteFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_writeOnly'];
 export type ReadAndWriteFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'] & M['_writeOnly'];
-export type TagArray<Type extends string, M extends Model<any>> = Array<{
+export type TagArray<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'> = Array<{
     type: Type;
-    id: ID<M>;
+    id: ReadFields<M>[LookupField];
 }>;
 export type CreateResult<M extends Model<any>> = ReadFields<M>;
 export type CreateArg<M extends Model<any>> = WriteFields<M>;
@@ -38,4 +38,4 @@ export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWri
 export type DestroyResult = null;
 export type DestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
 export declare function searchParamsToString(arg: ListArg): string;
-export declare function mapIdsToTag<Type extends string, M extends Model<any>>(result: ListResult<M>, type: Type): TagArray<Type, M>;
+export declare function tagModels<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'>(result: ListResult<M>, type: Type, lookupField?: LookupField): TagArray<Type, M, LookupField>;
