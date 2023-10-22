@@ -124,11 +124,13 @@ export function tagModels<
   M extends Model<any>,
   LookupField extends keyof ReadFields<M> = 'id'
 >(
-  result: ListResult<M>,
+  result: ListResult<M> | BulkCreateResult<M>,
   type: Type,
   lookupField: LookupField = 'id' as LookupField
 ): TagArray<Type, M, LookupField> {
-  return result.data.map((result) => ({
+  const data = 'data' in result ? result.data : result;
+
+  return data.map((result) => ({
     type,
     id: result[lookupField]
   })) as TagArray<Type, M, LookupField>;
