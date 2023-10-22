@@ -34,7 +34,7 @@ export interface ListResult<M extends Model<any>> {
     maxLimit: number;
     data: Array<ReadFields<M>>;
 }
-export type ListArg<SearchParams extends Fields = Fields> = null | Partial<SearchParams>;
+export type ListArg<Filters extends Fields = Fields> = null | Partial<Filters>;
 export type UpdateResult<M extends Model<any>> = ReadFields<M>;
 export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
 export type DestroyResult = null;
