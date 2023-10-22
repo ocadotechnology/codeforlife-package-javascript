@@ -55,11 +55,13 @@ export type TagArray<
 
 // Create
 
-export type CreateResult<M extends Model<any>, Bulk extends boolean = false> =
-  Bulk extends false ? ReadFields<M> : ReadFields<M> | Array<ReadFields<M>>;
+export type CreateResult<M extends Model<any>> = ReadFields<M>;
 
-export type CreateArg<M extends Model<any>, Bulk extends boolean = false> =
-  Bulk extends false ? WriteFields<M> : WriteFields<M> | Array<WriteFields<M>>;
+export type CreateArg<M extends Model<any>> = WriteFields<M>;
+
+export type BulkCreateResult<M extends Model<any>> = Array<ReadFields<M>>;
+
+export type BulkCreateArg<M extends Model<any>> = Array<WriteFields<M>>;
 
 // Read
 
