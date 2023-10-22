@@ -24,7 +24,9 @@ export type TagArray<Type extends string, M extends Model<any>, LookupField exte
 export type CreateResult<M extends Model<any>> = ReadFields<M>;
 export type CreateArg<M extends Model<any>> = WriteFields<M>;
 export type BulkCreateResult<M extends Model<any>> = Array<ReadFields<M>>;
-export type BulkCreateArg<M extends Model<any>> = Array<WriteFields<M>>;
+export interface BulkCreateArg<M extends Model<any>> {
+    data: Array<WriteFields<M>>;
+}
 export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
 export type RetrieveArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
 export interface ListResult<M extends Model<any>> {
