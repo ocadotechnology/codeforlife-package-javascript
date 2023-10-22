@@ -80,8 +80,8 @@ export interface ListResult<M extends Model<any>> {
   data: Array<ReadFields<M>>;
 }
 
-export type ListArg<SearchParams extends Fields = Fields> =
-  null | Partial<SearchParams>;
+export type ListArg<Filters extends Fields = Fields> =
+  null | Partial<Filters>;
 
 // Update
 
