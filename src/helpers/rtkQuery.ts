@@ -61,7 +61,9 @@ export type CreateArg<M extends Model<any>> = WriteFields<M>;
 
 export type BulkCreateResult<M extends Model<any>> = Array<ReadFields<M>>;
 
-export type BulkCreateArg<M extends Model<any>> = Array<WriteFields<M>>;
+export interface BulkCreateArg<M extends Model<any>> {
+  data: Array<WriteFields<M>>;
+}
 
 // Read
 
