@@ -121,7 +121,7 @@ export function searchParamsToString(arg: ListArg): string {
   return '';
 }
 
-export function tagModels<
+export function tagData<
   Type extends string,
   M extends Model<any>,
   LookupField extends keyof ReadFields<M> = 'id'
