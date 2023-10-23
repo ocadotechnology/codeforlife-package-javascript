@@ -59,10 +59,10 @@ export type CreateResult<M extends Model<any>> = ReadFields<M>;
 
 export type CreateArg<M extends Model<any>> = WriteFields<M>;
 
-export type BulkCreateResult<M extends Model<any>> = Array<ReadFields<M>>;
+export type BulkCreateResult<M extends Model<any>> = Array<CreateResult<M>>;
 
 export interface BulkCreateArg<M extends Model<any>> {
-  data: Array<WriteFields<M>>;
+  data: Array<CreateArg<M>>;
 }
 
 // Read
@@ -79,7 +79,7 @@ export interface ListResult<M extends Model<any>> {
   offset: number;
   limit: number;
   maxLimit: number;
-  data: Array<ReadFields<M>>;
+  data: Array<RetrieveResult<M>>;
 }
 
 export type ListArg<Filters extends Fields = Fields> =
@@ -94,6 +94,15 @@ export type UpdateArg<
   LookupField extends keyof ReadAndWriteFields<M> = 'id'
 > = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
 
+export type BulkUpdateResult<M extends Model<any>> = Array<UpdateResult<M>>;
+
+export interface BulkUpdateArg<
+  M extends Model<any>,
+  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+> {
+  data: Array<UpdateArg<M, LookupField>>;
+}
+
 // Delete
 
 export type DestroyResult = null;
@@ -102,6 +111,15 @@ export type DestroyArg<
   M extends Model<any>,
   LookupField extends keyof ReadAndWriteFields<M> = 'id'
 > = Pick<ReadAndWriteFields<M>, LookupField>;
+
+export type BulkDestroyResult = null;
+
+export interface BulkDestroyArg<
+  M extends Model<any>,
+  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+> {
+  LookupField: Array<DestroyArg<M, LookupField>[LookupField]>;
+}
 
 // -----------------------------------------------------------------------------
 // Functions
