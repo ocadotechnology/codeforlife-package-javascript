@@ -23,9 +23,9 @@ export type TagArray<Type extends string, M extends Model<any>, LookupField exte
 }>;
 export type CreateResult<M extends Model<any>> = ReadFields<M>;
 export type CreateArg<M extends Model<any>> = WriteFields<M>;
-export type BulkCreateResult<M extends Model<any>> = Array<ReadFields<M>>;
+export type BulkCreateResult<M extends Model<any>> = Array<CreateResult<M>>;
 export interface BulkCreateArg<M extends Model<any>> {
-    data: Array<WriteFields<M>>;
+    data: Array<CreateArg<M>>;
 }
 export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
 export type RetrieveArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
@@ -34,12 +34,20 @@ export interface ListResult<M extends Model<any>> {
     offset: number;
     limit: number;
     maxLimit: number;
-    data: Array<ReadFields<M>>;
+    data: Array<RetrieveResult<M>>;
 }
 export type ListArg<Filters extends Fields = Fields> = null | Partial<Filters>;
 export type UpdateResult<M extends Model<any>> = ReadFields<M>;
 export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
+export type BulkUpdateResult<M extends Model<any>> = Array<UpdateResult<M>>;
+export interface BulkUpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> {
+    data: Array<UpdateArg<M, LookupField>>;
+}
 export type DestroyResult = null;
 export type DestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
+export type BulkDestroyResult = null;
+export interface BulkDestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> {
+    LookupField: Array<DestroyArg<M, LookupField>[LookupField]>;
+}
 export declare function searchParamsToString(arg: ListArg): string;
 export declare function tagData<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'>(result: ListResult<M> | BulkCreateResult<M>, type: Type, lookupField?: LookupField): TagArray<Type, M, LookupField>;
