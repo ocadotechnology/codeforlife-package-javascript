@@ -42,4 +42,4 @@ export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWri
 export type DestroyResult = null;
 export type DestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
 export declare function searchParamsToString(arg: ListArg): string;
-export declare function tagModels<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'>(result: ListResult<M> | BulkCreateResult<M>, type: Type, lookupField?: LookupField): TagArray<Type, M, LookupField>;
+export declare function tagData<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'>(result: ListResult<M> | BulkCreateResult<M>, type: Type, lookupField?: LookupField): TagArray<Type, M, LookupField>;
