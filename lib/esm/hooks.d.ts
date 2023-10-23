@@ -1,4 +1,9 @@
-import { Dispatch, SetStateAction, DependencyList } from 'react';
+import { DependencyList, Dispatch, SetStateAction } from 'react';
+import { NavigateOptions, To as NavigateTo } from 'react-router-dom';
+import { ContainerState } from './components/page';
+export declare function useNavigate(): <State extends Record<string, any> = Record<string, any>>(to: NavigateTo, options?: Omit<NavigateOptions, 'state'> & {
+    state?: State & ContainerState;
+}) => void;
 export declare function useFreshworksWidget(display: 'open' | 'hide'): void;
 export declare function useOneTrustInfoToggle(): void;
 export declare function useExternalScript<EventType extends keyof HTMLElementEventMap>({ props, attrs, eventTypes }: {

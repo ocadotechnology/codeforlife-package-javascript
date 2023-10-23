@@ -1,13 +1,30 @@
 import {
-  useEffect,
-  useState,
+  DependencyList,
   Dispatch,
   SetStateAction,
-  DependencyList
+  useEffect,
+  useState
 } from 'react';
 import {
+  NavigateOptions,
+  To as NavigateTo,
+  useNavigate as _useNavigate,
   useSearchParams
 } from 'react-router-dom';
+
+import { ContainerState } from './components/page';
+
+export function useNavigate(): <
+  State extends Record<string, any> = Record<string, any>
+>(
+  to: NavigateTo,
+  options?: Omit<NavigateOptions, 'state'> & {
+    state?: State & ContainerState
+  }
+) => void {
+  const navigate = _useNavigate();
+  return (to, options) => { navigate(to, options); };
+}
 
 export function useFreshworksWidget(display: 'open' | 'hide'): void {
   // @ts-expect-error defined in external script

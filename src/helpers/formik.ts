@@ -1,5 +1,11 @@
-import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
+import {
+  MutationDefinition,
+  QueryDefinition
+} from '@reduxjs/toolkit/dist/query';
+import {
+  LazyQueryTrigger,
+  MutationTrigger
+} from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import {
   FormikHelpers
 } from 'formik';
@@ -36,6 +42,8 @@ export function submitForm<
   FormValues extends QueryArg
 >(
   trigger: MutationTrigger<MutationDefinition<
+    QueryArg, any, any, ResultType, any
+  >> | LazyQueryTrigger<QueryDefinition<
     QueryArg, any, any, ResultType, any
   >>,
   query: {
