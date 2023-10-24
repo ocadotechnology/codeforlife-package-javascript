@@ -1,3 +1,11 @@
+## [1.27.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.4...v1.27.5) (2023-10-24)
+
+
+### Bug Fixes
+
+* add is form error helper ([#31](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/31)) ([c89499d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c89499db354d48b6144569b326725ee285538436))
+* foundation of breaking circular dependencies ([#33](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/33)) ([e21419f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e21419f3044c0c4409a5068df9400307c4353a63))
+
 ## [1.27.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.4...v1.27.5) (2023-10-23)
 
 
