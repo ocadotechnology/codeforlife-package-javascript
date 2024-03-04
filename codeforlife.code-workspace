@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "package-javascript",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "workbench.colorCustomizations": {
+      "editorRuler.foreground": "#008000"
+    }
+  }
+}

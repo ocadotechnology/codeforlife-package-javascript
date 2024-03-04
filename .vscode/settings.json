@@ -1,0 +1,21 @@
+{
+  "[md]": {
+    "editor.tabSize": 4
+  },
+  "cSpell.words": [
+    "codeforlife",
+    "klass",
+    "ocado",
+    "kurono",
+    "pipenv"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    80
+  ],
+  "editor.tabSize": 2,
+  "typescript.preferences.quoteStyle": "single"
+}
