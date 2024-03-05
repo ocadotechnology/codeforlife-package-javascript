@@ -1,0 +1,28 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "visualstudioexptteam.vscodeintellicode",
+        "github.vscode-pull-request-github",
+        "redhat.vscode-yaml",
+        "davidanson.vscode-markdownlint",
+        "bierner.markdown-mermaid",
+        "streetsidesoftware.code-spell-checker",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "name": "package-javascript",
+  "remoteUser": "root",
+  "service": "base-service",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspace/codeforlife-package-javascript"
+}
