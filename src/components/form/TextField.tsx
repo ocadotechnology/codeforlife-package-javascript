@@ -1,18 +1,11 @@
-import React from 'react';
+import React from "react"
 import {
   TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
-  InputAdornment
-} from '@mui/material';
-import {
-  ErrorOutline as ErrorOutlineIcon
-} from '@mui/icons-material';
-import {
-  Field,
-  FieldProps,
-  FieldConfig,
-  FieldValidator
-} from 'formik';
+  InputAdornment,
+} from "@mui/material"
+import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
+import { Field, FieldProps, FieldConfig, FieldValidator } from "formik"
 import {
   string as YupString,
   array as YupArray,
@@ -20,135 +13,144 @@ import {
   StringSchema,
   ArraySchema,
   AnyObject,
-  ValidationError
-} from 'yup';
+  ValidationError,
+} from "yup"
 
-import { wrap } from '../../helpers';
-import ClickableTooltip from '../ClickableTooltip';
+import { wrap } from "../../helpers"
+import ClickableTooltip from "../ClickableTooltip"
 
-type StringArraySchema = ArraySchema<Array<string | undefined> | undefined, AnyObject, '', ''>;
-type Validate = FieldValidator | StringSchema | StringArraySchema;
-type Split = string | RegExp;
+type StringArraySchema = ArraySchema<
+  Array<string | undefined> | undefined,
+  AnyObject,
+  "",
+  ""
+>
+type Validate = FieldValidator | StringSchema | StringArraySchema
+type Split = string | RegExp
 
-type BaseTextFieldProps = Omit<MuiTextFieldProps, 'defaultValue'> & {
-  name: string;
-};
+type BaseTextFieldProps = Omit<MuiTextFieldProps, "defaultValue"> & {
+  name: string
+}
 
 type RepeatTextFieldProps = BaseTextFieldProps & {
-  repeat?: Array<Omit<BaseTextFieldProps, (
-    'required' |
-    'split' |
-    'type'
-  )> & {
-    inheritProps?: boolean;
-  }>;
-};
+  repeat?: Array<
+    Omit<BaseTextFieldProps, "required" | "split" | "type"> & {
+      inheritProps?: boolean
+    }
+  >
+}
 
-export type TextFieldProps<
-  SingleValue extends boolean = true
-> = RepeatTextFieldProps & (
-  SingleValue extends true
-  ? { validate?: FieldValidator | StringSchema; }
-  : {
-    validate?: FieldValidator | StringArraySchema;
-    split: Split;
-  }
-);
+export type TextFieldProps<SingleValue extends boolean = true> =
+  RepeatTextFieldProps &
+    (SingleValue extends true
+      ? { validate?: FieldValidator | StringSchema }
+      : {
+          validate?: FieldValidator | StringArraySchema
+          split: Split
+        })
 
 // Internal TextField.
-const _TextField: React.FC<BaseTextFieldProps & {
-  validate: Validate;
-  split?: Split;
-}> = ({
+const _TextField: React.FC<
+  BaseTextFieldProps & {
+    validate: Validate
+    split?: Split
+  }
+> = ({
   validate,
   split,
   name,
-  type = 'text',
+  type = "text",
   InputProps = {},
   onKeyUp,
   onBlur,
   ...otherTextFieldProps
 }) => {
-    const fieldConfig: FieldConfig = {
-      name,
-      type,
-      validate: async (value) => {
-        if (validate instanceof Schema) {
-          try {
-            await validate.validate(value);
-          } catch (error) {
-            if (error instanceof ValidationError) {
-              return error.errors[0];
-            }
-            throw error;
+  const fieldConfig: FieldConfig = {
+    name,
+    type,
+    validate: async value => {
+      if (validate instanceof Schema) {
+        try {
+          await validate.validate(value)
+        } catch (error) {
+          if (error instanceof ValidationError) {
+            return error.errors[0]
           }
-        } else if (validate !== undefined) {
-          return await validate(value);
+          throw error
         }
+      } else if (validate !== undefined) {
+        return await validate(value)
       }
-    };
+    },
+  }
 
-    return (
-      <Field {...fieldConfig}>
-        {({ meta, form }: FieldProps) => {
-          const [showError, setShowError] = React.useState(false);
+  return (
+    <Field {...fieldConfig}>
+      {({ meta, form }: FieldProps) => {
+        const [showError, setShowError] = React.useState(false)
 
-          let {
-            endAdornment,
-            ...otherInputProps
-          } = InputProps;
+        let { endAdornment, ...otherInputProps } = InputProps
 
-          if (showError &&
-            meta.error !== undefined &&
-            meta.error !== ''
-          ) {
-            endAdornment = <>
+        if (showError && meta.error !== undefined && meta.error !== "") {
+          endAdornment = (
+            <>
               {endAdornment}
-              <InputAdornment position='end'>
+              <InputAdornment position="end">
                 <ClickableTooltip title={meta.error}>
-                  <ErrorOutlineIcon color='error' />
+                  <ErrorOutlineIcon color="error" />
                 </ClickableTooltip>
               </InputAdornment>
-            </>;
-          }
+            </>
+          )
+        }
 
-          onKeyUp = wrap({
+        onKeyUp = wrap(
+          {
             after: (event: React.KeyboardEvent<HTMLDivElement>) => {
-              let value: string | string[] = (event.target as HTMLTextAreaElement).value;
-              if (split !== undefined) value = value.split(split);
-              form.setFieldValue(name, value, true);
-            }
-          }, onKeyUp);
+              let value: string | string[] = (
+                event.target as HTMLTextAreaElement
+              ).value
+              if (split !== undefined) value = value.split(split)
+              form.setFieldValue(name, value, true)
+            },
+          },
+          onKeyUp,
+        )
 
-          onBlur = wrap({
-            after: () => { setShowError(true); }
-          }, onBlur);
+        onBlur = wrap(
+          {
+            after: () => {
+              setShowError(true)
+            },
+          },
+          onBlur,
+        )
 
-          return (
-            <MuiTextField
-              defaultValue={meta.initialValue}
-              name={name}
-              type={type}
-              onKeyUp={onKeyUp}
-              onBlur={onBlur}
-              InputProps={{
-                endAdornment,
-                ...otherInputProps
-              }}
-              {...otherTextFieldProps}
-            />
-          );
-        }}
-      </Field>
-    );
-  };
+        return (
+          <MuiTextField
+            defaultValue={meta.initialValue}
+            name={name}
+            type={type}
+            onKeyUp={onKeyUp}
+            onBlur={onBlur}
+            InputProps={{
+              endAdornment,
+              ...otherInputProps,
+            }}
+            {...otherTextFieldProps}
+          />
+        )
+      }}
+    </Field>
+  )
+}
 
 interface ITextField<SingleValue extends boolean> {
   // eslint-disable-next-line @typescript-eslint/prefer-function-type
   (
     props: TextFieldProps<SingleValue>,
-    context?: any
-  ): React.ReactElement<any, any> | null;
+    context?: any,
+  ): React.ReactElement<any, any> | null
 }
 
 const TextField: ITextField<true> & ITextField<false> = ({
@@ -160,59 +162,60 @@ const TextField: ITextField<true> & ITextField<false> = ({
   repeat = [],
   ...otherTextFieldProps
 }: RepeatTextFieldProps & {
-  validate?: Validate;
-  split?: Split;
+  validate?: Validate
+  split?: Split
 }) => {
-  const [validateRepeat, setValidateRepeat] = React.useState(YupString());
+  const [validateRepeat, setValidateRepeat] = React.useState(YupString())
 
   if (validate === undefined) {
-    validate = (split === undefined)
-      ? YupString()
-      : YupArray().of(YupString());
+    validate = split === undefined ? YupString() : YupArray().of(YupString())
   }
 
   if (required && validate instanceof Schema) {
-    validate = validate.required();
+    validate = validate.required()
   }
 
   if (repeat.length > 0) {
-    onKeyUp = wrap({
-      after: (event: React.KeyboardEvent<HTMLDivElement>) => {
-        setValidateRepeat(YupString().test(
-          `matches-${name}`,
-          `doesn't match ${name}`,
-          (repeatValue) => {
-            const value = (event.target as HTMLTextAreaElement).value;
-            return value === repeatValue;
-          }
-        ));
-      }
-    }, onKeyUp);
+    onKeyUp = wrap(
+      {
+        after: (event: React.KeyboardEvent<HTMLDivElement>) => {
+          setValidateRepeat(
+            YupString().test(
+              `matches-${name}`,
+              `doesn't match ${name}`,
+              repeatValue => {
+                const value = (event.target as HTMLTextAreaElement).value
+                return value === repeatValue
+              },
+            ),
+          )
+        },
+      },
+      onKeyUp,
+    )
   }
 
-  return <>
-    <_TextField
-      validate={validate}
-      split={split}
-      name={name}
-      onKeyUp={onKeyUp}
-      {...otherTextFieldProps}
-    />
-    {repeat.map(({
-      name,
-      inheritProps = true,
-      ...repeatTextFieldProps
-    }) =>
+  return (
+    <>
       <_TextField
-        key={name}
+        validate={validate}
+        split={split}
         name={name}
-        validate={validateRepeat}
-        type={otherTextFieldProps.type}
-        {...(inheritProps && otherTextFieldProps)}
-        {...repeatTextFieldProps}
+        onKeyUp={onKeyUp}
+        {...otherTextFieldProps}
       />
-    )}
-  </>;
-};
+      {repeat.map(({ name, inheritProps = true, ...repeatTextFieldProps }) => (
+        <_TextField
+          key={name}
+          name={name}
+          validate={validateRepeat}
+          type={otherTextFieldProps.type}
+          {...(inheritProps && otherTextFieldProps)}
+          {...repeatTextFieldProps}
+        />
+      ))}
+    </>
+  )
+}
 
-export default TextField;
+export default TextField

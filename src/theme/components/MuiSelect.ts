@@ -1,15 +1,15 @@
-import Components, { StyleOverridesWithRoot } from './_components';
+import Components, { StyleOverridesWithRoot } from "./_components"
 
-const MuiSelect: Components['MuiSelect'] = {
+const MuiSelect: Components["MuiSelect"] = {
   defaultProps: {
-    color: 'black'
+    color: "black",
   },
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   styleOverrides: {
     root: {
-      borderRadius: '0px'
-    }
-  } as StyleOverridesWithRoot<'MuiSelect'>
-};
+      borderRadius: "0px",
+    },
+  } as StyleOverridesWithRoot<"MuiSelect">,
+}
 
-export default MuiSelect;
+export default MuiSelect

@@ -1,29 +1,29 @@
-import { tableCellClasses } from '@mui/material';
+import { tableCellClasses } from "@mui/material"
 
-import { includesClassNames } from '../../helpers';
-import typography from '../typography';
-import Components from './_components';
+import { includesClassNames } from "../../helpers"
+import typography from "../typography"
+import Components from "./_components"
 
-const MuiTable: Components['MuiTable'] = {
+const MuiTable: Components["MuiTable"] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      borderStyle: 'hidden',
-      overflowX: 'auto',
+      borderStyle: "hidden",
+      overflowX: "auto",
       [`.${tableCellClasses.root}`]: {
-        border: '2px solid white'
+        border: "2px solid white",
       },
-      ...(includesClassNames(ownerState, ['text']) && {
-        borderStyle: 'unset',
-        display: 'block',
+      ...(includesClassNames(ownerState, ["text"]) && {
+        borderStyle: "unset",
+        display: "block",
         [`.${tableCellClasses.root}`]: {
-          border: '1px solid #DDD'
-        }
+          border: "1px solid #DDD",
+        },
       }),
-      ...(includesClassNames(ownerState, ['body']) && {
-        marginBottom: typography.body1?.marginBottom
-      })
-    })
-  }
-};
+      ...(includesClassNames(ownerState, ["body"]) && {
+        marginBottom: typography.body1?.marginBottom,
+      }),
+    }),
+  },
+}
 
-export default MuiTable;
+export default MuiTable

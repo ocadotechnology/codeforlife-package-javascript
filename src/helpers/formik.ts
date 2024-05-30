@@ -1,70 +1,66 @@
 import {
   MutationDefinition,
-  QueryDefinition
-} from '@reduxjs/toolkit/dist/query';
+  QueryDefinition,
+} from "@reduxjs/toolkit/dist/query"
 import {
   LazyQueryTrigger,
-  MutationTrigger
-} from '@reduxjs/toolkit/dist/query/react/buildHooks';
-import {
-  FormikHelpers
-} from 'formik';
+  MutationTrigger,
+} from "@reduxjs/toolkit/dist/query/react/buildHooks"
+import { FormikHelpers } from "formik"
 
 export function isFormError(error: unknown): boolean {
-  return typeof error === 'object' &&
+  return (
+    typeof error === "object" &&
     error !== null &&
-    'status' in error &&
+    "status" in error &&
     error.status === 400 &&
-    'data' in error &&
-    typeof error.data === 'object' &&
-    error.data !== null;
+    "data" in error &&
+    typeof error.data === "object" &&
+    error.data !== null
+  )
 }
 
 export function setFormErrors(
   error: unknown,
-  setErrors: (errors: object) => void
+  setErrors: (errors: object) => void,
 ): void {
-  if (!isFormError(error)) { throw error; }
+  if (!isFormError(error)) {
+    throw error
+  }
 
   const data = Object.fromEntries(
-    Object.entries((error as { data: object; }).data).map(([field, errors]) => {
-      if (Array.isArray(errors)) errors = errors.join('. ');
-      return [field, errors];
-    })
-  );
+    Object.entries((error as { data: object }).data).map(([field, errors]) => {
+      if (Array.isArray(errors)) errors = errors.join(". ")
+      return [field, errors]
+    }),
+  )
 
-  setErrors(data);
+  setErrors(data)
 }
 
-export function submitForm<
-  QueryArg,
-  ResultType,
-  FormValues extends QueryArg
->(
-  trigger: MutationTrigger<MutationDefinition<
-    QueryArg, any, any, ResultType, any
-  >> | LazyQueryTrigger<QueryDefinition<
-    QueryArg, any, any, ResultType, any
-  >>,
+export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
+  trigger:
+    | MutationTrigger<MutationDefinition<QueryArg, any, any, ResultType, any>>
+    | LazyQueryTrigger<QueryDefinition<QueryArg, any, any, ResultType, any>>,
   query: {
-    then: (result: ResultType) => void;
-    catch?: (error: Error) => void;
-    finally?: () => void;
-  }
+    then: (result: ResultType) => void
+    catch?: (error: Error) => void
+    finally?: () => void
+  },
 ): (
   values: FormValues,
-  helpers: FormikHelpers<FormValues>
+  helpers: FormikHelpers<FormValues>,
 ) => void | Promise<any> {
   return (values, helpers) => {
     trigger(values)
       .unwrap()
       .then(query.then)
-      .catch((error) => {
-        if (query.catch !== undefined) query.catch(error);
-        setFormErrors(error, helpers.setErrors);
+      .catch(error => {
+        if (query.catch !== undefined) query.catch(error)
+        setFormErrors(error, helpers.setErrors)
       })
       .finally(() => {
-        if (query.finally !== undefined) query.finally();
-      });
-  };
+        if (query.finally !== undefined) query.finally()
+      })
+  }
 }

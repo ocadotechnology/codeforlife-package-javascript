@@ -4,22 +4,23 @@ import {
   path,
   Path,
   snakeCaseToCamelCase,
-  camelCaseToSnakeCase
-} from './general';
+  camelCaseToSnakeCase,
+} from "./general"
 import {
   insertDividerBetweenElements,
   getStyleOverrides,
   getClassNames,
   includesClassNames,
-  matchClassNames
-} from './materialUI';
+  matchClassNames,
+} from "./materialUI"
 
 // global
 export {
   // general
   openInNewTab,
   wrap,
-  path, type Path,
+  path,
+  type Path,
   snakeCaseToCamelCase,
   camelCaseToSnakeCase,
   // materialUI
@@ -27,5 +28,5 @@ export {
   getStyleOverrides,
   getClassNames,
   includesClassNames,
-  matchClassNames
-};
+  matchClassNames,
+}

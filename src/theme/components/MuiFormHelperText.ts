@@ -1,12 +1,12 @@
-import { form } from '../typography';
-import Components from './_components';
+import { form } from "../typography"
+import Components from "./_components"
 
-const MuiFormHelperText: Components['MuiFormHelperText'] = {
+const MuiFormHelperText: Components["MuiFormHelperText"] = {
   styleOverrides: {
     root: {
-      ...form
-    }
-  }
-};
+      ...form,
+    },
+  },
+}
 
-export default MuiFormHelperText;
+export default MuiFormHelperText

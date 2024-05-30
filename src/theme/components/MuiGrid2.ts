@@ -1,15 +1,15 @@
-import Components, { getFlexStyleOverrides } from './_components';
+import Components, { getFlexStyleOverrides } from "./_components"
 
-const MuiGrid2: Components['MuiGrid2'] = {
+const MuiGrid2: Components["MuiGrid2"] = {
   defaultProps: {
-    disableEqualOverflow: true
+    disableEqualOverflow: true,
     // padding: 0 // TODO: normalize padding.
   },
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...getFlexStyleOverrides(ownerState)
-    })
-  }
-};
+      ...getFlexStyleOverrides(ownerState),
+    }),
+  },
+}
 
-export default MuiGrid2;
+export default MuiGrid2

@@ -1,14 +1,9 @@
-import React from 'react';
-import {
-  IconButton,
-  IconButtonProps
-} from '@mui/material';
-import {
-  ContentCopy as ContentCopyIcon
-} from '@mui/icons-material';
+import React from "react"
+import { IconButton, IconButtonProps } from "@mui/material"
+import { ContentCopy as ContentCopyIcon } from "@mui/icons-material"
 
-export interface CopyIconButtonProps extends Omit<IconButtonProps, 'onClick'> {
-  content: string;
+export interface CopyIconButtonProps extends Omit<IconButtonProps, "onClick"> {
+  content: string
 }
 
 const CopyIconButton: React.FC<CopyIconButtonProps> = ({
@@ -18,12 +13,14 @@ const CopyIconButton: React.FC<CopyIconButtonProps> = ({
 }) => {
   return (
     <IconButton
-      onClick={() => { void navigator.clipboard.writeText(content); }}
+      onClick={() => {
+        void navigator.clipboard.writeText(content)
+      }}
       {...otherIconButtonProps}
     >
       {children}
     </IconButton>
-  );
-};
+  )
+}
 
-export default CopyIconButton;
+export default CopyIconButton

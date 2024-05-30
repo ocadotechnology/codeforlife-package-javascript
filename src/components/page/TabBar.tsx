@@ -1,77 +1,77 @@
-import React from 'react';
-import { useParams, useNavigate, generatePath } from 'react-router-dom';
+import React from "react"
+import { useParams, useNavigate, generatePath } from "react-router-dom"
 import {
   Tabs,
   Tab,
   TabScrollButtonProps,
   Typography,
-  IconButton
-} from '@mui/material';
+  IconButton,
+} from "@mui/material"
 import {
   ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon
-} from '@mui/icons-material';
-import { object as YupObject, string as YupString } from 'yup';
+  ChevronRight as ChevronRightIcon,
+} from "@mui/icons-material"
+import { object as YupObject, string as YupString } from "yup"
 
-import { primary } from '../../theme/colors';
-import { tryValidateSync } from '../../helpers/yup';
-import Section from './Section';
+import { primary } from "../../theme/colors"
+import { tryValidateSync } from "../../helpers/yup"
+import Section from "./Section"
 
 export interface TabBarProps {
-  header: string;
+  header: string
   tabs: Array<{
-    label: string;
-    children: React.ReactNode;
-    path: string;
-  }>;
-  originalPath: string;
-  value?: number;
+    label: string
+    children: React.ReactNode
+    path: string
+  }>
+  originalPath: string
+  value?: number
 }
 
 const TabBar: React.FC<TabBarProps> = ({
   header,
   tabs,
   originalPath,
-  value = 0
+  value = 0,
 }) => {
-  const params = useParams();
-  const navigate = useNavigate();
+  const params = useParams()
+  const navigate = useNavigate()
   const [_value, _setValue] = React.useState(
-    value < 0 ? 0 : value >= tabs.length ? tabs.length - 1 : value
-  );
+    value < 0 ? 0 : value >= tabs.length ? tabs.length - 1 : value,
+  )
 
-  const labels = tabs.map((tab) => tab.label);
-  const children = tabs.map((tab) => tab.children);
-  const paths = tabs.map((tab) => tab.path);
+  const labels = tabs.map(tab => tab.label)
+  const children = tabs.map(tab => tab.children)
+  const paths = tabs.map(tab => tab.path)
 
   React.useEffect(() => {
-    _setValue(value);
-  }, [value]);
+    _setValue(value)
+  }, [value])
 
   React.useEffect(() => {
     const tab = tryValidateSync(
       params,
       YupObject({
-        tab: YupString().oneOf(paths).required()
-      })
-    )?.tab;
+        tab: YupString().oneOf(paths).required(),
+      }),
+    )?.tab
 
     if (tab !== undefined) {
-      _setValue(paths.indexOf(tab));
+      _setValue(paths.indexOf(tab))
     }
-  }, [params]);
+  }, [params])
 
   return (
     <>
       <Section
         gridProps={{ bgcolor: primary[500] }}
-        sx={{ paddingY: '100px' }}
+        sx={{ paddingY: "100px" }}
         className="flex-center"
       >
         <Typography
           textAlign="center"
           variant="h2"
-          style={{ color: 'white' }}
+          style={{ color: "white" }}
           mb={0}
         >
           {header}
@@ -79,7 +79,7 @@ const TabBar: React.FC<TabBarProps> = ({
       </Section>
       <Section
         gridProps={{ bgcolor: primary[300] }}
-        sx={{ paddingY: '6px' }}
+        sx={{ paddingY: "6px" }}
         className="flex-center"
       >
         <Tabs
@@ -87,14 +87,14 @@ const TabBar: React.FC<TabBarProps> = ({
           onChange={(_, value) => {
             navigate(
               generatePath(originalPath, {
-                tab: paths[value]
-              })
-            );
+                tab: paths[value],
+              }),
+            )
           }}
           ScrollButtonComponent={({
             disabled,
             onClick,
-            direction
+            direction,
           }: TabScrollButtonProps) => {
             return (
               <>
@@ -104,33 +104,34 @@ const TabBar: React.FC<TabBarProps> = ({
                     onClick={onClick}
                     style={{
                       padding: 0,
-                      [direction === 'left' ? 'marginRight' : 'marginLeft']:
-                        '15px',
-                      color: 'white'
+                      [direction === "left" ? "marginRight" : "marginLeft"]:
+                        "15px",
+                      color: "white",
                     }}
                   >
-                    {direction === 'left'
-                      ? <>
+                    {direction === "left" ? (
+                      <>
                         <ChevronLeftIcon />
                       </>
-                      : <>
+                    ) : (
+                      <>
                         <ChevronRightIcon />
                       </>
-                    }
+                    )}
                   </IconButton>
                 )}
               </>
-            );
+            )
           }}
         >
-          {labels.map((label) => (
+          {labels.map(label => (
             <Tab disableRipple key={label} label={label} />
           ))}
         </Tabs>
       </Section>
       {children[_value]}
     </>
-  );
-};
+  )
+}
 
-export default TabBar;
+export default TabBar

@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 // The fields of a model.
-export type Fields = Record<string, unknown>;
+export type Fields = Record<string, unknown>
 
 /**
  * A data model.
@@ -17,36 +17,46 @@ export type Model<
   ID,
   ReadAndWrite extends Fields = Fields,
   ReadOnly extends Fields = Fields,
-  WriteOnly extends Fields = Fields
+  WriteOnly extends Fields = Fields,
 > = ReadAndWrite & {
-  _readOnly: ReadOnly & { id: ID; };
-  _writeOnly: WriteOnly;
-};
+  _readOnly: ReadOnly & { id: ID }
+  _writeOnly: WriteOnly
+}
 
 // Gets the type of a model's ID.
-export type ID<M extends Model<any>> = M['_readOnly']['id'];
+export type ID<M extends Model<any>> = M["_readOnly"]["id"]
 
 // Gets the types of a model's readable fields.
-export type ReadFields<M extends Model<any>> =
-  Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'];
+export type ReadFields<M extends Model<any>> = Omit<
+  M,
+  "_readOnly" | "_writeOnly"
+> &
+  M["_readOnly"]
 
 // Gets the types of a model's writeable fields.
-export type WriteFields<M extends Model<any>> =
-  Omit<M, '_readOnly' | '_writeOnly'> & M['_writeOnly'];
+export type WriteFields<M extends Model<any>> = Omit<
+  M,
+  "_readOnly" | "_writeOnly"
+> &
+  M["_writeOnly"]
 
 // Gets the types of a model's readable and writeable fields.
-export type ReadAndWriteFields<M extends Model<any>> =
-  Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'] & M['_writeOnly'];
+export type ReadAndWriteFields<M extends Model<any>> = Omit<
+  M,
+  "_readOnly" | "_writeOnly"
+> &
+  M["_readOnly"] &
+  M["_writeOnly"]
 
 // An array of tags with ID's.
 export type TagArray<
   Type extends string,
   M extends Model<any>,
-  LookupField extends keyof ReadFields<M> = 'id'
+  LookupField extends keyof ReadFields<M> = "id",
 > = Array<{
-  type: Type;
-  id: ReadFields<M>[LookupField];
-}>;
+  type: Type
+  id: ReadFields<M>[LookupField]
+}>
 
 // -----------------------------------------------------------------------------
 // CRUD Types
@@ -55,70 +65,69 @@ export type TagArray<
 
 // Create
 
-export type CreateResult<M extends Model<any>> = ReadFields<M>;
+export type CreateResult<M extends Model<any>> = ReadFields<M>
 
-export type CreateArg<M extends Model<any>> = WriteFields<M>;
+export type CreateArg<M extends Model<any>> = WriteFields<M>
 
-export type BulkCreateResult<M extends Model<any>> = Array<CreateResult<M>>;
+export type BulkCreateResult<M extends Model<any>> = Array<CreateResult<M>>
 
 export interface BulkCreateArg<M extends Model<any>> {
-  data: Array<CreateArg<M>>;
+  data: Array<CreateArg<M>>
 }
 
 // Read
 
-export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
+export type RetrieveResult<M extends Model<any>> = ReadFields<M>
 
 export type RetrieveArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id'
-> = Pick<ReadAndWriteFields<M>, LookupField>;
+  LookupField extends keyof ReadAndWriteFields<M> = "id",
+> = Pick<ReadAndWriteFields<M>, LookupField>
 
 export interface ListResult<M extends Model<any>> {
-  count: number;
-  offset: number;
-  limit: number;
-  maxLimit: number;
-  data: Array<RetrieveResult<M>>;
+  count: number
+  offset: number
+  limit: number
+  maxLimit: number
+  data: Array<RetrieveResult<M>>
 }
 
-export type ListArg<Filters extends Fields = Fields> =
-  null | Partial<Filters>;
+export type ListArg<Filters extends Fields = Fields> = null | Partial<Filters>
 
 // Update
 
-export type UpdateResult<M extends Model<any>> = ReadFields<M>;
+export type UpdateResult<M extends Model<any>> = ReadFields<M>
 
 export type UpdateArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id'
-> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
+  LookupField extends keyof ReadAndWriteFields<M> = "id",
+> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>
 
-export type BulkUpdateResult<M extends Model<any>> = Array<UpdateResult<M>>;
+export type BulkUpdateResult<M extends Model<any>> = Array<UpdateResult<M>>
 
 export interface BulkUpdateArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+  LookupField extends keyof ReadAndWriteFields<M> = "id",
 > {
-  data: Array<UpdateArg<M, LookupField>>;
+  data: Array<UpdateArg<M, LookupField>>
 }
 
 // Delete
 
-export type DestroyResult = null;
+export type DestroyResult = null
 
 export type DestroyArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id'
-> = Pick<ReadAndWriteFields<M>, LookupField>;
+  LookupField extends keyof ReadAndWriteFields<M> = "id",
+> = Pick<ReadAndWriteFields<M>, LookupField>
 
-export type BulkDestroyResult = null;
+export type BulkDestroyResult = null
 
 export interface BulkDestroyArg<
   M extends Model<any>,
-  LookupField extends keyof ReadAndWriteFields<M> = 'id'
+  LookupField extends keyof ReadAndWriteFields<M> = "id",
 > {
-  LookupField: Array<DestroyArg<M, LookupField>[LookupField]>;
+  LookupField: Array<DestroyArg<M, LookupField>[LookupField]>
 }
 
 // -----------------------------------------------------------------------------
@@ -129,29 +138,29 @@ export function searchParamsToString(arg: ListArg): string {
   if (arg !== null) {
     const searchParams = Object.entries(arg)
       .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => [key, String(value)]);
+      .map(([key, value]) => [key, String(value)])
 
     if (searchParams.length !== 0) {
-      return `?${new URLSearchParams(searchParams).toString()}`;
+      return `?${new URLSearchParams(searchParams).toString()}`
     }
   }
 
-  return '';
+  return ""
 }
 
 export function tagData<
   Type extends string,
   M extends Model<any>,
-  LookupField extends keyof ReadFields<M> = 'id'
+  LookupField extends keyof ReadFields<M> = "id",
 >(
   result: ListResult<M> | BulkCreateResult<M>,
   type: Type,
-  lookupField: LookupField = 'id' as LookupField
+  lookupField: LookupField = "id" as LookupField,
 ): TagArray<Type, M, LookupField> {
-  const data = 'data' in result ? result.data : result;
+  const data = "data" in result ? result.data : result
 
-  return data.map((result) => ({
+  return data.map(result => ({
     type,
-    id: result[lookupField]
-  })) as TagArray<Type, M, LookupField>;
+    id: result[lookupField],
+  })) as TagArray<Type, M, LookupField>
 }

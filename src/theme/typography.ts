@@ -1,17 +1,17 @@
 import {
   TypographyOptions,
-  CSSProperties
-} from '@mui/material/styles/createTypography';
+  CSSProperties,
+} from "@mui/material/styles/createTypography"
 
 // Pseudo typography variant for all form text.
 export const form: CSSProperties = {
   fontFamily: '"Inter"',
-  fontSize: '14px !important',
+  fontSize: "14px !important",
   fontWeight: 600,
   margin: 0,
-  marginBottom: '12px',
-  letterSpacing: 0
-};
+  marginBottom: "12px",
+  letterSpacing: 0,
+}
 
 // TODO: assess if line-height is needed.
 //  Doesn't play well with responsiveFontSizes.
@@ -19,83 +19,83 @@ export const form: CSSProperties = {
 
 const typography: TypographyOptions = {
   h1: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '60px',
+    fontSize: "60px",
     // lineHeight: '60px',
-    marginBottom: '24px',
-    letterSpacing: 0
+    marginBottom: "24px",
+    letterSpacing: 0,
   },
   h2: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '55px',
+    fontSize: "55px",
     // lineHeight: '55px',
-    marginBottom: '22px',
-    letterSpacing: 0
+    marginBottom: "22px",
+    letterSpacing: 0,
   },
   h3: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '45px',
+    fontSize: "45px",
     // lineHeight: '47px',
-    marginBottom: '20px',
-    letterSpacing: 0
+    marginBottom: "20px",
+    letterSpacing: 0,
   },
   h4: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '30px',
+    fontSize: "30px",
     // lineHeight: '38px',
-    marginBottom: '18px',
-    letterSpacing: 0
+    marginBottom: "18px",
+    letterSpacing: 0,
   },
   h5: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '25px',
+    fontSize: "25px",
     // lineHeight: '32px',
-    marginBottom: '16px',
-    letterSpacing: 0
+    marginBottom: "16px",
+    letterSpacing: 0,
   },
   h6: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
     fontWeight: 500,
-    fontSize: '21px',
+    fontSize: "21px",
     // lineHeight: '26px',
-    marginBottom: '10px',
-    letterSpacing: 0
+    marginBottom: "10px",
+    letterSpacing: 0,
   },
   body1: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"Inter"',
     fontWeight: 500,
-    fontSize: '1.07rem !important',
+    fontSize: "1.07rem !important",
     // lineHeight: '22px',
-    marginBottom: '16px',
-    letterSpacing: 0
+    marginBottom: "16px",
+    letterSpacing: 0,
   },
   body2: {
-    color: '#383b3b',
+    color: "#383b3b",
     fontFamily: '"Inter"',
     fontWeight: 500,
-    fontSize: '0.92rem !important',
+    fontSize: "0.92rem !important",
     // lineHeight: '20px',
-    marginBottom: '14px',
-    letterSpacing: 0
+    marginBottom: "14px",
+    letterSpacing: 0,
   },
   button: {
     fontFamily: '"Inter"',
-    fontSize: '15px',
+    fontSize: "15px",
     fontWeight: 600,
-    letterSpacing: 0
-  }
-};
+    letterSpacing: 0,
+  },
+}
 
-export default typography;
+export default typography

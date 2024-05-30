@@ -1,11 +1,11 @@
-import Components, { getFontStyleOverrides } from './_components';
+import Components, { getFontStyleOverrides } from "./_components"
 
-const MuiTypography: Components['MuiTypography'] = {
+const MuiTypography: Components["MuiTypography"] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...getFontStyleOverrides(ownerState)
-    })
-  }
-};
+      ...getFontStyleOverrides(ownerState),
+    }),
+  },
+}
 
-export default MuiTypography;
+export default MuiTypography

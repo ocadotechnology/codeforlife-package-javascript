@@ -2,54 +2,52 @@ import {
   inputClasses,
   inputBaseClasses,
   outlinedInputClasses,
-  formHelperTextClasses
-} from '@mui/material';
+  formHelperTextClasses,
+} from "@mui/material"
 
-import Components from './_components';
+import Components from "./_components"
 
-import { includesClassNames } from '../../helpers';
+import { includesClassNames } from "../../helpers"
 
-const MuiTextField: Components['MuiTextField'] = {
+const MuiTextField: Components["MuiTextField"] = {
   defaultProps: {
-    size: 'small'
+    size: "small",
   },
   styleOverrides: {
     root: ({ ownerState }) => ({
-      width: '100%',
-      backgroundColor: 'transparent',
+      width: "100%",
+      backgroundColor: "transparent",
       [`& > .${inputBaseClasses.root}`]: {
-        borderRadius: '0px !important'
+        borderRadius: "0px !important",
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
-        borderColor: 'black !important'
+        borderColor: "black !important",
       },
       [`.${formHelperTextClasses.root}`]: {
-        fontSize: '12px !important'
+        fontSize: "12px !important",
       },
       ...(ownerState.multiline === true && {
-        ...((
-          includesClassNames(ownerState, ['resize']) ||
-          includesClassNames(ownerState, ['resize-both'])
-        ) && {
-          width: 'auto',
+        ...((includesClassNames(ownerState, ["resize"]) ||
+          includesClassNames(ownerState, ["resize-both"])) && {
+          width: "auto",
           [`.${inputClasses.inputMultiline}`]: {
-            resize: 'both'
-          }
+            resize: "both",
+          },
         }),
-        ...(includesClassNames(ownerState, ['resize-horizontal']) && {
-          width: 'auto',
+        ...(includesClassNames(ownerState, ["resize-horizontal"]) && {
+          width: "auto",
           [`.${inputClasses.inputMultiline}`]: {
-            resize: 'horizontal'
-          }
+            resize: "horizontal",
+          },
         }),
-        ...(includesClassNames(ownerState, ['resize-vertical']) && {
+        ...(includesClassNames(ownerState, ["resize-vertical"]) && {
           [`.${inputClasses.inputMultiline}`]: {
-            resize: 'vertical'
-          }
-        })
-      })
-    })
-  }
-};
+            resize: "vertical",
+          },
+        }),
+      }),
+    }),
+  },
+}
 
-export default MuiTextField;
+export default MuiTextField

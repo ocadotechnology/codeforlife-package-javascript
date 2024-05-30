@@ -3,16 +3,16 @@
  * in formik, react-mapbox-gl
  */
 declare namespace React {
-  type StatelessComponent<P> = React.FunctionComponent<P>;
+  type StatelessComponent<P> = React.FunctionComponent<P>
 }
 
-declare module '*.svg' {
-  const content: string;
-  export default content;
+declare module "*.svg" {
+  const content: string
+  export default content
 }
 
 /*
  * Don't care about the typings of external libraries.
  * All libraries without typings will be imported as `any`.
-*/
-declare module '*' { }
+ */
+declare module "*" {}

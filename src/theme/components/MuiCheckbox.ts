@@ -1,10 +1,9 @@
-import Components from './_components';
+import Components from "./_components"
 
-const MuiCheckbox: Components['MuiCheckbox'] = {
+const MuiCheckbox: Components["MuiCheckbox"] = {
   styleOverrides: {
-    root: {
-    }
-  }
-};
+    root: {},
+  },
+}
 
-export default MuiCheckbox;
+export default MuiCheckbox
