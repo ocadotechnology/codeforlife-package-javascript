@@ -1,20 +1,20 @@
-import React from "react"
-import { useParams, useNavigate, generatePath } from "react-router-dom"
-import {
-  Tabs,
-  Tab,
-  TabScrollButtonProps,
-  Typography,
-  IconButton,
-} from "@mui/material"
 import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material"
+import {
+  IconButton,
+  Tab,
+  TabScrollButtonProps,
+  Tabs,
+  Typography,
+} from "@mui/material"
+import React from "react"
+import { generatePath, useNavigate, useParams } from "react-router-dom"
 import { object as YupObject, string as YupString } from "yup"
 
-import { primary } from "../../theme/colors"
 import { tryValidateSync } from "../../helpers/yup"
+import { primary } from "../../theme/colors"
 import Section from "./Section"
 
 export interface TabBarProps {
@@ -99,7 +99,6 @@ const TabBar: React.FC<TabBarProps> = ({
             return (
               <>
                 {disabled === false && (
-                  // @ts-expect-error button props not required
                   <IconButton
                     onClick={onClick}
                     style={{

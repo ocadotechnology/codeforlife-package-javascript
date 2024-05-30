@@ -59,6 +59,7 @@ export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
     const script = document.createElement("script")
 
     Object.entries(props).forEach(([key, value]) => {
+      // @ts-expect-error
       script[key] = value
     })
 

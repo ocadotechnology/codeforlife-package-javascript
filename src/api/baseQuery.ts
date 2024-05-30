@@ -1,11 +1,9 @@
-import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes"
 import {
-  BaseQueryApi,
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta,
   fetchBaseQuery,
+  type BaseQueryApi,
+  type BaseQueryFn,
+  type FetchArgs,
+  type FetchBaseQueryError,
 } from "@reduxjs/toolkit/query"
 import Cookies from "js-cookie"
 import qs from "qs"
@@ -17,11 +15,6 @@ export type FetchBaseQuery = BaseQueryFn<
   FetchArgs,
   unknown,
   FetchBaseQueryError
->
-export type Result = QueryReturnValue<
-  unknown,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta
 >
 
 export const fetch = fetchBaseQuery({
@@ -93,35 +86,30 @@ export async function injectCsrfToken(
   }
 }
 
-export function handleResponseError(result: Result): void {
-  // Check if errors.
-  if (result.error === undefined) return
-
+export function handleResponseError(error: FetchBaseQueryError): void {
   if (
-    result.error.status === 400 &&
-    typeof result.error.data === "object" &&
-    result.error.data !== null
+    error.status === 400 &&
+    typeof error.data === "object" &&
+    error.data !== null
   ) {
     // Parse the error's data from snake_case to camelCase.
-    snakeCaseToCamelCase(result.error.data)
-  } else if (result.error.status === 401) {
+    snakeCaseToCamelCase(error.data)
+  } else if (error.status === 401) {
     // TODO: redirect to appropriate login page based on user type.
     window.location.href = `${PORTAL_BASE_URL}/login/teacher`
   } else {
     // Catch-all error pages by status-code.
     window.location.href = `${PORTAL_BASE_URL}/error/${
-      [403, 404].includes(result.error.status as number)
-        ? result.error.status
-        : 500
+      [403, 404].includes(error.status as number) ? error.status : 500
     }`
   }
 }
 
-export function parseResponseBody(result: Result): void {
+export function parseResponseBody(data: unknown): void {
   // Parse the response's data from snake_case to camelCase.
-  if (typeof result.data !== "object" || result.data === null) return
+  if (typeof data !== "object" || data === null) return
 
-  snakeCaseToCamelCase(result.data)
+  snakeCaseToCamelCase(data)
 }
 
 const baseQuery: FetchBaseQuery = async (args, api, extraOptions) => {
@@ -132,9 +120,9 @@ const baseQuery: FetchBaseQuery = async (args, api, extraOptions) => {
   // Send the HTTP request and fetch the response.
   const result = await fetch(args, api, extraOptions)
 
-  handleResponseError(result)
+  if (result.error) handleResponseError(result.error)
 
-  parseResponseBody(result)
+  parseResponseBody(result.data)
 
   return result
 }

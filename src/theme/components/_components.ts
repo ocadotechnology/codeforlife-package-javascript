@@ -1,12 +1,12 @@
 import {
-  ThemeOptions,
-  ComponentsPropsList,
   CSSObject,
   ComponentsOverrides,
+  ComponentsPropsList,
   Theme,
+  ThemeOptions,
 } from "@mui/material"
-import { OverridesStyleRules } from "@mui/material/styles/overrides"
 import { CommonProps } from "@mui/material/OverridableComponent"
+import { OverridesStyleRules } from "@mui/material/styles/overrides"
 
 import {
   getClassNames,
@@ -72,6 +72,7 @@ export function getFontStyleOverrides(props: CommonProps): CSSObject {
   ;["h1", "h2", "h3", "h4", "h5", "h6", "body1", "body2"]
     .filter(className => className in typography)
     .forEach(className => {
+      // @ts-expect-error
       const typographyClass = typography[className]
 
       if (includesClassNames(classNames, [className])) {

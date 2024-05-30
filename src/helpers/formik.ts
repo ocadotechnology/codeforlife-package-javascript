@@ -1,12 +1,8 @@
-import {
-  MutationDefinition,
-  QueryDefinition,
-} from "@reduxjs/toolkit/dist/query"
-import {
-  LazyQueryTrigger,
-  MutationTrigger,
-} from "@reduxjs/toolkit/dist/query/react/buildHooks"
-import { FormikHelpers } from "formik"
+import type {
+  TypedLazyQueryTrigger,
+  TypedMutationTrigger,
+} from "@reduxjs/toolkit/query/react"
+import type { FormikHelpers } from "formik"
 
 export function isFormError(error: unknown): boolean {
   return (
@@ -40,8 +36,8 @@ export function setFormErrors(
 
 export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
   trigger:
-    | MutationTrigger<MutationDefinition<QueryArg, any, any, ResultType, any>>
-    | LazyQueryTrigger<QueryDefinition<QueryArg, any, any, ResultType, any>>,
+    | TypedMutationTrigger<ResultType, QueryArg, any>
+    | TypedLazyQueryTrigger<ResultType, QueryArg, any>,
   query: {
     then: (result: ResultType) => void
     catch?: (error: Error) => void

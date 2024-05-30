@@ -1,5 +1,7 @@
-import { EndpointBuilder } from "@reduxjs/toolkit/dist/query/endpointDefinitions"
-import { MutationDefinition } from "@reduxjs/toolkit/query/react"
+import type {
+  EndpointBuilder,
+  MutationDefinition,
+} from "@reduxjs/toolkit/query"
 
 import { FetchBaseQuery } from "./baseQuery"
 import { TagTypes } from "./tagTypes"
