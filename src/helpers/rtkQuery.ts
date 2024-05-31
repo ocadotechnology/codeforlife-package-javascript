@@ -194,7 +194,7 @@ export function tagData<Type extends string, M extends Model<any>>(
     | Arg<M, any>
     | Array<Arg<M, any>>
     | [M["id"], Arg<M, any>]
-    | Record<M["id"], any>
+    | Record<M["id"], Arg<M, any>>
     | ListArg<any>
     | Array<M["id"]>
     | string
