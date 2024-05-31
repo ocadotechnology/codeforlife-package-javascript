@@ -34,13 +34,9 @@ export type ListArg<Filters extends Fields = Fields> = {
     offset: number;
 } & Partial<Omit<Filters, 'limit' | 'offset'>>;
 export type UpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never> = Result<M, MFields>;
-export type UpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = [M['id'], Arg<M, RequiredFields> & ExtraFields];
+export type UpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never, ExtraFields extends Fields = Fields> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
 export type BulkUpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never, ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
-export type BulkUpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = Record<M['id'], Arg<M, RequiredFields> & ExtraFields>;
-export type PartialUpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never> = Result<M, MFields>;
-export type PartialUpdateArg<M extends Model<any>, OptionalFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = [M['id'], Arg<M, never, OptionalFields> & ExtraFields];
-export type BulkPartialUpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never, ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
-export type BulkPartialUpdateArg<M extends Model<any>, OptionalFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = Record<M['id'], Arg<M, never, OptionalFields> & ExtraFields>;
+export type BulkUpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never, ExtraFields extends Fields = Fields> = Record<M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields>;
 export type DestroyResult = null;
 export type DestroyArg<M extends Model<any>> = M['id'];
 export type BulkDestroyResult = null;
