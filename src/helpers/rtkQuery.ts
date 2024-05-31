@@ -185,7 +185,8 @@ export function isTagId(value: unknown): boolean {
 }
 
 export function tagData<Type extends string, M extends Model<any>>(
-  type: Type
+  type: Type,
+  id: string = 'id'
 ): (
   result:
     | Result<M, any>
@@ -222,17 +223,17 @@ export function tagData<Type extends string, M extends Model<any>>(
       }
 
       if (result) {
-        if ('id' in result) {
-          return [{ type, id: result['id'] as TagId }];
+        if (id in result) {
+          return [{ type, id: result[id] as TagId }];
         }
 
         if (Array.isArray(result)) {
-          return result.map((result) => ({ type, id: result['id'] as TagId }));
+          return result.map((result) => ({ type, id: result[id] as TagId }));
         }
 
         return (result as ListResult<M, any>).data.map((result) => ({
           type,
-          id: result['id'] as TagId
+          id: result[id] as TagId
         }));
       }
     }
