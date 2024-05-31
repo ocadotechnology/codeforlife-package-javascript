@@ -1,3 +1,6 @@
+export type Required<T, K extends keyof T> = { [P in K]-?: T[P] };
+export type Optional<T, K extends keyof T> = Partial<Pick<T, K>>;
+
 export function openInNewTab(url: string, target = '_blank'): void {
   window.open(url, target);
 }
