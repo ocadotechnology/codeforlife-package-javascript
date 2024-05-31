@@ -1,6 +1,6 @@
 import React from "react"
-import { Stack, StackProps } from "@mui/material"
-import { Formik, FormikValues, FormikConfig, Form as FormikForm } from "formik"
+import { Stack, type StackProps } from "@mui/material"
+import { Formik, type FormikValues, type FormikConfig, Form as FormikForm } from "formik"
 
 export interface FormProps<Values> extends FormikConfig<Values> {
   stackProps?: Omit<StackProps, "children">

@@ -1,9 +1,9 @@
-import React from "react"
+import type React from "react"
 import { InputAdornment } from "@mui/material"
 import { Security as SecurityIcon } from "@mui/icons-material"
 import { string as YupString } from "yup"
 
-import TextField, { TextFieldProps } from "./TextField"
+import TextField, { type TextFieldProps } from "./TextField"
 
 export interface PasswordFieldProps
   extends Omit<TextFieldProps, "type" | "name"> {

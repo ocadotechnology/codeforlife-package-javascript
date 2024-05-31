@@ -5,7 +5,7 @@ import {
   formHelperTextClasses,
 } from "@mui/material"
 
-import Components from "./_components"
+import type Components from "./_components"
 
 import { includesClassNames } from "../../helpers"
 

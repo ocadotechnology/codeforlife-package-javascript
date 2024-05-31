@@ -1,5 +1,5 @@
 import React from "react"
-import { Typography, TypographyProps } from "@mui/material"
+import { Typography, type TypographyProps } from "@mui/material"
 
 import { useCountdown } from "../hooks"
 

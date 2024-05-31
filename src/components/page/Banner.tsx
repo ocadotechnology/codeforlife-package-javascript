@@ -1,9 +1,9 @@
-import React from "react"
-import { Typography, Stack, Button, ButtonProps } from "@mui/material"
+import type React from "react"
+import { Typography, Stack, Button, type ButtonProps } from "@mui/material"
 
 import palette from "../../theme/palette"
 import { primary, secondary, tertiary } from "../../theme/colors"
-import Image, { ImageProps } from "../Image"
+import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
 
 export interface BannerProps {

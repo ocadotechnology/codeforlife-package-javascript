@@ -1,6 +1,6 @@
 import {
-  TypographyOptions,
-  CSSProperties,
+  type TypographyOptions,
+  type CSSProperties,
 } from "@mui/material/styles/createTypography"
 
 // Pseudo typography variant for all form text.

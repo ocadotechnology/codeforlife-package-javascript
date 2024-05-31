@@ -1,12 +1,12 @@
 import {
-  CSSObject,
-  ComponentsOverrides,
-  ComponentsPropsList,
-  Theme,
-  ThemeOptions,
+  type CSSObject,
+  type ComponentsOverrides,
+  type ComponentsPropsList,
+  type Theme,
+  type ThemeOptions,
 } from "@mui/material"
-import { CommonProps } from "@mui/material/OverridableComponent"
-import { OverridesStyleRules } from "@mui/material/styles/overrides"
+import { type CommonProps } from "@mui/material/OverridableComponent"
+import { type OverridesStyleRules } from "@mui/material/styles/overrides"
 
 import {
   getClassNames,

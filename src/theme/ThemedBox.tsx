@@ -1,17 +1,17 @@
-import React from "react"
+import type React from "react"
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   ThemeProvider,
-  SxProps,
+  type SxProps,
   buttonClasses,
-  PaletteColor,
+  type PaletteColor,
   responsiveFontSizes,
   createTheme,
-  ThemeOptions,
-  CSSObject,
+  type ThemeOptions,
+  type CSSObject,
 } from "@mui/material"
-import { CommonProps } from "@mui/material/OverridableComponent"
+import { type CommonProps } from "@mui/material/OverridableComponent"
 import {
   Circle as CircleIcon,
   Hexagon as HexagonIcon,
@@ -20,7 +20,7 @@ import {
 import { themeOptions } from "."
 import palette from "./palette"
 import { getStyleOverrides, includesClassNames } from "../helpers"
-import Components from "./components/_components"
+import type Components from "./components/_components"
 import { primary, secondary, tertiary } from "./colors"
 
 export interface ThemedBoxProps extends BoxProps {

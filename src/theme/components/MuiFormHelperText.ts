@@ -1,5 +1,5 @@
 import { form } from "../typography"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiFormHelperText: Components["MuiFormHelperText"] = {
   styleOverrides: {

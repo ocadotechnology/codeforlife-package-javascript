@@ -1,6 +1,6 @@
 import { tabClasses } from "@mui/material"
 
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiTabs: Components["MuiTabs"] = {
   defaultProps: {

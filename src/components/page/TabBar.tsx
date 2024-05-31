@@ -5,7 +5,7 @@ import {
 import {
   IconButton,
   Tab,
-  TabScrollButtonProps,
+  type TabScrollButtonProps,
   Tabs,
   Typography,
 } from "@mui/material"

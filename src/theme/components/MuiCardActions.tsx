@@ -1,5 +1,5 @@
 import spacing from "../spacing"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiCardActions: Components["MuiCardActions"] = {
   styleOverrides: {

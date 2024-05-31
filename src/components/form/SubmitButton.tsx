@@ -1,6 +1,6 @@
-import React from "react"
-import { Button, ButtonProps, Stack, StackProps } from "@mui/material"
-import { Field, FieldProps, FormikProps } from "formik"
+import type React from "react"
+import { Button, type ButtonProps, Stack, type StackProps } from "@mui/material"
+import { Field, type FieldProps, type FormikProps } from "formik"
 
 export interface SubmitButtonProps
   extends Omit<ButtonProps, "type" | "disabled"> {

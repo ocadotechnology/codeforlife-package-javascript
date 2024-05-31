@@ -1,6 +1,6 @@
-import React from "react"
-import { Divider, DividerProps, ThemeOptions } from "@mui/material"
-import { CommonProps } from "@mui/material/OverridableComponent"
+import type React from "react"
+import { Divider, type DividerProps, type ThemeOptions } from "@mui/material"
+import { type CommonProps } from "@mui/material/OverridableComponent"
 
 import _components from "../theme/components"
 

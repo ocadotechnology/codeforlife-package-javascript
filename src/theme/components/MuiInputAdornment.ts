@@ -1,5 +1,5 @@
 import typography from "../typography"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiInputAdornment: Components["MuiInputAdornment"] = {
   styleOverrides: {

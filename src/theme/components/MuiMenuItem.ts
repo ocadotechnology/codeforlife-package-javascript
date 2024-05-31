@@ -1,5 +1,5 @@
 import { includesClassNames } from "../../helpers"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiMenuItem: Components["MuiMenuItem"] = {
   styleOverrides: {

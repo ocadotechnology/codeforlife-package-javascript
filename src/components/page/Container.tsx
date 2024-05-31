@@ -1,8 +1,8 @@
-import { Unstable_Grid2 as Grid, Grid2Props } from "@mui/material"
+import { Unstable_Grid2 as Grid, type Grid2Props } from "@mui/material"
 import React from "react"
 import { useLocation } from "react-router-dom"
 
-import Notification, { NotificationProps } from "./Notification"
+import Notification, { type NotificationProps } from "./Notification"
 
 export interface ContainerState {
   notifications?: Array<{

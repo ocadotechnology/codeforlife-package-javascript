@@ -1,13 +1,13 @@
 import React from "react"
 import {
   FormControlLabel,
-  FormControlLabelProps,
+  type FormControlLabelProps,
   Checkbox,
-  CheckboxProps,
+  type CheckboxProps,
   Stack,
 } from "@mui/material"
 import { Error as ErrorIcon } from "@mui/icons-material"
-import { Field, FieldProps, FieldConfig, FieldValidator } from "formik"
+import { Field, type FieldProps, type FieldConfig, type FieldValidator } from "formik"
 import { bool as YupBool, BooleanSchema, ValidationError } from "yup"
 
 import { wrap } from "../../helpers"

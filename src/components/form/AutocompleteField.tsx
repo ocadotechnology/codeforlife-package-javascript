@@ -2,15 +2,15 @@ import React from "react"
 import { flushSync } from "react-dom"
 import {
   Autocomplete,
-  AutocompleteProps,
-  ChipTypeMap,
+  type AutocompleteProps,
+  type ChipTypeMap,
   TextField,
-  TextFieldProps,
+  type TextFieldProps,
   useTheme,
   InputAdornment,
 } from "@mui/material"
 import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
-import { Field, FieldProps, FieldConfig } from "formik"
+import { Field, type FieldProps, type FieldConfig } from "formik"
 import { string as YupString, ValidationError as YupValidationError } from "yup"
 
 import { wrap } from "../../helpers"

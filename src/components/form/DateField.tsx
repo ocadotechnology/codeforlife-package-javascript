@@ -2,13 +2,13 @@ import React from "react"
 import {
   Unstable_Grid2 as Grid,
   Select,
-  SelectProps,
+  type SelectProps,
   MenuItem,
   FormHelperText,
-  FormHelperTextProps,
-  SelectChangeEvent,
+  type FormHelperTextProps,
+  type SelectChangeEvent,
 } from "@mui/material"
-import { Field, FieldProps, FieldConfig } from "formik"
+import { Field, type FieldProps, type FieldConfig } from "formik"
 
 import { form as formTypography } from "../../theme/typography"
 import { MIN_DATE } from "../../helpers/general"

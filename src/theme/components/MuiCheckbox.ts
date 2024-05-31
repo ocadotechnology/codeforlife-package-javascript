@@ -1,4 +1,4 @@
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiCheckbox: Components["MuiCheckbox"] = {
   styleOverrides: {

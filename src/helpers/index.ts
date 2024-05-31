@@ -2,7 +2,7 @@ import {
   openInNewTab,
   wrap,
   path,
-  Path,
+  type Path,
   snakeCaseToCamelCase,
   camelCaseToSnakeCase,
 } from "./general"

@@ -1,4 +1,5 @@
-import Components, { StyleOverridesWithRoot } from "./_components"
+import {type StyleOverridesWithRoot} from "./_components";
+import type Components from "./_components"
 
 const MuiSelect: Components["MuiSelect"] = {
   defaultProps: {

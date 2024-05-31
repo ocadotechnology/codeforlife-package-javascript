@@ -1,5 +1,5 @@
 import React from "react"
-import { Tooltip, TooltipProps } from "@mui/material"
+import { Tooltip, type TooltipProps } from "@mui/material"
 
 import { wrap } from "../helpers"
 

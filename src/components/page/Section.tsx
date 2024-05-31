@@ -1,9 +1,9 @@
-import React from "react"
+import type React from "react"
 import {
   Unstable_Grid2 as Grid,
-  Grid2Props,
+  type Grid2Props,
   Container,
-  ContainerProps,
+  type ContainerProps,
 } from "@mui/material"
 
 export interface SectionProps extends ContainerProps {

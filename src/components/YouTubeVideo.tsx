@@ -1,5 +1,5 @@
-import React from "react"
-import { Box, BoxProps } from "@mui/material"
+import type React from "react"
+import { Box, type BoxProps } from "@mui/material"
 
 export interface YouTubeVideoProps extends Omit<BoxProps, "component"> {
   src: string

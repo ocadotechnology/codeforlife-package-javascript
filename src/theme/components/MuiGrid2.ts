@@ -1,4 +1,5 @@
-import Components, { getFlexStyleOverrides } from "./_components"
+import type Components from "./_components";
+import { getFlexStyleOverrides } from "./_components"
 
 const MuiGrid2: Components["MuiGrid2"] = {
   defaultProps: {

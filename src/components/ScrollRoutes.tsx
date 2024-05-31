@@ -1,5 +1,5 @@
 import React from "react"
-import { Routes, RoutesProps, useLocation } from "react-router-dom"
+import { Routes, type RoutesProps, useLocation } from "react-router-dom"
 
 export interface ScrollRoutesProps extends RoutesProps {
   x?: number

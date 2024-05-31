@@ -1,5 +1,5 @@
-import React from "react"
-import { Unstable_Grid2 as Grid, Grid2Props } from "@mui/material"
+import type React from "react"
+import { Unstable_Grid2 as Grid, type Grid2Props } from "@mui/material"
 
 interface ItemProps
   extends Omit<

@@ -1,8 +1,8 @@
-import { ThemeOptions, createTheme, responsiveFontSizes } from "@mui/material"
+import { type ThemeOptions, createTheme, responsiveFontSizes } from "@mui/material"
 
-import palette, { PropsColorOverrides } from "./palette"
+import palette, { type PropsColorOverrides } from "./palette"
 import components from "./components"
-import ThemedBox, { ThemedBoxProps } from "./ThemedBox"
+import ThemedBox, { type ThemedBoxProps } from "./ThemedBox"
 import spacing from "./spacing"
 import typography from "./typography"
 

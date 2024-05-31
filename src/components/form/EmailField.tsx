@@ -1,9 +1,9 @@
-import React from "react"
+import type React from "react"
 import { InputAdornment } from "@mui/material"
 import { EmailOutlined as EmailOutlinedIcon } from "@mui/icons-material"
 import { string as YupString } from "yup"
 
-import TextField, { TextFieldProps } from "./TextField"
+import TextField, { type TextFieldProps } from "./TextField"
 
 export interface EmailFieldProps extends Omit<TextFieldProps, "type" | "name"> {
   name?: string

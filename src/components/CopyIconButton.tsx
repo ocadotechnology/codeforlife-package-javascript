@@ -1,5 +1,5 @@
-import React from "react"
-import { IconButton, IconButtonProps } from "@mui/material"
+import type React from "react"
+import { IconButton, type IconButtonProps } from "@mui/material"
 import { ContentCopy as ContentCopyIcon } from "@mui/icons-material"
 
 export interface CopyIconButtonProps extends Omit<IconButtonProps, "onClick"> {

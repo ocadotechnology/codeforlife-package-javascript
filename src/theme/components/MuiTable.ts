@@ -2,7 +2,7 @@ import { tableCellClasses } from "@mui/material"
 
 import { includesClassNames } from "../../helpers"
 import typography from "../typography"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiTable: Components["MuiTable"] = {
   styleOverrides: {

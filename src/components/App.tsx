@@ -1,8 +1,8 @@
 import React from "react"
-import { Provider, ProviderProps } from "react-redux"
-import { Action, AnyAction } from "redux"
+import { Provider, type ProviderProps } from "react-redux"
+import { type Action, type AnyAction } from "redux"
 import { ThemeProvider, CssBaseline } from "@mui/material"
-import { ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
+import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 
 import {
   useExternalScript,

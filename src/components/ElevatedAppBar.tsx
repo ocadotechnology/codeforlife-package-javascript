@@ -1,12 +1,12 @@
 import React from "react"
 import {
   AppBar,
-  AppBarProps,
+  type AppBarProps,
   Toolbar,
-  ToolbarProps,
+  type ToolbarProps,
   useScrollTrigger,
   Container,
-  ContainerProps,
+  type ContainerProps,
 } from "@mui/material"
 
 export interface ElevatedAppBarProps extends Omit<AppBarProps, "position"> {

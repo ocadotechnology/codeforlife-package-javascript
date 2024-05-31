@@ -3,8 +3,8 @@ import type {
   MutationDefinition,
 } from "@reduxjs/toolkit/query"
 
-import { FetchBaseQuery } from "./baseQuery"
-import { TagTypes } from "./tagTypes"
+import { type FetchBaseQuery } from "./baseQuery"
+import { type TagTypes } from "./tagTypes"
 
 export type LogoutQuery = null
 export type LogoutResult = null

@@ -1,7 +1,7 @@
 import { typographyClasses } from "@mui/material"
 
 import { includesClassNames } from "../../helpers"
-import Components from "./_components"
+import type Components from "./_components"
 
 const MuiTableHead: Components["MuiTableHead"] = {
   styleOverrides: {
