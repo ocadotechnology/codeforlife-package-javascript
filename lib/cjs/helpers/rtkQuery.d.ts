@@ -1,53 +1,52 @@
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 export type Fields = Record<string, unknown>;
+export type TagId = string | number;
+export interface Tag<Type extends string> {
+    type: Type;
+    id: TagId;
+}
 /**
  * A data model.
- *  ID: The type of ID.
- *  ReadAndWrite: The fields that can both be read from and written to.
- *  ReadOnly: The fields that can only be read from. 'id' is a mandatory
- *    read-only field.
- *  WriteOnly: The fields that can only be written to.
+ *  Id: The type of Id.
+ *  Data: The data fields.
  */
-export type Model<ID, ReadAndWrite extends Fields = Fields, ReadOnly extends Fields = Fields, WriteOnly extends Fields = Fields> = ReadAndWrite & {
-    _readOnly: ReadOnly & {
-        id: ID;
-    };
-    _writeOnly: WriteOnly;
-};
-export type ID<M extends Model<any>> = M['_readOnly']['id'];
-export type ReadFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'];
-export type WriteFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_writeOnly'];
-export type ReadAndWriteFields<M extends Model<any>> = Omit<M, '_readOnly' | '_writeOnly'> & M['_readOnly'] & M['_writeOnly'];
-export type TagArray<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'> = Array<{
-    type: Type;
-    id: ReadFields<M>[LookupField];
-}>;
-export type CreateResult<M extends Model<any>> = ReadFields<M>;
-export type CreateArg<M extends Model<any>> = WriteFields<M>;
-export type BulkCreateResult<M extends Model<any>> = Array<CreateResult<M>>;
-export interface BulkCreateArg<M extends Model<any>> {
-    data: Array<CreateArg<M>>;
-}
-export type RetrieveResult<M extends Model<any>> = ReadFields<M>;
-export type RetrieveArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
-export interface ListResult<M extends Model<any>> {
+export type Model<Id extends TagId, MFields extends Fields = Fields> = {
+    id: Id;
+} & Omit<MFields, 'id'>;
+export type Result<M extends Model<any>, MFields extends keyof M = 'id'> = Pick<M, 'id' | MFields>;
+export type Arg<M extends Model<any>, MFields extends keyof M> = Pick<M, MFields>;
+export type CreateResult<M extends Model<any>, MFields extends keyof M = 'id'> = Result<M, MFields>;
+export type CreateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>> = Arg<M, MFields>;
+export type BulkCreateResult<M extends Model<any>, MFields extends keyof M = 'id', ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
+export type BulkCreateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = Array<Arg<M, MFields> & ExtraFields>;
+export type RetrieveResult<M extends Model<any>, MFields extends keyof M = 'id'> = Result<M, MFields>;
+export type RetrieveArg<M extends Model<any>> = M['id'];
+export interface ListResult<M extends Model<any>, MFields extends keyof M = 'id', ExtraFields extends Fields = Fields> {
     count: number;
     offset: number;
     limit: number;
     maxLimit: number;
-    data: Array<RetrieveResult<M>>;
+    data: Array<Result<M, MFields> & ExtraFields>;
 }
-export type ListArg<Filters extends Fields = Fields> = null | Partial<Filters>;
-export type UpdateResult<M extends Model<any>> = ReadFields<M>;
-export type UpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField> & Partial<WriteFields<M>>;
-export type BulkUpdateResult<M extends Model<any>> = Array<UpdateResult<M>>;
-export interface BulkUpdateArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> {
-    data: Array<UpdateArg<M, LookupField>>;
-}
+export type ListArg<Filters extends Fields = Fields> = {
+    limit: number;
+    offset: number;
+} & Partial<Omit<Filters, 'limit' | 'offset'>>;
+export type UpdateResult<M extends Model<any>, MFields extends keyof M = 'id'> = Result<M, MFields>;
+export type UpdateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = [M['id'], Arg<M, MFields> & ExtraFields];
+export type BulkUpdateResult<M extends Model<any>, MFields extends keyof M = 'id', ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
+export type BulkUpdateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = Record<M['id'], Arg<M, MFields> & ExtraFields>;
+export type PartialUpdateResult<M extends Model<any>, MFields extends keyof M = 'id'> = Result<M, MFields>;
+export type PartialUpdateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = [M['id'], Partial<Arg<M, MFields> & ExtraFields>];
+export type BulkPartialUpdateResult<M extends Model<any>, MFields extends keyof M = 'id', ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
+export type BulkPartialUpdateArg<M extends Model<any>, MFields extends keyof Omit<M, 'id'>, ExtraFields extends Fields = Fields> = Record<M['id'], Partial<Arg<M, MFields> & ExtraFields>>;
 export type DestroyResult = null;
-export type DestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> = Pick<ReadAndWriteFields<M>, LookupField>;
+export type DestroyArg<M extends Model<any>> = M['id'];
 export type BulkDestroyResult = null;
-export interface BulkDestroyArg<M extends Model<any>, LookupField extends keyof ReadAndWriteFields<M> = 'id'> {
-    LookupField: Array<DestroyArg<M, LookupField>[LookupField]>;
-}
-export declare function searchParamsToString(arg: ListArg): string;
-export declare function tagData<Type extends string, M extends Model<any>, LookupField extends keyof ReadFields<M> = 'id'>(result: ListResult<M> | BulkCreateResult<M>, type: Type, lookupField?: LookupField): TagArray<Type, M, LookupField>;
+export type BulkDestroyArg<M extends Model<any>> = Array<M['id']>;
+export declare function buildUrl(url: string, params: {
+    search?: Fields;
+    url?: Fields;
+}): string;
+export declare function isTagId(value: unknown): boolean;
+export declare function tagData<Type extends string, M extends Model<any>>(type: Type): (result: Result<M, any> | Array<Result<M, any>> | ListResult<M, any> | null | undefined, error: FetchBaseQueryError | undefined, arg: Arg<M, any> | Array<Arg<M, any>> | [M['id'], Arg<M, any>] | Record<M['id'], Arg<M, any>> | ListArg<any> | Array<M['id']> | string | number | undefined) => Array<Tag<Type>>;
