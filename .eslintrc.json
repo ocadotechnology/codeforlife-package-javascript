@@ -15,7 +15,8 @@
   ],
   "root": true,
   "ignorePatterns": [
-    "dist"
+    "dist",
+    "src/scripts"
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
