@@ -1,3 +1,12 @@
+## [1.27.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.5...v1.27.6) (2024-05-31)
+
+
+### Bug Fixes
+
+* import ([9ba872b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9ba872bc948f23059bc504c95e01b31c47cdb734))
+* linting errors ([23fbb17](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/23fbb1724d3d99fd700c2fdc9dfad758e058fadf))
+* rtk helpers ([#40](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/40)) ([3b7c90a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3b7c90a73eb68399160a58e5995c588da95cc5d0))
+
 ## [1.27.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.4...v1.27.5) (2023-10-24)
 
 
