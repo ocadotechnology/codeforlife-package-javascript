@@ -1,3 +1,3 @@
-declare const tagTypes: readonly ["User", "School", "Class", "SchoolTeacherInvitation", "AuthFactor"];
+declare const tagTypes: readonly ["User", "School", "Class", "AuthFactor"];
 export default tagTypes;
 export type TagTypes = typeof tagTypes[number];
