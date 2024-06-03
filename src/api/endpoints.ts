@@ -23,12 +23,12 @@ export default function endpoints<ReducerPath extends string>(
   const _build = build as EndpointBuilder<FetchBaseQuery, TagTypes, ReducerPath>
 
   return {
+    // TODO: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn
     logout: _build.mutation<LogoutResult, LogoutQuery>({
       query: () => ({
-        url: "session/logout/",
-        method: "GET",
-      }),
-      invalidatesTags: ["private"],
-    }),
-  }
+        url: 'session/logout/',
+        method: 'GET'
+      })
+    })
+  };
 }
