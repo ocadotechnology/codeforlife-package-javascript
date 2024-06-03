@@ -113,10 +113,12 @@ export type UpdateArg<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, 'id'> = never,
   OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never,
-  ExtraFields extends Fields = Fields
+  ExtraFields extends Fields = never
 > = [RequiredFields] extends [never]
   ? [OptionalFields] extends [never]
-    ? M['id']
+    ? [ExtraFields] extends [never]
+      ? M['id']
+      : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
     : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
   : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>;
 
