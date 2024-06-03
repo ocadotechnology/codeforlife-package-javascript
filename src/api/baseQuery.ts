@@ -127,6 +127,7 @@ export function parseResponseBody(result: Result): void {
   snakeCaseToCamelCase(result.data);
 }
 
+// TODO: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-custom-basequery
 const baseQuery: FetchBaseQuery = async (args, api, extraOptions) => {
   await injectCsrfToken(fetch, args, api);
 

@@ -1,4 +1,5 @@
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
+import type { Optional, Required } from './general';
 
 // -----------------------------------------------------------------------------
 // Model Types
@@ -23,15 +24,16 @@ export type Model<Id extends TagId, MFields extends Fields = Fields> = {
   id: Id;
 } & Omit<MFields, 'id'>;
 
-export type Result<M extends Model<any>, MFields extends keyof M = 'id'> = Pick<
-  M,
-  'id' | MFields
->;
+export type Result<
+  M extends Model<any>,
+  MFields extends keyof Omit<M, 'id'> = never
+> = Pick<M, 'id' | MFields>;
 
-export type Arg<M extends Model<any>, MFields extends keyof M> = Pick<
-  M,
-  MFields
->;
+export type Arg<
+  M extends Model<any>,
+  RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never
+> = Required<M, RequiredFields> & Optional<M, OptionalFields>;
 
 // -----------------------------------------------------------------------------
 // CRUD Types
@@ -42,39 +44,41 @@ export type Arg<M extends Model<any>, MFields extends keyof M> = Pick<
 
 export type CreateResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
+  MFields extends keyof Omit<M, 'id'> = never
 > = Result<M, MFields>;
 
 export type CreateArg<
   M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-> = Arg<M, MFields>;
+  RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never
+> = Arg<M, RequiredFields, OptionalFields>;
 
 export type BulkCreateResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
-  ExtraFields extends Fields = Fields,
+  MFields extends keyof Omit<M, 'id'> = never,
+  ExtraFields extends Fields = Fields
 > = Array<Result<M, MFields> & ExtraFields>;
 
 export type BulkCreateArg<
   M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-  ExtraFields extends Fields = Fields,
-> = Array<Arg<M, MFields> & ExtraFields>;
+  RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never,
+  ExtraFields extends Fields = Fields
+> = Array<Arg<M, RequiredFields, OptionalFields> & ExtraFields>;
 
 // Read
 
 export type RetrieveResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
+  MFields extends keyof Omit<M, 'id'> = never
 > = Result<M, MFields>;
 
 export type RetrieveArg<M extends Model<any>> = M['id'];
 
 export interface ListResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
-  ExtraFields extends Fields = Fields,
+  MFields extends keyof Omit<M, 'id'> = never,
+  ExtraFields extends Fields = Fields
 > {
   count: number;
   offset: number;
@@ -92,49 +96,44 @@ export type ListArg<Filters extends Fields = Fields> = {
 
 export type UpdateResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
+  MFields extends keyof Omit<M, 'id'> = never
 > = Result<M, MFields>;
 
+type UpdateWithBody<
+  M extends Model<any>,
+  RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields>,
+  ExtraFields extends Fields
+> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
+
+// NOTE: Sometimes update does not require a body. For example, if calling the
+// "refresh" action on an invitation object updates the expiry date to be 24
+// hours from now. In this case, you only need to pass the ID of the object.
 export type UpdateArg<
   M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-  ExtraFields extends Fields = Fields,
-> = [M['id'], Arg<M, MFields> & ExtraFields];
+  RequiredFields extends keyof Omit<M, 'id'> = never,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never,
+  ExtraFields extends Fields = never
+> = [RequiredFields] extends [never]
+  ? [OptionalFields] extends [never]
+    ? [ExtraFields] extends [never]
+      ? M['id']
+      : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
+    : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
+  : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>;
 
 export type BulkUpdateResult<
   M extends Model<any>,
-  MFields extends keyof M = 'id',
-  ExtraFields extends Fields = Fields,
+  MFields extends keyof Omit<M, 'id'> = never,
+  ExtraFields extends Fields = Fields
 > = Array<Result<M, MFields> & ExtraFields>;
 
 export type BulkUpdateArg<
   M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-  ExtraFields extends Fields = Fields,
-> = Record<M['id'], Arg<M, MFields> & ExtraFields>;
-
-export type PartialUpdateResult<
-  M extends Model<any>,
-  MFields extends keyof M = 'id',
-> = Result<M, MFields>;
-
-export type PartialUpdateArg<
-  M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-  ExtraFields extends Fields = Fields,
-> = [M['id'], Partial<Arg<M, MFields> & ExtraFields>];
-
-export type BulkPartialUpdateResult<
-  M extends Model<any>,
-  MFields extends keyof M = 'id',
-  ExtraFields extends Fields = Fields,
-> = Array<Result<M, MFields> & ExtraFields>;
-
-export type BulkPartialUpdateArg<
-  M extends Model<any>,
-  MFields extends keyof Omit<M, 'id'>,
-  ExtraFields extends Fields = Fields,
-> = Record<M['id'], Partial<Arg<M, MFields> & ExtraFields>>;
+  RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never,
+  ExtraFields extends Fields = Fields
+> = Record<M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields>;
 
 // Delete
 
@@ -181,7 +180,8 @@ export function isTagId(value: unknown): boolean {
 }
 
 export function tagData<Type extends string, M extends Model<any>>(
-  type: Type
+  type: Type,
+  id: string = 'id'
 ): (
   result:
     | Result<M, any>
@@ -218,17 +218,17 @@ export function tagData<Type extends string, M extends Model<any>>(
       }
 
       if (result) {
-        if ('id' in result) {
-          return [{ type, id: result['id'] as TagId }];
+        if (id in result) {
+          return [{ type, id: result[id] as TagId }];
         }
 
         if (Array.isArray(result)) {
-          return result.map((result) => ({ type, id: result['id'] as TagId }));
+          return result.map((result) => ({ type, id: result[id] as TagId }));
         }
 
         return (result as ListResult<M, any>).data.map((result) => ({
           type,
-          id: result['id'] as TagId
+          id: result[id] as TagId
         }));
       }
     }
