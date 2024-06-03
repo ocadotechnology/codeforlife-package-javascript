@@ -31,12 +31,12 @@ export default function endpoints<
   >;
 
   return {
+    // TODO: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn
     logout: _build.mutation<LogoutResult, LogoutQuery>({
       query: () => ({
         url: 'session/logout/',
         method: 'GET'
-      }),
-      invalidatesTags: ['private']
+      })
     })
   };
 }

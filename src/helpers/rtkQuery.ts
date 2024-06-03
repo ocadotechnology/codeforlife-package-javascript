@@ -99,12 +99,26 @@ export type UpdateResult<
   MFields extends keyof Omit<M, 'id'> = never
 > = Result<M, MFields>;
 
-export type UpdateArg<
+type UpdateWithBody<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, 'id'>,
+  OptionalFields extends keyof Omit<M, 'id' | RequiredFields>,
+  ExtraFields extends Fields
+> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
+
+// NOTE: Sometimes update does not require a body. For example, if calling the
+// "refresh" action on an invitation object updates the expiry date to be 24
+// hours from now. In this case, you only need to pass the ID of the object.
+export type UpdateArg<
+  M extends Model<any>,
+  RequiredFields extends keyof Omit<M, 'id'> = never,
   OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never,
   ExtraFields extends Fields = Fields
-> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
+> = [RequiredFields] extends [never]
+  ? [OptionalFields] extends [never]
+    ? M['id']
+    : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
+  : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>;
 
 export type BulkUpdateResult<
   M extends Model<any>,
