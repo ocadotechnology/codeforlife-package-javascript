@@ -5,7 +5,6 @@ const tagTypes = [
   'User',
   'School',
   'Class',
-  'SchoolTeacherInvitation',
   'AuthFactor'
 ] as const;
 
