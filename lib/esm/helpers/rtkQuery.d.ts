@@ -34,7 +34,8 @@ export type ListArg<Filters extends Fields = Fields> = {
     offset: number;
 } & Partial<Omit<Filters, 'limit' | 'offset'>>;
 export type UpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never> = Result<M, MFields>;
-export type UpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never, ExtraFields extends Fields = Fields> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
+type UpdateWithBody<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, OptionalFields extends keyof Omit<M, 'id' | RequiredFields>, ExtraFields extends Fields> = [M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields];
+export type UpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'> = never, OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never, ExtraFields extends Fields = Fields> = [RequiredFields] extends [never] ? [OptionalFields] extends [never] ? M['id'] : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields> : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>;
 export type BulkUpdateResult<M extends Model<any>, MFields extends keyof Omit<M, 'id'> = never, ExtraFields extends Fields = Fields> = Array<Result<M, MFields> & ExtraFields>;
 export type BulkUpdateArg<M extends Model<any>, RequiredFields extends keyof Omit<M, 'id'>, OptionalFields extends keyof Omit<M, 'id' | RequiredFields> = never, ExtraFields extends Fields = Fields> = Record<M['id'], Arg<M, RequiredFields, OptionalFields> & ExtraFields>;
 export type DestroyResult = null;
@@ -47,3 +48,4 @@ export declare function buildUrl(url: string, params: {
 }): string;
 export declare function isTagId(value: unknown): boolean;
 export declare function tagData<Type extends string, M extends Model<any>>(type: Type, id?: string): (result: Result<M, any> | Array<Result<M, any>> | ListResult<M, any> | null | undefined, error: FetchBaseQueryError | undefined, arg: Arg<M, any> | Array<Arg<M, any>> | [M['id'], Arg<M, any>] | Record<M['id'], Arg<M, any>> | ListArg<any> | Array<M['id']> | string | number | undefined) => Array<Tag<Type>>;
+export {};
