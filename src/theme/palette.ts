@@ -1,4 +1,8 @@
-import { type PaletteOptions, type PaletteColor, createTheme } from "@mui/material"
+import {
+  type PaletteOptions,
+  type PaletteColor,
+  createTheme,
+} from "@mui/material"
 import { red, common } from "@mui/material/colors"
 
 import { primary, secondary, tertiary } from "./colors"

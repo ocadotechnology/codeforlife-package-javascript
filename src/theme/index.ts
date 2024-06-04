@@ -1,4 +1,8 @@
-import { type ThemeOptions, createTheme, responsiveFontSizes } from "@mui/material"
+import {
+  type ThemeOptions,
+  createTheme,
+  responsiveFontSizes,
+} from "@mui/material"
 
 import palette, { type PropsColorOverrides } from "./palette"
 import components from "./components"

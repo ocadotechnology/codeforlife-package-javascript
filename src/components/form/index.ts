@@ -1,6 +1,8 @@
 import { type FormikErrors } from "formik"
 
-import AutocompleteField, { type AutocompleteFieldProps } from "./AutocompleteField"
+import AutocompleteField, {
+  type AutocompleteFieldProps,
+} from "./AutocompleteField"
 import CheckboxField, { type CheckboxFieldProps } from "./CheckboxField"
 import DateField, { type DateFieldProps } from "./DateField"
 import EmailField, { type EmailFieldProps } from "./EmailField"

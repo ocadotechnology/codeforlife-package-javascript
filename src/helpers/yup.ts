@@ -1,4 +1,9 @@
-import { type InferType, type ValidateOptions, ValidationError, type ObjectSchema } from "yup"
+import {
+  type InferType,
+  type ValidateOptions,
+  ValidationError,
+  type ObjectSchema,
+} from "yup"
 
 export function tryValidateSync<Schema extends ObjectSchema<any>>(
   value: any,

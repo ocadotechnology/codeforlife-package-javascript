@@ -1,5 +1,5 @@
 import spacing from "../spacing"
-import type Components from "./_components";
+import type Components from "./_components"
 import { getFlexStyleOverrides } from "./_components"
 
 const MuiContainer: Components["MuiContainer"] = {

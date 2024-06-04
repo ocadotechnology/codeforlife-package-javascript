@@ -1,5 +1,7 @@
 import App, { type AppProps } from "./App"
-import ClickableTooltip, { type ClickableTooltipProps } from "./ClickableTooltip"
+import ClickableTooltip, {
+  type ClickableTooltipProps,
+} from "./ClickableTooltip"
 import CopyIconButton, { type CopyIconButtonProps } from "./CopyIconButton"
 import Countdown, { type CountdownProps } from "./Countdown"
 import ElevatedAppBar, { type ElevatedAppBarProps } from "./ElevatedAppBar"

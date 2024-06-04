@@ -1,5 +1,7 @@
 import InactiveDialog, { type InactiveDialogProps } from "./InactiveDialog"
-import ScreenTimeDialog, { type ScreenTimeDialogProps } from "./ScreenTimeDialog"
+import ScreenTimeDialog, {
+  type ScreenTimeDialogProps,
+} from "./ScreenTimeDialog"
 
 export {
   InactiveDialog,

@@ -26,9 +26,9 @@ export default function endpoints<ReducerPath extends string>(
     // TODO: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn
     logout: _build.mutation<LogoutResult, LogoutQuery>({
       query: () => ({
-        url: 'session/logout/',
-        method: 'GET'
-      })
-    })
-  };
+        url: "session/logout/",
+        method: "GET",
+      }),
+    }),
+  }
 }
