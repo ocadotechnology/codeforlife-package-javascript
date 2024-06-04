@@ -41,18 +41,6 @@
         ]
       }
     ]
-    // TODO: see if we want to keep any of these rules
-    // "@typescript-eslint/semi": [
-    //   2,
-    //   "always"
-    // ],
-    // "@typescript-eslint/member-delimiter-style": "off",
-    // "@typescript-eslint/space-before-function-paren": "off",
-    // "@typescript-eslint/no-invalid-void-type": "off",
-    // "@typescript-eslint/consistent-type-imports": "off",
-    // "@typescript-eslint/strict-boolean-expressions": "off",
-    // "@typescript-eslint/dot-notation": "off",
-    // "@typescript-eslint/indent": "off"
   },
   "overrides": [
     {

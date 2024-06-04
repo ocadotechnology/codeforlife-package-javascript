@@ -1,14 +1,9 @@
 {
   "name": "codeforlife",
-  "version": "1.27.7",
-  "private": true,
   "description": "Common frontend code",
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
-  "types": "./lib/esm/index.d.ts",
-  "files": [
-    "/lib"
-  ],
+  "private": true,
+  "version": "1.27.7",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "serve -s dist",
