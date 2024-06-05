@@ -1,15 +1,15 @@
 import {
+  useEffect,
+  useState,
   type DependencyList,
   type Dispatch,
   type SetStateAction,
-  useEffect,
-  useState,
 } from "react"
 import {
-  type NavigateOptions,
-  type To as NavigateTo,
   useNavigate as _useNavigate,
   useSearchParams,
+  type NavigateOptions,
+  type To as NavigateTo,
 } from "react-router-dom"
 
 import { type ContainerState } from "./components/page"
@@ -26,16 +26,6 @@ export function useNavigate(): <
   return (to, options) => {
     navigate(to, options)
   }
-}
-
-export function useFreshworksWidget(display: "open" | "hide"): void {
-  // @ts-expect-error defined in external script
-  window.FreshworksWidget(display)
-}
-
-export function useOneTrustInfoToggle(): void {
-  // @ts-expect-error defined in external script
-  window.Optanon.ToggleInfoDisplay()
 }
 
 export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
@@ -86,7 +76,7 @@ export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
 
       document.head.removeChild(script)
     }
-  }, [])
+  }, [eventTypes, attrs, props])
 
   return eventType
 }
@@ -114,7 +104,7 @@ export function useCountdown(
     return () => {
       clearInterval(countdown)
     }
-  }, [])
+  }, [interval])
 
   return [_seconds, _setSeconds]
 }
@@ -130,16 +120,20 @@ export function useEventListener<EventType extends keyof HTMLElementEventMap>(
 ): void {
   const { options, deps = [] } = kwArgs
 
-  useEffect(() => {
-    element.addEventListener(type, listener, options)
+  useEffect(
+    () => {
+      element.addEventListener(type, listener, options)
 
-    return () => {
-      element.removeEventListener(type, listener, options)
-    }
-  }, deps)
+      return () => {
+        element.removeEventListener(type, listener, options)
+      }
+    },
+    // TODO: simplify this hook.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    deps,
+  )
 }
 
-export function fromSearchParams(): object {
-  const searchParams = useSearchParams()[0].entries()
-  return Object.fromEntries(searchParams)
+export function useSearchParamEntries() {
+  return Object.fromEntries(useSearchParams()[0].entries())
 }

@@ -1,24 +1,24 @@
-import React from "react"
-import {
-  TextField as MuiTextField,
-  type TextFieldProps as MuiTextFieldProps,
-  InputAdornment,
-} from "@mui/material"
 import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
 import {
+  InputAdornment,
+  TextField as MuiTextField,
+  type TextFieldProps as MuiTextFieldProps,
+} from "@mui/material"
+import {
   Field,
-  type FieldProps,
   type FieldConfig,
+  type FieldProps,
   type FieldValidator,
 } from "formik"
+import React from "react"
 import {
-  string as YupString,
-  array as YupArray,
   Schema,
-  type StringSchema,
-  type ArraySchema,
-  type AnyObject,
   ValidationError,
+  array as YupArray,
+  string as YupString,
+  type AnyObject,
+  type ArraySchema,
+  type StringSchema,
 } from "yup"
 
 import { wrap } from "../../helpers"
@@ -92,6 +92,8 @@ const _TextField: React.FC<
   return (
     <Field {...fieldConfig}>
       {({ meta, form }: FieldProps) => {
+        // TODO: simplify this component and remove this state.
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const [showError, setShowError] = React.useState(false)
 
         let { endAdornment, ...otherInputProps } = InputProps
@@ -202,6 +204,8 @@ const TextField: ITextField<true> & ITextField<false> = ({
 
   return (
     <>
+      {/* TODO: simplify this component and remove this sub component. */}
+      {/* eslint-disable-next-line react/jsx-pascal-case */}
       <_TextField
         validate={validate}
         split={split}
@@ -210,6 +214,8 @@ const TextField: ITextField<true> & ITextField<false> = ({
         {...otherTextFieldProps}
       />
       {repeat.map(({ name, inheritProps = true, ...repeatTextFieldProps }) => (
+        // TODO: simplify this component and remove this sub component.
+        // eslint-disable-next-line react/jsx-pascal-case
         <_TextField
           key={name}
           name={name}

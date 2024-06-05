@@ -1,17 +1,17 @@
-import React from "react"
 import {
-  Unstable_Grid2 as Grid,
-  Select,
-  type SelectProps,
-  MenuItem,
   FormHelperText,
+  Unstable_Grid2 as Grid,
+  MenuItem,
+  Select,
   type FormHelperTextProps,
   type SelectChangeEvent,
+  type SelectProps,
 } from "@mui/material"
-import { Field, type FieldProps, type FieldConfig } from "formik"
+import { Field, type FieldConfig, type FieldProps } from "formik"
+import React from "react"
 
-import { form as formTypography } from "../../theme/typography"
 import { MIN_DATE } from "../../helpers/general"
+import { form as formTypography } from "../../theme/typography"
 
 const monthOptions = [
   "January",
@@ -62,6 +62,8 @@ const DateField: React.FC<DateFieldProps> = ({
   return (
     <Field {...fieldConfig}>
       {({ form }: FieldProps<Date>) => {
+        // TODO: simplify this component and relocate this effect.
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         React.useEffect(() => {
           const date =
             [day, month, year].includes(0) || !isDateValid
@@ -69,7 +71,7 @@ const DateField: React.FC<DateFieldProps> = ({
               : new Date(year, month - 1, day)
 
           form.setFieldValue(name, date, true)
-        }, [day, month, year])
+        }, [form])
 
         function getLastDay(month: number, year: number): number {
           return new Date(year, month, 0).getDate()

@@ -1,19 +1,18 @@
-import React from "react"
-import { Provider, type ProviderProps } from "react-redux"
-import { type Action, type AnyAction } from "redux"
-import { ThemeProvider, CssBaseline } from "@mui/material"
+import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
+import React, { useCallback } from "react"
+import { Provider, type ProviderProps } from "react-redux"
+import { type Action } from "redux"
 
-import {
-  useExternalScript,
-  useFreshworksWidget,
-  useCountdown,
-  useEventListener,
-} from "../hooks"
 import { InactiveDialog, ScreenTimeDialog } from "../features"
+import {
+  // configureFreshworksWidget,
+  toggleOneTrustInfoDisplay,
+} from "../helpers/window"
+import { useCountdown, useEventListener } from "../hooks"
 import "../scripts"
 
-export interface AppProps<A extends Action = AnyAction, S = unknown> {
+export interface AppProps<A extends Action = Action, S = unknown> {
   theme: ThemeProviderProps["theme"]
   store: ProviderProps<A, S>["store"]
   children: React.ReactNode
@@ -21,7 +20,7 @@ export interface AppProps<A extends Action = AnyAction, S = unknown> {
   maxTotalSeconds?: number
 }
 
-const App = <A extends Action = AnyAction, S = unknown>({
+const App = <A extends Action = Action, S = unknown>({
   theme,
   store,
   children,
@@ -34,30 +33,26 @@ const App = <A extends Action = AnyAction, S = unknown>({
   const isAuthenticated = true
   const [idleSeconds, setIdleSeconds] = useCountdown(maxIdleSeconds)
   const [totalSeconds, setTotalSeconds] = useCountdown(maxTotalSeconds)
+  const resetIdleSeconds = useCallback(() => {
+    setIdleSeconds(maxIdleSeconds)
+  }, [setIdleSeconds, maxIdleSeconds])
 
   const isIdle = isAuthenticated && idleSeconds === 0
   const tooMuchScreenTime = totalSeconds === 0
-
-  function resetIdleSeconds(): void {
-    setIdleSeconds(maxIdleSeconds)
-  }
-  function resetTotalSeconds(): void {
-    setTotalSeconds(maxTotalSeconds)
-  }
 
   useEventListener(root, "mousemove", resetIdleSeconds)
   useEventListener(root, "keypress", resetIdleSeconds)
 
   React.useEffect(() => {
     if (isAuthenticated) resetIdleSeconds()
-  }, [isAuthenticated])
+  }, [isAuthenticated, resetIdleSeconds])
 
-  React.useEffect(() => {
-    useFreshworksWidget("hide")
-  }, [])
+  // React.useEffect(() => {
+  //   configureFreshworksWidget("hide")
+  // }, [])
 
   if (process.env.NODE_ENV !== "development") {
-    useOneTrustScripts()
+    toggleOneTrustInfoDisplay()
   }
 
   return (
@@ -91,7 +86,9 @@ const App = <A extends Action = AnyAction, S = unknown>({
         <InactiveDialog open={isIdle} onClose={resetIdleSeconds} />
         <ScreenTimeDialog
           open={!isIdle && tooMuchScreenTime}
-          onClose={resetTotalSeconds}
+          onClose={() => {
+            setTotalSeconds(maxTotalSeconds)
+          }}
         />
         {children}
       </Provider>
@@ -101,36 +98,37 @@ const App = <A extends Action = AnyAction, S = unknown>({
 
 export default App
 
-function useOneTrustScripts(): void {
-  const oneTrustEventTypes = [
-    useExternalScript({
-      props: {
-        src: "https://cdn-ukwest.onetrust.com/consent/5da42396-cb12-4493-8d04-5179033cfbad/OtAutoBlock.js",
-        type: "text/javascript",
-      },
-      eventTypes: ["load", "error"],
-    }),
-    useExternalScript({
-      props: {
-        src: "https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js",
-        type: "text/javascript",
-        charset: "UTF-8",
-      },
-      attrs: {
-        "data-domain-script": "5da42396-cb12-4493-8d04-5179033cfbad",
-      },
-      eventTypes: ["load", "error"],
-    }),
-    useExternalScript({
-      props: {
-        src: "https://cdn-ukwest.onetrust.com/scripttemplates/202302.1.0/otBannerSdk.js",
-        async: true,
-        type: "text/javascript",
-      },
-      eventTypes: ["load", "error"],
-    }),
-  ]
-  if (oneTrustEventTypes.some(t => t === "error")) {
-    alert("OneTrust failed to load!")
-  }
-}
+// TODO: figure out what to do with this
+// function useOneTrustScripts(): void {
+//   const oneTrustEventTypes = [
+//     useExternalScript({
+//       props: {
+//         src: "https://cdn-ukwest.onetrust.com/consent/5da42396-cb12-4493-8d04-5179033cfbad/OtAutoBlock.js",
+//         type: "text/javascript",
+//       },
+//       eventTypes: ["load", "error"],
+//     }),
+//     useExternalScript({
+//       props: {
+//         src: "https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js",
+//         type: "text/javascript",
+//         charset: "UTF-8",
+//       },
+//       attrs: {
+//         "data-domain-script": "5da42396-cb12-4493-8d04-5179033cfbad",
+//       },
+//       eventTypes: ["load", "error"],
+//     }),
+//     useExternalScript({
+//       props: {
+//         src: "https://cdn-ukwest.onetrust.com/scripttemplates/202302.1.0/otBannerSdk.js",
+//         async: true,
+//         type: "text/javascript",
+//       },
+//       eventTypes: ["load", "error"],
+//     }),
+//   ]
+//   if (oneTrustEventTypes.some(t => t === "error")) {
+//     alert("OneTrust failed to load!")
+//   }
+// }

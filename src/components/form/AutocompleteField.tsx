@@ -1,16 +1,16 @@
-import React from "react"
-import { flushSync } from "react-dom"
+import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
 import {
   Autocomplete,
+  InputAdornment,
+  TextField,
+  useTheme,
   type AutocompleteProps,
   type ChipTypeMap,
-  TextField,
   type TextFieldProps,
-  useTheme,
-  InputAdornment,
 } from "@mui/material"
-import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
-import { Field, type FieldProps, type FieldConfig } from "formik"
+import { Field, type FieldConfig, type FieldProps } from "formik"
+import React from "react"
+import { flushSync } from "react-dom"
 import { string as YupString, ValidationError as YupValidationError } from "yup"
 
 import { wrap } from "../../helpers"
@@ -80,6 +80,8 @@ const AutocompleteField = <
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
+        // TODO: simplify this component and remove this state.
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const [showError, setShowError] = React.useState(false)
 
         let { sx, onBlur, ...otherTextFieldProps } = textFieldProps

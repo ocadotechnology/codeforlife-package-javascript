@@ -5,9 +5,9 @@ import {
 import {
   IconButton,
   Tab,
-  type TabScrollButtonProps,
   Tabs,
   Typography,
+  type TabScrollButtonProps,
 } from "@mui/material"
 import React from "react"
 import { generatePath, useNavigate, useParams } from "react-router-dom"
@@ -59,7 +59,7 @@ const TabBar: React.FC<TabBarProps> = ({
     if (tab !== undefined) {
       _setValue(paths.indexOf(tab))
     }
-  }, [params])
+  }, [params, paths])
 
   return (
     <>
