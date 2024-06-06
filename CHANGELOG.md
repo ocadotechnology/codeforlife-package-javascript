@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.7...v2.0.0) (2024-06-06)
+
+
+### Performance Improvements
+
+* **dev:** new dev env ([fbf89c6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fbf89c6d248b75b3e7b4066e4168f8ed2d28e38b))
+
+
+### BREAKING CHANGES
+
+* **dev:** The new dev env was bootstrapped with vite and rtk
+
 ## [1.27.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.6...v1.27.7) (2024-06-03)
 
 
