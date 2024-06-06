@@ -1,27 +1,27 @@
-import type React from "react"
-import {
-  Box,
-  type BoxProps,
-  ThemeProvider,
-  type SxProps,
-  buttonClasses,
-  type PaletteColor,
-  responsiveFontSizes,
-  createTheme,
-  type ThemeOptions,
-  type CSSObject,
-} from "@mui/material"
-import { type CommonProps } from "@mui/material/OverridableComponent"
 import {
   Circle as CircleIcon,
   Hexagon as HexagonIcon,
 } from "@mui/icons-material"
+import {
+  Box,
+  ThemeProvider,
+  buttonClasses,
+  createTheme,
+  responsiveFontSizes,
+  type BoxProps,
+  type CSSObject,
+  type PaletteColor,
+  type SxProps,
+  type ThemeOptions,
+} from "@mui/material"
+import { type CommonProps } from "@mui/material/OverridableComponent"
+import type React from "react"
 
 import { themeOptions } from "."
-import palette from "./palette"
-import { getStyleOverrides, includesClassNames } from "../helpers"
-import type Components from "./components/_components"
+import { getStyleOverrides, includesClassNames } from "../utils"
 import { primary, secondary, tertiary } from "./colors"
+import type Components from "./components/_components"
+import palette from "./palette"
 
 export interface ThemedBoxProps extends BoxProps {
   options?: ThemeOptions

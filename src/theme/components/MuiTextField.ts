@@ -1,13 +1,13 @@
 import {
-  inputClasses,
-  inputBaseClasses,
-  outlinedInputClasses,
   formHelperTextClasses,
+  inputBaseClasses,
+  inputClasses,
+  outlinedInputClasses,
 } from "@mui/material"
 
 import type Components from "./_components"
 
-import { includesClassNames } from "../../helpers"
+import { includesClassNames } from "../../utils"
 
 const MuiTextField: Components["MuiTextField"] = {
   defaultProps: {

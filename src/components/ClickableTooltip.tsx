@@ -1,7 +1,7 @@
-import React from "react"
 import { Tooltip, type TooltipProps } from "@mui/material"
+import React from "react"
 
-import { wrap } from "../helpers"
+import { wrap } from "../utils"
 
 export interface ClickableTooltipProps extends TooltipProps {}
 

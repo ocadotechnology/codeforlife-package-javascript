@@ -5,12 +5,12 @@ import { Provider, type ProviderProps } from "react-redux"
 import { type Action } from "redux"
 
 import { InactiveDialog, ScreenTimeDialog } from "../features"
+import { useCountdown, useEventListener } from "../hooks"
+import "../scripts"
 import {
   // configureFreshworksWidget,
   toggleOneTrustInfoDisplay,
-} from "../helpers/window"
-import { useCountdown, useEventListener } from "../hooks"
-import "../scripts"
+} from "../utils/window"
 
 export interface AppProps<A extends Action = Action, S = unknown> {
   theme: ThemeProviderProps["theme"]

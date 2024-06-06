@@ -1,5 +1,5 @@
-import type { CountryIsoCodes, UkCounties } from "../helpers/general"
-import type { Model } from "../helpers/rtkQuery"
+import type { CountryIsoCodes, UkCounties } from "../utils/general"
+import type { Model } from "../utils/rtkQuery"
 
 export type User = Model<
   number,

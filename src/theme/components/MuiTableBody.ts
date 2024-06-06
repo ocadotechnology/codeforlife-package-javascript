@@ -1,4 +1,4 @@
-import { includesClassNames } from "../../helpers"
+import { includesClassNames } from "../../utils"
 import type Components from "./_components"
 
 const MuiTableBody: Components["MuiTableBody"] = {

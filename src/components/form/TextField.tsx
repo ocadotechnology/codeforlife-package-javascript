@@ -21,7 +21,7 @@ import {
   type StringSchema,
 } from "yup"
 
-import { wrap } from "../../helpers"
+import { wrap } from "../../utils"
 import ClickableTooltip from "../ClickableTooltip"
 
 type StringArraySchema = ArraySchema<

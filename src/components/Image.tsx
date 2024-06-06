@@ -1,7 +1,7 @@
-import type React from "react"
 import { Box, type BoxProps } from "@mui/material"
+import type React from "react"
 
-import { openInNewTab } from "../helpers"
+import { openInNewTab } from "../utils"
 
 export interface ImageProps extends Omit<BoxProps, "component"> {
   alt: string

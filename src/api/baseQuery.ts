@@ -9,7 +9,7 @@ import Cookies from "js-cookie"
 import qs from "qs"
 
 import { API_BASE_URL, PORTAL_BASE_URL, SERVICE_NAME } from "../env"
-import { camelCaseToSnakeCase, snakeCaseToCamelCase } from "../helpers/general"
+import { camelCaseToSnakeCase, snakeCaseToCamelCase } from "../utils/general"
 
 export type FetchBaseQuery = BaseQueryFn<
   FetchArgs,

@@ -13,7 +13,7 @@ import React from "react"
 import { flushSync } from "react-dom"
 import { string as YupString, ValidationError as YupValidationError } from "yup"
 
-import { wrap } from "../../helpers"
+import { wrap } from "../../utils"
 import ClickableTooltip from "../ClickableTooltip"
 
 export interface AutocompleteFieldProps<

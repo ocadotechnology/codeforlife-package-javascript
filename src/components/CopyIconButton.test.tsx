@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react"
 
-import { renderWithUser } from "../helpers/test"
+import { renderWithUser } from "../utils/test"
 import CopyIconButton from "./CopyIconButton"
 
 test("Clicking button should copy content", async () => {

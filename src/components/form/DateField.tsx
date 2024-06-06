@@ -10,8 +10,8 @@ import {
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import React from "react"
 
-import { MIN_DATE } from "../../helpers/general"
 import { form as formTypography } from "../../theme/typography"
+import { MIN_DATE } from "../../utils/general"
 
 const monthOptions = [
   "January",

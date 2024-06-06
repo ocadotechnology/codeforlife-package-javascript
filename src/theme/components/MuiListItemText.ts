@@ -1,6 +1,6 @@
 import { listItemTextClasses } from "@mui/material"
 
-import { includesClassNames } from "../../helpers"
+import { includesClassNames } from "../../utils"
 import type Components from "./_components"
 
 const MuiListItemText: Components["MuiListItemText"] = {

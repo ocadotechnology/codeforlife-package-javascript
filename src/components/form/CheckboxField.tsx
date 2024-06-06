@@ -15,8 +15,8 @@ import {
 import React from "react"
 import { BooleanSchema, ValidationError, bool as YupBool } from "yup"
 
-import { wrap } from "../../helpers"
 import { form as formTypography } from "../../theme/typography"
+import { wrap } from "../../utils"
 import ClickableTooltip from "../ClickableTooltip"
 
 export interface CheckboxFieldProps
