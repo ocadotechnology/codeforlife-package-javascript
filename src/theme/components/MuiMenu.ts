@@ -1,14 +1,14 @@
-import Components from './_components';
+import type Components from "./_components"
 
-const MuiMenu: Components['MuiMenu'] = {
+const MuiMenu: Components["MuiMenu"] = {
   styleOverrides: {
     paper: {
-      borderRadius: 0
+      borderRadius: 0,
     },
     list: {
-      padding: 0
-    }
-  }
-};
+      padding: 0,
+    },
+  },
+}
 
-export default MuiMenu;
+export default MuiMenu

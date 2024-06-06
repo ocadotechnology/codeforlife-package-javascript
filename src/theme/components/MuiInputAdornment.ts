@@ -1,12 +1,12 @@
-import typography from '../typography';
-import Components from './_components';
+import typography from "../typography"
+import type Components from "./_components"
 
-const MuiInputAdornment: Components['MuiInputAdornment'] = {
+const MuiInputAdornment: Components["MuiInputAdornment"] = {
   styleOverrides: {
     root: {
-      color: typography.body1?.color
-    }
-  }
-};
+      color: typography.body1?.color,
+    },
+  },
+}
 
-export default MuiInputAdornment;
+export default MuiInputAdornment

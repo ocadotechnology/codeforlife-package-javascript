@@ -1,11 +1,11 @@
-import Components from './_components';
+import type Components from "./_components"
 
-const MuiToolbar: Components['MuiToolbar'] = {
+const MuiToolbar: Components["MuiToolbar"] = {
   styleOverrides: {
     root: {
-      padding: '15px 0px !important'
-    }
-  }
-};
+      padding: "15px 0px !important",
+    },
+  },
+}
 
-export default MuiToolbar;
+export default MuiToolbar

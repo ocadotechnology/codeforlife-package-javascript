@@ -1,95 +1,84 @@
-import React from 'react';
-import {
-  Typography,
-  Stack,
-  Button,
-  ButtonProps
-} from '@mui/material';
+import type React from "react"
+import { Typography, Stack, Button, type ButtonProps } from "@mui/material"
 
-import palette from '../../theme/palette';
-import { primary, secondary, tertiary } from '../../theme/colors';
-import Image, { ImageProps } from '../Image';
-import Section from './Section';
+import palette from "../../theme/palette"
+import { primary, secondary, tertiary } from "../../theme/colors"
+import Image, { type ImageProps } from "../Image"
+import Section from "./Section"
 
 export interface BannerProps {
-  header: string;
-  subheader: string;
-  textAlign?: 'start' | 'center';
-  imageProps?: ImageProps;
-  buttonProps?: ButtonProps;
-  bgcolor?: 'primary' | 'secondary' | 'tertiary';
-};
+  header: string
+  subheader: string
+  textAlign?: "start" | "center"
+  imageProps?: ImageProps
+  buttonProps?: ButtonProps
+  bgcolor?: "primary" | "secondary" | "tertiary"
+}
 
 const Banner: React.FC<BannerProps> = ({
   header,
   subheader,
-  textAlign = 'start',
+  textAlign = "start",
   imageProps,
   buttonProps,
-  bgcolor = 'primary'
+  bgcolor = "primary",
 }) => {
   // @ts-expect-error guaranteed to be in palette
-  const contrastText = palette[bgcolor].contrastText;
+  const contrastText = palette[bgcolor].contrastText
 
-  let _bgcolor: string;
+  let _bgcolor: string
   switch (bgcolor) {
-    case 'primary':
-      _bgcolor = primary[500];
-      break;
-    case 'secondary':
-      _bgcolor = secondary[500];
-      break;
-    case 'tertiary':
-      _bgcolor = tertiary[500];
-      break;
+    case "primary":
+      _bgcolor = primary[500]
+      break
+    case "secondary":
+      _bgcolor = secondary[500]
+      break
+    case "tertiary":
+      _bgcolor = tertiary[500]
+      break
   }
 
-  return <>
-    <Section
-      gridProps={{ bgcolor: _bgcolor }}
-      sx={{ paddingY: 0 }}
-    >
-      <Stack
-        direction='row'
-        alignItems='center'
-        justifyContent={textAlign}
-        gap={2}
-      >
+  return (
+    <>
+      <Section gridProps={{ bgcolor: _bgcolor }} sx={{ paddingY: 0 }}>
         <Stack
-          py={{
-            xs: '80px',
-            md: imageProps !== undefined ? 0 : '100px'
-          }}
-          textAlign={textAlign}
+          direction="row"
+          alignItems="center"
+          justifyContent={textAlign}
+          gap={2}
         >
-          <Typography
-            variant='h2'
-            color={contrastText}
+          <Stack
+            py={{
+              xs: "80px",
+              md: imageProps !== undefined ? 0 : "100px",
+            }}
+            textAlign={textAlign}
           >
-            {header}
-          </Typography>
-          <Typography
-            color={contrastText}
-            variant='h4'
-            mb={buttonProps !== undefined ? undefined : 0}
-          >
-            {subheader}
-          </Typography>
-          {buttonProps !== undefined &&
-            <Button {...buttonProps} />
-          }
+            <Typography variant="h2" color={contrastText}>
+              {header}
+            </Typography>
+            <Typography
+              color={contrastText}
+              variant="h4"
+              mb={buttonProps !== undefined ? undefined : 0}
+            >
+              {subheader}
+            </Typography>
+            {buttonProps !== undefined && <Button {...buttonProps} />}
+          </Stack>
+          {imageProps !== undefined && (
+            <Image
+              {...imageProps}
+              display={{ xs: "none", md: "block" }}
+              maxWidth="320px"
+              marginLeft="auto"
+            />
+          )}
         </Stack>
-        {imageProps !== undefined &&
-          <Image
-            {...imageProps}
-            display={{ xs: 'none', md: 'block' }}
-            maxWidth='320px'
-            marginLeft='auto'
-          />
-        }
-      </Stack>
-    </Section>
-  </>;
-};
+      </Section>
+    </>
+  )
+}
 
-export default Banner;
+export default Banner

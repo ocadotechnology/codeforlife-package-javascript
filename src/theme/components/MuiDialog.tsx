@@ -1,16 +1,16 @@
-import Components from './_components';
+import type Components from "./_components"
 
-const MuiDialog: Components['MuiDialog'] = {
+const MuiDialog: Components["MuiDialog"] = {
   defaultProps: {
-    maxWidth: 'sm'
+    maxWidth: "sm",
   },
   styleOverrides: {
     paper: {
-      borderRadius: '0px !important',
-      padding: '24px',
-      alignItems: 'center'
-    }
-  }
-};
+      borderRadius: "0px !important",
+      padding: "24px",
+      alignItems: "center",
+    },
+  },
+}
 
-export default MuiDialog;
+export default MuiDialog

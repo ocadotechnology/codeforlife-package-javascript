@@ -1,14 +1,14 @@
-import typography from '../typography';
-import Components from './_components';
+import typography from "../typography"
+import type Components from "./_components"
 
-const MuiInputBase: Components['MuiInputBase'] = {
+const MuiInputBase: Components["MuiInputBase"] = {
   styleOverrides: {
     root: {
-      backgroundColor: 'white',
+      backgroundColor: "white",
       marginBottom: 0,
-      color: typography.body1?.color
-    }
-  }
-};
+      color: typography.body1?.color,
+    },
+  },
+}
 
-export default MuiInputBase;
+export default MuiInputBase

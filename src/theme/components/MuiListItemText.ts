@@ -1,18 +1,18 @@
-import { listItemTextClasses } from '@mui/material';
+import { listItemTextClasses } from "@mui/material"
 
-import { includesClassNames } from '../../helpers';
-import Components from './_components';
+import { includesClassNames } from "../../utils"
+import type Components from "./_components"
 
-const MuiListItemText: Components['MuiListItemText'] = {
+const MuiListItemText: Components["MuiListItemText"] = {
   styleOverrides: {
     root: ({ ownerState }) => ({
-      ...(includesClassNames(ownerState, ['last']) && {
+      ...(includesClassNames(ownerState, ["last"]) && {
         [`.${listItemTextClasses.primary}`]: {
-          marginBottom: 0
-        }
-      })
-    })
-  }
-};
+          marginBottom: 0,
+        },
+      }),
+    }),
+  },
+}
 
-export default MuiListItemText;
+export default MuiListItemText

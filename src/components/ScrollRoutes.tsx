@@ -1,13 +1,9 @@
-import React from 'react';
-import {
-  Routes,
-  RoutesProps,
-  useLocation
-} from 'react-router-dom';
+import React from "react"
+import { Routes, useLocation, type RoutesProps } from "react-router-dom"
 
 export interface ScrollRoutesProps extends RoutesProps {
-  x?: number;
-  y?: number;
+  x?: number
+  y?: number
 }
 
 const ScrollRoutes: React.FC<ScrollRoutesProps> = ({
@@ -15,13 +11,13 @@ const ScrollRoutes: React.FC<ScrollRoutesProps> = ({
   y = 0,
   ...routesProps
 }) => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   React.useEffect(() => {
-    window.scroll(x, y);
-  }, [pathname]);
+    window.scroll(x, y)
+  }, [pathname, x, y])
 
-  return <Routes {...routesProps} />;
-};
+  return <Routes {...routesProps} />
+}
 
-export default ScrollRoutes;
+export default ScrollRoutes

@@ -1,7 +1,11 @@
-import InactiveDialog, { InactiveDialogProps } from './InactiveDialog';
-import ScreenTimeDialog, { ScreenTimeDialogProps } from './ScreenTimeDialog';
+import InactiveDialog, { type InactiveDialogProps } from "./InactiveDialog"
+import ScreenTimeDialog, {
+  type ScreenTimeDialogProps,
+} from "./ScreenTimeDialog"
 
 export {
-  InactiveDialog, type InactiveDialogProps,
-  ScreenTimeDialog, type ScreenTimeDialogProps
-};
+  InactiveDialog,
+  type InactiveDialogProps,
+  ScreenTimeDialog,
+  type ScreenTimeDialogProps,
+}
