@@ -7,7 +7,6 @@ on:
       - '**/*.code-*'
       - '.vscode/**'
       - '.devcontainer.json'
-      - '.gitignore'
   workflow_dispatch:
 
 jobs:
