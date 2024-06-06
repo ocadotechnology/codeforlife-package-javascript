@@ -51,7 +51,7 @@ const App = <A extends Action = Action, S = unknown>({
   //   configureFreshworksWidget("hide")
   // }, [])
 
-  if (process.env.NODE_ENV !== "development") {
+  if (import.meta.env.PROD) {
     toggleOneTrustInfoDisplay()
   }
 
