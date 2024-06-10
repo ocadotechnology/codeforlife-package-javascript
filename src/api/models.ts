@@ -63,3 +63,11 @@ export type AuthFactor = Model<
     type: "otp"
   }
 >
+
+export type OtpBypassToken = Model<
+  number,
+  {
+    user: number
+    token: string
+  }
+>
