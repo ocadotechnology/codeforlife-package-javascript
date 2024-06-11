@@ -1,4 +1,4 @@
-import { includesClassNames } from "../../utils"
+import { includesClassNames } from "../../utils/theme"
 import type Components from "./_components"
 
 const MuiMenuItem: Components["MuiMenuItem"] = {

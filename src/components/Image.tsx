@@ -1,7 +1,7 @@
 import { Box, type BoxProps } from "@mui/material"
 import type React from "react"
 
-import { openInNewTab } from "../utils"
+import { openInNewTab } from "../utils/general"
 
 export interface ImageProps extends Omit<BoxProps, "component"> {
   alt: string

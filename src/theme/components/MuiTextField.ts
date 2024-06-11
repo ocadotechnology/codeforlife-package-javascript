@@ -7,7 +7,7 @@ import {
 
 import type Components from "./_components"
 
-import { includesClassNames } from "../../utils"
+import { includesClassNames } from "../../utils/theme"
 
 const MuiTextField: Components["MuiTextField"] = {
   defaultProps: {

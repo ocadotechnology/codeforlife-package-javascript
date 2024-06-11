@@ -8,7 +8,11 @@ import {
 import { type CommonProps } from "@mui/material/OverridableComponent"
 import { type OverridesStyleRules } from "@mui/material/styles/overrides"
 
-import { getClassNames, includesClassNames, matchClassNames } from "../../utils"
+import {
+  getClassNames,
+  includesClassNames,
+  matchClassNames,
+} from "../../utils/theme"
 import typography from "../typography"
 
 export default interface Components

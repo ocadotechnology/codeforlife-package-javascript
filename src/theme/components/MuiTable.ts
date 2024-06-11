@@ -1,6 +1,6 @@
 import { tableCellClasses } from "@mui/material"
 
-import { includesClassNames } from "../../utils"
+import { includesClassNames } from "../../utils/theme"
 import typography from "../typography"
 import type Components from "./_components"
 

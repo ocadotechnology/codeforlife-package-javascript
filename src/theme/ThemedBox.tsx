@@ -18,7 +18,7 @@ import { type CommonProps } from "@mui/material/OverridableComponent"
 import type React from "react"
 
 import { themeOptions } from "."
-import { getStyleOverrides, includesClassNames } from "../utils"
+import { getStyleOverrides, includesClassNames } from "../utils/theme"
 import { primary, secondary, tertiary } from "./colors"
 import type Components from "./components/_components"
 import palette from "./palette"
