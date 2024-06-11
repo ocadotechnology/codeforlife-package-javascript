@@ -1,32 +1,32 @@
 import {
-  openInNewTab,
-  wrap,
-  path,
-  type Path,
-  snakeCaseToCamelCase,
   camelCaseToSnakeCase,
+  openInNewTab,
+  path,
+  snakeCaseToCamelCase,
+  wrap,
+  type Path,
 } from "./general"
 import {
-  insertDividerBetweenElements,
-  getStyleOverrides,
   getClassNames,
+  getStyleOverrides,
   includesClassNames,
+  insertDividerBetweenElements,
   matchClassNames,
-} from "./materialUI"
+} from "./theme"
 
 // global
 export {
-  // general
-  openInNewTab,
-  wrap,
-  path,
-  type Path,
-  snakeCaseToCamelCase,
   camelCaseToSnakeCase,
+  getClassNames,
+  getStyleOverrides,
+  includesClassNames,
   // materialUI
   insertDividerBetweenElements,
-  getStyleOverrides,
-  getClassNames,
-  includesClassNames,
   matchClassNames,
+  // general
+  openInNewTab,
+  path,
+  snakeCaseToCamelCase,
+  wrap,
+  type Path,
 }
