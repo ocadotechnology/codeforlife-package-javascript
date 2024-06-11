@@ -1,5 +1,5 @@
+import type { Model } from "../utils/api"
 import type { CountryIsoCodes, UkCounties } from "../utils/general"
-import type { Model } from "../utils/rtkQuery"
 
 export type User = Model<
   number,
