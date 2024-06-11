@@ -5,10 +5,8 @@ import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
 
-export interface EmailFieldProps
-  extends Omit<TextFieldProps, "type" | "name" | "schema"> {
-  name?: string
-}
+export type EmailFieldProps = Omit<TextFieldProps, "type" | "name" | "schema"> &
+  Partial<Pick<TextFieldProps, "name">>
 
 const EmailField: FC<EmailFieldProps> = ({
   name = "email",
