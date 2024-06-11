@@ -1,15 +1,13 @@
-import type React from "react"
-import { Button, type ButtonProps, Stack, type StackProps } from "@mui/material"
+import { Button, type ButtonProps } from "@mui/material"
 import { Field, type FieldProps, type FormikProps } from "formik"
+import type { FC } from "react"
 
 export interface SubmitButtonProps
   extends Omit<ButtonProps, "type" | "disabled"> {
-  stackProps?: Omit<StackProps, "children">
   disabled?: (form: FormikProps<any>) => boolean
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({
-  stackProps,
+const SubmitButton: FC<SubmitButtonProps> = ({
   children = "Submit",
   disabled = form => !(form.dirty && form.isValid),
   ...otherButtonProps
@@ -17,11 +15,9 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   return (
     <Field name="submit" type="submit">
       {({ form }: FieldProps) => (
-        <Stack {...stackProps}>
-          <Button type="submit" disabled={disabled(form)} {...otherButtonProps}>
-            {children}
-          </Button>
-        </Stack>
+        <Button type="submit" disabled={disabled(form)} {...otherButtonProps}>
+          {children}
+        </Button>
       )}
     </Field>
   )

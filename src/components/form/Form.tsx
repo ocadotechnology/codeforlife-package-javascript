@@ -1,17 +1,14 @@
-import { Stack, type StackProps } from "@mui/material"
 import {
   Formik,
   Form as FormikForm,
   type FormikConfig,
+  type FormikErrors,
   type FormikValues,
 } from "formik"
 
-export interface FormProps<Values> extends FormikConfig<Values> {
-  stackProps?: Omit<StackProps, "children">
-}
+export interface FormProps<Values> extends FormikConfig<Values> {}
 
 const Form = <Values extends FormikValues = FormikValues>({
-  stackProps,
   children,
   ...otherFormikProps
 }: FormProps<Values>): JSX.Element => {
@@ -19,9 +16,7 @@ const Form = <Values extends FormikValues = FormikValues>({
     <Formik {...otherFormikProps}>
       {formik => (
         <FormikForm>
-          <Stack {...stackProps}>
-            {typeof children === "function" ? children(formik) : children}
-          </Stack>
+          {typeof children === "function" ? children(formik) : children}
         </FormikForm>
       )}
     </Formik>
@@ -29,3 +24,4 @@ const Form = <Values extends FormikValues = FormikValues>({
 }
 
 export default Form
+export { type FormikErrors as FormErrors }

@@ -1,25 +1,25 @@
-import type React from "react"
-import { InputAdornment } from "@mui/material"
 import { EmailOutlined as EmailOutlinedIcon } from "@mui/icons-material"
+import { InputAdornment } from "@mui/material"
+import type { FC } from "react"
 import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
 
-export interface EmailFieldProps extends Omit<TextFieldProps, "type" | "name"> {
+export interface EmailFieldProps
+  extends Omit<TextFieldProps, "type" | "name" | "schema"> {
   name?: string
 }
 
-const EmailField: React.FC<EmailFieldProps> = ({
+const EmailField: FC<EmailFieldProps> = ({
   name = "email",
   InputProps = {},
-  validate = YupString().email(),
   ...otherTextFieldProps
 }) => {
   return (
     <TextField
       type="email"
+      schema={YupString().email()}
       name={name}
-      validate={validate}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
