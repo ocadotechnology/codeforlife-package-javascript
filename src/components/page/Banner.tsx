@@ -1,8 +1,8 @@
+import { Button, Stack, Typography, type ButtonProps } from "@mui/material"
 import type React from "react"
-import { Typography, Stack, Button, type ButtonProps } from "@mui/material"
 
-import palette from "../../theme/palette"
 import { primary, secondary, tertiary } from "../../theme/colors"
+import palette from "../../theme/palette"
 import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
 
@@ -41,7 +41,11 @@ const Banner: React.FC<BannerProps> = ({
 
   return (
     <>
-      <Section gridProps={{ bgcolor: _bgcolor }} sx={{ paddingY: 0 }}>
+      <Section
+        // TODO: figure this out
+        // gridProps={{ bgcolor: _bgcolor }}
+        sx={{ paddingY: 0 }}
+      >
         <Stack
           direction="row"
           alignItems="center"

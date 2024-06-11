@@ -1,26 +1,10 @@
-import type React from "react"
-import {
-  Unstable_Grid2 as Grid,
-  type Grid2Props,
-  Container,
-  type ContainerProps,
-} from "@mui/material"
+import { Container, type ContainerProps } from "@mui/material"
+import type { FC } from "react"
 
-export interface SectionProps extends ContainerProps {
-  children: React.ReactNode
-  gridProps?: Omit<Grid2Props, "xs" | "sm" | "md" | "lg" | "xl" | "container">
-}
+export interface SectionProps extends ContainerProps {}
 
-const Section: React.FC<SectionProps> = ({
-  gridProps,
-  children,
-  ...containerProps
-}) => {
-  return (
-    <Grid xs={12} {...gridProps}>
-      <Container {...containerProps}>{children}</Container>
-    </Grid>
-  )
+const Section: FC<SectionProps> = containerProps => {
+  return <Container {...containerProps} />
 }
 
 export default Section
