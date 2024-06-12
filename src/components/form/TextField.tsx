@@ -10,14 +10,7 @@ import { schemaToFieldValidator } from "../../utils/form"
 
 export type TextFieldProps = Omit<
   MuiTextFieldProps,
-  | "name"
-  | "id"
-  | "value"
-  | "onChange"
-  | "onBlur"
-  | "error"
-  | "helperText"
-  | "defaultValue"
+  "name" | "id" | "value" | "onChange" | "onBlur" | "error" | "defaultValue"
 > & {
   name: string
   schema: StringSchema
@@ -27,6 +20,7 @@ export type TextFieldProps = Omit<
 const TextField: FC<TextFieldProps> = ({
   name,
   schema,
+  helperText,
   type = "text",
   required = false,
   ...otherTextFieldProps
@@ -41,21 +35,24 @@ const TextField: FC<TextFieldProps> = ({
 
   return (
     <Field {...fieldConfig}>
-      {({ form }: FieldProps) => (
-        <MuiTextField
-          id={name}
-          name={name}
-          type={type}
-          required={required}
-          value={form.values[name]}
-          onChange={form.handleChange}
-          onBlur={form.handleBlur}
-          error={form.touched[name] && Boolean(form.errors[name])}
-          // @ts-expect-error
-          helperText={form.touched[name] && form.errors[name]}
-          {...otherTextFieldProps}
-        />
-      )}
+      {({ form }: FieldProps) => {
+        const error = form.touched[name] && Boolean(form.errors[name])
+
+        return (
+          <MuiTextField
+            id={name}
+            name={name}
+            type={type}
+            required={required}
+            value={form.values[name]}
+            onChange={form.handleChange}
+            onBlur={form.handleBlur}
+            error={error}
+            helperText={error ? (form.errors[name] as string) : helperText}
+            {...otherTextFieldProps}
+          />
+        )
+      }}
     </Field>
   )
 }
