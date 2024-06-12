@@ -41,9 +41,8 @@ const TextField: FC<TextFieldProps> = ({
 
   return (
     <Field {...fieldConfig}>
-      {({ form, meta }: FieldProps) => (
+      {({ form }: FieldProps) => (
         <MuiTextField
-          defaultValue={meta.initialValue}
           id={name}
           name={name}
           type={type}
