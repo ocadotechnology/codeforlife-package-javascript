@@ -5,6 +5,7 @@
 import CheckboxField, { type CheckboxFieldProps } from "./CheckboxField"
 import DateField, { type DateFieldProps } from "./DateField"
 import EmailField, { type EmailFieldProps } from "./EmailField"
+import FirstNameField, { type FirstNameFieldProps } from "./FirstNameField"
 import Form, { type FormErrors, type FormProps } from "./Form"
 import OtpField, { type OtpFieldProps } from "./OtpField"
 import PasswordField, { type PasswordFieldProps } from "./PasswordField"
@@ -16,15 +17,17 @@ export {
   CheckboxField,
   DateField,
   EmailField,
+  FirstNameField,
   Form,
   OtpField,
   PasswordField,
   SubmitButton,
   TextField,
-  // type AutocompleteFieldProps,
   type CheckboxFieldProps,
   type DateFieldProps,
   type EmailFieldProps,
+  // type AutocompleteFieldProps,
+  type FirstNameFieldProps,
   type FormErrors,
   type FormProps,
   type OtpFieldProps,
