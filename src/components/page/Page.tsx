@@ -1,15 +1,12 @@
-import { Children, type ReactNode } from "react"
+import { Children, useEffect, type ReactNode } from "react"
 import {
   createSearchParams,
   useLocation,
+  useNavigate,
   type Location,
 } from "react-router-dom"
 
-import {
-  useNavigate,
-  useSessionMetadata,
-  type SessionMetadata,
-} from "../../hooks"
+import { useSessionMetadata, type SessionMetadata } from "../../hooks/auth"
 import Notification, { type NotificationProps } from "./Notification"
 
 export type PageState = {
@@ -32,30 +29,37 @@ export interface PageProps<LoginPath extends string | undefined> {
     | (LoginPath extends undefined
         ? PageChildrenFunction<false>
         : PageChildrenFunction<true>)
+  next?: boolean
 }
 
 const Page = <LoginPath extends string | undefined = undefined>({
   loginPath,
   children,
+  next = true,
 }: PageProps<LoginPath>): JSX.Element => {
   const { pathname, state } = useLocation() as Location<unknown>
   const sessionMetadata = useSessionMetadata()
   const navigate = useNavigate()
 
-  if (loginPath) {
-    if (!sessionMetadata) {
+  const loginRequired = loginPath && !sessionMetadata
+
+  useEffect(() => {
+    if (loginRequired) {
       navigate({
         pathname: loginPath,
-        search: createSearchParams({ next: pathname }).toString(),
+        search: next
+          ? createSearchParams({ next: pathname }).toString()
+          : undefined,
       })
-      return <></>
     }
+  }, [loginRequired, loginPath, pathname, navigate, next])
 
-    if (typeof children === "function") {
-      children = (children as PageChildrenFunction<true>)(sessionMetadata)
-    }
-  } else if (typeof children === "function") {
-    children = (children as PageChildrenFunction<false>)(sessionMetadata)
+  if (loginRequired) return <></>
+
+  if (typeof children === "function") {
+    children = sessionMetadata
+      ? (children as PageChildrenFunction<true>)(sessionMetadata)
+      : (children as PageChildrenFunction<false>)(sessionMetadata)
   }
 
   const childrenArray = Children.toArray(children)

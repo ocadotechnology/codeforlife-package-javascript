@@ -1,4 +1,3 @@
-import Cookies from "js-cookie"
 import {
   useEffect,
   useState,
@@ -6,34 +5,6 @@ import {
   type Dispatch,
   type SetStateAction,
 } from "react"
-import {
-  useNavigate as _useNavigate,
-  useSearchParams,
-  type NavigateOptions,
-  type To as NavigateTo,
-} from "react-router-dom"
-
-import { type AuthFactor, type User } from "./api"
-import { type PageState } from "./components/page"
-
-export function useNavigate(): <
-  State extends Record<string, any> = Record<string, any>,
->(
-  to: NavigateTo,
-  options?: Omit<NavigateOptions, "state"> & {
-    state?: State & Partial<PageState>
-    next?: boolean
-  },
-) => void {
-  const navigate = _useNavigate()
-  const searchParams = useSearchParamEntries()
-
-  return (to, options) => {
-    const { next = true, ..._options } = options || {}
-
-    navigate(next && "next" in searchParams ? searchParams.next : to, _options)
-  }
-}
 
 export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
   props,
@@ -139,20 +110,4 @@ export function useEventListener<EventType extends keyof HTMLElementEventMap>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
     deps,
   )
-}
-
-export function useSearchParamEntries() {
-  return Object.fromEntries(useSearchParams()[0].entries())
-}
-
-export interface SessionMetadata {
-  user_id: User["id"]
-  auth_factors: Array<AuthFactor["type"]>
-  otp_bypass_token_exists: boolean
-}
-
-export function useSessionMetadata(): SessionMetadata | undefined {
-  const sessionMetadata = Cookies.get("session_metadata")
-
-  return sessionMetadata ? JSON.parse(sessionMetadata) : undefined
 }

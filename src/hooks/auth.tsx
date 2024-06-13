@@ -1,0 +1,40 @@
+import Cookies from "js-cookie"
+import { useEffect, type ReactNode } from "react"
+import { createSearchParams, useLocation, useNavigate } from "react-router-dom"
+
+import { type AuthFactor, type User } from "../api"
+
+export interface SessionMetadata {
+  user_id: User["id"]
+  auth_factors: Array<AuthFactor["type"]>
+  otp_bypass_token_exists: boolean
+}
+
+export function useSessionMetadata(): SessionMetadata | undefined {
+  const sessionMetadata = Cookies.get("session_metadata")
+
+  return sessionMetadata ? JSON.parse(sessionMetadata) : undefined
+}
+
+export function useSessionRequired(
+  loginPath: string,
+  children: ReactNode,
+  { next }: undefined | { next: boolean } = { next: true },
+) {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const sessionMetadata = useSessionMetadata()
+
+  useEffect(() => {
+    if (!sessionMetadata) {
+      navigate({
+        pathname: loginPath,
+        search: next
+          ? createSearchParams({ next: pathname }).toString()
+          : undefined,
+      })
+    }
+  }, [navigate, sessionMetadata, loginPath, next, pathname])
+
+  return sessionMetadata ? children : <></>
+}
