@@ -19,29 +19,33 @@ export type PageState = {
   }>
 }
 
-type PageChildrenFunction<Auth extends boolean> = (
-  sessionMetadata: Auth extends false
-    ? SessionMetadata | undefined
-    : SessionMetadata,
+type PageChildrenFunction<SessionRequired extends boolean> = (
+  sessionMetadata: SessionRequired extends true
+    ? SessionMetadata
+    : SessionMetadata | undefined,
 ) => ReactNode
 
-export interface PageProps<Auth extends boolean> {
-  auth?: Auth
-  children?: ReactNode | PageChildrenFunction<Auth>
+export interface PageProps<LoginPath extends string | undefined> {
+  loginPath?: LoginPath
+  children:
+    | ReactNode
+    | (LoginPath extends undefined
+        ? PageChildrenFunction<false>
+        : PageChildrenFunction<true>)
 }
 
-const Page = <Auth extends boolean>({
-  auth,
+const Page = <LoginPath extends string | undefined = undefined>({
+  loginPath,
   children,
-}: PageProps<Auth>): JSX.Element => {
+}: PageProps<LoginPath>): JSX.Element => {
   const { pathname, state } = useLocation() as Location<unknown>
   const sessionMetadata = useSessionMetadata()
   const navigate = useNavigate()
 
-  if (auth) {
+  if (loginPath) {
     if (!sessionMetadata) {
       navigate({
-        pathname: "/login",
+        pathname: loginPath,
         search: createSearchParams({ next: pathname }).toString(),
       })
       return <></>
