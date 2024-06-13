@@ -18,7 +18,7 @@ export function useSessionMetadata(): SessionMetadata | undefined {
 
 export function useSessionRequired(
   loginPath: string,
-  children: ReactNode,
+  children: ReactNode | ((sessionMetadata: SessionMetadata) => ReactNode),
   { next }: undefined | { next: boolean } = { next: true },
 ) {
   const { pathname } = useLocation()
@@ -36,5 +36,7 @@ export function useSessionRequired(
     }
   }, [navigate, sessionMetadata, loginPath, next, pathname])
 
-  return sessionMetadata ? children : <></>
+  if (!sessionMetadata) return <></>
+
+  return typeof children === "function" ? children(sessionMetadata) : children
 }
