@@ -13,7 +13,7 @@ import {
   type To as NavigateTo,
 } from "react-router-dom"
 
-import { type User } from "./api"
+import { type AuthFactor, type User } from "./api"
 import { type PageState } from "./components/page"
 
 export function useNavigate(): <
@@ -147,7 +147,7 @@ export function useSearchParamEntries() {
 
 export interface SessionMetadata {
   user_id: User["id"]
-  auth_factors: string[]
+  auth_factors: Array<AuthFactor["type"]>
   otp_bypass_token_exists: boolean
 }
 
