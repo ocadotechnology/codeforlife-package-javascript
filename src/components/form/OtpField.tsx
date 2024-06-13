@@ -3,15 +3,23 @@ import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
 
-export interface OtpFieldProps
-  extends Omit<TextFieldProps, "name" | "schema" | "required"> {}
+export type OtpFieldProps = Omit<
+  TextFieldProps,
+  "name" | "schema" | "required"
+> &
+  Partial<Pick<TextFieldProps, "name">>
 
-const OtpField: FC<OtpFieldProps> = props => (
+const OtpField: FC<OtpFieldProps> = ({
+  name = "otp",
+  placeholder = "123456",
+  ...otherTextFieldProps
+}) => (
   <TextField
-    name="otp"
+    name={name}
     schema={YupString().matches(/^[0-9]{6}$/, "Must be exactly 6 digits.")}
+    placeholder={placeholder}
     required
-    {...props}
+    {...otherTextFieldProps}
   />
 )
 
