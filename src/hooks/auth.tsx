@@ -6,6 +6,7 @@ import { type AuthFactor, type User } from "../api"
 
 export interface SessionMetadata {
   user_id: User["id"]
+  user_type: "teacher" | "student" | "indy"
   auth_factors: Array<AuthFactor["type"]>
   otp_bypass_token_exists: boolean
 }
