@@ -22,37 +22,49 @@ type PageChildrenFunction<SessionRequired extends boolean> = (
     : SessionMetadata | undefined,
 ) => ReactNode
 
-export interface PageProps<LoginPath extends string | undefined> {
-  loginPath?: LoginPath
+export interface PageProps<
+  SessionUserType extends SessionMetadata["user_type"] | undefined,
+> {
+  sessionUserType?: SessionUserType
   children:
     | ReactNode
-    | (LoginPath extends undefined
+    | (SessionUserType extends undefined
         ? PageChildrenFunction<false>
         : PageChildrenFunction<true>)
   next?: boolean
 }
 
-const Page = <LoginPath extends string | undefined = undefined>({
-  loginPath,
+const Page = <
+  SessionUserType extends SessionMetadata["user_type"] | undefined = undefined,
+>({
+  sessionUserType,
   children,
   next = true,
-}: PageProps<LoginPath>): JSX.Element => {
+}: PageProps<SessionUserType>): JSX.Element => {
   const { pathname, state } = useLocation() as Location<unknown>
   const sessionMetadata = useSessionMetadata()
   const navigate = useNavigate()
 
-  const loginRequired = loginPath && !sessionMetadata
+  const loginRequired =
+    sessionUserType &&
+    (!sessionMetadata || sessionMetadata.user_type !== sessionUserType)
 
   useEffect(() => {
     if (loginRequired) {
       navigate({
-        pathname: loginPath,
+        pathname:
+          "/login" +
+          {
+            teacher: "/teacher",
+            student: "/student",
+            indy: "/independent",
+          }[sessionUserType],
         search: next
           ? createSearchParams({ next: pathname }).toString()
           : undefined,
       })
     }
-  }, [loginRequired, loginPath, pathname, navigate, next])
+  }, [loginRequired, sessionUserType, pathname, navigate, next])
 
   if (loginRequired) return <></>
 
