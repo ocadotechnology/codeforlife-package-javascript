@@ -20,7 +20,7 @@ export function useSessionMetadata(): SessionMetadata | undefined {
 }
 
 export function useSessionRequired(
-  loginPath: string,
+  userType: SessionMetadata["user_type"],
   children: ReactNode | ((sessionMetadata: SessionMetadata) => ReactNode),
   { next }: undefined | { next: boolean } = { next: true },
 ) {
@@ -31,15 +31,21 @@ export function useSessionRequired(
   useEffect(() => {
     if (!sessionMetadata) {
       navigate({
-        pathname: loginPath,
+        pathname:
+          "/login" +
+          {
+            teacher: "/teacher",
+            student: "/student",
+            indy: "/independent",
+          }[userType],
         search: next
           ? createSearchParams({ next: pathname }).toString()
           : undefined,
       })
     }
-  }, [navigate, sessionMetadata, loginPath, next, pathname])
+  }, [navigate, sessionMetadata, userType, next, pathname])
 
-  if (!sessionMetadata) return <></>
+  if (!sessionMetadata || sessionMetadata.user_type !== userType) return <></>
 
   return typeof children === "function" ? children(sessionMetadata) : children
 }
