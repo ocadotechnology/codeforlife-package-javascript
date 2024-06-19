@@ -19,17 +19,44 @@ export function useSessionMetadata(): SessionMetadata | undefined {
     : undefined
 }
 
-export function useSessionRequired(
-  userType: SessionMetadata["user_type"],
-  children: ReactNode | ((sessionMetadata: SessionMetadata) => ReactNode),
-  { next }: undefined | { next: boolean } = { next: true },
+export type UseSessionChildrenFunction<Required extends boolean> = (
+  metadata: Required extends true
+    ? SessionMetadata
+    : SessionMetadata | undefined,
+) => ReactNode
+
+export type UseSessionChildren<
+  UserType extends SessionMetadata["user_type"] | undefined,
+> =
+  | ReactNode
+  | (UserType extends undefined
+      ? UseSessionChildrenFunction<false>
+      : UseSessionChildrenFunction<true>)
+
+export type UseSessionOptions<
+  UserType extends SessionMetadata["user_type"] | undefined,
+> = Partial<{
+  userType: UserType
+  next: boolean
+}>
+
+export function useSession<
+  UserType extends SessionMetadata["user_type"] | undefined = undefined,
+>(
+  children: UseSessionChildren<UserType>,
+  options: UseSessionOptions<UserType> = {},
 ) {
+  const { userType, next = true } = options
+
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const sessionMetadata = useSessionMetadata()
 
+  const loginRequired =
+    userType && (!sessionMetadata || sessionMetadata.user_type !== userType)
+
   useEffect(() => {
-    if (!sessionMetadata) {
+    if (loginRequired) {
       navigate({
         pathname:
           "/login" +
@@ -43,9 +70,15 @@ export function useSessionRequired(
           : undefined,
       })
     }
-  }, [navigate, sessionMetadata, userType, next, pathname])
+  }, [navigate, loginRequired, userType, next, pathname])
 
-  if (!sessionMetadata || sessionMetadata.user_type !== userType) return <></>
+  if (loginRequired) return <></>
 
-  return typeof children === "function" ? children(sessionMetadata) : children
+  if (typeof children === "function") {
+    return sessionMetadata
+      ? (children as UseSessionChildrenFunction<true>)(sessionMetadata)
+      : (children as UseSessionChildrenFunction<false>)(sessionMetadata)
+  }
+
+  return children
 }
