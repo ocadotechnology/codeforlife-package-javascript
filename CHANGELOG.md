@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.2...v2.0.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* remove unnecessary decodeURIComponent ([407dc65](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/407dc6560cd33563b797f65b74105486459b1ea4))
+
 ## [2.0.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.1...v2.0.2) (2024-06-19)
 
 
