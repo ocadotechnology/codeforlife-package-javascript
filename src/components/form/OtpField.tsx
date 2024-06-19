@@ -11,11 +11,13 @@ export type OtpFieldProps = Omit<
 
 const OtpField: FC<OtpFieldProps> = ({
   name = "otp",
-  placeholder = "123456",
+  label = "OTP",
+  placeholder = "Enter your OTP",
   ...otherTextFieldProps
 }) => (
   <TextField
     name={name}
+    label={label}
     schema={YupString().matches(/^[0-9]{6}$/, "Must be exactly 6 digits.")}
     placeholder={placeholder}
     required

@@ -13,7 +13,8 @@ export type PasswordFieldProps = Omit<
 
 const PasswordField: FC<PasswordFieldProps> = ({
   name = "password",
-  placeholder = "Password",
+  label = "Password",
+  placeholder = "Enter your password",
   schema = YupString(),
   InputProps = {},
   ...otherTextFieldProps
@@ -22,6 +23,7 @@ const PasswordField: FC<PasswordFieldProps> = ({
     <TextField
       type="password"
       name={name}
+      label={label}
       schema={schema}
       placeholder={placeholder}
       InputProps={{

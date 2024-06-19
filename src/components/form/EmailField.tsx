@@ -10,7 +10,8 @@ export type EmailFieldProps = Omit<TextFieldProps, "type" | "name" | "schema"> &
 
 const EmailField: FC<EmailFieldProps> = ({
   name = "email",
-  placeholder = "Email address",
+  label = "Email address",
+  placeholder = "Enter your email address",
   InputProps = {},
   ...otherTextFieldProps
 }) => {
@@ -19,6 +20,7 @@ const EmailField: FC<EmailFieldProps> = ({
       type="email"
       schema={YupString().email()}
       name={name}
+      label={label}
       placeholder={placeholder}
       InputProps={{
         endAdornment: (

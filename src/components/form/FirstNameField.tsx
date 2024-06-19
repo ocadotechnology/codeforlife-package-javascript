@@ -11,13 +11,15 @@ export type FirstNameFieldProps = Omit<
 
 const FirstNameField: FC<FirstNameFieldProps> = ({
   name = "first_name",
-  placeholder = "First name",
+  label = "First name",
+  placeholder = "Enter your first name",
   ...otherTextFieldProps
 }) => {
   return (
     <TextField
       schema={YupString().max(150)}
       name={name}
+      label={label}
       placeholder={placeholder}
       {...otherTextFieldProps}
     />

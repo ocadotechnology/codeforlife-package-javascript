@@ -3,7 +3,6 @@
 //   type AutocompleteFieldProps,
 // } from "./AutocompleteField"
 import CheckboxField, { type CheckboxFieldProps } from "./CheckboxField"
-import DateField, { type DateFieldProps } from "./DateField"
 import EmailField, { type EmailFieldProps } from "./EmailField"
 import FirstNameField, { type FirstNameFieldProps } from "./FirstNameField"
 import Form, { type FormErrors, type FormProps } from "./Form"
@@ -15,7 +14,6 @@ import TextField, { type TextFieldProps } from "./TextField"
 export {
   // AutocompleteField,
   CheckboxField,
-  DateField,
   EmailField,
   FirstNameField,
   Form,
@@ -24,7 +22,6 @@ export {
   SubmitButton,
   TextField,
   type CheckboxFieldProps,
-  type DateFieldProps,
   type EmailFieldProps,
   // type AutocompleteFieldProps,
   type FirstNameFieldProps,
