@@ -15,7 +15,7 @@ export function useSessionMetadata(): SessionMetadata | undefined {
   const sessionMetadata = Cookies.get("session_metadata")
 
   return sessionMetadata
-    ? JSON.parse(sessionMetadata.replaceAll("\\054", ",").replaceAll("\\", ""))
+    ? JSON.parse(decodeURIComponent(sessionMetadata))
     : undefined
 }
 
