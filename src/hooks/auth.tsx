@@ -14,9 +14,7 @@ export interface SessionMetadata {
 export function useSessionMetadata(): SessionMetadata | undefined {
   const sessionMetadata = Cookies.get("session_metadata")
 
-  return sessionMetadata
-    ? JSON.parse(decodeURIComponent(sessionMetadata))
-    : undefined
+  return sessionMetadata ? JSON.parse(sessionMetadata) : undefined
 }
 
 export type UseSessionChildrenFunction<Required extends boolean> = (
