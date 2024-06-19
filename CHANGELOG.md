@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.0...v2.0.1) (2024-06-19)
+
+
+### Bug Fixes
+
+* auth flow ([#43](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/43)) ([9c513a4](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9c513a4fbc541c1a152e957bab7e2641bea85f52))
+
 # [2.0.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v1.27.7...v2.0.0) (2024-06-06)
 
 
