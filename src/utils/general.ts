@@ -27,35 +27,6 @@ export function wrap(
   }
 }
 
-export interface Path {
-  _: string
-  [subpath: string]: string | Path
-}
-
-export function path<Subpaths extends Record<string, Path>>(
-  _: string,
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  subpaths: Subpaths = {} as Subpaths,
-): Path & Subpaths {
-  function updatePath(path: Path, root: boolean): void {
-    Object.entries(path).forEach(([key, subpath]) => {
-      if (typeof subpath === "string") {
-        if (!root || key !== "_") path[key] = _ + subpath
-      } else {
-        updatePath(subpath, false)
-      }
-    })
-  }
-
-  const path = { ...subpaths, _ }
-  if (_ === "") {
-    path._ = "/"
-  } else {
-    updatePath(path, true)
-  }
-  return path
-}
-
 export function snakeCaseToCamelCase(obj: Record<string, any>): void {
   Object.entries(obj).forEach(([snakeKey, value]) => {
     if (typeof value === "object") snakeCaseToCamelCase(value)

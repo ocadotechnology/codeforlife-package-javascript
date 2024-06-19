@@ -2,7 +2,8 @@ import type {
   TypedLazyQueryTrigger,
   TypedMutationTrigger,
 } from "@reduxjs/toolkit/query/react"
-import type { FormikHelpers } from "formik"
+import type { FieldValidator, FormikHelpers } from "formik"
+import { ValidationError, type Schema } from "yup"
 
 export function isFormError(error: unknown): boolean {
   return (
@@ -20,9 +21,7 @@ export function setFormErrors(
   error: unknown,
   setErrors: (errors: object) => void,
 ): void {
-  if (!isFormError(error)) {
-    throw error
-  }
+  if (!isFormError(error)) throw error
 
   const data = Object.fromEntries(
     Object.entries((error as { data: object }).data).map(([field, errors]) => {
@@ -58,5 +57,19 @@ export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
       .finally(() => {
         if (query.finally !== undefined) query.finally()
       })
+  }
+}
+
+export function schemaToFieldValidator(schema: Schema): FieldValidator {
+  return async value => {
+    try {
+      await schema.validate(value)
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        return error.errors.join(". ")
+      }
+
+      throw error
+    }
   }
 }

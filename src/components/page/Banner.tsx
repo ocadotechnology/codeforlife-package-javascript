@@ -1,8 +1,8 @@
+import { Button, Stack, Typography, type ButtonProps } from "@mui/material"
 import type React from "react"
-import { Typography, Stack, Button, type ButtonProps } from "@mui/material"
 
+// import { primary, secondary, tertiary } from "../../theme/colors"
 import palette from "../../theme/palette"
-import { primary, secondary, tertiary } from "../../theme/colors"
 import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
 
@@ -26,22 +26,26 @@ const Banner: React.FC<BannerProps> = ({
   // @ts-expect-error guaranteed to be in palette
   const contrastText = palette[bgcolor].contrastText
 
-  let _bgcolor: string
-  switch (bgcolor) {
-    case "primary":
-      _bgcolor = primary[500]
-      break
-    case "secondary":
-      _bgcolor = secondary[500]
-      break
-    case "tertiary":
-      _bgcolor = tertiary[500]
-      break
-  }
+  // let _bgcolor: string
+  // switch (bgcolor) {
+  //   case "primary":
+  //     _bgcolor = primary[500]
+  //     break
+  //   case "secondary":
+  //     _bgcolor = secondary[500]
+  //     break
+  //   case "tertiary":
+  //     _bgcolor = tertiary[500]
+  //     break
+  // }
 
   return (
     <>
-      <Section gridProps={{ bgcolor: _bgcolor }} sx={{ paddingY: 0 }}>
+      <Section
+        // TODO: figure this out
+        // gridProps={{ bgcolor: _bgcolor }}
+        sx={{ paddingY: 0 }}
+      >
         <Stack
           direction="row"
           alignItems="center"

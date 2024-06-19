@@ -1,26 +1,31 @@
-import type React from "react"
-import { InputAdornment } from "@mui/material"
 import { Security as SecurityIcon } from "@mui/icons-material"
+import { InputAdornment } from "@mui/material"
+import type { FC } from "react"
 import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
 
-export interface PasswordFieldProps
-  extends Omit<TextFieldProps, "type" | "name"> {
-  name?: string
-}
+export type PasswordFieldProps = Omit<
+  TextFieldProps,
+  "type" | "name" | "schema"
+> &
+  Partial<Pick<TextFieldProps, "name" | "schema">>
 
-const PasswordField: React.FC<PasswordFieldProps> = ({
+const PasswordField: FC<PasswordFieldProps> = ({
   name = "password",
+  label = "Password",
+  placeholder = "Enter your password",
+  schema = YupString(),
   InputProps = {},
-  validate = YupString(),
   ...otherTextFieldProps
 }) => {
   return (
     <TextField
       type="password"
       name={name}
-      validate={validate}
+      label={label}
+      schema={schema}
+      placeholder={placeholder}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

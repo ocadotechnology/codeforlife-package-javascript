@@ -13,8 +13,7 @@ import React from "react"
 import { generatePath, useNavigate, useParams } from "react-router-dom"
 import { object as YupObject, string as YupString } from "yup"
 
-import { primary } from "../../theme/colors"
-import { tryValidateSync } from "../../utils/yup"
+import { tryValidateSync } from "../../utils/schema"
 import Section from "./Section"
 
 export interface TabBarProps {
@@ -64,7 +63,8 @@ const TabBar: React.FC<TabBarProps> = ({
   return (
     <>
       <Section
-        gridProps={{ bgcolor: primary[500] }}
+        // TODO: figure this out
+        // gridProps={{ bgcolor: primary[500] }}
         sx={{ paddingY: "100px" }}
         className="flex-center"
       >
@@ -78,7 +78,8 @@ const TabBar: React.FC<TabBarProps> = ({
         </Typography>
       </Section>
       <Section
-        gridProps={{ bgcolor: primary[300] }}
+        // TODO: figure this out
+        // gridProps={{ bgcolor: primary[300] }}
         sx={{ paddingY: "6px" }}
         className="flex-center"
       >

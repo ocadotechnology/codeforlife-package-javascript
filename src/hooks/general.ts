@@ -5,28 +5,6 @@ import {
   type Dispatch,
   type SetStateAction,
 } from "react"
-import {
-  useNavigate as _useNavigate,
-  useSearchParams,
-  type NavigateOptions,
-  type To as NavigateTo,
-} from "react-router-dom"
-
-import { type ContainerState } from "./components/page"
-
-export function useNavigate(): <
-  State extends Record<string, any> = Record<string, any>,
->(
-  to: NavigateTo,
-  options?: Omit<NavigateOptions, "state"> & {
-    state?: State & ContainerState
-  },
-) => void {
-  const navigate = _useNavigate()
-  return (to, options) => {
-    navigate(to, options)
-  }
-}
 
 export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
   props,
@@ -132,8 +110,4 @@ export function useEventListener<EventType extends keyof HTMLElementEventMap>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
     deps,
   )
-}
-
-export function useSearchParamEntries() {
-  return Object.fromEntries(useSearchParams()[0].entries())
 }

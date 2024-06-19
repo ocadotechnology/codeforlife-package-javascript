@@ -3,6 +3,7 @@ import endpoints from "./endpoints"
 import type {
   AuthFactor,
   Class,
+  OtpBypassToken,
   School,
   Student,
   Teacher,
@@ -18,6 +19,7 @@ export {
   urls,
   type AuthFactor,
   type Class,
+  type OtpBypassToken,
   type School,
   type Student,
   type Teacher,

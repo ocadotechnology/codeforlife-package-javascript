@@ -1,10 +1,10 @@
-import React from "react"
-import { Stack, Typography, IconButton } from "@mui/material"
 import {
-  InfoOutlined as InfoOutlinedIcon,
-  ErrorOutline as ErrorOutlineIcon,
   CloseOutlined as CloseOutlinedIcon,
+  ErrorOutline as ErrorOutlineIcon,
+  InfoOutlined as InfoOutlinedIcon,
 } from "@mui/icons-material"
+import { IconButton, Stack, Typography } from "@mui/material"
+import React from "react"
 
 import palette from "../../theme/palette"
 import Section from "./Section"
@@ -37,9 +37,10 @@ const Notification: React.FC<NotificationProps> = ({
 
   return (
     <Section
-      gridProps={{
-        bgcolor: bgcolor === "secondary" ? "#ffd23b" : "#08bafc",
-      }}
+      // TODO: figure this out
+      // gridProps={{
+      //   bgcolor: bgcolor === "secondary" ? "#ffd23b" : "#08bafc",
+      // }}
       sx={{ paddingY: "5px" }}
     >
       <Stack direction="row" alignItems="center" gap={2}>
