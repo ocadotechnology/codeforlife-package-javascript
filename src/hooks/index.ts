@@ -1,7 +1,10 @@
 import {
+  useSession,
   useSessionMetadata,
-  useSessionRequired,
   type SessionMetadata,
+  type UseSessionChildren,
+  type UseSessionChildrenFunction,
+  type UseSessionOptions,
 } from "./auth"
 import { useCountdown, useEventListener, useExternalScript } from "./general"
 import { useNavigate, useSearchParamEntries } from "./router"
@@ -12,7 +15,10 @@ export {
   useExternalScript,
   useNavigate,
   useSearchParamEntries,
+  useSession,
   useSessionMetadata,
-  useSessionRequired,
   type SessionMetadata,
+  type UseSessionChildren,
+  type UseSessionChildrenFunction,
+  type UseSessionOptions,
 }
