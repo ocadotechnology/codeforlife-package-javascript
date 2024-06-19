@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.1...v2.0.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* decode session metadata cookie ([d3c4a9d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d3c4a9d79320ca07d6f801132275474fd62cb266))
+
 ## [2.0.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.0...v2.0.1) (2024-06-19)
 
 
