@@ -1,6 +1,9 @@
-import { Security as SecurityIcon } from "@mui/icons-material"
-import { InputAdornment } from "@mui/material"
-import type { FC } from "react"
+import {
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+} from "@mui/icons-material"
+import { IconButton, InputAdornment } from "@mui/material"
+import { useState, type FC } from "react"
 import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
@@ -19,9 +22,11 @@ const PasswordField: FC<PasswordFieldProps> = ({
   InputProps = {},
   ...otherTextFieldProps
 }) => {
+  const [isVisible, setIsVisible] = useState(false)
+
   return (
     <TextField
-      type="password"
+      type={isVisible ? "text" : "password"}
       name={name}
       label={label}
       schema={schema}
@@ -29,7 +34,14 @@ const PasswordField: FC<PasswordFieldProps> = ({
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <SecurityIcon />
+            <IconButton
+              onClick={() => {
+                setIsVisible(previousIsVisible => !previousIsVisible)
+              }}
+              edge="end"
+            >
+              {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </IconButton>
           </InputAdornment>
         ),
         ...InputProps,
