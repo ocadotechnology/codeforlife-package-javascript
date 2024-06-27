@@ -1,20 +1,14 @@
-import { ErrorOutline as ErrorOutlineIcon } from "@mui/icons-material"
 import {
   Autocomplete,
-  InputAdornment,
   TextField,
-  useTheme,
   type AutocompleteProps,
   type ChipTypeMap,
   type TextFieldProps,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import React from "react"
-import { flushSync } from "react-dom"
-import { string as YupString, ValidationError as YupValidationError } from "yup"
+import * as yup from "yup"
 
-import { wrap } from "../../utils/general"
-import ClickableTooltip from "../ClickableTooltip"
+import { schemaToFieldValidator } from "../../utils/form"
 
 export interface AutocompleteFieldProps<
   Multiple extends boolean | undefined = false,
@@ -29,15 +23,22 @@ export interface AutocompleteFieldProps<
       FreeSolo,
       ChipComponent
     >,
-    "renderInput" | "onChange" | "defaultValue"
+    "renderInput" | "defaultValue" | "onChange" | "onBlur" | "value"
   > {
   textFieldProps: Omit<
     TextFieldProps,
-    "type" | "defaultValue" | "InputProps"
+    | "name"
+    | "id"
+    | "value"
+    | "onChange"
+    | "onBlur"
+    | "error"
+    | "helperText"
+    | "defaultValue"
+    | "type"
   > & {
     name: string
   }
-  selectOnly?: boolean
 }
 
 const AutocompleteField = <
@@ -47,7 +48,6 @@ const AutocompleteField = <
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 >({
   textFieldProps,
-  selectOnly = false,
   options,
   ...otherAutocompleteProps
 }: AutocompleteFieldProps<
@@ -55,103 +55,48 @@ const AutocompleteField = <
   DisableClearable,
   FreeSolo,
   ChipComponent
->): JSX.Element => {
-  const theme = useTheme()
+>) => {
+  const { name, required, ...otherTextFieldProps } = textFieldProps
+
+  let schema = yup.string().oneOf(options, "not a valid option")
+  if (required) schema = schema.required()
 
   const fieldConfig: FieldConfig = {
-    name: textFieldProps.name,
+    name,
     type: "text",
-    validate: (value): string | void => {
-      try {
-        let validate = YupString().oneOf(options, "Not a valid option")
-        if (textFieldProps.required === true) {
-          validate = validate.required()
-        }
-        validate.validateSync(value)
-      } catch (error) {
-        if (error instanceof YupValidationError) {
-          return error.errors[0]
-        }
-        throw error
-      }
-    },
+    validate: schemaToFieldValidator(schema),
   }
 
   return (
     <Field {...fieldConfig}>
-      {({ form, meta }: FieldProps) => {
-        // TODO: simplify this component and remove this state.
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [showError, setShowError] = React.useState(false)
-
-        let { sx, onBlur, ...otherTextFieldProps } = textFieldProps
-
-        onBlur = wrap(
-          {
-            after: () => {
-              setShowError(true)
-            },
-          },
-          onBlur,
-        )
-
-        return (
-          <Autocomplete
-            options={options}
-            defaultValue={meta.initialValue}
-            renderInput={({ inputProps, InputProps, ...otherParams }) => {
-              let { endAdornment, ...otherInputProps } = InputProps
-
-              if (showError && meta.error !== undefined && meta.error !== "") {
-                endAdornment = (
-                  <>
-                    {endAdornment}
-                    <InputAdornment position="end">
-                      <ClickableTooltip title={meta.error}>
-                        <ErrorOutlineIcon color="error" />
-                      </ClickableTooltip>
-                    </InputAdornment>
-                  </>
-                )
-
-                sx = {
-                  ...sx,
-                  "& .MuiOutlinedInput-root.Mui-focused > fieldset": {
-                    borderColor: theme.palette.error.main,
-                  },
-                }
+      {({ form, meta }: FieldProps) => (
+        <Autocomplete
+          options={options}
+          defaultValue={
+            meta.initialValue === "" ? undefined : meta.initialValue
+          }
+          renderInput={({ id, ...otherParams }) => (
+            <TextField
+              id={name}
+              name={name}
+              required={required}
+              type="text"
+              value={form.values[name]}
+              error={form.touched[name] && Boolean(form.errors[name])}
+              helperText={
+                (form.touched[name] && form.errors[name]) as false | string
               }
-
-              return (
-                <TextField
-                  {...otherParams}
-                  {...otherTextFieldProps}
-                  sx={sx}
-                  onBlur={onBlur}
-                  InputProps={{
-                    endAdornment,
-                    ...otherInputProps,
-                  }}
-                  inputProps={{
-                    ...inputProps,
-                    readOnly: selectOnly,
-                  }}
-                />
-              )
-            }}
-            onChange={(_, value) => {
-              flushSync(() => {
-                form.setFieldValue(
-                  textFieldProps.name,
-                  value ?? undefined,
-                  true,
-                )
-              })
-            }}
-            {...otherAutocompleteProps}
-          />
-        )
-      }}
+              {...otherTextFieldProps}
+              {...otherParams}
+            />
+          )}
+          onChange={(_, value) => {
+            form.setFieldValue(name, value ?? undefined, true)
+          }}
+          onBlur={form.handleBlur}
+          {...otherAutocompleteProps}
+        />
+      )}
     </Field>
   )
 }

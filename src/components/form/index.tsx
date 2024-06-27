@@ -1,7 +1,6 @@
-// TODO: fix this broken import
-// import AutocompleteField, {
-//   type AutocompleteFieldProps,
-// } from "./AutocompleteField"
+import AutocompleteField, {
+  type AutocompleteFieldProps,
+} from "./AutocompleteField"
 import CheckboxField, { type CheckboxFieldProps } from "./CheckboxField"
 import EmailField, { type EmailFieldProps } from "./EmailField"
 import FirstNameField, { type FirstNameFieldProps } from "./FirstNameField"
@@ -13,19 +12,19 @@ import SubmitButton, { type SubmitButtonProps } from "./SubmitButton"
 import TextField, { type TextFieldProps } from "./TextField"
 
 export {
+  AutocompleteField,
   CheckboxField,
   EmailField,
   FirstNameField,
   Form,
   OtpField,
   PasswordField,
-  // AutocompleteField,
   RepeatField,
   SubmitButton,
   TextField,
+  type AutocompleteFieldProps,
   type CheckboxFieldProps,
   type EmailFieldProps,
-  // type AutocompleteFieldProps,
   type FirstNameFieldProps,
   type FormErrors,
   type FormProps,
