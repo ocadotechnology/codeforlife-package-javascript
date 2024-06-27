@@ -10,7 +10,7 @@ import TextField, { type TextFieldProps } from "./TextField"
 
 export type PasswordFieldProps = Omit<
   TextFieldProps,
-  "type" | "name" | "schema"
+  "type" | "name" | "schema" | "autoComplete"
 > &
   Partial<Pick<TextFieldProps, "name" | "schema">>
 
@@ -26,6 +26,7 @@ const PasswordField: FC<PasswordFieldProps> = ({
 
   return (
     <TextField
+      autoComplete="on"
       type={isVisible ? "text" : "password"}
       name={name}
       label={label}
