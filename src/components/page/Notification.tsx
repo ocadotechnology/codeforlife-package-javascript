@@ -4,7 +4,7 @@ import {
   InfoOutlined as InfoOutlinedIcon,
 } from "@mui/icons-material"
 import { IconButton, Stack, Typography } from "@mui/material"
-import { useEffect, useState, type FC } from "react"
+import { useEffect, useState, type FC, type ReactNode } from "react"
 
 import palette from "../../theme/palette"
 import Section from "./Section"
@@ -13,7 +13,7 @@ export interface NotificationProps {
   open?: boolean
   error?: boolean
   onClose?: () => void
-  children: React.ReactNode
+  children: ReactNode
   bgcolor?: "secondary" | "tertiary"
 }
 
@@ -37,7 +37,12 @@ const Notification: FC<NotificationProps> = ({
 
   return (
     <Section
-      boxProps={{ bgcolor: bgcolor === "secondary" ? "#ffd23b" : "#08bafc" }}
+      boxProps={{
+        bgcolor: {
+          secondary: "#ffd23b",
+          tertiary: "#08bafc",
+        }[bgcolor],
+      }}
       sx={{ paddingY: "5px" }}
     >
       <Stack direction="row" alignItems="center" gap={2}>
