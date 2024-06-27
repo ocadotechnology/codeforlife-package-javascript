@@ -4,7 +4,7 @@ import {
   InfoOutlined as InfoOutlinedIcon,
 } from "@mui/icons-material"
 import { IconButton, Stack, Typography } from "@mui/material"
-import React from "react"
+import { useEffect, useState, type FC } from "react"
 
 import palette from "../../theme/palette"
 import Section from "./Section"
@@ -17,16 +17,16 @@ export interface NotificationProps {
   bgcolor?: "secondary" | "tertiary"
 }
 
-const Notification: React.FC<NotificationProps> = ({
+const Notification: FC<NotificationProps> = ({
   open = true,
   error = false,
   onClose,
   children,
   bgcolor = "secondary",
 }) => {
-  const [_open, _setOpen] = React.useState(open)
+  const [_open, _setOpen] = useState(open)
 
-  React.useEffect(() => {
+  useEffect(() => {
     _setOpen(open)
   }, [open])
 
@@ -37,10 +37,7 @@ const Notification: React.FC<NotificationProps> = ({
 
   return (
     <Section
-      // TODO: figure this out
-      // gridProps={{
-      //   bgcolor: bgcolor === "secondary" ? "#ffd23b" : "#08bafc",
-      // }}
+      boxProps={{ bgcolor: bgcolor === "secondary" ? "#ffd23b" : "#08bafc" }}
       sx={{ paddingY: "5px" }}
     >
       <Stack direction="row" alignItems="center" gap={2}>
