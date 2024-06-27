@@ -55,7 +55,7 @@ const AutocompleteField = <
   DisableClearable,
   FreeSolo,
   ChipComponent
->) => {
+>): JSX.Element => {
   const { name, required, ...otherTextFieldProps } = textFieldProps
 
   let schema = yup.string().oneOf(options, "not a valid option")
