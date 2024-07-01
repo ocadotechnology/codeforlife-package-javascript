@@ -1,44 +1,36 @@
-export class PathError extends Error {}
+import { generatePath } from "react-router-dom"
+
+export type Parameters = Record<string, string>
 
 export interface Path {
   _: string
-  __: string
-  [subpath: string]: string | Path
+  __: string | Parameters
+  [subpath: string]: string | Path | Parameters
 }
 
 export function path<Subpaths extends Record<string, Path>>(
-  _: string,
+  _: string | Parameters,
   subpaths: Subpaths = {} as Subpaths,
 ): Path & Subpaths {
   function updatePath(path: Path, root: boolean): void {
+    if (typeof path.__ === "object" && typeof _ === "string") {
+      _ = generatePath(_, path.__)
+    }
+
     Object.entries(path).forEach(([key, subpath]) => {
-      if (typeof subpath === "string") {
-        if (key !== "__" && (!root || key !== "_")) {
-          const matches = _.match(/:[^/]+/g)
-          if (matches) {
-            const params = subpath.split(",")
-            if (matches.length !== params.length) {
-              throw new PathError(
-                `Found ${matches.length} parameter keys and ${params.length}` +
-                  ` parameter values.\nKeys: ${matches}.\nValues: ${params}.`,
-              )
-            }
-            subpath = matches.reduce(
-              (path, match, i) => path.replace(match, params[i]),
-              _,
-            )
-          } else {
-            subpath = _ + subpath
+      if (key !== "__") {
+        if (typeof subpath === "string") {
+          if (typeof _ === "string" && (!root || key !== "_")) {
+            path[key] = _ + subpath
           }
-          path[key] = subpath
+        } else {
+          updatePath(subpath as Path, false)
         }
-      } else {
-        updatePath(subpath, false)
       }
     })
   }
 
-  const path = { ...subpaths, _, __: _ }
+  const path = { ...subpaths, _: typeof _ === "string" ? _ : "", __: _ }
   if (_ === "") {
     path._ = "/"
   } else {
