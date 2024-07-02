@@ -1,17 +1,21 @@
 import {
+  filledInputClasses,
   formHelperTextClasses,
+  formLabelClasses,
   inputBaseClasses,
   inputClasses,
   outlinedInputClasses,
+  svgIconClasses,
 } from "@mui/material"
 
-import type Components from "./_components"
-
 import { includesClassNames } from "../../utils/theme"
+import typography from "../typography"
+import type Components from "./_components"
 
 const MuiTextField: Components["MuiTextField"] = {
   defaultProps: {
     size: "small",
+    variant: "filled",
   },
   styleOverrides: {
     root: ({ ownerState }) => ({
@@ -19,9 +23,19 @@ const MuiTextField: Components["MuiTextField"] = {
       backgroundColor: "transparent",
       [`& > .${inputBaseClasses.root}`]: {
         borderRadius: "0px !important",
+        backgroundColor: "white !important",
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
         borderColor: "black !important",
+      },
+      [`.${svgIconClasses.root}`]: {
+        color: `${typography.body1?.color} !important`,
+      },
+      [`.${filledInputClasses.root}::after`]: {
+        borderColor: `${typography.body1?.color} !important`,
+      },
+      [`.${formLabelClasses.root}`]: {
+        color: `${typography.body1?.color} !important`,
       },
       [`.${formHelperTextClasses.root}`]: {
         fontSize: "12px !important",

@@ -9,10 +9,11 @@ import {
   Typography,
   type TabScrollButtonProps,
 } from "@mui/material"
-import React from "react"
+import { useEffect, useState, type FC, type ReactNode } from "react"
 import { generatePath, useNavigate, useParams } from "react-router-dom"
 import { object as YupObject, string as YupString } from "yup"
 
+import { primary } from "../../theme/colors"
 import { tryValidateSync } from "../../utils/schema"
 import Section from "./Section"
 
@@ -20,22 +21,17 @@ export interface TabBarProps {
   header: string
   tabs: Array<{
     label: string
-    children: React.ReactNode
+    children: ReactNode
     path: string
   }>
   originalPath: string
   value?: number
 }
 
-const TabBar: React.FC<TabBarProps> = ({
-  header,
-  tabs,
-  originalPath,
-  value = 0,
-}) => {
+const TabBar: FC<TabBarProps> = ({ header, tabs, originalPath, value = 0 }) => {
   const params = useParams()
   const navigate = useNavigate()
-  const [_value, _setValue] = React.useState(
+  const [_value, _setValue] = useState(
     value < 0 ? 0 : value >= tabs.length ? tabs.length - 1 : value,
   )
 
@@ -43,11 +39,11 @@ const TabBar: React.FC<TabBarProps> = ({
   const children = tabs.map(tab => tab.children)
   const paths = tabs.map(tab => tab.path)
 
-  React.useEffect(() => {
+  useEffect(() => {
     _setValue(value)
   }, [value])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const tab = tryValidateSync(
       params,
       YupObject({
@@ -63,8 +59,7 @@ const TabBar: React.FC<TabBarProps> = ({
   return (
     <>
       <Section
-        // TODO: figure this out
-        // gridProps={{ bgcolor: primary[500] }}
+        boxProps={{ bgcolor: primary[500] }}
         sx={{ paddingY: "100px" }}
         className="flex-center"
       >
@@ -78,8 +73,7 @@ const TabBar: React.FC<TabBarProps> = ({
         </Typography>
       </Section>
       <Section
-        // TODO: figure this out
-        // gridProps={{ bgcolor: primary[300] }}
+        boxProps={{ bgcolor: primary[300] }}
         sx={{ paddingY: "6px" }}
         className="flex-center"
       >

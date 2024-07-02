@@ -1,10 +1,21 @@
-import { Container, type ContainerProps } from "@mui/material"
+import {
+  Box,
+  Container,
+  type BoxProps,
+  type ContainerProps,
+} from "@mui/material"
 import type { FC } from "react"
 
-export interface SectionProps extends ContainerProps {}
+export interface SectionProps extends ContainerProps {
+  boxProps?: Omit<BoxProps, "children">
+}
 
-const Section: FC<SectionProps> = containerProps => {
-  return <Container {...containerProps} />
+const Section: FC<SectionProps> = ({ boxProps, ...containerProps }) => {
+  return (
+    <Box {...boxProps}>
+      <Container {...containerProps} />
+    </Box>
+  )
 }
 
 export default Section

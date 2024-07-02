@@ -1,105 +1,69 @@
-import { Error as ErrorIcon } from "@mui/icons-material"
 import {
   Checkbox,
+  FormControl,
   FormControlLabel,
-  Stack,
+  FormHelperText,
   type CheckboxProps,
   type FormControlLabelProps,
 } from "@mui/material"
-import {
-  Field,
-  type FieldConfig,
-  type FieldProps,
-  type FieldValidator,
-} from "formik"
-import React from "react"
-import { BooleanSchema, ValidationError, bool as YupBool } from "yup"
+import { Field, type FieldConfig, type FieldProps } from "formik"
+import { type FC } from "react"
+import { bool as YupBool } from "yup"
 
-import { form as formTypography } from "../../theme/typography"
-import { wrap } from "../../utils/general"
-import ClickableTooltip from "../ClickableTooltip"
+import { schemaToFieldValidator } from "../../utils/form"
 
 export interface CheckboxFieldProps
-  extends Omit<CheckboxProps, "defaultValue"> {
-  formControlLabelProps: Omit<FormControlLabelProps, "control">
-  validate?: FieldValidator | BooleanSchema
-  marginBottom?: number | string
+  extends Omit<
+    CheckboxProps,
+    "defaultChecked" | "id" | "value" | "onChange" | "onBlur"
+  > {
   name: string
+  formControlLabelProps: Omit<FormControlLabelProps, "control">
+  errorMessage?: string
 }
 
-const CheckboxField: React.FC<CheckboxFieldProps> = ({
-  formControlLabelProps,
-  validate = YupBool(),
-  required = false,
-  marginBottom = formTypography.marginBottom,
+const CheckboxField: FC<CheckboxFieldProps> = ({
   name,
-  onChange,
+  formControlLabelProps,
+  required = false,
+  errorMessage = "this is a required field",
   ...otherCheckboxProps
 }) => {
-  if (required && validate instanceof BooleanSchema) {
-    validate = validate.oneOf([true], "this is a required field")
-  }
+  let validate = YupBool()
+  if (required) validate = validate.oneOf([true], errorMessage)
 
   const fieldConfig: FieldConfig = {
     name,
     type: "checkbox",
-    validate: async value => {
-      if (validate instanceof BooleanSchema) {
-        try {
-          await validate.validate(value)
-        } catch (error) {
-          if (error instanceof ValidationError) {
-            return error.errors[0]
-          }
-          throw error
-        }
-      } else {
-        return await validate(value)
-      }
-    },
+    validate: schemaToFieldValidator(validate),
   }
 
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
-        // TODO: simplify this component and remove this state.
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [showError, setShowError] = React.useState(false)
+        const error = form.touched[name] && Boolean(form.errors[name])
 
-        onChange = wrap(
-          {
-            after: (_, checked) => {
-              setShowError(true)
-              form.setFieldValue(name, checked, true)
-            },
-          },
-          onChange,
-        )
-
+        // https://mui.com/material-ui/react-checkbox/#formgroup
         return (
-          <Stack
-            direction="row"
-            alignItems="center"
-            marginLeft="-12px"
-            marginBottom={marginBottom}
-            gap={1}
-          >
+          <FormControl error={error} required={required}>
             <FormControlLabel
               control={
                 <Checkbox
                   defaultChecked={meta.initialValue}
-                  onChange={onChange}
+                  id={name}
+                  name={name}
+                  value={form.values[name]}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
                   {...otherCheckboxProps}
                 />
               }
               {...formControlLabelProps}
             />
-            {showError && ![undefined, ""].includes(meta.error) && (
-              <ClickableTooltip title={meta.error}>
-                <ErrorIcon className="checkbox-error" />
-              </ClickableTooltip>
+            {error && (
+              <FormHelperText>{form.errors[name] as string}</FormHelperText>
             )}
-          </Stack>
+          </FormControl>
         )
       }}
     </Field>
