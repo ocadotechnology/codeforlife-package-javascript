@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.3...v2.0.4) (2024-07-02)
+
+
+### Bug Fixes
+
+* page and form components ([#44](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/44)) ([b944326](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b944326bcad5525bc957231b427463d38e953512))
+
 ## [2.0.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.2...v2.0.3) (2024-06-19)
 
 
