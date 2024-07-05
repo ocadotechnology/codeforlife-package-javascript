@@ -7,14 +7,15 @@ import {
   type UseSessionOptions,
 } from "./auth"
 import { useCountdown, useEventListener, useExternalScript } from "./general"
-import { useNavigate, useSearchParamEntries } from "./router"
+import { useNavigate, useParams, useSearchParams } from "./router"
 
 export {
   useCountdown,
   useEventListener,
   useExternalScript,
   useNavigate,
-  useSearchParamEntries,
+  useParams,
+  useSearchParams,
   useSession,
   useSessionMetadata,
   type SessionMetadata,
