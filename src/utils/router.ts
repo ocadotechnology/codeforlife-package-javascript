@@ -1,5 +1,9 @@
 import { generatePath } from "react-router-dom"
 
+export type ReadOnly<T> = {
+  readonly [P in keyof T]: T[P]
+}
+
 export type Parameters = Record<string, string>
 
 export interface Path {
