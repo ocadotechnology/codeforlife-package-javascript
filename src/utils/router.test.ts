@@ -98,6 +98,14 @@ testPaths({
     hero: p("/hero", {
       firstName: p("/:firstName", {
         spiderMan: p({ firstName: "peter" }),
+        lastName: p("/:lastName?", {
+          superMan: p(
+            { firstName: "clark" },
+            {
+              superMan: p({ lastName: "kent" }),
+            },
+          ),
+        }),
         batMan: p(
           { firstName: "bruce" },
           {
@@ -118,6 +126,15 @@ testPaths({
     hero: m("/hero", "/hero", {
       firstName: m("/hero/:firstName", "/:firstName", {
         spiderMan: m("/hero/peter", { firstName: "peter" }),
+        lastName: m("/hero/:firstName/:lastName?", "/:lastName?", {
+          superMan: m(
+            "/hero/clark",
+            { firstName: "clark" },
+            {
+              superMan: m("/hero/clark/kent", { lastName: "kent" }),
+            },
+          ),
+        }),
         batMan: m(
           "/hero/bruce",
           { firstName: "bruce" },
