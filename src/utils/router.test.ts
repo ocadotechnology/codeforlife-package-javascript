@@ -97,6 +97,7 @@ testPaths({
   paths: p("", {
     hero: p("/hero", {
       firstName: p("/:firstName", {
+        spiderMan: p({ firstName: "peter" }),
         batMan: p(
           { firstName: "bruce" },
           {
@@ -116,6 +117,7 @@ testPaths({
   match: m("/", "", {
     hero: m("/hero", "/hero", {
       firstName: m("/hero/:firstName", "/:firstName", {
+        spiderMan: m("/hero/peter", { firstName: "peter" }),
         batMan: m(
           "/hero/bruce",
           { firstName: "bruce" },
