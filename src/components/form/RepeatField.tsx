@@ -16,7 +16,6 @@ export type RepeatFieldProps = Omit<
   | "helperText"
   | "defaultValue"
   | "required"
-  | "type"
 > & {
   name: string
 }
@@ -26,6 +25,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
   name,
   label,
   placeholder,
+  type = "text",
   ...otherTextFieldProps
 }) => {
   const [value, setValue] = useState("")
@@ -34,7 +34,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
 
   const fieldConfig: FieldConfig = {
     name: repeatName,
-    type: "text",
+    type,
     validate: schemaToFieldValidator(
       yup
         .string()
@@ -55,7 +55,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
         return (
           <TextField
             required
-            type="text"
+            type={type}
             label={label ?? `Repeat ${name.replace("_", " ")}`}
             placeholder={
               placeholder ?? `Enter your ${name.replace("_", " ")} again`
