@@ -39,8 +39,8 @@ export function useNavigate(): <
   }
 }
 
-export function useLocation<State = unknown>() {
-  return _useLocation() as Location<State>
+export function useLocation<State = {}>() {
+  return _useLocation() as Location<undefined | Partial<PageState & State>>
 }
 
 // -----------------------------------------------------------------------------
