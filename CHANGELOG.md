@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.4...v2.1.0) (2024-07-09)
+
+
+### Features
+
+* email verification ([#45](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/45)) ([54c2a99](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/54c2a99650923d89ca13939a15b4669d7048a860))
+
 ## [2.0.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.0.3...v2.0.4) (2024-07-02)
 
 
