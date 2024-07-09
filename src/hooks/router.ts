@@ -40,7 +40,7 @@ export function useNavigate(): <
 }
 
 export function useLocation<State = {}>() {
-  return _useLocation() as Location<undefined | Partial<PageState & State>>
+  return _useLocation() as Location<null | Partial<PageState & State>>
 }
 
 // -----------------------------------------------------------------------------
