@@ -1,5 +1,4 @@
 import { Children } from "react"
-import { useLocation, type Location } from "react-router-dom"
 
 import {
   useSession,
@@ -8,6 +7,7 @@ import {
   type UseSessionChildrenFunction,
   type UseSessionOptions,
 } from "../../hooks/auth"
+import { useLocation } from "../../hooks/router"
 import Notification, { type NotificationProps } from "./Notification"
 
 export type PageState = {
@@ -30,7 +30,7 @@ const Page = <
   children,
   session,
 }: PageProps<SessionUserType>): JSX.Element => {
-  const { state } = useLocation() as Location<unknown>
+  const { state } = useLocation()
 
   return (
     <>
