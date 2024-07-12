@@ -1,6 +1,8 @@
 import { IconButton, type IconButtonProps } from "@mui/material"
 import type { FC } from "react"
-import { Link, type LinkProps } from "react-router-dom"
+import { Link } from "react-router-dom"
+
+import { type LinkProps } from "../../utils/router"
 
 export type LinkIconButtonProps = Omit<IconButtonProps, "component"> & LinkProps
 
