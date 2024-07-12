@@ -1,7 +1,9 @@
 import {
+  useLocation as _useLocation,
   useNavigate as _useNavigate,
   useParams as _useParams,
   useSearchParams as _useSearchParams,
+  type Location,
   type NavigateOptions,
   type To as NavigateTo,
   type Params,
@@ -35,6 +37,10 @@ export function useNavigate(): <
 
     navigate(next && "next" in searchParams ? searchParams.next : to, _options)
   }
+}
+
+export function useLocation<State = {}>() {
+  return _useLocation() as Location<null | Partial<PageState & State>>
 }
 
 // -----------------------------------------------------------------------------

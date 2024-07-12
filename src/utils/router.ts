@@ -16,19 +16,24 @@ export function path<Subpaths extends Record<string, Path>>(
   _: string | Parameters,
   subpaths: Subpaths = {} as Subpaths,
 ): Path & Subpaths {
-  function updatePath(path: Path, root: boolean): void {
-    if (typeof path.__ === "object" && typeof _ === "string") {
-      _ = generatePath(_, path.__)
+  function updatePath(path: Path, root: boolean, params?: Parameters) {
+    if (typeof path.__ === "object") {
+      params = params ? { ...params, ...path.__ } : path.__
     }
+
+    const _path = typeof _ === "string" && params ? generatePath(_, params) : _
 
     Object.entries(path).forEach(([key, subpath]) => {
       if (key !== "__") {
+        subpath = subpath as string | Path
         if (typeof subpath === "string") {
-          if (typeof _ === "string" && (!root || key !== "_")) {
-            path[key] = _ + subpath
+          if (typeof _path === "string" && (!root || key !== "_")) {
+            let __path = _path + subpath
+            if (__path.endsWith("/")) __path = __path.slice(0, -1)
+            path[key] = __path
           }
         } else {
-          updatePath(subpath as Path, false)
+          updatePath(subpath, false, params)
         }
       }
     })

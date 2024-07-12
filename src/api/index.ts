@@ -1,5 +1,10 @@
 import baseQuery from "./baseQuery"
-import endpoints from "./endpoints"
+import {
+  getReadAuthFactorEndpoints,
+  getReadClassEndpoints,
+  getReadSchoolEndpoints,
+  getReadUserEndpoints,
+} from "./endpoints"
 import type {
   AuthFactor,
   Class,
@@ -14,7 +19,10 @@ import urls from "./urls"
 
 export {
   baseQuery,
-  endpoints,
+  getReadAuthFactorEndpoints,
+  getReadClassEndpoints,
+  getReadSchoolEndpoints,
+  getReadUserEndpoints,
   tagTypes,
   urls,
   type AuthFactor,

@@ -7,12 +7,13 @@ import {
   type UseSessionOptions,
 } from "./auth"
 import { useCountdown, useEventListener, useExternalScript } from "./general"
-import { useNavigate, useParams, useSearchParams } from "./router"
+import { useLocation, useNavigate, useParams, useSearchParams } from "./router"
 
 export {
   useCountdown,
   useEventListener,
   useExternalScript,
+  useLocation,
   useNavigate,
   useParams,
   useSearchParams,

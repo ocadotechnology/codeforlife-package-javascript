@@ -1,91 +1,119 @@
-import { path as _ } from "./router"
+import { path as p, type Parameters, type Path } from "./router"
 
-test("no nested paths", () => {
-  const paths = _("")
+const m = <SubMatches extends Record<string, Path>>(
+  _: string,
+  __: string | Parameters,
+  subMatches: SubMatches = {} as SubMatches,
+) => ({ _, __, ...subMatches })
 
-  expect(paths._).toBe("/")
-  expect(paths.__).toBe("")
-})
-
-test("nested paths", () => {
-  const paths = _("", {
-    a: _("/a", {
-      b: _("/b"),
-    }),
+function testPaths({
+  name,
+  paths,
+  match,
+}: {
+  name: string
+  paths: Path
+  match: Path
+}) {
+  test(name, () => {
+    expect(paths).toMatchObject(match)
   })
+}
 
-  expect(paths._).toBe("/")
-  expect(paths.__).toBe("")
-  expect(paths.a._).toBe("/a")
-  expect(paths.a.__).toBe("/a")
-  expect(paths.a.b._).toBe("/a/b")
-  expect(paths.a.b.__).toBe("/b")
+testPaths({
+  name: "no nested paths",
+  paths: p(""),
+  match: m("/", ""),
 })
 
-test("one param", () => {
-  const paths = _("", {
-    person: _("/person", {
-      name: _("/:name", {
-        sam: _({ name: "samantha" }),
+testPaths({
+  name: "nested paths",
+  paths: p("", {
+    a: p("/a", {
+      b: p("/b"),
+    }),
+  }),
+  match: m("/", "", {
+    a: m("/a", "/a"),
+  }),
+})
+
+testPaths({
+  name: "one param",
+  paths: p("", {
+    person: p("/person", {
+      name: p("/:name", {
+        sam: p({ name: "samantha" }),
       }),
     }),
-  })
-
-  expect(paths._).toBe("/")
-  expect(paths.__).toBe("")
-  expect(paths.person._).toBe("/person")
-  expect(paths.person.__).toBe("/person")
-  expect(paths.person.name._).toBe("/person/:name")
-  expect(paths.person.name.__).toBe("/:name")
-  expect(paths.person.name.sam._).toBe("/person/samantha")
-  expect(paths.person.name.sam.__).toMatchObject({ name: "samantha" })
+  }),
+  match: m("/", "", {
+    person: m("/person", "/person", {
+      name: m("/person/:name", "/:name", {
+        sam: m("/person/samantha", { name: "samantha" }),
+      }),
+    }),
+  }),
 })
 
-test("multiple params", () => {
-  const paths = _("", {
-    hero: _("/hero", {
-      firstAndLastName: _("/:firstName/:lastName", {
-        spiderMan: _(
+testPaths({
+  name: "multiple params",
+  paths: p("", {
+    hero: p("/hero", {
+      firstAndLastName: p("/:firstName/:lastName", {
+        spiderMan: p(
           { firstName: "peter", lastName: "parker" },
           {
-            mainVillain: _("/green-goblin"),
+            mainVillain: p("/green-goblin"),
           },
         ),
       }),
     }),
-  })
-
-  expect(paths._).toBe("/")
-  expect(paths.__).toBe("")
-  expect(paths.hero._).toBe("/hero")
-  expect(paths.hero.__).toBe("/hero")
-  expect(paths.hero.firstAndLastName._).toBe("/hero/:firstName/:lastName")
-  expect(paths.hero.firstAndLastName.__).toBe("/:firstName/:lastName")
-  expect(paths.hero.firstAndLastName.spiderMan._).toBe("/hero/peter/parker")
-  expect(paths.hero.firstAndLastName.spiderMan.__).toMatchObject({
-    firstName: "peter",
-    lastName: "parker",
-  })
-  expect(paths.hero.firstAndLastName.spiderMan.mainVillain._).toBe(
-    "/hero/peter/parker/green-goblin",
-  )
-  expect(paths.hero.firstAndLastName.spiderMan.mainVillain.__).toBe(
-    "/green-goblin",
-  )
+  }),
+  match: m("/", "", {
+    hero: m("/hero", "/hero", {
+      firstAndLastName: m(
+        "/hero/:firstName/:lastName",
+        "/:firstName/:lastName",
+        {
+          spiderMan: m(
+            "/hero/peter/parker",
+            { firstName: "peter", lastName: "parker" },
+            {
+              mainVillain: m(
+                "/hero/peter/parker/green-goblin",
+                "/green-goblin",
+              ),
+            },
+          ),
+        },
+      ),
+    }),
+  }),
 })
 
-test("nested params", () => {
-  const paths = _("", {
-    hero: _("/hero", {
-      firstName: _("/:firstName", {
-        batMan: _(
+testPaths({
+  name: "nested params",
+  paths: p("", {
+    hero: p("/hero", {
+      firstName: p("/:firstName", {
+        spiderMan: p({ firstName: "peter" }),
+        lastName: p("/:lastName?", {
+          superMan: p(
+            { firstName: "clark" },
+            {
+              superMan: p({ lastName: "kent" }),
+            },
+          ),
+        }),
+        batMan: p(
           { firstName: "bruce" },
           {
-            lastName: _("/:lastName", {
-              batMan: _(
+            lastName: p("/:lastName", {
+              batMan: p(
                 { lastName: "wayne" },
                 {
-                  mainVillain: _("/joker"),
+                  mainVillain: p("/joker"),
                 },
               ),
             }),
@@ -93,28 +121,36 @@ test("nested params", () => {
         ),
       }),
     }),
-  })
-
-  expect(paths._).toBe("/")
-  expect(paths.__).toBe("")
-  expect(paths.hero._).toBe("/hero")
-  expect(paths.hero.__).toBe("/hero")
-  expect(paths.hero.firstName._).toBe("/hero/:firstName")
-  expect(paths.hero.firstName.__).toBe("/:firstName")
-  expect(paths.hero.firstName.batMan._).toBe("/hero/bruce")
-  expect(paths.hero.firstName.batMan.__).toMatchObject({ firstName: "bruce" })
-  expect(paths.hero.firstName.batMan.lastName._).toBe("/hero/bruce/:lastName")
-  expect(paths.hero.firstName.batMan.lastName.__).toBe("/:lastName")
-  expect(paths.hero.firstName.batMan.lastName.batMan._).toBe(
-    "/hero/bruce/wayne",
-  )
-  expect(paths.hero.firstName.batMan.lastName.batMan.__).toMatchObject({
-    lastName: "wayne",
-  })
-  expect(paths.hero.firstName.batMan.lastName.batMan.mainVillain._).toBe(
-    "/hero/bruce/wayne/joker",
-  )
-  expect(paths.hero.firstName.batMan.lastName.batMan.mainVillain.__).toBe(
-    "/joker",
-  )
+  }),
+  match: m("/", "", {
+    hero: m("/hero", "/hero", {
+      firstName: m("/hero/:firstName", "/:firstName", {
+        spiderMan: m("/hero/peter", { firstName: "peter" }),
+        lastName: m("/hero/:firstName/:lastName?", "/:lastName?", {
+          superMan: m(
+            "/hero/clark",
+            { firstName: "clark" },
+            {
+              superMan: m("/hero/clark/kent", { lastName: "kent" }),
+            },
+          ),
+        }),
+        batMan: m(
+          "/hero/bruce",
+          { firstName: "bruce" },
+          {
+            lastName: m("/hero/bruce/:lastName", "/:lastName", {
+              batMan: m(
+                "/hero/bruce/wayne",
+                { lastName: "wayne" },
+                {
+                  mainVillain: m("/hero/bruce/wayne/joker", "/joker"),
+                },
+              ),
+            }),
+          },
+        ),
+      }),
+    }),
+  }),
 })
