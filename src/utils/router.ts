@@ -4,7 +4,7 @@ import {
   type To,
 } from "react-router-dom"
 
-export type LinkProps = Omit<_LinkProps, "to"> & { to: To & number }
+export type LinkProps = Omit<_LinkProps, "to"> & { to: To | number }
 
 export type ReadOnly<T> = {
   readonly [P in keyof T]: T[P]
