@@ -8,6 +8,7 @@ export type LinkProps = Omit<MuiLinkProps, "component"> & RouterLinkProps
 
 // https://mui.com/material-ui/integrations/routing/#link
 const Link: FC<LinkProps> = props => {
+  // @ts-expect-error
   return <MuiLink component={RouterLink} {...props} />
 }
 
