@@ -3,7 +3,7 @@ import type {
   TypedMutationTrigger,
 } from "@reduxjs/toolkit/query/react"
 import type { FieldValidator, FormikHelpers } from "formik"
-import { ValidationError, type Schema } from "yup"
+import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
 export function isFormError(error: unknown): boolean {
   return (
@@ -60,10 +60,13 @@ export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
   }
 }
 
-export function schemaToFieldValidator(schema: Schema): FieldValidator {
-  return async value => {
+export function schemaToFieldValidator(
+  schema: Schema,
+  options?: ValidateOptions,
+): FieldValidator {
+  return value => {
     try {
-      await schema.validate(value)
+      schema.validateSync(value, options)
     } catch (error) {
       if (error instanceof ValidationError) {
         return error.errors.join(". ")

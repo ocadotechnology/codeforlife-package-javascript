@@ -1,7 +1,7 @@
 import { TextField, type TextFieldProps } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { useState, type FC } from "react"
-import * as yup from "yup"
+import { string as YupString, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 
@@ -18,6 +18,7 @@ export type RepeatFieldProps = Omit<
   | "required"
 > & {
   name: string
+  validateOptions?: ValidateOptions
 }
 
 // https://formik.org/docs/examples/with-material-ui
@@ -26,6 +27,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
   label,
   placeholder,
   type = "text",
+  validateOptions,
   ...otherTextFieldProps
 }) => {
   const [value, setValue] = useState("")
@@ -36,14 +38,14 @@ const RepeatField: FC<RepeatFieldProps> = ({
     name: repeatName,
     type,
     validate: schemaToFieldValidator(
-      yup
-        .string()
+      YupString()
         .required()
         .test(
           `matches-${name}`,
           `does not match`,
           repeatValue => value === repeatValue,
         ),
+      validateOptions,
     ),
   }
 

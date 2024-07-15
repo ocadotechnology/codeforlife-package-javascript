@@ -6,7 +6,7 @@ import {
   type TextFieldProps,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import * as yup from "yup"
+import { string as YupString, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 
@@ -39,6 +39,7 @@ export interface AutocompleteFieldProps<
   > & {
     name: string
   }
+  validateOptions?: ValidateOptions
 }
 
 const AutocompleteField = <
@@ -49,6 +50,7 @@ const AutocompleteField = <
 >({
   textFieldProps,
   options,
+  validateOptions,
   ...otherAutocompleteProps
 }: AutocompleteFieldProps<
   Multiple,
@@ -58,13 +60,13 @@ const AutocompleteField = <
 >): JSX.Element => {
   const { name, required, ...otherTextFieldProps } = textFieldProps
 
-  let schema = yup.string().oneOf(options, "not a valid option")
+  let schema = YupString().oneOf(options, "not a valid option")
   if (required) schema = schema.required()
 
   const fieldConfig: FieldConfig = {
     name,
     type: "text",
-    validate: schemaToFieldValidator(schema),
+    validate: schemaToFieldValidator(schema, validateOptions),
   }
 
   return (

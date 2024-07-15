@@ -4,7 +4,7 @@ import {
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import type { FC } from "react"
-import { type StringSchema } from "yup"
+import { type StringSchema, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 
@@ -21,6 +21,7 @@ export type TextFieldProps = Omit<
 > & {
   name: string
   schema: StringSchema
+  validateOptions?: ValidateOptions
 }
 
 // https://formik.org/docs/examples/with-material-ui
@@ -29,6 +30,7 @@ const TextField: FC<TextFieldProps> = ({
   schema,
   type = "text",
   required = false,
+  validateOptions,
   ...otherTextFieldProps
 }) => {
   if (required) schema = schema.required()
@@ -36,7 +38,7 @@ const TextField: FC<TextFieldProps> = ({
   const fieldConfig: FieldConfig = {
     name,
     type,
-    validate: schemaToFieldValidator(schema),
+    validate: schemaToFieldValidator(schema, validateOptions),
   }
 
   return (
