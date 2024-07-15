@@ -64,9 +64,9 @@ export function schemaToFieldValidator(
   schema: Schema,
   options?: ValidateOptions,
 ): FieldValidator {
-  return value => {
+  return async value => {
     try {
-      schema.validateSync(value, options)
+      await schema.validate(value, options)
     } catch (error) {
       if (error instanceof ValidationError) {
         return error.errors.join(". ")
