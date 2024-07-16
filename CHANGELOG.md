@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.1.1...v2.1.2) (2024-07-16)
+
+
+### Bug Fixes
+
+* portal frontend[#12](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/12) ([#48](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/48)) ([4cf7b53](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/4cf7b5327ddd104056cb4353ed477aa07439f754))
+
 ## [2.1.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.1.0...v2.1.1) (2024-07-12)
 
 
