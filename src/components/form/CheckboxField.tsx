@@ -8,7 +8,7 @@ import {
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type FC } from "react"
-import { bool as YupBool } from "yup"
+import { bool as YupBool, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 
@@ -20,6 +20,7 @@ export interface CheckboxFieldProps
   name: string
   formControlLabelProps: Omit<FormControlLabelProps, "control">
   errorMessage?: string
+  validateOptions?: ValidateOptions
 }
 
 const CheckboxField: FC<CheckboxFieldProps> = ({
@@ -27,15 +28,16 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
   formControlLabelProps,
   required = false,
   errorMessage = "this is a required field",
+  validateOptions,
   ...otherCheckboxProps
 }) => {
-  let validate = YupBool()
-  if (required) validate = validate.oneOf([true], errorMessage)
+  let schema = YupBool()
+  if (required) schema = schema.oneOf([true], errorMessage)
 
   const fieldConfig: FieldConfig = {
     name,
     type: "checkbox",
-    validate: schemaToFieldValidator(validate),
+    validate: schemaToFieldValidator(schema, validateOptions),
   }
 
   return (

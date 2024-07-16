@@ -5,8 +5,8 @@ import {
   useSearchParams as _useSearchParams,
   type Location,
   type NavigateOptions,
-  type To as NavigateTo,
   type Params,
+  type To,
 } from "react-router-dom"
 import { object as objectSchema, type ObjectShape } from "yup"
 
@@ -20,22 +20,34 @@ import {
   type TryValidateSyncRT,
 } from "../utils/schema"
 
-export function useNavigate(): <
+export function useNavigate<
   State extends Record<string, any> = Record<string, any>,
->(
-  to: NavigateTo,
-  options?: Omit<NavigateOptions, "state"> & {
-    state?: State & Partial<PageState>
-    next?: boolean
-  },
-) => void {
+>(): {
+  (
+    to: To,
+    options?: Omit<NavigateOptions, "state"> & {
+      state?: State & Partial<PageState>
+      next?: boolean
+    },
+  ): void
+  (delta: number): void
+} {
   const navigate = _useNavigate()
   const searchParams = useSearchParams()
 
-  return (to, options) => {
-    const { next = true, ..._options } = options || {}
+  return (
+    toOrDelta,
+    options: (NavigateOptions & { next?: boolean }) | undefined = undefined,
+  ) => {
+    if (typeof toOrDelta === "number") navigate(toOrDelta)
+    else {
+      const { next = true, ..._options } = options || {}
 
-    navigate(next && "next" in searchParams ? searchParams.next : to, _options)
+      navigate(
+        next && "next" in searchParams ? searchParams.next : toOrDelta,
+        _options,
+      )
+    }
   }
 }
 

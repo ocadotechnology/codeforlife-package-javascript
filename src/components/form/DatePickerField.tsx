@@ -8,7 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import dayjs, { type Dayjs } from "dayjs"
 import "dayjs/locale/en-gb"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import * as yup from "yup"
+import { date as YupDate, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 
@@ -23,6 +23,7 @@ export interface DatePickerFieldProps<
   required?: boolean
   min?: string | Date
   max?: string | Date
+  validateOptions?: ValidateOptions
 }
 
 const DatePickerField = <
@@ -33,12 +34,13 @@ const DatePickerField = <
   required,
   min,
   max,
+  validateOptions,
   ...otherDatePickerProps
 }: DatePickerFieldProps<
   TDate,
   TEnableAccessibleFieldDOMStructure
 >): JSX.Element => {
-  let schema = yup.date()
+  let schema = YupDate()
   if (required) schema = schema.required()
   if (min) schema = schema.min(min)
   if (max) schema = schema.max(max)
@@ -46,7 +48,7 @@ const DatePickerField = <
   const fieldConfig: FieldConfig = {
     name,
     type: "date",
-    validate: schemaToFieldValidator(schema),
+    validate: schemaToFieldValidator(schema, validateOptions),
   }
 
   return (
