@@ -84,13 +84,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
     name: repeatName,
     type,
     validate: schemaToFieldValidator(
-      YupString()
-        .required()
-        .test(
-          `matches-${name}`,
-          `does not match`,
-          repeatValue => value === repeatValue,
-        ),
+      YupString().required().equals([value], "does not match"),
       validateOptions,
     ),
   }
