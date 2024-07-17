@@ -434,3 +434,22 @@ export const UK_COUNTIES = [
 ] as const
 
 export type UkCounties = (typeof UK_COUNTIES)[number]
+
+export function getNestedProperty(
+  obj: Record<string, any>,
+  dotPath: string | string[],
+): any {
+  if (typeof dotPath === "string") dotPath = dotPath.split(".")
+
+  let value: unknown = obj
+  for (let i = 0; i < dotPath.length; i++) {
+    value = (value as Record<string, any>)[dotPath[i]]
+    if (
+      i !== dotPath.length - 1 &&
+      (typeof value !== "object" || value === null)
+    )
+      return
+  }
+
+  return value
+}

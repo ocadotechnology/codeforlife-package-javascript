@@ -11,6 +11,7 @@ import { type FC } from "react"
 import { bool as YupBool, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
+import { getNestedProperty } from "../../utils/general"
 
 export interface CheckboxFieldProps
   extends Omit<
@@ -31,6 +32,8 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
   validateOptions,
   ...otherCheckboxProps
 }) => {
+  const dotPath = name.split(".")
+
   let schema = YupBool()
   if (required) schema = schema.oneOf([true], errorMessage)
 
@@ -43,18 +46,22 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
-        const error = form.touched[name] && Boolean(form.errors[name])
+        const touched = getNestedProperty(form.touched, dotPath)
+        const error = getNestedProperty(form.errors, dotPath)
+        const value = getNestedProperty(form.values, dotPath)
+
+        const hasError = touched && Boolean(error)
 
         // https://mui.com/material-ui/react-checkbox/#formgroup
         return (
-          <FormControl error={error} required={required}>
+          <FormControl error={hasError} required={required}>
             <FormControlLabel
               control={
                 <Checkbox
                   defaultChecked={meta.initialValue}
                   id={name}
                   name={name}
-                  value={form.values[name]}
+                  value={value}
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   {...otherCheckboxProps}
@@ -62,9 +69,7 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
               }
               {...formControlLabelProps}
             />
-            {error && (
-              <FormHelperText>{form.errors[name] as string}</FormHelperText>
-            )}
+            {hasError && <FormHelperText>{error as string}</FormHelperText>}
           </FormControl>
         )
       }}

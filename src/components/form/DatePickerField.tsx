@@ -11,6 +11,7 @@ import { Field, type FieldConfig, type FieldProps } from "formik"
 import { date as YupDate, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
+import { getNestedProperty } from "../../utils/general"
 
 export interface DatePickerFieldProps<
   TDate extends PickerValidDate,
@@ -40,6 +41,8 @@ const DatePickerField = <
   TDate,
   TEnableAccessibleFieldDOMStructure
 >): JSX.Element => {
+  const dotPath = name.split(".")
+
   let schema = YupDate()
   if (required) schema = schema.required()
   if (min) schema = schema.min(min)
@@ -54,7 +57,10 @@ const DatePickerField = <
   return (
     <Field {...fieldConfig}>
       {({ form }: FieldProps) => {
-        let value = form.values[name]
+        const error = getNestedProperty(form.errors, dotPath)
+        const touched = getNestedProperty(form.touched, dotPath)
+        let value = getNestedProperty(form.values, dotPath)
+
         value = value ? dayjs(value) : null
 
         function handleChange(value: Dayjs | null) {
@@ -83,10 +89,8 @@ const DatePickerField = <
                   },
                   onBlur: form.handleBlur,
                   required,
-                  error: form.touched[name] && Boolean(form.errors[name]),
-                  helperText: (form.touched[name] && form.errors[name]) as
-                    | false
-                    | string,
+                  error: touched && Boolean(error),
+                  helperText: (touched && error) as false | string,
                 },
               }}
               {...otherDatePickerProps}
