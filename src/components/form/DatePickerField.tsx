@@ -91,6 +91,8 @@ const DatePickerField = <
             <DatePicker
               name={name}
               value={value}
+              minDate={minDate}
+              maxDate={maxDate}
               onChange={handleChange}
               slotProps={{
                 textField: {
