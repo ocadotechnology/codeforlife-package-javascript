@@ -22,8 +22,6 @@ export interface DatePickerFieldProps<
   > {
   name: string
   required?: boolean
-  min?: string | Date
-  max?: string | Date
   validateOptions?: ValidateOptions
 }
 
@@ -33,8 +31,8 @@ const DatePickerField = <
 >({
   name,
   required,
-  min,
-  max,
+  minDate,
+  maxDate,
   validateOptions,
   ...otherDatePickerProps
 }: DatePickerFieldProps<
@@ -43,10 +41,24 @@ const DatePickerField = <
 >): JSX.Element => {
   const dotPath = name.split(".")
 
+  function dateToString(date: Dayjs) {
+    return date.locale("en-gb").format("L")
+  }
+
   let schema = YupDate()
   if (required) schema = schema.required()
-  if (min) schema = schema.min(min)
-  if (max) schema = schema.max(max)
+  if (minDate) {
+    schema = schema.min(
+      minDate,
+      `this field must be greater or equal to ${dateToString(minDate)}`,
+    )
+  }
+  if (maxDate) {
+    schema = schema.max(
+      maxDate,
+      `this field must be less or equal to ${dateToString(maxDate)}`,
+    )
+  }
 
   const fieldConfig: FieldConfig = {
     name,
