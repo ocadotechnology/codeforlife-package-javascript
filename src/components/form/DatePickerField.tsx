@@ -50,13 +50,13 @@ const DatePickerField = <
   if (minDate) {
     schema = schema.min(
       minDate,
-      `this field must be greater or equal to ${dateToString(minDate)}`,
+      `this field must be after or equal to ${dateToString(minDate)}`,
     )
   }
   if (maxDate) {
     schema = schema.max(
       maxDate,
-      `this field must be less or equal to ${dateToString(maxDate)}`,
+      `this field must be before or equal to ${dateToString(maxDate)}`,
     )
   }
 
