@@ -11,6 +11,7 @@ import { Field, type FieldConfig, type FieldProps } from "formik"
 import { date as YupDate, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
+import { getNestedProperty } from "../../utils/general"
 
 export interface DatePickerFieldProps<
   TDate extends PickerValidDate,
@@ -21,8 +22,6 @@ export interface DatePickerFieldProps<
   > {
   name: string
   required?: boolean
-  min?: string | Date
-  max?: string | Date
   validateOptions?: ValidateOptions
 }
 
@@ -32,18 +31,34 @@ const DatePickerField = <
 >({
   name,
   required,
-  min,
-  max,
+  minDate,
+  maxDate,
   validateOptions,
   ...otherDatePickerProps
 }: DatePickerFieldProps<
   TDate,
   TEnableAccessibleFieldDOMStructure
 >): JSX.Element => {
+  const dotPath = name.split(".")
+
+  function dateToString(date: Dayjs) {
+    return date.locale("en-gb").format("L")
+  }
+
   let schema = YupDate()
   if (required) schema = schema.required()
-  if (min) schema = schema.min(min)
-  if (max) schema = schema.max(max)
+  if (minDate) {
+    schema = schema.min(
+      minDate,
+      `this field must be after or equal to ${dateToString(minDate)}`,
+    )
+  }
+  if (maxDate) {
+    schema = schema.max(
+      maxDate,
+      `this field must be before or equal to ${dateToString(maxDate)}`,
+    )
+  }
 
   const fieldConfig: FieldConfig = {
     name,
@@ -54,7 +69,10 @@ const DatePickerField = <
   return (
     <Field {...fieldConfig}>
       {({ form }: FieldProps) => {
-        let value = form.values[name]
+        const error = getNestedProperty(form.errors, dotPath)
+        const touched = getNestedProperty(form.touched, dotPath)
+        let value = getNestedProperty(form.values, dotPath)
+
         value = value ? dayjs(value) : null
 
         function handleChange(value: Dayjs | null) {
@@ -73,6 +91,8 @@ const DatePickerField = <
             <DatePicker
               name={name}
               value={value}
+              minDate={minDate}
+              maxDate={maxDate}
               onChange={handleChange}
               slotProps={{
                 textField: {
@@ -83,10 +103,8 @@ const DatePickerField = <
                   },
                   onBlur: form.handleBlur,
                   required,
-                  error: form.touched[name] && Boolean(form.errors[name]),
-                  helperText: (form.touched[name] && form.errors[name]) as
-                    | false
-                    | string,
+                  error: touched && Boolean(error),
+                  helperText: (touched && error) as false | string,
                 },
               }}
               {...otherDatePickerProps}

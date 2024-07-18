@@ -10,6 +10,7 @@ import {
 import { string as YupString, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
+import { getNestedProperty } from "../../utils/general"
 
 export type RepeatFieldProps = Omit<
   TextFieldProps,
@@ -45,9 +46,17 @@ const TextField: FC<
 }) => {
   const { form } = fieldProps
 
+  const dotPath = name.split(".")
+  const value = getNestedProperty(form.values, dotPath)
+
+  const repeatDotPath = repeatName.split(".")
+  const repeatValue = getNestedProperty(form.values, repeatDotPath)
+  const repeatTouched = getNestedProperty(form.touched, repeatDotPath)
+  const repeatError = getNestedProperty(form.errors, repeatDotPath)
+
   useEffect(() => {
-    setValue(form.values[name])
-  })
+    setValue(value)
+  }, [setValue, value])
 
   return (
     <MuiTextField
@@ -57,13 +66,11 @@ const TextField: FC<
       placeholder={placeholder ?? `Enter your ${name.replace("_", " ")} again`}
       id={repeatName}
       name={repeatName}
-      value={form.values[repeatName]}
+      value={repeatValue}
       onChange={form.handleChange}
       onBlur={form.handleBlur}
-      error={form.touched[repeatName] && Boolean(form.errors[repeatName])}
-      helperText={
-        (form.touched[repeatName] && form.errors[repeatName]) as false | string
-      }
+      error={repeatTouched && Boolean(repeatError)}
+      helperText={(repeatTouched && repeatError) as false | string}
       {...otherTextFieldProps}
     />
   )
@@ -78,7 +85,7 @@ const RepeatField: FC<RepeatFieldProps> = ({
 }) => {
   const [value, setValue] = useState("")
 
-  const repeatName = `repeat_${name}`
+  const repeatName = `${name}_repeat`
 
   const fieldConfig: FieldConfig = {
     name: repeatName,

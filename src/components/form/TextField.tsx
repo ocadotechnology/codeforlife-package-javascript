@@ -7,6 +7,7 @@ import type { FC } from "react"
 import { type StringSchema, type ValidateOptions } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
+import { getNestedProperty } from "../../utils/general"
 
 export type TextFieldProps = Omit<
   MuiTextFieldProps,
@@ -33,6 +34,8 @@ const TextField: FC<TextFieldProps> = ({
   validateOptions,
   ...otherTextFieldProps
 }) => {
+  const dotPath = name.split(".")
+
   if (required) schema = schema.required()
 
   const fieldConfig: FieldConfig = {
@@ -43,22 +46,26 @@ const TextField: FC<TextFieldProps> = ({
 
   return (
     <Field {...fieldConfig}>
-      {({ form }: FieldProps) => (
-        <MuiTextField
-          id={name}
-          name={name}
-          type={type}
-          required={required}
-          value={form.values[name]}
-          onChange={form.handleChange}
-          onBlur={form.handleBlur}
-          error={form.touched[name] && Boolean(form.errors[name])}
-          helperText={
-            (form.touched[name] && form.errors[name]) as false | string
-          }
-          {...otherTextFieldProps}
-        />
-      )}
+      {({ form }: FieldProps) => {
+        const value = getNestedProperty(form.values, dotPath)
+        const error = getNestedProperty(form.errors, dotPath)
+        const touched = getNestedProperty(form.touched, dotPath)
+
+        return (
+          <MuiTextField
+            id={name}
+            name={name}
+            type={type}
+            required={required}
+            value={value}
+            onChange={form.handleChange}
+            onBlur={form.handleBlur}
+            error={touched && Boolean(error)}
+            helperText={(touched && error) as false | string}
+            {...otherTextFieldProps}
+          />
+        )
+      }}
     </Field>
   )
 }
