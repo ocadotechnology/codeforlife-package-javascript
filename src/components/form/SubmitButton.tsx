@@ -1,21 +1,42 @@
 import { Button, type ButtonProps } from "@mui/material"
-import { Field, type FieldProps, type FormikProps } from "formik"
+import { Field, type FieldProps } from "formik"
 import type { FC } from "react"
 
 export interface SubmitButtonProps
-  extends Omit<ButtonProps, "type" | "disabled"> {
-  disabled?: (form: FormikProps<any>) => boolean
-}
+  extends Omit<ButtonProps, "type" | "onClick"> {}
 
 const SubmitButton: FC<SubmitButtonProps> = ({
   children = "Submit",
-  disabled = form => !(form.dirty && form.isValid),
   ...otherButtonProps
 }) => {
+  function getTouched(
+    values: Record<string, any>,
+    touched?: Record<string, any>,
+  ) {
+    touched = touched || {}
+    for (const key in values) {
+      const value = values[key]
+      touched[key] =
+        value instanceof Object && value.constructor === Object
+          ? getTouched(value, touched)
+          : true
+    }
+
+    return touched
+  }
+
   return (
     <Field name="submit" type="submit">
       {({ form }: FieldProps) => (
-        <Button type="submit" disabled={disabled(form)} {...otherButtonProps}>
+        <Button
+          type="button"
+          onClick={() => {
+            form.setTouched(getTouched(form.values), true).then(errors => {
+              if (!errors || !Object.keys(errors).length) form.submitForm()
+            })
+          }}
+          {...otherButtonProps}
+        >
           {children}
         </Button>
       )}
