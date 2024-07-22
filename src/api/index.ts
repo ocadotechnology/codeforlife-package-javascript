@@ -1,10 +1,4 @@
 import baseQuery from "./baseQuery"
-import {
-  getReadAuthFactorEndpoints,
-  getReadClassEndpoints,
-  getReadSchoolEndpoints,
-  getReadUserEndpoints,
-} from "./endpoints"
 import type {
   AdminSchoolTeacher,
   AdminSchoolTeacherUser,
@@ -30,10 +24,6 @@ import urls from "./urls"
 
 export {
   baseQuery,
-  getReadAuthFactorEndpoints,
-  getReadClassEndpoints,
-  getReadSchoolEndpoints,
-  getReadUserEndpoints,
   tagTypes,
   urls,
   type AdminSchoolTeacher,
