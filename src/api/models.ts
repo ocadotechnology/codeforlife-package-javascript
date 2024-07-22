@@ -78,7 +78,7 @@ export type NonAdminSchoolTeacher = SchoolTeacher & {
   is_admin: false
 }
 
-export type NonSchoolTeacher = SchoolTeacher & {
+export type NonSchoolTeacher = Teacher & {
   school: undefined
 }
 
