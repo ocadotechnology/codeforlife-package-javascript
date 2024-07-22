@@ -1,6 +1,10 @@
 import type { Model } from "../utils/api"
 import type { CountryIsoCodes, UkCounties } from "../utils/general"
 
+// -----------------------------------------------------------------------------
+// User Models
+// -----------------------------------------------------------------------------
+
 export type User = Model<
   number,
   {
@@ -18,6 +22,41 @@ export type User = Model<
   }
 >
 
+export type TeacherUser = User & {
+  teacher: Teacher
+  student: undefined
+}
+
+export type SchoolTeacherUser = TeacherUser & {
+  teacher: SchoolTeacher
+}
+
+export type AdminSchoolTeacherUser = SchoolTeacherUser & {
+  teacher: AdminSchoolTeacher
+}
+
+export type NonAdminSchoolTeacherUser = SchoolTeacherUser & {
+  teacher: NonAdminSchoolTeacher
+}
+
+export type NonSchoolTeacherUser = TeacherUser & {
+  teacher: NonSchoolTeacher
+}
+
+export type StudentUser = User & {
+  teacher: undefined
+  student: Student
+}
+
+export type IndependentUser = User & {
+  teacher: undefined
+  student: undefined
+}
+
+// -----------------------------------------------------------------------------
+// Teacher Models
+// -----------------------------------------------------------------------------
+
 export type Teacher = Model<
   number,
   {
@@ -26,6 +65,26 @@ export type Teacher = Model<
     is_admin: boolean
   }
 >
+
+export type SchoolTeacher = Teacher & {
+  school: number
+}
+
+export type AdminSchoolTeacher = SchoolTeacher & {
+  is_admin: true
+}
+
+export type NonAdminSchoolTeacher = SchoolTeacher & {
+  is_admin: false
+}
+
+export type NonSchoolTeacher = SchoolTeacher & {
+  school: undefined
+}
+
+// -----------------------------------------------------------------------------
+// Other Models
+// -----------------------------------------------------------------------------
 
 export type Student = Model<
   number,
