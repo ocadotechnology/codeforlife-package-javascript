@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.1.3...v2.1.4) (2024-07-23)
+
+
+### Bug Fixes
+
+* api types ([#50](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/50)) ([efe1708](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/efe1708282165d5cbe19e9a70c44a184708799df))
+
 ## [2.1.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.1.2...v2.1.3) (2024-07-18)
 
 
