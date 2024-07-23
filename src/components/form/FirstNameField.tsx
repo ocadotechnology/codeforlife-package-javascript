@@ -1,3 +1,5 @@
+import { PersonOutlined as PersonOutlinedIcon } from "@mui/icons-material"
+import { InputAdornment } from "@mui/material"
 import type { FC } from "react"
 import { string as YupString } from "yup"
 
@@ -13,6 +15,7 @@ const FirstNameField: FC<FirstNameFieldProps> = ({
   name = "first_name",
   label = "First name",
   placeholder = "Enter your first name",
+  InputProps = {},
   ...otherTextFieldProps
 }) => {
   return (
@@ -21,6 +24,14 @@ const FirstNameField: FC<FirstNameFieldProps> = ({
       name={name}
       label={label}
       placeholder={placeholder}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <PersonOutlinedIcon />
+          </InputAdornment>
+        ),
+        ...InputProps,
+      }}
       {...otherTextFieldProps}
     />
   )

@@ -1,6 +1,10 @@
 import type { Model } from "../utils/api"
 import type { CountryIsoCodes, UkCounties } from "../utils/general"
 
+// -----------------------------------------------------------------------------
+// User Models
+// -----------------------------------------------------------------------------
+
 export type User = Model<
   number,
   {
@@ -18,6 +22,45 @@ export type User = Model<
   }
 >
 
+export type TeacherUser<Fields = User> = Fields & {
+  teacher: Teacher
+  student: undefined
+}
+
+export type SchoolTeacherUser<Fields = User> = Fields & {
+  teacher: SchoolTeacher
+  student: undefined
+}
+
+export type AdminSchoolTeacherUser<Fields = User> = Fields & {
+  teacher: AdminSchoolTeacher
+  student: undefined
+}
+
+export type NonAdminSchoolTeacherUser<Fields = User> = Fields & {
+  teacher: NonAdminSchoolTeacher
+  student: undefined
+}
+
+export type NonSchoolTeacherUser<Fields = User> = Fields & {
+  teacher: NonSchoolTeacher
+  student: undefined
+}
+
+export type StudentUser<Fields = User> = Fields & {
+  teacher: undefined
+  student: Student
+}
+
+export type IndependentUser<Fields = User> = Fields & {
+  teacher: undefined
+  student: undefined
+}
+
+// -----------------------------------------------------------------------------
+// Teacher Models
+// -----------------------------------------------------------------------------
+
 export type Teacher = Model<
   number,
   {
@@ -26,6 +69,28 @@ export type Teacher = Model<
     is_admin: boolean
   }
 >
+
+export type SchoolTeacher<Fields = Teacher> = Fields & {
+  school: number
+}
+
+export type AdminSchoolTeacher<Fields = Teacher> = Fields & {
+  school: number
+  is_admin: true
+}
+
+export type NonAdminSchoolTeacher<Fields = Teacher> = Fields & {
+  school: number
+  is_admin: false
+}
+
+export type NonSchoolTeacher<Fields = Teacher> = Fields & {
+  school: undefined
+}
+
+// -----------------------------------------------------------------------------
+// Other Models
+// -----------------------------------------------------------------------------
 
 export type Student = Model<
   number,
