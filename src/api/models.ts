@@ -22,33 +22,37 @@ export type User = Model<
   }
 >
 
-export type TeacherUser = User & {
+export type TeacherUser<Fields = User> = Fields & {
   teacher: Teacher
   student: undefined
 }
 
-export type SchoolTeacherUser = TeacherUser & {
+export type SchoolTeacherUser<Fields = User> = Fields & {
   teacher: SchoolTeacher
+  student: undefined
 }
 
-export type AdminSchoolTeacherUser = SchoolTeacherUser & {
+export type AdminSchoolTeacherUser<Fields = User> = Fields & {
   teacher: AdminSchoolTeacher
+  student: undefined
 }
 
-export type NonAdminSchoolTeacherUser = SchoolTeacherUser & {
+export type NonAdminSchoolTeacherUser<Fields = User> = Fields & {
   teacher: NonAdminSchoolTeacher
+  student: undefined
 }
 
-export type NonSchoolTeacherUser = TeacherUser & {
+export type NonSchoolTeacherUser<Fields = User> = Fields & {
   teacher: NonSchoolTeacher
+  student: undefined
 }
 
-export type StudentUser = User & {
+export type StudentUser<Fields = User> = Fields & {
   teacher: undefined
   student: Student
 }
 
-export type IndependentUser = User & {
+export type IndependentUser<Fields = User> = Fields & {
   teacher: undefined
   student: undefined
 }
@@ -66,19 +70,21 @@ export type Teacher = Model<
   }
 >
 
-export type SchoolTeacher = Teacher & {
+export type SchoolTeacher<Fields = Teacher> = Fields & {
   school: number
 }
 
-export type AdminSchoolTeacher = SchoolTeacher & {
+export type AdminSchoolTeacher<Fields = Teacher> = Fields & {
+  school: number
   is_admin: true
 }
 
-export type NonAdminSchoolTeacher = SchoolTeacher & {
+export type NonAdminSchoolTeacher<Fields = Teacher> = Fields & {
+  school: number
   is_admin: false
 }
 
-export type NonSchoolTeacher = Teacher & {
+export type NonSchoolTeacher<Fields = Teacher> = Fields & {
   school: undefined
 }
 
