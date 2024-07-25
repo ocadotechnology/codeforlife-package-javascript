@@ -8,7 +8,7 @@ import {
   type RetrieveArg,
   type RetrieveResult,
 } from "../../utils/api"
-import type { Class, User } from "../models"
+import type { Class, School, User } from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 
@@ -38,7 +38,10 @@ export type ListUsersResult = ListResult<
   | "student"
   | "teacher"
 >
-export type ListUsersArg = ListArg<{ students_in_class: Class["id"] }>
+export type ListUsersArg = ListArg<{
+  students_in_class: Class["id"]
+  teachers_in_school: School["id"]
+}>
 
 export default function getReadUserEndpoints(
   build: EndpointBuilder<any, any, any>,
