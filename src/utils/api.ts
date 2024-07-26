@@ -163,9 +163,17 @@ export function buildUrl(
   }
 
   if (params.search) {
-    const searchParams = Object.entries(params.search)
-      .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => [key, String(value)])
+    const searchParams: string[][] = []
+    for (const key in params.search) {
+      const values = params.search[key]
+      if (values === undefined) continue
+
+      if (Array.isArray(values)) {
+        for (const value of values) searchParams.push([key, String(value)])
+      } else {
+        searchParams.push([key, String(values)])
+      }
+    }
 
     if (searchParams.length !== 0) {
       url += `?${new URLSearchParams(searchParams).toString()}`
