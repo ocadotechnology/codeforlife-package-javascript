@@ -41,6 +41,7 @@ export type ListUsersResult = ListResult<
 export type ListUsersArg = ListArg<{
   students_in_class: Class["id"]
   teachers_in_school: School["id"]
+  _id: User["id"] | User["id"][]
 }>
 
 export default function getReadUserEndpoints(
