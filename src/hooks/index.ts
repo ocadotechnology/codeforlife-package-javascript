@@ -1,4 +1,4 @@
-import { useFullList } from "./api"
+import { usePagination } from "./api"
 import {
   useSession,
   useSessionMetadata,
@@ -14,9 +14,9 @@ export {
   useCountdown,
   useEventListener,
   useExternalScript,
-  useFullList,
   useLocation,
   useNavigate,
+  usePagination,
   useParams,
   useSearchParams,
   useSession,
