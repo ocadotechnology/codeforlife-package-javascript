@@ -6,6 +6,7 @@ import {
   type TextFieldProps,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
+import { type ElementType } from "react"
 import {
   number as YupNumber,
   string as YupString,
@@ -20,7 +21,7 @@ export interface AutocompleteFieldProps<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
+  ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
     AutocompleteProps<
       Value,
@@ -53,7 +54,7 @@ const AutocompleteField = <
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
+  ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 >({
   textFieldProps,
   options,
