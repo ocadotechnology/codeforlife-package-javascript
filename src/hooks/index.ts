@@ -1,4 +1,4 @@
-import { usePagination } from "./api"
+import { usePagination, type UsePaginationOptions } from "./api"
 import {
   useSession,
   useSessionMetadata,
@@ -22,6 +22,7 @@ export {
   useSession,
   useSessionMetadata,
   type SessionMetadata,
+  type UsePaginationOptions,
   type UseSessionChildren,
   type UseSessionChildrenFunction,
   type UseSessionOptions,

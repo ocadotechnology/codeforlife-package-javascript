@@ -1,10 +1,12 @@
 import { type Dispatch, type SetStateAction, useState } from "react"
 
+export type UsePaginationOptions = Partial<{
+  page: number
+  limit: number
+}>
+
 export function usePagination(
-  options?: Partial<{
-    page: number
-    limit: number
-  }>,
+  options?: UsePaginationOptions,
 ): [
   { page: number; limit: number; offset: number },
   Dispatch<SetStateAction<{ page: number; limit: number }>>,
