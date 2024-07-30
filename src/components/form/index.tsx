@@ -1,3 +1,6 @@
+import ApiAutocompleteField, {
+  type ApiAutocompleteFieldProps,
+} from "./ApiAutocompleteField"
 import AutocompleteField, {
   type AutocompleteFieldProps,
 } from "./AutocompleteField"
@@ -13,6 +16,7 @@ import SubmitButton, { type SubmitButtonProps } from "./SubmitButton"
 import TextField, { type TextFieldProps } from "./TextField"
 
 export {
+  ApiAutocompleteField,
   AutocompleteField,
   CheckboxField,
   DatePickerField,
@@ -24,6 +28,7 @@ export {
   RepeatField,
   SubmitButton,
   TextField,
+  type ApiAutocompleteFieldProps,
   type AutocompleteFieldProps,
   type CheckboxFieldProps,
   type DatePickerFieldProps,
