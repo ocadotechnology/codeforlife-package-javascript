@@ -23,10 +23,12 @@ export function usePagination(
     value: SetStateAction<{ page: number; limit: number }>,
   ) {
     _setPagination(({ page: previousPage, limit: previousLimit }) => {
-      const { page, limit } =
+      let { page, limit } =
         typeof value === "function"
           ? value({ page: previousPage, limit: previousLimit })
           : value
+
+      if (limit !== previousLimit) page = 0
 
       return { page, limit, offset: page * limit }
     })
