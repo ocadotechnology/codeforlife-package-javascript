@@ -1,5 +1,9 @@
 import { type Dispatch, type SetStateAction, useState } from "react"
 
+export type Pagination = { page: number; limit: number; offset: number }
+export type SetPagination = Dispatch<
+  SetStateAction<{ page: number; limit: number }>
+>
 export type UsePaginationOptions = Partial<{
   page: number
   limit: number
@@ -7,21 +11,16 @@ export type UsePaginationOptions = Partial<{
 
 export function usePagination(
   options?: UsePaginationOptions,
-): [
-  { page: number; limit: number; offset: number },
-  Dispatch<SetStateAction<{ page: number; limit: number }>>,
-] {
+): [Pagination, SetPagination] {
   const { page = 0, limit = 150 } = options || {}
 
-  const [pagination, _setPagination] = useState({
+  const [pagination, _setPagination] = useState<Pagination>({
     page,
     limit,
     offset: page * limit,
   })
 
-  function setPagination(
-    value: SetStateAction<{ page: number; limit: number }>,
-  ) {
+  const setPagination: SetPagination = value => {
     _setPagination(({ page: previousPage, limit: previousLimit }) => {
       let { page, limit } =
         typeof value === "function"
