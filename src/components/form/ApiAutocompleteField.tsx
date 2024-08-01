@@ -1,4 +1,11 @@
-import { Button, CircularProgress, type ChipTypeMap } from "@mui/material"
+import { SyncProblem as SyncProblemIcon } from "@mui/icons-material"
+import {
+  Button,
+  CircularProgress,
+  Stack,
+  Typography,
+  type ChipTypeMap,
+} from "@mui/material"
 import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
 import {
   Children,
@@ -13,23 +20,13 @@ import {
   type AutocompleteFieldProps,
 } from "../../components/form"
 import { usePagination } from "../../hooks/api"
-import type {
-  Fields,
-  ListArg,
-  ListResult,
-  Model,
-  Result,
-  TagId,
-} from "../../utils/api"
+import type { ListArg, ListResult, TagId } from "../../utils/api"
 
 export interface ApiAutocompleteFieldProps<
+  SearchKey extends keyof Omit<QueryArg, "limit" | "offset">,
   // api type args
   QueryArg extends ListArg,
-  ModelId extends TagId,
-  M extends Model<ModelId>,
-  MFields extends keyof Omit<M, "id">,
-  ExtraFields extends Fields,
-  ResultType extends ListResult<M, MFields, ExtraFields>,
+  ResultType extends ListResult<any>,
   // autocomplete type args
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
@@ -37,27 +34,31 @@ export interface ApiAutocompleteFieldProps<
   ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
     AutocompleteFieldProps<
-      ModelId,
+      TagId,
       Multiple,
       DisableClearable,
       FreeSolo,
       ChipComponent
     >,
-    "options" | "ListboxComponent" | "filterOptions" | "getOptionLabel"
+    | "options"
+    | "ListboxComponent"
+    | "filterOptions"
+    | "getOptionLabel"
+    | "getOptionKey"
+    | "onInputChange"
   > {
   useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
-  filterOptions?: Omit<QueryArg, "limit" | "offset">
-  getOptionLabel: (result: Result<M, MFields> & ExtraFields) => string
+  filterOptions?: Omit<QueryArg, "limit" | "offset" | SearchKey>
+  getOptionLabel: (result: ResultType["data"][number]) => string
+  getOptionKey?: (result: ResultType["data"][number]) => TagId
+  searchKey: SearchKey
 }
 
 const ApiAutocompleteField = <
+  SearchKey extends keyof Omit<QueryArg, "limit" | "offset">,
   // api type args
   QueryArg extends ListArg,
-  ModelId extends TagId,
-  M extends Model<ModelId>,
-  MFields extends keyof Omit<M, "id">,
-  ExtraFields extends Fields,
-  ResultType extends ListResult<M, MFields, ExtraFields>,
+  ResultType extends ListResult<any>,
   // autocomplete type args
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
@@ -67,14 +68,13 @@ const ApiAutocompleteField = <
   useLazyListQuery,
   filterOptions,
   getOptionLabel,
+  getOptionKey = result => result.id,
+  searchKey,
   ...otherAutocompleteFieldProps
 }: ApiAutocompleteFieldProps<
+  SearchKey,
   // api type args
   QueryArg,
-  ModelId,
-  M,
-  MFields,
-  ExtraFields,
   ResultType,
   // autocomplete type args
   Multiple,
@@ -82,24 +82,27 @@ const ApiAutocompleteField = <
   FreeSolo,
   ChipComponent
 >): JSX.Element => {
-  type _Result = Result<M, MFields> & ExtraFields
-
-  const [trigger, { isLoading }] = useLazyListQuery()
+  const [search, setSearch] = useState("")
+  const [trigger, { isLoading, isError }] = useLazyListQuery()
   const [{ limit, offset }, setPagination] = usePagination()
   const [{ options, hasMore }, setState] = useState<{
-    options: Record<string, _Result>
+    options: Record<TagId, ResultType["data"][number]>
     hasMore: boolean
   }>({ options: {}, hasMore: true })
 
   // Call api
   useEffect(() => {
-    trigger({ limit, offset, ...filterOptions } as QueryArg)
+    const arg = { limit, offset, ...filterOptions } as QueryArg
+    // @ts-expect-error
+    if (search) arg[searchKey] = search
+
+    trigger(arg)
       .unwrap()
       .then(({ data, offset, limit, count }) => {
         setState(({ options: previousOptions }) => {
           const options = { ...previousOptions }
           data.forEach(result => {
-            options[result.id] = result
+            options[getOptionKey(result)] = result
           })
           return { options, hasMore: offset + limit < count }
         })
@@ -108,13 +111,13 @@ const ApiAutocompleteField = <
         if (error) console.error(error)
         // TODO: gracefully handle error
       })
-  }, [trigger, limit, offset, filterOptions])
+  }, [trigger, limit, offset, filterOptions, getOptionKey, searchKey, search])
 
   // Get options keys
-  let optionKeys: ModelId[] = Object.keys(options) as ModelId[]
+  let optionKeys: TagId[] = Object.keys(options)
   if (!optionKeys.length) return <></>
-  if (typeof Object.values<_Result>(options)[0].id === "number") {
-    optionKeys = optionKeys.map(Number) as ModelId[]
+  if (typeof getOptionKey(Object.values(options)[0]) === "number") {
+    optionKeys = optionKeys.map(Number)
   }
 
   function loadNextPage() {
@@ -124,16 +127,29 @@ const ApiAutocompleteField = <
   return (
     <AutocompleteField
       options={optionKeys}
-      getOptionLabel={id => getOptionLabel(options[String(id)])}
+      getOptionLabel={id => getOptionLabel(options[id])}
+      onInputChange={(_, value, reason) => {
+        setSearch(reason === "input" ? value : "")
+      }}
       ListboxComponent={forwardRef(({ children, ...props }, ref) => {
-        const childrenArray = Children.toArray(children)
-        if (isLoading) childrenArray.push(<CircularProgress key="is-loading" />)
-        else if (hasMore) {
-          childrenArray.push(
-            <Button key="load-more" onClick={loadNextPage}>
-              Load more
-            </Button>,
-          )
+        const listItems = Children.toArray(children)
+        if (isLoading) listItems.push(<CircularProgress key="is-loading" />)
+        else {
+          if (isError) {
+            listItems.push(
+              <Stack direction="row" key="is-error">
+                <SyncProblemIcon color="error" />
+                <Typography color="error.main">Failed to load data</Typography>
+              </Stack>,
+            )
+          }
+          if (hasMore) {
+            listItems.push(
+              <Button key="load-more" onClick={loadNextPage}>
+                Load more
+              </Button>,
+            )
+          }
         }
 
         return (
@@ -153,7 +169,7 @@ const ApiAutocompleteField = <
               }
             }}
           >
-            {childrenArray}
+            {listItems}
           </ul>
         )
       })}
