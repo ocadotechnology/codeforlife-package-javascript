@@ -5,6 +5,7 @@ import AutocompleteField, {
   type AutocompleteFieldProps,
 } from "./AutocompleteField"
 import CheckboxField, { type CheckboxFieldProps } from "./CheckboxField"
+import CountryField, { type CountryFieldProps } from "./CountryField"
 import DatePickerField, { type DatePickerFieldProps } from "./DatePickerField"
 import EmailField, { type EmailFieldProps } from "./EmailField"
 import FirstNameField, { type FirstNameFieldProps } from "./FirstNameField"
@@ -14,11 +15,13 @@ import PasswordField, { type PasswordFieldProps } from "./PasswordField"
 import RepeatField, { type RepeatFieldProps } from "./RepeatField"
 import SubmitButton, { type SubmitButtonProps } from "./SubmitButton"
 import TextField, { type TextFieldProps } from "./TextField"
+import UkCountyField, { type UkCountyFieldProps } from "./UkCountyField"
 
 export {
   ApiAutocompleteField,
   AutocompleteField,
   CheckboxField,
+  CountryField,
   DatePickerField,
   EmailField,
   FirstNameField,
@@ -28,9 +31,11 @@ export {
   RepeatField,
   SubmitButton,
   TextField,
+  UkCountyField,
   type ApiAutocompleteFieldProps,
   type AutocompleteFieldProps,
   type CheckboxFieldProps,
+  type CountryFieldProps,
   type DatePickerFieldProps,
   type EmailFieldProps,
   type FirstNameFieldProps,
@@ -41,4 +46,5 @@ export {
   type RepeatFieldProps,
   type SubmitButtonProps,
   type TextFieldProps,
+  type UkCountyFieldProps,
 }
