@@ -104,7 +104,11 @@ type UpdateWithBody<
   RequiredFields extends keyof Omit<M, "id">,
   OptionalFields extends keyof Omit<M, "id" | RequiredFields>,
   ExtraFields extends Fields,
-> = [M["id"], Arg<M, RequiredFields, OptionalFields> & ExtraFields]
+> = [
+  M["id"],
+  Arg<M, RequiredFields, OptionalFields> &
+    ([ExtraFields] extends [never] ? {} : ExtraFields),
+]
 
 // NOTE: Sometimes update does not require a body. For example, if calling the
 // "refresh" action on an invitation object updates the expiry date to be 24
