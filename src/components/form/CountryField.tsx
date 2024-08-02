@@ -48,13 +48,18 @@ const CountryField = <
   FreeSolo,
   ChipComponent
 >): JSX.Element => {
-  const { name = "country", ...otherTextFieldProps } = textFieldProps || {}
+  const {
+    name = "country",
+    label = "Country",
+    placeholder = "Select your country",
+    ...otherTextFieldProps
+  } = textFieldProps || {}
 
   return (
     <AutocompleteField
       options={COUNTRY_ISO_CODES}
       getOptionLabel={isoCode => isoCode} // TODO: return country name
-      textFieldProps={{ name, ...otherTextFieldProps }}
+      textFieldProps={{ name, label, placeholder, ...otherTextFieldProps }}
       {...otherAutocompleteFieldProps}
     />
   )

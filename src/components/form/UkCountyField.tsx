@@ -48,12 +48,17 @@ const UkCountyField = <
   FreeSolo,
   ChipComponent
 >): JSX.Element => {
-  const { name = "uk_county", ...otherTextFieldProps } = textFieldProps || {}
+  const {
+    name = "uk_county",
+    label = "UK county",
+    placeholder = "Select your UK county",
+    ...otherTextFieldProps
+  } = textFieldProps || {}
 
   return (
     <AutocompleteField
       options={UK_COUNTIES}
-      textFieldProps={{ name, ...otherTextFieldProps }}
+      textFieldProps={{ name, label, placeholder, ...otherTextFieldProps }}
       {...otherAutocompleteFieldProps}
     />
   )
