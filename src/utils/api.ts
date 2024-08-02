@@ -103,12 +103,7 @@ type UpdateWithBody<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, "id">,
   OptionalFields extends keyof Omit<M, "id" | RequiredFields>,
-  ExtraFields extends Fields,
-> = [
-  M["id"],
-  Arg<M, RequiredFields, OptionalFields> &
-    ([ExtraFields] extends [never] ? {} : ExtraFields),
-]
+> = Pick<M, "id"> & Arg<M, RequiredFields, OptionalFields>
 
 // NOTE: Sometimes update does not require a body. For example, if calling the
 // "refresh" action on an invitation object updates the expiry date to be 24
@@ -117,14 +112,11 @@ export type UpdateArg<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, "id"> = never,
   OptionalFields extends keyof Omit<M, "id" | RequiredFields> = never,
-  ExtraFields extends Fields = never,
 > = [RequiredFields] extends [never]
   ? [OptionalFields] extends [never]
-    ? [ExtraFields] extends [never]
-      ? M["id"]
-      : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
-    : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
-  : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
+    ? M["id"]
+    : UpdateWithBody<M, RequiredFields, OptionalFields>
+  : UpdateWithBody<M, RequiredFields, OptionalFields>
 
 export type BulkUpdateResult<
   M extends Model<any>,
