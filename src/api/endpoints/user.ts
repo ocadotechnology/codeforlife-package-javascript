@@ -8,7 +8,7 @@ import {
   type RetrieveArg,
   type RetrieveResult,
 } from "../../utils/api"
-import type { Class, School, User } from "../models"
+import type { Class, User } from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 
@@ -40,7 +40,7 @@ export type ListUsersResult = ListResult<
 >
 export type ListUsersArg = ListArg<{
   students_in_class: Class["id"]
-  teachers_in_school: School["id"]
+  only_teachers: boolean
   _id: User["id"] | User["id"][]
   name: string
 }>
