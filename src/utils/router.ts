@@ -53,3 +53,7 @@ export function path<Subpaths extends Record<string, Path>>(
   }
   return path
 }
+
+export function getParam(path: Path, key: string) {
+  return (path.__ as Parameters)[key]
+}
