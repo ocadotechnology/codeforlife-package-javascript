@@ -83,7 +83,7 @@ export interface ListResult<
   count: number
   offset: number
   limit: number
-  maxLimit: number
+  max_limit: number
   data: Array<Result<M, MFields> & ExtraFields>
 }
 

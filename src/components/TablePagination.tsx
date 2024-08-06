@@ -16,7 +16,7 @@ import {
   useEffect,
 } from "react"
 
-import { usePagination } from "../hooks/api"
+import { type Pagination, usePagination } from "../hooks/api"
 import type { ListArg, ListResult } from "../utils/api"
 
 export type TablePaginationProps<
@@ -35,7 +35,10 @@ export type TablePaginationProps<
   | "onPageChange"
   | "rowsPerPageOptions"
 > & {
-  children: (data: ResultType["data"]) => ReactNode
+  children: (
+    data: ResultType["data"],
+    pagination: Pagination & { count?: number; maxLimit?: number },
+  ) => ReactNode
   useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
   filters?: Omit<QueryArg, "limit" | "offset">
   rowsPerPageOptions?: number[]
@@ -79,10 +82,12 @@ const TablePagination = <
     console.error(error)
   }, [error])
 
-  const { data, count = 0, maxLimit } = result || {}
+  const { data, count, max_limit } = result || {}
 
-  if (maxLimit) {
-    rowsPerPageOptions = rowsPerPageOptions.filter(option => option <= maxLimit)
+  if (max_limit) {
+    rowsPerPageOptions = rowsPerPageOptions.filter(
+      option => option <= max_limit,
+    )
   }
 
   return (
@@ -95,11 +100,11 @@ const TablePagination = <
           <Typography color="error.main">Failed to load data</Typography>
         </>
       ) : (
-        children(data)
+        children(data, { limit, page, offset, count, maxLimit: max_limit })
       )}
       <MuiTablePagination
         component="div"
-        count={count}
+        count={count ?? 0}
         rowsPerPage={limit}
         onRowsPerPageChange={event => {
           setPagination({ limit: parseInt(event.target.value), page: 0 })
