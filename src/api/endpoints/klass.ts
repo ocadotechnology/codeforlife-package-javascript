@@ -8,7 +8,7 @@ import {
   type RetrieveArg,
   type RetrieveResult,
 } from "../../utils/api"
-import type { Class } from "../models"
+import type { Class, Teacher } from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 
@@ -32,7 +32,7 @@ export type ListClassesResult = ListResult<
   | "school"
   | "teacher"
 >
-export type ListClassesArg = ListArg
+export type ListClassesArg = ListArg<{ teacher: Teacher["id"] }>
 
 export default function getReadClassEndpoints(
   build: EndpointBuilder<any, any, any>,

@@ -9,6 +9,7 @@ import {
 } from "@mui/material"
 
 import { includesClassNames } from "../../utils/theme"
+import palette from "../palette"
 import typography from "../typography"
 import type Components from "./_components"
 
@@ -22,8 +23,13 @@ const MuiTextField: Components["MuiTextField"] = {
       width: "100%",
       backgroundColor: "transparent",
       [`& > .${inputBaseClasses.root}`]: {
+        border: "1px solid black !important",
         borderRadius: "0px !important",
         backgroundColor: "white !important",
+      },
+      [`& > .${inputBaseClasses.root}.${inputBaseClasses.error}`]: {
+        // @ts-expect-error
+        border: `1px solid ${palette.error!.main} !important`,
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
         borderColor: "black !important",

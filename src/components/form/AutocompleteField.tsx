@@ -6,19 +6,25 @@ import {
   type TextFieldProps,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import { string as YupString, type ValidateOptions } from "yup"
+import { type ElementType } from "react"
+import {
+  number as YupNumber,
+  string as YupString,
+  type ValidateOptions,
+} from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export interface AutocompleteFieldProps<
+  Value extends string | number,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
+  ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
     AutocompleteProps<
-      string, // NOTE: force type to be string, not generic
+      Value,
       Multiple,
       DisableClearable,
       FreeSolo,
@@ -44,16 +50,18 @@ export interface AutocompleteFieldProps<
 }
 
 const AutocompleteField = <
+  Value extends string | number,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
+  ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 >({
   textFieldProps,
   options,
   validateOptions,
   ...otherAutocompleteProps
 }: AutocompleteFieldProps<
+  Value,
   Multiple,
   DisableClearable,
   FreeSolo,
@@ -63,12 +71,16 @@ const AutocompleteField = <
 
   const dotPath = name.split(".")
 
-  let schema = YupString().oneOf(options, "not a valid option")
+  const message = "not a valid option"
+  let schema =
+    typeof options[0] === "string"
+      ? YupString().oneOf(options as readonly string[], message)
+      : YupNumber().oneOf(options as readonly number[], message)
   if (required) schema = schema.required()
 
   const fieldConfig: FieldConfig = {
     name,
-    type: "text",
+    type: typeof options[0] === "string" ? "text" : "number",
     validate: schemaToFieldValidator(schema, validateOptions),
   }
 
@@ -90,7 +102,7 @@ const AutocompleteField = <
                 id={name}
                 name={name}
                 required={required}
-                type="text"
+                type="text" // Force to be string to avoid number incrementor/decrementor
                 value={value}
                 error={touched && Boolean(error)}
                 helperText={(touched && error) as false | string}

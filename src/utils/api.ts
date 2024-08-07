@@ -83,7 +83,7 @@ export interface ListResult<
   count: number
   offset: number
   limit: number
-  maxLimit: number
+  max_limit: number
   data: Array<Result<M, MFields> & ExtraFields>
 }
 
@@ -103,8 +103,7 @@ type UpdateWithBody<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, "id">,
   OptionalFields extends keyof Omit<M, "id" | RequiredFields>,
-  ExtraFields extends Fields,
-> = [M["id"], Arg<M, RequiredFields, OptionalFields> & ExtraFields]
+> = Pick<M, "id"> & Arg<M, RequiredFields, OptionalFields>
 
 // NOTE: Sometimes update does not require a body. For example, if calling the
 // "refresh" action on an invitation object updates the expiry date to be 24
@@ -113,14 +112,11 @@ export type UpdateArg<
   M extends Model<any>,
   RequiredFields extends keyof Omit<M, "id"> = never,
   OptionalFields extends keyof Omit<M, "id" | RequiredFields> = never,
-  ExtraFields extends Fields = never,
 > = [RequiredFields] extends [never]
   ? [OptionalFields] extends [never]
-    ? [ExtraFields] extends [never]
-      ? M["id"]
-      : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
-    : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
-  : UpdateWithBody<M, RequiredFields, OptionalFields, ExtraFields>
+    ? M["id"]
+    : UpdateWithBody<M, RequiredFields, OptionalFields>
+  : UpdateWithBody<M, RequiredFields, OptionalFields>
 
 export type BulkUpdateResult<
   M extends Model<any>,
@@ -163,9 +159,17 @@ export function buildUrl(
   }
 
   if (params.search) {
-    const searchParams = Object.entries(params.search)
-      .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => [key, String(value)])
+    const searchParams: string[][] = []
+    for (const key in params.search) {
+      const values = params.search[key]
+      if (values === undefined) continue
+
+      if (Array.isArray(values)) {
+        for (const value of values) searchParams.push([key, String(value)])
+      } else {
+        searchParams.push([key, String(values)])
+      }
+    }
 
     if (searchParams.length !== 0) {
       url += `?${new URLSearchParams(searchParams).toString()}`
