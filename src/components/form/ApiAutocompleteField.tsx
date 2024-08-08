@@ -1,11 +1,4 @@
-import { SyncProblem as SyncProblemIcon } from "@mui/icons-material"
-import {
-  Button,
-  CircularProgress,
-  Stack,
-  Typography,
-  type ChipTypeMap,
-} from "@mui/material"
+import { Button, CircularProgress, type ChipTypeMap } from "@mui/material"
 import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
 import {
   Children,
@@ -21,6 +14,7 @@ import {
 } from "../../components/form"
 import { usePagination } from "../../hooks/api"
 import type { ListArg, ListResult, TagId } from "../../utils/api"
+import SyncError from "../SyncError"
 
 export interface ApiAutocompleteFieldProps<
   SearchKey extends keyof Omit<QueryArg, "limit" | "offset">,
@@ -135,14 +129,7 @@ const ApiAutocompleteField = <
         const listItems = Children.toArray(children)
         if (isLoading) listItems.push(<CircularProgress key="is-loading" />)
         else {
-          if (isError) {
-            listItems.push(
-              <Stack direction="row" key="is-error">
-                <SyncProblemIcon color="error" />
-                <Typography color="error.main">Failed to load data</Typography>
-              </Stack>,
-            )
-          }
+          if (isError) listItems.push(<SyncError key="is-error" />)
           if (hasMore) {
             listItems.push(
               <Button key="load-more" onClick={loadNextPage}>

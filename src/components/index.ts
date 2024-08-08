@@ -9,6 +9,7 @@ import Image, { type ImageProps } from "./Image"
 import ItemizedList, { type ItemizedListProps } from "./ItemizedList"
 import OrderedGrid, { type OrderedGridProps } from "./OrderedGrid"
 import ScrollRoutes, { type ScrollRoutesProps } from "./ScrollRoutes"
+import SyncError, { type SyncErrorProps } from "./SyncError"
 import TablePagination, { type TablePaginationProps } from "./TablePagination"
 import YouTubeVideo, { type YouTubeVideoProps } from "./YouTubeVideo"
 
@@ -22,6 +23,7 @@ export {
   ItemizedList,
   OrderedGrid,
   ScrollRoutes,
+  SyncError,
   TablePagination,
   YouTubeVideo,
   type AppProps,
@@ -33,6 +35,7 @@ export {
   type ItemizedListProps,
   type OrderedGridProps,
   type ScrollRoutesProps,
+  type SyncErrorProps,
   type TablePaginationProps,
   type YouTubeVideoProps,
 }

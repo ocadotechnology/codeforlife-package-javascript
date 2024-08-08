@@ -1,4 +1,11 @@
-import type { FetchBaseQueryError } from "@reduxjs/toolkit/query/react"
+import { CircularProgress } from "@mui/material"
+import type {
+  FetchBaseQueryError,
+  TypedUseQuery,
+} from "@reduxjs/toolkit/query/react"
+import type { ReactNode } from "react"
+
+import { SyncError } from "../components"
 import type { Optional, Required } from "./general"
 
 // -----------------------------------------------------------------------------
@@ -239,4 +246,41 @@ export function tagData<Type extends string, M extends Model<any>>(
 
     return []
   }
+}
+
+export type UseQueryManagerOptions = Partial<{
+  loading: ReactNode
+  error: ReactNode
+}>
+
+export function useQueryManager<QueryArg, ResultType>(
+  useQuery: TypedUseQuery<ResultType, QueryArg, any>,
+  arg: QueryArg,
+  children: (data: ResultType) => ReactNode,
+  options?: UseQueryManagerOptions,
+): ReactNode {
+  const { data, isLoading, isSuccess, error } = useQuery(arg)
+
+  const {
+    loading: loadingNode = <CircularProgress />,
+    error: errorNode = <SyncError />,
+  } = options || {}
+
+  // An error occurred.
+  if (error) {
+    console.error(error)
+    return errorNode
+  }
+
+  // Busy calling the API.
+  if (isLoading) return loadingNode
+
+  // Called the API and got data.
+  if (data) return children(data)
+
+  // Called the API and did not get data.
+  if (isSuccess) throw Error("Expected to get data from API but got nothing.")
+
+  // Have yet to call the API.
+  return loadingNode
 }
