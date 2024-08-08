@@ -1,8 +1,10 @@
 import {
   usePagination,
+  useQueryManager,
   type Pagination,
   type SetPagination,
   type UsePaginationOptions,
+  type UseQueryManagerOptions,
 } from "./api"
 import {
   useSession,
@@ -23,6 +25,7 @@ export {
   useNavigate,
   usePagination,
   useParams,
+  useQueryManager,
   useSearchParams,
   useSession,
   useSessionMetadata,
@@ -30,6 +33,7 @@ export {
   type SessionMetadata,
   type SetPagination,
   type UsePaginationOptions,
+  type UseQueryManagerOptions,
   type UseSessionChildren,
   type UseSessionChildrenFunction,
   type UseSessionOptions,
