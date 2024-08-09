@@ -38,7 +38,7 @@ export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
     | TypedMutationTrigger<ResultType, QueryArg, any>
     | TypedLazyQueryTrigger<ResultType, QueryArg, any>,
   query?: {
-    then?: (result: ResultType) => void
+    then?: (result: ResultType, values: FormValues) => void
     catch?: (error: Error) => void
     finally?: () => void
   },
@@ -49,7 +49,9 @@ export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
   return (values, helpers) => {
     trigger(values)
       .unwrap()
-      .then(query?.then)
+      .then(result => {
+        if (query?.then !== undefined) query.then(result, values)
+      })
       .catch(error => {
         if (query?.catch !== undefined) query.catch(error)
         setFormErrors(error, helpers.setErrors)
