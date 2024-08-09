@@ -1,4 +1,3 @@
-import { SyncProblem as SyncProblemIcon } from "@mui/icons-material"
 import {
   CircularProgress,
   TablePagination as MuiTablePagination,
@@ -6,7 +5,6 @@ import {
   Stack,
   type StackProps,
   type TablePaginationBaseProps,
-  Typography,
 } from "@mui/material"
 import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
 import {
@@ -18,6 +16,7 @@ import {
 
 import { type Pagination, usePagination } from "../hooks/api"
 import type { ListArg, ListResult } from "../utils/api"
+import SyncError from "./SyncError"
 
 export type TablePaginationProps<
   QueryArg extends ListArg,
@@ -95,10 +94,7 @@ const TablePagination = <
       {isLoading ? (
         <CircularProgress />
       ) : error || !data ? (
-        <>
-          <SyncProblemIcon color="error" />
-          <Typography color="error.main">Failed to load data</Typography>
-        </>
+        <SyncError />
       ) : (
         children(data, { limit, page, offset, count, maxLimit: max_limit })
       )}
