@@ -109,3 +109,25 @@ export function schemaToFieldValidator(
     }
   }
 }
+
+// Checking if individual fields are dirty is not currently supported.
+// https://github.com/jaredpalmer/formik/issues/1421
+export function getDirty<
+  Values extends Record<string, any>,
+  Names extends Array<keyof Values>,
+>(
+  values: Values,
+  initialValues: Values,
+  names: Names,
+): Record<Names[number], boolean> {
+  return Object.fromEntries(
+    names.map(name => [name, isDirty(values, initialValues, name)]),
+  ) as Record<Names[number], boolean>
+}
+
+export function isDirty<
+  Values extends Record<string, any>,
+  Name extends keyof Values,
+>(values: Values, initialValues: Values, name: Name): boolean {
+  return values[name] !== initialValues[name]
+}
