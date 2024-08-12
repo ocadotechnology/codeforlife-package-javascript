@@ -1,7 +1,4 @@
-import type {
-  TypedLazyQueryTrigger,
-  TypedMutationTrigger,
-} from "@reduxjs/toolkit/query/react"
+import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import type { FieldValidator, FormikHelpers } from "formik"
 import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
@@ -33,31 +30,65 @@ export function setFormErrors(
   setErrors(data)
 }
 
-export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
-  trigger:
-    | TypedMutationTrigger<ResultType, QueryArg, any>
-    | TypedLazyQueryTrigger<ResultType, QueryArg, any>,
-  query?: {
-    then?: (result: ResultType, values: FormValues) => void
-    catch?: (error: Error) => void
-    finally?: () => void
-  },
-): (
+export type SubmitFormOptions<
+  QueryArg,
+  ResultType,
+  FormValues extends QueryArg,
+> = Partial<{
+  clean: (values: FormValues) => QueryArg
+  exclude: Array<keyof FormValues>
+  then: (
+    result: ResultType,
+    values: FormValues,
+    helpers: FormikHelpers<FormValues>,
+  ) => void
+  catch: (
+    error: unknown,
+    values: FormValues,
+    helpers: FormikHelpers<FormValues>,
+  ) => void
+  finally: (values: FormValues, helpers: FormikHelpers<FormValues>) => void
+}>
+
+export type SubmitFormHandler<QueryArg, FormValues extends QueryArg> = (
   values: FormValues,
   helpers: FormikHelpers<FormValues>,
-) => void | Promise<any> {
+) => void | Promise<any>
+
+export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options?: SubmitFormOptions<QueryArg, ResultType, FormValues>,
+): SubmitFormHandler<QueryArg, FormValues> {
+  const {
+    clean,
+    exclude,
+    then,
+    catch: _catch,
+    finally: _finally,
+  } = options || {}
+
   return (values, helpers) => {
-    trigger(values)
+    let arg: QueryArg = clean ? clean(values) : values
+
+    if (exclude && exclude.length) {
+      arg = Object.fromEntries(
+        Object.entries(arg as object).filter(
+          ([key]) => !exclude.includes(key as keyof FormValues),
+        ),
+      ) as QueryArg
+    }
+
+    trigger(arg)
       .unwrap()
       .then(result => {
-        if (query?.then !== undefined) query.then(result, values)
+        if (then) then(result, values, helpers)
       })
       .catch(error => {
-        if (query?.catch !== undefined) query.catch(error)
+        if (_catch) _catch(error, values, helpers)
         setFormErrors(error, helpers.setErrors)
       })
       .finally(() => {
-        if (query?.finally !== undefined) query.finally()
+        if (_finally) _finally(values, helpers)
       })
   }
 }
