@@ -8,7 +8,7 @@ import Section from "./Section"
 
 export interface BannerProps {
   header: string
-  subheader: string
+  subheader?: string
   textAlign?: "start" | "center"
   imageProps?: ImageProps
   buttonProps?: ButtonProps
@@ -50,16 +50,22 @@ const Banner: FC<BannerProps> = ({
           }}
           textAlign={textAlign}
         >
-          <Typography variant="h2" color={contrastText}>
+          <Typography
+            variant="h2"
+            color={contrastText}
+            mb={subheader !== undefined ? undefined : 0}
+          >
             {header}
           </Typography>
-          <Typography
-            color={contrastText}
-            variant="h4"
-            mb={buttonProps !== undefined ? undefined : 0}
-          >
-            {subheader}
-          </Typography>
+          {subheader !== undefined && (
+            <Typography
+              color={contrastText}
+              variant="h4"
+              mb={buttonProps !== undefined ? undefined : 0}
+            >
+              {subheader}
+            </Typography>
+          )}
           {buttonProps !== undefined && <Button {...buttonProps} />}
         </Stack>
         {imageProps !== undefined && (

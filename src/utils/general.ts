@@ -453,3 +453,41 @@ export function getNestedProperty(
 
   return value
 }
+
+export function withKeyPaths(obj: object, delimiter: string = "."): object {
+  function _withKeyPaths(obj: object, path: string[]) {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => {
+        const _path = [...path, key]
+
+        if (typeof value === "object") value = _withKeyPaths(value, _path)
+
+        return [_path.join(delimiter), value]
+      }),
+    )
+  }
+
+  return _withKeyPaths(obj, [])
+}
+
+export function excludeKeyPaths(
+  obj: object,
+  exclude: string[],
+  delimiter: string = ".",
+): any {
+  function _excludeKeyPaths(obj: object, path: string[]) {
+    return Object.fromEntries(
+      Object.entries(obj)
+        .map(([key, value]) => {
+          const _path = [...path, key]
+
+          if (typeof value === "object") value = _excludeKeyPaths(value, _path)
+
+          return exclude.includes(_path.join(delimiter)) ? [] : [key, value]
+        })
+        .filter(entry => entry.length),
+    )
+  }
+
+  return exclude.length ? _excludeKeyPaths(obj, []) : obj
+}
