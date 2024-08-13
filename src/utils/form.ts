@@ -2,6 +2,8 @@ import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import type { FieldValidator, FormikHelpers } from "formik"
 import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
+import { excludeKeyPaths } from "./general"
+
 export function isFormError(error: unknown): boolean {
   return (
     typeof error === "object" &&
@@ -31,12 +33,12 @@ export function setFormErrors(
 }
 
 export type SubmitFormOptions<
-  QueryArg,
+  QueryArg extends object,
   ResultType,
   FormValues extends QueryArg,
 > = Partial<{
   clean: (values: FormValues) => QueryArg
-  exclude: Array<keyof FormValues>
+  exclude: string[]
   then: (
     result: ResultType,
     values: FormValues,
@@ -50,12 +52,19 @@ export type SubmitFormOptions<
   finally: (values: FormValues, helpers: FormikHelpers<FormValues>) => void
 }>
 
-export type SubmitFormHandler<QueryArg, FormValues extends QueryArg> = (
+export type SubmitFormHandler<
+  QueryArg extends object,
+  FormValues extends QueryArg,
+> = (
   values: FormValues,
   helpers: FormikHelpers<FormValues>,
 ) => void | Promise<any>
 
-export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
+export function submitForm<
+  QueryArg extends object,
+  ResultType,
+  FormValues extends QueryArg,
+>(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
   options?: SubmitFormOptions<QueryArg, ResultType, FormValues>,
 ): SubmitFormHandler<QueryArg, FormValues> {
@@ -70,13 +79,7 @@ export function submitForm<QueryArg, ResultType, FormValues extends QueryArg>(
   return (values, helpers) => {
     let arg: QueryArg = clean ? clean(values) : values
 
-    if (exclude && exclude.length) {
-      arg = Object.fromEntries(
-        Object.entries(arg as object).filter(
-          ([key]) => !exclude.includes(key as keyof FormValues),
-        ),
-      ) as QueryArg
-    }
+    if (exclude) arg = excludeKeyPaths(arg, exclude)
 
     trigger(arg)
       .unwrap()
