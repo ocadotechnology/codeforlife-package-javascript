@@ -63,11 +63,8 @@ export function useCountdown(
   seconds: number,
   interval: number = 1,
 ): [number, Dispatch<SetStateAction<number>>] {
-  if (seconds <= 0) {
-    throw Error("seconds must be > 0")
-  } else if (interval <= 0) {
-    throw Error("interval must be > 0")
-  }
+  if (seconds <= 0) throw Error("seconds must be > 0")
+  if (interval <= 0) throw Error("interval must be > 0")
 
   const [_seconds, _setSeconds] = useState(seconds)
 
