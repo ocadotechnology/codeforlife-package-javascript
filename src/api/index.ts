@@ -1,4 +1,4 @@
-import baseQuery from "./baseQuery"
+import createApi from "./createApi"
 import type {
   AdminSchoolTeacher,
   AdminSchoolTeacherUser,
@@ -23,7 +23,7 @@ import tagTypes from "./tagTypes"
 import urls from "./urls"
 
 export {
-  baseQuery,
+  createApi,
   tagTypes,
   urls,
   type AdminSchoolTeacher,
