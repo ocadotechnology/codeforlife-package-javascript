@@ -2,10 +2,11 @@ import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 import { type ReactNode, useCallback } from "react"
 import { Provider, type ProviderProps } from "react-redux"
+import { BrowserRouter, Routes } from "react-router-dom"
 import { type Action } from "redux"
 
 import { InactiveDialog, ScreenTimeDialog } from "../features"
-import { useCountdown, useEventListener } from "../hooks"
+import { useCountdown, useEventListener, useLocation } from "../hooks"
 // import "../scripts"
 // import {
 //   configureFreshworksWidget,
@@ -16,6 +17,10 @@ export interface AppProps<A extends Action = Action, S = unknown> {
   theme: ThemeProviderProps["theme"]
   store: ProviderProps<A, S>["store"]
   children: ReactNode
+  header?: ReactNode
+  footer?: ReactNode
+  headerExcludePaths?: string[]
+  footerExcludePaths?: string[]
   maxIdleSeconds?: number
   maxTotalSeconds?: number
 }
@@ -24,10 +29,16 @@ const App = <A extends Action = Action, S = unknown>({
   theme,
   store,
   children,
+  header, // TODO: "header = <Header />"
+  footer, // TODO: "footer = <Footer />"
+  headerExcludePaths = [],
+  footerExcludePaths = [],
   maxIdleSeconds = 60 * 60,
   maxTotalSeconds = 60 * 60,
 }: AppProps<A, S>): JSX.Element => {
   const root = document.getElementById("root") as HTMLElement
+
+  const { pathname } = useLocation()
 
   const [idleSeconds, setIdleSeconds] = useCountdown(maxIdleSeconds)
   const [totalSeconds, setTotalSeconds] = useCountdown(maxTotalSeconds)
@@ -84,7 +95,11 @@ const App = <A extends Action = Action, S = unknown>({
             setTotalSeconds(maxTotalSeconds)
           }}
         />
-        {children}
+        <BrowserRouter>
+          {!headerExcludePaths.includes(pathname) && header}
+          <Routes>{children}</Routes>
+          {!footerExcludePaths.includes(pathname) && footer}
+        </BrowserRouter>
       </Provider>
     </ThemeProvider>
   )
