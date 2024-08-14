@@ -10,7 +10,7 @@ const env = import.meta.env
 export default env
 
 // The name of the current service.
-export const SERVICE_NAME = env.VITE_SERVICE_NAME ?? "REPLACE_ME"
+export const SERVICE_NAME = env.VITE_SERVICE_NAME ?? "replace-me"
 
 // If the current service the root service. This will only be true for portal.
 export const SERVICE_IS_ROOT = Boolean(Number(env.VITE_SERVICE_IS_ROOT ?? "0"))
