@@ -16,7 +16,7 @@ import { useCountdown, useEventListener, useLocation } from "../hooks"
 export interface AppProps<A extends Action = Action, S = unknown> {
   theme: ThemeProviderProps["theme"]
   store: ProviderProps<A, S>["store"]
-  children: ReactNode
+  routes: ReactNode
   header?: ReactNode
   footer?: ReactNode
   headerExcludePaths?: string[]
@@ -28,7 +28,7 @@ export interface AppProps<A extends Action = Action, S = unknown> {
 const App = <A extends Action = Action, S = unknown>({
   theme,
   store,
-  children,
+  routes,
   header, // TODO: "header = <Header />"
   footer, // TODO: "footer = <Footer />"
   headerExcludePaths = [],
@@ -97,7 +97,7 @@ const App = <A extends Action = Action, S = unknown>({
         />
         <BrowserRouter>
           {!headerExcludePaths.includes(pathname) && header}
-          <Routes>{children}</Routes>
+          <Routes>{routes}</Routes>
           {!footerExcludePaths.includes(pathname) && footer}
         </BrowserRouter>
       </Provider>
