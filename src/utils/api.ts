@@ -241,3 +241,9 @@ export function tagData<Type extends string, M extends Model<any>>(
     return []
   }
 }
+
+export function modelUrls(list: string, detail: string) {
+  if (list === detail) throw Error("List and detail are the same.")
+
+  return { list, detail }
+}
