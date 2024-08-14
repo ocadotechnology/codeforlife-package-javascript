@@ -1,4 +1,7 @@
-import { createApi as _createApi, fetchBaseQuery } from "@reduxjs/toolkit/query"
+import {
+  createApi as _createApi,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react"
 
 import { SERVICE_API_URL } from "../env"
 import { getCsrfCookie, logout } from "../utils/auth"
