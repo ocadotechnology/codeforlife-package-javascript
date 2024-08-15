@@ -2,6 +2,7 @@ import { CircularProgress } from "@mui/material"
 import type {
   FetchBaseQueryError,
   TypedUseQueryHookResult,
+  TypedUseQueryStateResult,
 } from "@reduxjs/toolkit/query/react"
 import { type ReactNode } from "react"
 
@@ -260,8 +261,10 @@ export type HandleQueryStateOptions = Partial<{
 }>
 
 export function handleQueryState<QueryArg, ResultType>(
-  result: TypedUseQueryHookResult<ResultType, QueryArg, any>,
-  children: (data: ResultType) => ReactNode,
+  result:
+    | TypedUseQueryHookResult<ResultType, QueryArg, any>
+    | TypedUseQueryStateResult<ResultType, QueryArg, any>,
+  children: (data: NonNullable<ResultType>) => ReactNode,
   options?: HandleQueryStateOptions,
 ): ReactNode {
   const { data, isLoading, isSuccess, error } = result
