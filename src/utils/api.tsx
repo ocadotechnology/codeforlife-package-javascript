@@ -1,5 +1,11 @@
-import type { FetchBaseQueryError } from "@reduxjs/toolkit/query/react"
+import { CircularProgress } from "@mui/material"
+import type {
+  FetchBaseQueryError,
+  TypedUseQueryHookResult,
+} from "@reduxjs/toolkit/query/react"
+import { type ReactNode } from "react"
 
+import SyncError from "../components/SyncError"
 import type { Optional, Required } from "./general"
 
 // -----------------------------------------------------------------------------
@@ -246,4 +252,40 @@ export function modelUrls(list: string, detail: string) {
   if (list === detail) throw Error("List and detail are the same.")
 
   return { list, detail }
+}
+
+export type HandleQueryStateOptions = Partial<{
+  loading: ReactNode
+  error: ReactNode
+}>
+
+export function handleQueryState<QueryArg, ResultType>(
+  result: TypedUseQueryHookResult<ResultType, QueryArg, any>,
+  children: (data: ResultType) => ReactNode,
+  options?: HandleQueryStateOptions,
+): ReactNode {
+  const { data, isLoading, isSuccess, error } = result
+
+  const {
+    loading: loadingNode = <CircularProgress />,
+    error: errorNode = <SyncError />,
+  } = options || {}
+
+  // An error occurred.
+  if (error) {
+    console.error(error)
+    return errorNode
+  }
+
+  // Busy calling the API.
+  if (isLoading) return loadingNode
+
+  // Called the API and got data.
+  if (data) return children(data)
+
+  // Called the API and did not get data.
+  if (isSuccess) throw Error("Expected to get data from API but got nothing.")
+
+  // Have yet to call the API.
+  return loadingNode
 }
