@@ -1,8 +1,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
-import { type ReactNode, useCallback } from "react"
+import { useCallback, type FC, type ReactNode } from "react"
 import { Provider, type ProviderProps } from "react-redux"
-import { BrowserRouter, Routes } from "react-router-dom"
+import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
 import { type Action } from "redux"
 
 import { InactiveDialog, ScreenTimeDialog } from "../features"
@@ -25,20 +25,41 @@ export interface AppProps<A extends Action = Action, S = unknown> {
   maxTotalSeconds?: number
 }
 
+const Routes: FC<
+  Pick<
+    AppProps,
+    "routes" | "header" | "footer" | "headerExcludePaths" | "footerExcludePaths"
+  >
+> = ({
+  routes,
+  header = <></>, // TODO: "header = <Header />"
+  footer = <></>, // TODO: "footer = <Footer />"
+  headerExcludePaths = [],
+  footerExcludePaths = [],
+}) => {
+  const { pathname } = useLocation()
+
+  return (
+    <>
+      {!headerExcludePaths.includes(pathname) && header}
+      <RouterRoutes>{routes}</RouterRoutes>
+      {!footerExcludePaths.includes(pathname) && footer}
+    </>
+  )
+}
+
 const App = <A extends Action = Action, S = unknown>({
   theme,
   store,
   routes,
-  header, // TODO: "header = <Header />"
-  footer, // TODO: "footer = <Footer />"
+  header,
+  footer,
   headerExcludePaths = [],
   footerExcludePaths = [],
   maxIdleSeconds = 60 * 60,
   maxTotalSeconds = 60 * 60,
 }: AppProps<A, S>): JSX.Element => {
   const root = document.getElementById("root") as HTMLElement
-
-  const { pathname } = useLocation()
 
   const [idleSeconds, setIdleSeconds] = useCountdown(maxIdleSeconds)
   const [totalSeconds, setTotalSeconds] = useCountdown(maxTotalSeconds)
@@ -96,9 +117,13 @@ const App = <A extends Action = Action, S = unknown>({
           }}
         />
         <BrowserRouter>
-          {!headerExcludePaths.includes(pathname) && header}
-          <Routes>{routes}</Routes>
-          {!footerExcludePaths.includes(pathname) && footer}
+          <Routes
+            routes={routes}
+            header={header}
+            footer={footer}
+            headerExcludePaths={headerExcludePaths}
+            footerExcludePaths={footerExcludePaths}
+          />
         </BrowserRouter>
       </Provider>
     </ThemeProvider>
