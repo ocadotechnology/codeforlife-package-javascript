@@ -37,6 +37,7 @@ export type TablePaginationProps<
     pagination: Pagination & { count?: number; maxLimit?: number },
   ) => ReactNode
   useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
+  preferCacheValue?: boolean
   filters?: Omit<QueryArg, "limit" | "offset">
   rowsPerPageOptions?: number[]
   stackProps?: StackProps
@@ -53,6 +54,7 @@ const TablePagination = <
 >({
   children,
   useLazyListQuery,
+  preferCacheValue,
   filters,
   page: initialPage = 0,
   rowsPerPage: initialLimit = 50,
@@ -72,8 +74,8 @@ const TablePagination = <
   })
 
   useEffect(() => {
-    trigger({ limit, offset, ...filters } as QueryArg)
-  }, [trigger, limit, offset, filters])
+    trigger({ limit, offset, ...filters } as QueryArg, preferCacheValue)
+  }, [trigger, limit, offset, filters, preferCacheValue])
 
   const { count, max_limit } = result.data || {}
 
