@@ -156,10 +156,13 @@ export function useParamsRequired<
   const params = useParams(shape, validateOptions)
   const navigate = useNavigate<State>()
 
-  useEffect(() => {
-    if (params) onValidationSuccess(params)
-    else onValidationError(navigate)
-  }, [params, onValidationSuccess, onValidationError, navigate])
+  useEffect(
+    () => {
+      if (params) onValidationSuccess(params)
+      else onValidationError(navigate)
+    },
+    [], // eslint-disable-line react-hooks/exhaustive-deps
+  )
 
   return params ? children(params) : <></>
 }
