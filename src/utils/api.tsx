@@ -277,7 +277,7 @@ export function tagData<Type extends string, M extends Model<any>>(
       }
     }
 
-    return []
+    return tags([])
   }
 }
 
