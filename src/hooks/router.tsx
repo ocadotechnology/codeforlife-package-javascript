@@ -1,3 +1,4 @@
+import { useEffect, type ReactNode } from "react"
 import {
   useLocation as _useLocation,
   useNavigate as _useNavigate,
@@ -20,18 +21,21 @@ import {
   type TryValidateSyncRT,
 } from "../utils/schema"
 
+export type Navigate<State extends Record<string, any> = Record<string, any>> =
+  {
+    (
+      to: To,
+      options?: Omit<NavigateOptions, "state"> & {
+        state?: State & Partial<PageState>
+        next?: boolean
+      },
+    ): void
+    (delta: number): void
+  }
+
 export function useNavigate<
   State extends Record<string, any> = Record<string, any>,
->(): {
-  (
-    to: To,
-    options?: Omit<NavigateOptions, "state"> & {
-      state?: State & Partial<PageState>
-      next?: boolean
-    },
-  ): void
-  (delta: number): void
-} {
+>(): Navigate<State> {
   const navigate = _useNavigate()
   const searchParams = useSearchParams()
 
@@ -119,4 +123,36 @@ export function useParams<
   if (!shape) return params
 
   return tryValidateSync(params, objectSchema(shape), validateOptions)
+}
+
+export function useParamsRequired<
+  OnErrorRT extends TryValidateSyncOnErrorRT<ObjectSchemaFromShape<Shape>>,
+  Shape extends ObjectShape = {},
+  State extends Record<string, any> = Record<string, any>,
+>({
+  shape,
+  children,
+  onValidationError,
+  validateOptions,
+}: {
+  shape: Shape
+  children: (
+    data: NonNullable<
+      TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
+    >,
+  ) => ReactNode
+  onValidationError: (navigate: Navigate<State>) => void
+  validateOptions?: TryValidateSyncOptions<
+    ObjectSchemaFromShape<Shape>,
+    OnErrorRT
+  >
+}) {
+  const params = useParams(shape, validateOptions)
+  const navigate = useNavigate<State>()
+
+  useEffect(() => {
+    if (!params) onValidationError(navigate)
+  }, [params, onValidationError, navigate])
+
+  return params ? children(params) : <></>
 }
