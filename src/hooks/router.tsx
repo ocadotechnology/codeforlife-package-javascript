@@ -133,6 +133,7 @@ export function useParamsRequired<
   shape,
   children,
   onValidationError,
+  onValidationSuccess = () => {},
   validateOptions,
 }: {
   shape: Shape
@@ -142,6 +143,11 @@ export function useParamsRequired<
     >,
   ) => ReactNode
   onValidationError: (navigate: Navigate<State>) => void
+  onValidationSuccess?: (
+    params: NonNullable<
+      TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
+    >,
+  ) => void
   validateOptions?: TryValidateSyncOptions<
     ObjectSchemaFromShape<Shape>,
     OnErrorRT
@@ -151,8 +157,9 @@ export function useParamsRequired<
   const navigate = useNavigate<State>()
 
   useEffect(() => {
-    if (!params) onValidationError(navigate)
-  }, [params, onValidationError, navigate])
+    if (params) onValidationSuccess(params)
+    else onValidationError(navigate)
+  }, [params, onValidationSuccess, onValidationError, navigate])
 
   return params ? children(params) : <></>
 }
