@@ -13,7 +13,7 @@ import {
   type AutocompleteFieldProps,
 } from "../../components/form"
 import { usePagination } from "../../hooks/api"
-import type { ListArg, ListResult, TagId } from "../../utils/api"
+import type { ListArg, ListResult, ModelId } from "../../utils/api"
 import SyncError from "../SyncError"
 
 export interface ApiAutocompleteFieldProps<
@@ -28,7 +28,7 @@ export interface ApiAutocompleteFieldProps<
   ChipComponent extends ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
     AutocompleteFieldProps<
-      TagId,
+      ModelId,
       Multiple,
       DisableClearable,
       FreeSolo,
@@ -44,7 +44,7 @@ export interface ApiAutocompleteFieldProps<
   useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
   filterOptions?: Omit<QueryArg, "limit" | "offset" | SearchKey>
   getOptionLabel: (result: ResultType["data"][number]) => string
-  getOptionKey?: (result: ResultType["data"][number]) => TagId
+  getOptionKey?: (result: ResultType["data"][number]) => ModelId
   searchKey: SearchKey
 }
 
@@ -80,7 +80,7 @@ const ApiAutocompleteField = <
   const [trigger, { isLoading, isError }] = useLazyListQuery()
   const [{ limit, offset }, setPagination] = usePagination()
   const [{ options, hasMore }, setState] = useState<{
-    options: Record<TagId, ResultType["data"][number]>
+    options: Record<ModelId, ResultType["data"][number]>
     hasMore: boolean
   }>({ options: {}, hasMore: true })
 
@@ -108,7 +108,7 @@ const ApiAutocompleteField = <
   }, [trigger, limit, offset, filterOptions, getOptionKey, searchKey, search])
 
   // Get options keys
-  let optionKeys: TagId[] = Object.keys(options)
+  let optionKeys: ModelId[] = Object.keys(options)
   if (!optionKeys.length) return <></>
   if (typeof getOptionKey(Object.values(options)[0]) === "number") {
     optionKeys = optionKeys.map(Number)
