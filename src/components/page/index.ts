@@ -1,19 +1,10 @@
-import Banner, { type BannerProps } from "./Banner"
-import Notification, { type NotificationProps } from "./Notification"
-import Page, { type PageProps, type PageState } from "./Page"
-import Section, { type SectionProps } from "./Section"
-import TabBar, { type TabBarProps } from "./TabBar"
-
-export {
-  Banner,
-  Notification,
-  Page,
-  Section,
-  TabBar,
-  type BannerProps,
-  type NotificationProps,
-  type PageProps,
-  type PageState,
-  type SectionProps,
-  type TabBarProps,
-}
+export * from "./Banner"
+export { default as Banner } from "./Banner"
+export * from "./Notification"
+export { default as Notification } from "./Notification"
+export * from "./Page"
+export { default as Page } from "./Page"
+export * from "./Section"
+export { default as Section } from "./Section"
+export * from "./TabBar"
+export { default as TabBar } from "./TabBar"

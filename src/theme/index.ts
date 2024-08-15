@@ -4,18 +4,14 @@ import {
   responsiveFontSizes,
 } from "@mui/material"
 
-import palette, { type PropsColorOverrides } from "./palette"
 import components from "./components"
-import ThemedBox, { type ThemedBoxProps } from "./ThemedBox"
+import palette from "./palette"
 import spacing from "./spacing"
 import typography from "./typography"
 
-export {
-  // Needed to modify '@mui/material' module declarations.
-  type PropsColorOverrides,
-  ThemedBox,
-  type ThemedBoxProps,
-}
+export * from "./palette"
+export * from "./ThemedBox"
+export { default as ThemedBox } from "./ThemedBox"
 
 export const themeOptions: ThemeOptions = {
   palette,

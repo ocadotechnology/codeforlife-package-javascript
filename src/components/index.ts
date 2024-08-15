@@ -1,41 +1,24 @@
-import App, { type AppProps } from "./App"
-import ClickableTooltip, {
-  type ClickableTooltipProps,
-} from "./ClickableTooltip"
-import CopyIconButton, { type CopyIconButtonProps } from "./CopyIconButton"
-import Countdown, { type CountdownProps } from "./Countdown"
-import ElevatedAppBar, { type ElevatedAppBarProps } from "./ElevatedAppBar"
-import Image, { type ImageProps } from "./Image"
-import ItemizedList, { type ItemizedListProps } from "./ItemizedList"
-import OrderedGrid, { type OrderedGridProps } from "./OrderedGrid"
-import ScrollRoutes, { type ScrollRoutesProps } from "./ScrollRoutes"
-import SyncError, { type SyncErrorProps } from "./SyncError"
-import TablePagination, { type TablePaginationProps } from "./TablePagination"
-import YouTubeVideo, { type YouTubeVideoProps } from "./YouTubeVideo"
-
-export {
-  App,
-  ClickableTooltip,
-  CopyIconButton,
-  Countdown,
-  ElevatedAppBar,
-  Image,
-  ItemizedList,
-  OrderedGrid,
-  ScrollRoutes,
-  SyncError,
-  TablePagination,
-  YouTubeVideo,
-  type AppProps,
-  type ClickableTooltipProps,
-  type CopyIconButtonProps,
-  type CountdownProps,
-  type ElevatedAppBarProps,
-  type ImageProps,
-  type ItemizedListProps,
-  type OrderedGridProps,
-  type ScrollRoutesProps,
-  type SyncErrorProps,
-  type TablePaginationProps,
-  type YouTubeVideoProps,
-}
+export * from "./App"
+export { default as App } from "./App"
+export * from "./ClickableTooltip"
+export { default as ClickableTooltip } from "./ClickableTooltip"
+export * from "./CopyIconButton"
+export { default as CopyIconButton } from "./CopyIconButton"
+export * from "./Countdown"
+export { default as Countdown } from "./Countdown"
+export * from "./ElevatedAppBar"
+export { default as ElevatedAppBar } from "./ElevatedAppBar"
+export * from "./Image"
+export { default as Image } from "./Image"
+export * from "./ItemizedList"
+export { default as ItemizedList } from "./ItemizedList"
+export * from "./OrderedGrid"
+export { default as OrderedGrid } from "./OrderedGrid"
+export * from "./ScrollRoutes"
+export { default as ScrollRoutes } from "./ScrollRoutes"
+export * from "./SyncError"
+export { default as SyncError } from "./SyncError"
+export * from "./TablePagination"
+export { default as TablePagination } from "./TablePagination"
+export * from "./YouTubeVideo"
+export { default as YouTubeVideo } from "./YouTubeVideo"
