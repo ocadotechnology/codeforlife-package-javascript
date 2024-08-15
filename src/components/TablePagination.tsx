@@ -1,5 +1,4 @@
 import {
-  CircularProgress,
   TablePagination as MuiTablePagination,
   type TablePaginationProps as MuiTablePaginationProps,
   Stack,
@@ -15,8 +14,7 @@ import {
 } from "react"
 
 import { type Pagination, usePagination } from "../hooks/api"
-import type { ListArg, ListResult } from "../utils/api"
-import SyncError from "./SyncError"
+import { type ListArg, type ListResult, handleQueryState } from "../utils/api"
 
 export type TablePaginationProps<
   QueryArg extends ListArg,
@@ -67,7 +65,7 @@ const TablePagination = <
   RootComponent,
   AdditionalProps
 >): JSX.Element => {
-  const [trigger, { data: result, isLoading, error }] = useLazyListQuery()
+  const [trigger, result] = useLazyListQuery()
   const [{ limit, page, offset }, setPagination] = usePagination({
     page: initialPage,
     limit: initialLimit,
@@ -77,11 +75,7 @@ const TablePagination = <
     trigger({ limit, offset, ...filters } as QueryArg)
   }, [trigger, limit, offset, filters])
 
-  useEffect(() => {
-    console.error(error)
-  }, [error])
-
-  const { data, count, max_limit } = result || {}
+  const { count, max_limit } = result.data || {}
 
   if (max_limit) {
     rowsPerPageOptions = rowsPerPageOptions.filter(
@@ -91,12 +85,14 @@ const TablePagination = <
 
   return (
     <Stack {...stackProps}>
-      {isLoading ? (
-        <CircularProgress />
-      ) : error || !data ? (
-        <SyncError />
-      ) : (
-        children(data, { limit, page, offset, count, maxLimit: max_limit })
+      {handleQueryState(result, ({ data }) =>
+        children(data, {
+          limit,
+          page,
+          offset,
+          count,
+          maxLimit: max_limit,
+        }),
       )}
       <MuiTablePagination
         component="div"
