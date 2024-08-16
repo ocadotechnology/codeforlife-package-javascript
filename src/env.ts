@@ -6,7 +6,7 @@
  */
 
 // Shorthand to access environment variables.
-const env = import.meta.env
+const env = import.meta.env as Record<string, string>
 export default env
 
 // The name of the current service.
