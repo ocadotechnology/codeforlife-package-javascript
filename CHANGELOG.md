@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.2.2...v2.3.0) (2024-08-16)
+
+
+### Features
+
+* template frontend 1 ([#54](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/54)) ([6090daf](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6090dafccb27985172e117110d0c7b79f8a52ac2))
+
 ## [2.2.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.2.1...v2.2.2) (2024-08-13)
 
 
