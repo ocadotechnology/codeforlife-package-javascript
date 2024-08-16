@@ -10,7 +10,8 @@
     "pipenv"
   ],
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "never"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -18,6 +19,9 @@
     80
   ],
   "editor.tabSize": 2,
+  "files.exclude": {
+    "**/*.tsbuildinfo": true
+  },
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "double",
   "prettier.configPath": ".prettierrc.json",

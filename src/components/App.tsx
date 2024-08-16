@@ -1,59 +1,85 @@
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
-import React, { useCallback } from "react"
+import { useCallback, type FC, type ReactNode } from "react"
 import { Provider, type ProviderProps } from "react-redux"
+import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
 import { type Action } from "redux"
 
 import { InactiveDialog, ScreenTimeDialog } from "../features"
-import { useCountdown, useEventListener } from "../hooks"
-import "../scripts"
-import {
-  // configureFreshworksWidget,
-  toggleOneTrustInfoDisplay,
-} from "../utils/window"
+import { useCountdown, useEventListener, useLocation } from "../hooks"
+// import "../scripts"
+// import {
+//   configureFreshworksWidget,
+//   toggleOneTrustInfoDisplay,
+// } from "../utils/window"
 
 export interface AppProps<A extends Action = Action, S = unknown> {
   theme: ThemeProviderProps["theme"]
   store: ProviderProps<A, S>["store"]
-  children: React.ReactNode
+  routes: ReactNode
+  header?: ReactNode
+  footer?: ReactNode
+  headerExcludePaths?: string[]
+  footerExcludePaths?: string[]
   maxIdleSeconds?: number
   maxTotalSeconds?: number
+}
+
+const Routes: FC<
+  Pick<
+    AppProps,
+    "routes" | "header" | "footer" | "headerExcludePaths" | "footerExcludePaths"
+  >
+> = ({
+  routes,
+  header = <></>, // TODO: "header = <Header />"
+  footer = <></>, // TODO: "footer = <Footer />"
+  headerExcludePaths = [],
+  footerExcludePaths = [],
+}) => {
+  const { pathname } = useLocation()
+
+  return (
+    <>
+      {!headerExcludePaths.includes(pathname) && header}
+      <RouterRoutes>{routes}</RouterRoutes>
+      {!footerExcludePaths.includes(pathname) && footer}
+    </>
+  )
 }
 
 const App = <A extends Action = Action, S = unknown>({
   theme,
   store,
-  children,
+  routes,
+  header,
+  footer,
+  headerExcludePaths = [],
+  footerExcludePaths = [],
   maxIdleSeconds = 60 * 60,
   maxTotalSeconds = 60 * 60,
 }: AppProps<A, S>): JSX.Element => {
   const root = document.getElementById("root") as HTMLElement
 
-  // TODO: dynamically check if user is authenticated.
-  const isAuthenticated = true
   const [idleSeconds, setIdleSeconds] = useCountdown(maxIdleSeconds)
   const [totalSeconds, setTotalSeconds] = useCountdown(maxTotalSeconds)
   const resetIdleSeconds = useCallback(() => {
     setIdleSeconds(maxIdleSeconds)
   }, [setIdleSeconds, maxIdleSeconds])
 
-  const isIdle = isAuthenticated && idleSeconds === 0
+  const isIdle = idleSeconds === 0
   const tooMuchScreenTime = totalSeconds === 0
 
   useEventListener(root, "mousemove", resetIdleSeconds)
   useEventListener(root, "keypress", resetIdleSeconds)
 
-  React.useEffect(() => {
-    if (isAuthenticated) resetIdleSeconds()
-  }, [isAuthenticated, resetIdleSeconds])
-
   // React.useEffect(() => {
   //   configureFreshworksWidget("hide")
   // }, [])
 
-  if (import.meta.env.PROD) {
-    toggleOneTrustInfoDisplay()
-  }
+  // if (import.meta.env.PROD) {
+  //   toggleOneTrustInfoDisplay()
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,7 +116,15 @@ const App = <A extends Action = Action, S = unknown>({
             setTotalSeconds(maxTotalSeconds)
           }}
         />
-        {children}
+        <BrowserRouter>
+          <Routes
+            routes={routes}
+            header={header}
+            footer={footer}
+            headerExcludePaths={headerExcludePaths}
+            footerExcludePaths={footerExcludePaths}
+          />
+        </BrowserRouter>
       </Provider>
     </ThemeProvider>
   )

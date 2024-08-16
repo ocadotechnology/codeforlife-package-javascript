@@ -1,5 +1,12 @@
-import type { FetchBaseQueryError } from "@reduxjs/toolkit/query/react"
+import { CircularProgress } from "@mui/material"
+import type {
+  FetchBaseQueryError,
+  TypedUseQueryHookResult,
+  TypedUseQueryStateResult,
+} from "@reduxjs/toolkit/query/react"
+import { type ReactNode } from "react"
 
+import SyncError from "../components/SyncError"
 import type { Optional, Required } from "./general"
 
 // -----------------------------------------------------------------------------
@@ -9,19 +16,19 @@ import type { Optional, Required } from "./general"
 // The fields of a model.
 export type Fields = Record<string, unknown>
 
-export type TagId = string | number
-
 export interface Tag<Type extends string> {
   type: Type
-  id: TagId
+  id: string
 }
+
+export type ModelId = string | number
 
 /**
  * A data model.
  *  Id: The type of Id.
  *  Data: The data fields.
  */
-export type Model<Id extends TagId, MFields extends Fields = Fields> = {
+export type Model<Id extends ModelId, MFields extends Fields = Fields> = {
   id: Id
 } & Omit<MFields, "id">
 
@@ -180,13 +187,23 @@ export function buildUrl(
   return url
 }
 
-export function isTagId(value: unknown): boolean {
+export function isModelId(value: unknown): boolean {
   return typeof value === "number" || typeof value === "string"
 }
 
+export function listTag<Type extends string>(type: Type): Tag<Type> {
+  return { type, id: "LIST" }
+}
+
+export type TagDataOptions = Partial<{
+  includeListTag: boolean
+  argKeysAreIds: boolean
+  id: string
+}>
+
 export function tagData<Type extends string, M extends Model<any>>(
   type: Type,
-  id: string = "id",
+  options?: TagDataOptions,
 ): (
   result:
     | Result<M, any>
@@ -198,7 +215,6 @@ export function tagData<Type extends string, M extends Model<any>>(
   arg:
     | Arg<M, any>
     | Array<Arg<M, any>>
-    | [M["id"], Arg<M, any>]
     | Record<M["id"], Arg<M, any>>
     | ListArg<any>
     | Array<M["id"]>
@@ -206,38 +222,105 @@ export function tagData<Type extends string, M extends Model<any>>(
     | number
     | undefined,
 ) => Array<Tag<Type>> {
+  const {
+    includeListTag = false,
+    argKeysAreIds = false,
+    id = "id",
+  } = options || {}
+
+  function tags(
+    ids: ModelId[],
+    list: boolean = includeListTag,
+  ): Array<Tag<Type>> {
+    const tags = ids.map(id => ({ type, id: String(id) }))
+    if (list) tags.push(listTag(type))
+    return tags
+  }
+
   return (result, error, arg) => {
     if (!error) {
       if (arg) {
-        if (isTagId(arg)) return [{ type, id: arg as TagId }]
+        // The argument is an ID.
+        if (isModelId(arg)) return tags([arg as ModelId])
 
-        if (Array.isArray(arg) && arg.length > 0) {
-          if (isTagId(arg[0])) {
-            if (arg.length === 2 && !isTagId(arg[1])) {
-              return [{ type, id: (arg as [M["id"], Arg<M, any>])[0] }]
-            }
-
-            return (arg as Array<M["id"]>).map(id => ({ type, id }))
+        // The argument is an array of IDs.
+        if (Array.isArray(arg)) {
+          if (arg.length && isModelId(arg[0])) {
+            return tags(arg as Array<M["id"]>)
           }
+        }
+        // The argument is an object that contains the id field.
+        else if (typeof arg === "object" && argKeysAreIds) {
+          return tags(Object.keys(arg as Record<M["id"], any>))
         }
       }
 
       if (result) {
+        // The result is a model that contains the id field.
         if (id in result) {
-          return [{ type, id: (result as Result<M, any>)[id] as TagId }]
+          return tags([(result as Result<M, any>)[id] as ModelId])
         }
 
+        // The result is an array of models that contain the id field.
         if (Array.isArray(result)) {
-          return result.map(result => ({ type, id: result[id] as TagId }))
+          return tags(result.map(result => result[id] as ModelId))
         }
 
-        return (result as ListResult<M, any>).data.map(result => ({
-          type,
-          id: result[id] as TagId,
-        }))
+        // The result is a list that contains an array of models that contain
+        // the id field.
+        return tags(
+          (result as ListResult<M, any>).data.map(
+            result => result[id] as ModelId,
+          ),
+          true,
+        )
       }
     }
 
-    return []
+    return tags([])
   }
+}
+
+export function modelUrls(list: string, detail: string) {
+  if (list === detail) throw Error("List and detail are the same.")
+
+  return { list, detail }
+}
+
+export type HandleQueryStateOptions = Partial<{
+  loading: ReactNode
+  error: ReactNode
+}>
+
+export function handleQueryState<QueryArg, ResultType>(
+  result:
+    | TypedUseQueryHookResult<ResultType, QueryArg, any>
+    | TypedUseQueryStateResult<ResultType, QueryArg, any>,
+  children: (data: NonNullable<ResultType>) => ReactNode,
+  options?: HandleQueryStateOptions,
+): ReactNode {
+  const { data, isLoading, isSuccess, error } = result
+
+  const {
+    loading: loadingNode = <CircularProgress />,
+    error: errorNode = <SyncError />,
+  } = options || {}
+
+  // An error occurred.
+  if (error) {
+    console.error(error)
+    return errorNode
+  }
+
+  // Busy calling the API.
+  if (isLoading) return loadingNode
+
+  // Called the API and got data.
+  if (data) return children(data)
+
+  // Called the API and did not get data.
+  if (isSuccess) throw Error("Expected to get data from API but got nothing.")
+
+  // Have yet to call the API.
+  return loadingNode
 }

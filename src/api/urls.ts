@@ -1,17 +1,13 @@
-function url(list: string, detail: string) {
-  if (list === detail) throw Error("List and detail are the same.")
-
-  return { list, detail }
-}
+import { modelUrls } from "../utils/api"
 
 const urls = {
-  user: url("users/", "users/<id>/"),
-  teacher: url("users/teachers/", "users/teachers/<id>/"),
-  student: url("users/students/", "users/students/<id>/"),
-  school: url("schools/", "schools/<id>/"),
-  class: url("classes/", "classes/<id>/"),
-  otpBypassToken: url("otp-bypass-tokens/", "otp-bypass-tokens/<id>/"),
-  authFactor: url("auth-factors/", "auth-factors/<id>/"),
+  user: modelUrls("users/", "users/<id>/"),
+  teacher: modelUrls("users/teachers/", "users/teachers/<id>/"),
+  student: modelUrls("users/students/", "users/students/<id>/"),
+  school: modelUrls("schools/", "schools/<id>/"),
+  class: modelUrls("classes/", "classes/<id>/"),
+  otpBypassToken: modelUrls("otp-bypass-tokens/", "otp-bypass-tokens/<id>/"),
+  authFactor: modelUrls("auth-factors/", "auth-factors/<id>/"),
 }
 
 export default urls
