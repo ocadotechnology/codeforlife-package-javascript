@@ -8,7 +8,7 @@ import {
   type RetrieveArg,
   type RetrieveResult,
 } from "../../utils/api"
-import type { Class, Teacher, SchoolTeacher } from "../models"
+import type { Class, Teacher, SchoolTeacher, User } from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 
@@ -17,13 +17,39 @@ export const CLASS_TAG: TagTypes = "Class"
 export type RetrieveClassResult = RetrieveResult<
   Class,
   "name" | "read_classmates_data" | "receive_requests_until" | "school"
-> & { teacher: SchoolTeacher }
+> & {
+  teacher: SchoolTeacher & {
+    user: Pick<
+      User,
+      | "id"
+      | "first_name"
+      | "last_name"
+      | "email"
+      | "is_active"
+      | "date_joined"
+      | "requesting_to_join_class"
+    >
+  }
+}
 export type RetrieveClassArg = RetrieveArg<Class>
 
 export type ListClassesResult = ListResult<
   Class,
   "name" | "read_classmates_data" | "receive_requests_until" | "school",
-  { teacher: SchoolTeacher }
+  {
+    teacher: SchoolTeacher & {
+      user: Pick<
+        User,
+        | "id"
+        | "first_name"
+        | "last_name"
+        | "email"
+        | "is_active"
+        | "date_joined"
+        | "requesting_to_join_class"
+      >
+    }
+  }
 >
 export type ListClassesArg = ListArg<{ teacher: Teacher["id"] }>
 
