@@ -8,7 +8,12 @@ import {
   type RetrieveArg,
   type RetrieveResult,
 } from "../../utils/api"
-import type { Class, Teacher, SchoolTeacher, User } from "../models"
+import type {
+  Class,
+  Teacher,
+  SchoolTeacher,
+  SchoolTeacherUser,
+} from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 
@@ -20,7 +25,7 @@ export type RetrieveClassResult = RetrieveResult<
 > & {
   teacher: SchoolTeacher & {
     user: Pick<
-      User,
+      SchoolTeacherUser,
       | "id"
       | "first_name"
       | "last_name"
@@ -39,7 +44,7 @@ export type ListClassesResult = ListResult<
   {
     teacher: SchoolTeacher & {
       user: Pick<
-        User,
+        SchoolTeacherUser,
         | "id"
         | "first_name"
         | "last_name"
