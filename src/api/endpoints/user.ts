@@ -3,10 +3,10 @@ import { type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 import {
   buildUrl,
   tagData,
-  type ListArg,
-  type ListResult,
-  type RetrieveArg,
-  type RetrieveResult,
+  type ListArg as _ListArg,
+  type ListResult as _ListResult,
+  type RetrieveArg as _RetrieveArg,
+  type RetrieveResult as _RetrieveResult,
 } from "../../utils/api"
 import type { Class, User } from "../models"
 import { type TagTypes } from "../tagTypes"
@@ -14,7 +14,7 @@ import urls from "../urls"
 
 export const USER_TAG: TagTypes = "User"
 
-export type RetrieveUserResult = RetrieveResult<
+export type RetrieveUserResult = _RetrieveResult<
   User,
   | "first_name"
   | "last_name"
@@ -25,9 +25,9 @@ export type RetrieveUserResult = RetrieveResult<
   | "student"
   | "teacher"
 >
-export type RetrieveUserArg = RetrieveArg<User>
+export type RetrieveUserArg = _RetrieveArg<User>
 
-export type ListUsersResult = ListResult<
+export type ListUsersResult = _ListResult<
   User,
   | "first_name"
   | "last_name"
@@ -38,25 +38,28 @@ export type ListUsersResult = ListResult<
   | "student"
   | "teacher"
 >
-export type ListUsersArg = ListArg<{
+export type ListUsersArg = _ListArg<{
   students_in_class: Class["id"]
   _id: User["id"] | User["id"][]
   name: string
   type: "teacher" | "student" | "independent" | "indy"
 }>
 
-export default function getReadUserEndpoints(
-  build: EndpointBuilder<any, any, any>,
-) {
+export default function getReadUserEndpoints<
+  RetrieveResult extends _RetrieveResult<User> = RetrieveUserResult,
+  RetrieveArg extends _RetrieveArg<User> = RetrieveUserArg,
+  ListResult extends _ListResult<User> = ListUsersResult,
+  ListArg extends _ListArg<User> = ListUsersArg,
+>(build: EndpointBuilder<any, any, any>) {
   return {
-    retrieveUser: build.query<RetrieveUserResult, RetrieveUserArg>({
+    retrieveUser: build.query<RetrieveResult, RetrieveArg>({
       query: id => ({
         url: buildUrl(urls.user.detail, { url: { id } }),
         method: "GET",
       }),
       providesTags: tagData(USER_TAG),
     }),
-    listUsers: build.query<ListUsersResult, ListUsersArg>({
+    listUsers: build.query<ListResult, ListArg>({
       query: search => ({
         url: buildUrl(urls.user.list, { search }),
         method: "GET",

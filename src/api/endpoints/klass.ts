@@ -3,10 +3,10 @@ import { type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 import {
   buildUrl,
   tagData,
-  type ListArg,
-  type ListResult,
-  type RetrieveArg,
-  type RetrieveResult,
+  type ListArg as _ListArg,
+  type ListResult as _ListResult,
+  type RetrieveArg as _RetrieveArg,
+  type RetrieveResult as _RetrieveResult,
 } from "../../utils/api"
 import type {
   Class,
@@ -19,7 +19,7 @@ import urls from "../urls"
 
 export const CLASS_TAG: TagTypes = "Class"
 
-export type RetrieveClassResult = RetrieveResult<
+export type RetrieveClassResult = _RetrieveResult<
   Class,
   "name" | "read_classmates_data" | "receive_requests_until" | "school"
 > & {
@@ -36,9 +36,9 @@ export type RetrieveClassResult = RetrieveResult<
     >
   }
 }
-export type RetrieveClassArg = RetrieveArg<Class>
+export type RetrieveClassArg = _RetrieveArg<Class>
 
-export type ListClassesResult = ListResult<
+export type ListClassesResult = _ListResult<
   Class,
   "name" | "read_classmates_data" | "receive_requests_until" | "school",
   {
@@ -56,20 +56,23 @@ export type ListClassesResult = ListResult<
     }
   }
 >
-export type ListClassesArg = ListArg<{ teacher: Teacher["id"] }>
+export type ListClassesArg = _ListArg<{ teacher: Teacher["id"] }>
 
-export default function getReadClassEndpoints(
-  build: EndpointBuilder<any, any, any>,
-) {
+export default function getReadClassEndpoints<
+  RetrieveResult extends _RetrieveResult<Class> = RetrieveClassResult,
+  RetrieveArg extends _RetrieveArg<Class> = RetrieveClassArg,
+  ListResult extends _ListResult<Class> = ListClassesResult,
+  ListArg extends _ListArg<Class> = ListClassesArg,
+>(build: EndpointBuilder<any, any, any>) {
   return {
-    retrieveClass: build.query<RetrieveClassResult, RetrieveClassArg>({
+    retrieveClass: build.query<RetrieveResult, RetrieveArg>({
       query: id => ({
         url: buildUrl(urls.class.detail, { url: { id } }),
         method: "GET",
       }),
       providesTags: tagData(CLASS_TAG),
     }),
-    listClasses: build.query<ListClassesResult, ListClassesArg>({
+    listClasses: build.query<ListResult, ListArg>({
       query: search => ({
         url: buildUrl(urls.class.list, { search }),
         method: "GET",
