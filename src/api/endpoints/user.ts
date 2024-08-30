@@ -40,9 +40,9 @@ export type ListUsersResult = ListResult<
 >
 export type ListUsersArg = ListArg<{
   students_in_class: Class["id"]
-  only_teachers: boolean
   _id: User["id"] | User["id"][]
   name: string
+  type: "teacher" | "student" | "independent" | "indy"
 }>
 
 export default function getReadUserEndpoints(
