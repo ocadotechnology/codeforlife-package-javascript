@@ -85,27 +85,39 @@ const ApiAutocompleteField = <
   }>({ options: {}, hasMore: true })
 
   // Call api
-  useEffect(() => {
-    const arg = { limit, offset, ...filterOptions } as QueryArg
-    // @ts-expect-error
-    if (search) arg[searchKey] = search
+  useEffect(
+    () => {
+      const arg = { limit, offset, ...filterOptions } as QueryArg
+      // @ts-expect-error
+      if (search) arg[searchKey] = search
 
-    trigger(arg)
-      .unwrap()
-      .then(({ data, offset, limit, count }) => {
-        setState(({ options: previousOptions }) => {
-          const options = { ...previousOptions }
-          data.forEach(result => {
-            options[getOptionKey(result)] = result
+      trigger(arg)
+        .unwrap()
+        .then(({ data, offset, limit, count }) => {
+          setState(({ options: previousOptions }) => {
+            const options = { ...previousOptions }
+            data.forEach(result => {
+              options[getOptionKey(result)] = result
+            })
+            return { options, hasMore: offset + limit < count }
           })
-          return { options, hasMore: offset + limit < count }
         })
-      })
-      .catch(error => {
-        if (error) console.error(error)
-        // TODO: gracefully handle error
-      })
-  }, [trigger, limit, offset, filterOptions, getOptionKey, searchKey, search])
+        .catch(error => {
+          if (error) console.error(error)
+          // TODO: gracefully handle error
+        })
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      trigger,
+      limit,
+      offset,
+      searchKey,
+      search,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      ...Object.values(filterOptions || {}),
+    ],
+  )
 
   // Get options keys
   let optionKeys: ModelId[] = Object.keys(options)
