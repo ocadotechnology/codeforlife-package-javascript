@@ -91,7 +91,7 @@ const ApiAutocompleteField = <
       // @ts-expect-error
       if (search) arg[searchKey] = search
 
-      trigger(arg)
+      trigger(arg, true)
         .unwrap()
         .then(({ data, offset, limit, count }) => {
           setState(({ options: previousOptions }) => {
