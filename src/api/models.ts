@@ -100,6 +100,7 @@ export type Student = Model<
     user: number
     school: number
     klass: string
+    auto_gen_password: string
   }
 >
 
