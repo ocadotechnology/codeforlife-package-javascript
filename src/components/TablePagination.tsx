@@ -73,9 +73,13 @@ const TablePagination = <
     limit: initialLimit,
   })
 
-  useEffect(() => {
-    trigger({ limit, offset, ...filters } as QueryArg, preferCacheValue)
-  }, [trigger, limit, offset, filters, preferCacheValue])
+  useEffect(
+    () => {
+      trigger({ limit, offset, ...filters } as QueryArg, preferCacheValue)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [trigger, limit, offset, ...Object.values(filters || {}), preferCacheValue],
+  )
 
   const { count, max_limit } = result.data || {}
 

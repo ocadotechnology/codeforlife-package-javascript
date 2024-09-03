@@ -23,36 +23,40 @@ export type User = Model<
 >
 
 export type TeacherUser<Fields = User> = Fields & {
+  email: string
+  last_name: string
   teacher: Teacher
   student: undefined
 }
 
-export type SchoolTeacherUser<Fields = User> = Fields & {
+export type SchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
   teacher: SchoolTeacher
-  student: undefined
 }
 
-export type AdminSchoolTeacherUser<Fields = User> = Fields & {
-  teacher: AdminSchoolTeacher
-  student: undefined
-}
+export type AdminSchoolTeacherUser<Fields = User> =
+  SchoolTeacherUser<Fields> & {
+    teacher: AdminSchoolTeacher
+  }
 
-export type NonAdminSchoolTeacherUser<Fields = User> = Fields & {
-  teacher: NonAdminSchoolTeacher
-  student: undefined
-}
+export type NonAdminSchoolTeacherUser<Fields = User> =
+  SchoolTeacherUser<Fields> & {
+    teacher: NonAdminSchoolTeacher
+  }
 
-export type NonSchoolTeacherUser<Fields = User> = Fields & {
+export type NonSchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
   teacher: NonSchoolTeacher
-  student: undefined
 }
 
 export type StudentUser<Fields = User> = Fields & {
+  email: undefined
+  last_name: undefined
   teacher: undefined
   student: Student
 }
 
 export type IndependentUser<Fields = User> = Fields & {
+  email: string
+  last_name: string
   teacher: undefined
   student: undefined
 }
@@ -74,13 +78,11 @@ export type SchoolTeacher<Fields = Teacher> = Fields & {
   school: number
 }
 
-export type AdminSchoolTeacher<Fields = Teacher> = Fields & {
-  school: number
+export type AdminSchoolTeacher<Fields = Teacher> = SchoolTeacher<Fields> & {
   is_admin: true
 }
 
-export type NonAdminSchoolTeacher<Fields = Teacher> = Fields & {
-  school: number
+export type NonAdminSchoolTeacher<Fields = Teacher> = SchoolTeacher<Fields> & {
   is_admin: false
 }
 
