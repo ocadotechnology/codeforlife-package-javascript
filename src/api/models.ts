@@ -5,6 +5,9 @@ import type { CountryIsoCodes, UkCounties } from "../utils/general"
 // User Models
 // -----------------------------------------------------------------------------
 
+type _UserTeacher<T extends Teacher> = Omit<T, "user">
+type _UserStudent<S extends Student> = Omit<S, "user" | "auto_gen_password">
+
 export type User = Model<
   number,
   {
@@ -17,41 +20,41 @@ export type User = Model<
     is_active: boolean
     date_joined: Date
     requesting_to_join_class?: Class["id"]
-    teacher?: Omit<Teacher, "user">
-    student?: Omit<Student, "user" | "auto_gen_password">
+    teacher?: _UserTeacher<Teacher>
+    student?: _UserStudent<Student>
   }
 >
 
 export type TeacherUser<Fields = User> = Fields & {
   email: string
   last_name: string
-  teacher: NonNullable<User["teacher"]>
+  teacher: _UserTeacher<Teacher>
   student?: undefined
 }
 
 export type SchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
-  teacher: Omit<SchoolTeacher, "user">
+  teacher: _UserTeacher<SchoolTeacher>
 }
 
 export type AdminSchoolTeacherUser<Fields = User> =
   SchoolTeacherUser<Fields> & {
-    teacher: Omit<AdminSchoolTeacher, "user">
+    teacher: _UserTeacher<AdminSchoolTeacher>
   }
 
 export type NonAdminSchoolTeacherUser<Fields = User> =
   SchoolTeacherUser<Fields> & {
-    teacher: Omit<NonAdminSchoolTeacher, "user">
+    teacher: _UserTeacher<NonAdminSchoolTeacher>
   }
 
 export type NonSchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
-  teacher: Omit<NonSchoolTeacher, "user">
+  teacher: _UserTeacher<NonSchoolTeacher>
 }
 
 export type StudentUser<Fields = User> = Fields & {
   email?: undefined
   last_name?: undefined
   teacher?: undefined
-  student: NonNullable<User["student"]>
+  student: _UserStudent<Student>
 }
 
 export type IndependentUser<Fields = User> = Fields & {
