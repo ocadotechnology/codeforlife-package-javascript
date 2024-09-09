@@ -125,7 +125,6 @@ export function useParams<
 export function useParamsRequired<
   OnErrorRT extends TryValidateSyncOnErrorRT<ObjectSchemaFromShape<Shape>>,
   Shape extends ObjectShape = {},
-  State extends Record<string, any> = Record<string, any>,
 >({
   shape,
   children,
@@ -139,7 +138,7 @@ export function useParamsRequired<
       TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
     >,
   ) => ReactNode
-  onValidationError: (navigate: Navigate<State>) => void
+  onValidationError: (navigate: Navigate) => void
   onValidationSuccess?: (
     params: NonNullable<
       TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
@@ -151,7 +150,7 @@ export function useParamsRequired<
   >
 }) {
   const params = useParams(shape, validateOptions)
-  const navigate = useNavigate<State>()
+  const navigate = useNavigate()
 
   useEffect(
     () => {
