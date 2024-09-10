@@ -5,6 +5,9 @@ import type { CountryIsoCodes, UkCounties } from "../utils/general"
 // User Models
 // -----------------------------------------------------------------------------
 
+type _UserTeacher<T extends Teacher> = Omit<T, "user">
+type _UserStudent<S extends Student> = Omit<S, "user" | "auto_gen_password">
+
 export type User = Model<
   number,
   {
@@ -16,49 +19,49 @@ export type User = Model<
     is_staff: boolean
     is_active: boolean
     date_joined: Date
-    requesting_to_join_class?: string
-    teacher?: Teacher
-    student?: Student
+    requesting_to_join_class?: Class["id"]
+    teacher?: _UserTeacher<Teacher>
+    student?: _UserStudent<Student>
   }
 >
 
 export type TeacherUser<Fields = User> = Fields & {
   email: string
   last_name: string
-  teacher: Teacher
-  student: undefined
+  teacher: _UserTeacher<Teacher>
+  student?: undefined
 }
 
 export type SchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
-  teacher: SchoolTeacher
+  teacher: _UserTeacher<SchoolTeacher>
 }
 
 export type AdminSchoolTeacherUser<Fields = User> =
   SchoolTeacherUser<Fields> & {
-    teacher: AdminSchoolTeacher
+    teacher: _UserTeacher<AdminSchoolTeacher>
   }
 
 export type NonAdminSchoolTeacherUser<Fields = User> =
   SchoolTeacherUser<Fields> & {
-    teacher: NonAdminSchoolTeacher
+    teacher: _UserTeacher<NonAdminSchoolTeacher>
   }
 
 export type NonSchoolTeacherUser<Fields = User> = TeacherUser<Fields> & {
-  teacher: NonSchoolTeacher
+  teacher: _UserTeacher<NonSchoolTeacher>
 }
 
 export type StudentUser<Fields = User> = Fields & {
-  email: undefined
-  last_name: undefined
-  teacher: undefined
-  student: Student
+  email?: undefined
+  last_name?: undefined
+  teacher?: undefined
+  student: _UserStudent<Student>
 }
 
 export type IndependentUser<Fields = User> = Fields & {
   email: string
   last_name: string
-  teacher: undefined
-  student: undefined
+  teacher?: undefined
+  student?: undefined
 }
 
 // -----------------------------------------------------------------------------
@@ -68,14 +71,14 @@ export type IndependentUser<Fields = User> = Fields & {
 export type Teacher = Model<
   number,
   {
-    user: number
-    school?: number
+    user: User["id"]
+    school?: School["id"]
     is_admin: boolean
   }
 >
 
 export type SchoolTeacher<Fields = Teacher> = Fields & {
-  school: number
+  school: School["id"]
 }
 
 export type AdminSchoolTeacher<Fields = Teacher> = SchoolTeacher<Fields> & {
@@ -87,7 +90,7 @@ export type NonAdminSchoolTeacher<Fields = Teacher> = SchoolTeacher<Fields> & {
 }
 
 export type NonSchoolTeacher<Fields = Teacher> = Fields & {
-  school: undefined
+  school?: undefined
 }
 
 // -----------------------------------------------------------------------------
@@ -97,9 +100,10 @@ export type NonSchoolTeacher<Fields = Teacher> = Fields & {
 export type Student = Model<
   number,
   {
-    user: number
-    school: number
-    klass: string
+    user: User["id"]
+    school: School["id"]
+    klass: Class["id"]
+    auto_gen_password: string
   }
 >
 
@@ -116,8 +120,8 @@ export type Class = Model<
   string,
   {
     name: string
-    teacher: number
-    school: number
+    teacher: Teacher["id"]
+    school: School["id"]
     read_classmates_data: boolean
     receive_requests_until?: Date
   }
@@ -126,7 +130,7 @@ export type Class = Model<
 export type AuthFactor = Model<
   number,
   {
-    user: number
+    user: User["id"]
     type: "otp"
   }
 >
@@ -134,7 +138,7 @@ export type AuthFactor = Model<
 export type OtpBypassToken = Model<
   number,
   {
-    user: number
+    user: User["id"]
     token: string
   }
 >

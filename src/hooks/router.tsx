@@ -21,26 +21,23 @@ import {
   type TryValidateSyncRT,
 } from "../utils/schema"
 
-export type Navigate<State extends Record<string, any> = Record<string, any>> =
-  {
-    (
-      to: To,
-      options?: Omit<NavigateOptions, "state"> & {
-        state?: State & Partial<PageState>
-        next?: boolean
-      },
-    ): void
-    (delta: number): void
-  }
+export type Navigate = {
+  <State extends Record<string, any> = Record<string, any>>(
+    to: To,
+    options?: Omit<NavigateOptions, "state"> & {
+      state?: State & Partial<PageState>
+      next?: boolean
+    },
+  ): void
+  (delta: number): void
+}
 
-export function useNavigate<
-  State extends Record<string, any> = Record<string, any>,
->(): Navigate<State> {
+export function useNavigate(): Navigate {
   const navigate = _useNavigate()
   const searchParams = useSearchParams()
 
   return (
-    toOrDelta,
+    toOrDelta: To | number,
     options: (NavigateOptions & { next?: boolean }) | undefined = undefined,
   ) => {
     if (typeof toOrDelta === "number") navigate(toOrDelta)
@@ -128,7 +125,6 @@ export function useParams<
 export function useParamsRequired<
   OnErrorRT extends TryValidateSyncOnErrorRT<ObjectSchemaFromShape<Shape>>,
   Shape extends ObjectShape = {},
-  State extends Record<string, any> = Record<string, any>,
 >({
   shape,
   children,
@@ -142,7 +138,7 @@ export function useParamsRequired<
       TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
     >,
   ) => ReactNode
-  onValidationError: (navigate: Navigate<State>) => void
+  onValidationError: (navigate: Navigate) => void
   onValidationSuccess?: (
     params: NonNullable<
       TryValidateSyncRT<ObjectSchemaFromShape<Shape>, OnErrorRT>
@@ -154,7 +150,7 @@ export function useParamsRequired<
   >
 }) {
   const params = useParams(shape, validateOptions)
-  const navigate = useNavigate<State>()
+  const navigate = useNavigate()
 
   useEffect(
     () => {

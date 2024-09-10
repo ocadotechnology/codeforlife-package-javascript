@@ -14,7 +14,7 @@ import {
 } from "react"
 
 import { type Pagination, usePagination } from "../hooks/api"
-import { type ListArg, type ListResult, handleQueryState } from "../utils/api"
+import { type ListArg, type ListResult, handleResultState } from "../utils/api"
 
 export type TablePaginationProps<
   QueryArg extends ListArg,
@@ -91,7 +91,7 @@ const TablePagination = <
 
   return (
     <Stack {...stackProps}>
-      {handleQueryState(result, ({ data }) =>
+      {handleResultState(result, ({ data }) =>
         children(data, {
           limit,
           page,

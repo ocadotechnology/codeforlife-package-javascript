@@ -3,6 +3,7 @@ import type {
   FetchBaseQueryError,
   TypedUseQueryHookResult,
   TypedUseQueryStateResult,
+  TypedUseMutationResult,
 } from "@reduxjs/toolkit/query/react"
 import { type ReactNode } from "react"
 
@@ -292,10 +293,11 @@ export type HandleQueryStateOptions = Partial<{
   error: ReactNode
 }>
 
-export function handleQueryState<QueryArg, ResultType>(
+export function handleResultState<QueryArg, ResultType>(
   result:
     | TypedUseQueryHookResult<ResultType, QueryArg, any>
-    | TypedUseQueryStateResult<ResultType, QueryArg, any>,
+    | TypedUseQueryStateResult<ResultType, QueryArg, any>
+    | TypedUseMutationResult<ResultType, QueryArg, any>,
   children: (data: NonNullable<ResultType>) => ReactNode,
   options?: HandleQueryStateOptions,
 ): ReactNode {
