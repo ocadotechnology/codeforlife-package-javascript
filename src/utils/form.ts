@@ -3,7 +3,6 @@ import type { FieldValidator, FormikHelpers } from "formik"
 import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
 import { excludeKeyPaths } from "./general"
-import { prepareArg } from "./api"
 
 export function isFormError(error: unknown): boolean {
   return (
@@ -81,8 +80,6 @@ export function submitForm<
     let arg: QueryArg = clean ? clean(values) : values
 
     if (exclude) arg = excludeKeyPaths(arg, exclude)
-
-    prepareArg(arg)
 
     trigger(arg)
       .unwrap()

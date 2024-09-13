@@ -478,10 +478,15 @@ export function excludeKeyPaths(
   function _excludeKeyPaths(obj: object, path: string[]) {
     return Object.fromEntries(
       Object.entries(obj)
-        .map(([key, value]) => {
+        .map(([key, value]: [string, unknown]) => {
           const _path = [...path, key]
 
-          if (typeof value === "object") value = _excludeKeyPaths(value, _path)
+          if (
+            typeof value === "object" &&
+            value !== null &&
+            !(value instanceof Date)
+          )
+            value = _excludeKeyPaths(value, _path)
 
           return exclude.includes(_path.join(delimiter)) ? [] : [key, value]
         })
