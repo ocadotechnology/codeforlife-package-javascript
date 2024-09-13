@@ -326,3 +326,16 @@ export function handleResultState<QueryArg, ResultType>(
   // Have yet to call the API.
   return loadingNode
 }
+
+export function prepareArg(arg: unknown): void {
+  if (typeof arg === "object" && arg !== null) {
+    const _arg = arg as Record<string, unknown>
+    for (const property in _arg) {
+      let value = _arg[property]
+      if (value instanceof Date) value = value.toISOString()
+      else if (typeof value === "object" && value !== null) prepareArg(value)
+
+      _arg[property] = value
+    }
+  }
+}
