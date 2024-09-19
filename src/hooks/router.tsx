@@ -5,7 +5,7 @@ import {
   useParams as _useParams,
   useSearchParams as _useSearchParams,
   type Location,
-  type NavigateOptions,
+  type NavigateOptions as _NavigateOptions,
   type Params,
   type To,
 } from "react-router-dom"
@@ -21,13 +21,17 @@ import {
   type TryValidateSyncRT,
 } from "../utils/schema"
 
+export type NavigateOptions<
+  State extends Record<string, any> = Record<string, any>,
+> = Omit<_NavigateOptions, "state"> & {
+  state?: State & Partial<PageState>
+  next?: boolean
+}
+
 export type Navigate = {
   <State extends Record<string, any> = Record<string, any>>(
     to: To,
-    options?: Omit<NavigateOptions, "state"> & {
-      state?: State & Partial<PageState>
-      next?: boolean
-    },
+    options?: NavigateOptions<State>,
   ): void
   (delta: number): void
 }
