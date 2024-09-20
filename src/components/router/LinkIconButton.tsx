@@ -1,13 +1,20 @@
 import { IconButton, type IconButtonProps } from "@mui/material"
-import type { FC } from "react"
 import { Link } from "react-router-dom"
 
 import { type LinkProps } from "../../utils/router"
 
-export type LinkIconButtonProps = Omit<IconButtonProps, "component"> & LinkProps
+export type LinkIconButtonProps<
+  Override extends "delta" | "to",
+  State extends Record<string, any> = Record<string, any>,
+> = Omit<IconButtonProps, "component"> & LinkProps<Override, State>
 
 // https://mui.com/material-ui/integrations/routing/#button
-const LinkIconButton: FC<LinkIconButtonProps> = props => {
+const LinkIconButton: {
+  (props: LinkIconButtonProps<"delta">): JSX.Element
+  <State extends Record<string, any> = Record<string, any>>(
+    props: LinkIconButtonProps<"to", State>,
+  ): JSX.Element
+} = (props: LinkIconButtonProps<"delta"> | LinkIconButtonProps<"to">) => {
   return <IconButton {...{ ...props, component: Link }} />
 }
 

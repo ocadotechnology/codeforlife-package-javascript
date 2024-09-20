@@ -4,7 +4,15 @@ import {
   type To,
 } from "react-router-dom"
 
-export type LinkProps = Omit<_LinkProps, "to"> & { to: To | number }
+import { type PageState } from "../components/page/Page"
+
+export type LinkProps<
+  Override extends "delta" | "to",
+  State extends Record<string, any> = Record<string, any>,
+> = Omit<_LinkProps, "to" | "state"> &
+  (Override extends "delta"
+    ? { to: number }
+    : { to: To; state?: State & Partial<PageState> })
 
 export type ReadOnly<T> = {
   readonly [P in keyof T]: T[P]
