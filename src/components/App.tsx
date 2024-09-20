@@ -2,10 +2,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 import { useCallback, type FC, type ReactNode } from "react"
 import { Provider, type ProviderProps } from "react-redux"
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
 import { type Action } from "redux"
 
-import { ScrollRoutes } from "./router"
 import { InactiveDialog, ScreenTimeDialog } from "../features"
 import { useCountdown, useEventListener, useLocation } from "../hooks"
 // import "../scripts"
@@ -43,7 +42,7 @@ const Routes: FC<
   return (
     <>
       {!headerExcludePaths.includes(pathname) && header}
-      <ScrollRoutes>{routes}</ScrollRoutes>
+      <RouterRoutes>{routes}</RouterRoutes>
       {!footerExcludePaths.includes(pathname) && footer}
     </>
   )
