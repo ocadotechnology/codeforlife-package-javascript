@@ -56,7 +56,11 @@ export type ListClassesResult = _ListResult<
     }
   }
 >
-export type ListClassesArg = _ListArg<{ teacher: Teacher["id"] }>
+export type ListClassesArg = _ListArg<{
+  teacher: Teacher["id"]
+  _id: Class["id"] | Class["id"][]
+  id_or_name: string
+}>
 
 export default function getReadClassEndpoints<
   RetrieveResult extends _RetrieveResult<Class> = RetrieveClassResult,
