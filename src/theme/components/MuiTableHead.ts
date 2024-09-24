@@ -1,4 +1,4 @@
-import { typographyClasses } from "@mui/material"
+import { typographyClasses, tableCellClasses } from "@mui/material"
 
 import { includesClassNames } from "../../utils/theme"
 import type Components from "./_components"
@@ -12,7 +12,11 @@ const MuiTableHead: Components["MuiTableHead"] = {
       }),
       [`.${typographyClasses.root}`]: {
         color: "white",
+        fontWeight: 600,
         marginBottom: 0,
+      },
+      [`.${tableCellClasses.head}`]: {
+        color: "white",
         fontWeight: 600,
       },
     }),
