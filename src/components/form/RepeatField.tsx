@@ -15,7 +15,6 @@ import { getNestedProperty } from "../../utils/general"
 export type RepeatFieldProps = Omit<
   TextFieldProps,
   | "name"
-  | "id"
   | "value"
   | "onChange"
   | "onBlur"
@@ -35,6 +34,7 @@ const TextField: FC<
     fieldProps: FieldProps
   }
 > = ({
+  id,
   repeatName,
   setValue,
   fieldProps,
@@ -64,7 +64,7 @@ const TextField: FC<
       type={type}
       label={label ?? `Repeat ${name.replace("_", " ")}`}
       placeholder={placeholder ?? `Enter your ${name.replace("_", " ")} again`}
-      id={repeatName}
+      id={id ?? repeatName}
       name={repeatName}
       value={repeatValue}
       onChange={form.handleChange}
