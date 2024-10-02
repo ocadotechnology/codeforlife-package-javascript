@@ -12,7 +12,6 @@ import { getNestedProperty } from "../../utils/general"
 export type TextFieldProps = Omit<
   MuiTextFieldProps,
   | "name"
-  | "id"
   | "value"
   | "onChange"
   | "onBlur"
@@ -28,6 +27,7 @@ export type TextFieldProps = Omit<
 
 // https://formik.org/docs/examples/with-material-ui
 const TextField: FC<TextFieldProps> = ({
+  id,
   name,
   schema,
   type = "text",
@@ -61,7 +61,7 @@ const TextField: FC<TextFieldProps> = ({
 
     return (
       <MuiTextField
-        id={name}
+        id={id ?? name}
         name={name}
         type={type}
         required={required}

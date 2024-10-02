@@ -35,7 +35,6 @@ export interface AutocompleteFieldProps<
   textFieldProps: Omit<
     TextFieldProps,
     | "name"
-    | "id"
     | "value"
     | "onChange"
     | "onBlur"
@@ -67,7 +66,7 @@ const AutocompleteField = <
   FreeSolo,
   ChipComponent
 >): JSX.Element => {
-  const { name, required, ...otherTextFieldProps } = textFieldProps
+  const { id, name, required, ...otherTextFieldProps } = textFieldProps
 
   const dotPath = name.split(".")
 
@@ -97,9 +96,9 @@ const AutocompleteField = <
             defaultValue={
               meta.initialValue === "" ? undefined : meta.initialValue
             }
-            renderInput={({ id, ...otherParams }) => (
+            renderInput={({ id: _, ...otherParams }) => (
               <TextField
-                id={name}
+                id={id ?? name}
                 name={name}
                 required={required}
                 type="text" // Force to be string to avoid number incrementor/decrementor

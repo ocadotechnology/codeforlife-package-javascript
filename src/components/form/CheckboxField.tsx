@@ -16,7 +16,7 @@ import { getNestedProperty } from "../../utils/general"
 export interface CheckboxFieldProps
   extends Omit<
     CheckboxProps,
-    "defaultChecked" | "id" | "value" | "onChange" | "onBlur"
+    "defaultChecked" | "value" | "onChange" | "onBlur"
   > {
   name: string
   formControlLabelProps: Omit<FormControlLabelProps, "control">
@@ -25,6 +25,7 @@ export interface CheckboxFieldProps
 }
 
 const CheckboxField: FC<CheckboxFieldProps> = ({
+  id,
   name,
   formControlLabelProps,
   required = false,
@@ -59,7 +60,7 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
               control={
                 <Checkbox
                   defaultChecked={meta.initialValue}
-                  id={name}
+                  id={id ?? name}
                   name={name}
                   value={value}
                   onChange={form.handleChange}
