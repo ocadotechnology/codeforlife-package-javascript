@@ -23,9 +23,22 @@ const MuiTextField: Components["MuiTextField"] = {
       width: "100%",
       backgroundColor: "transparent",
       [`& > .${inputBaseClasses.root}`]: {
-        border: "1px solid black !important",
-        borderRadius: "0px !important",
-        backgroundColor: "white !important",
+        ...(ownerState.disabled
+          ? {
+              border: "0px !important",
+              borderRadius: "0px !important",
+              // @ts-expect-error
+              backgroundColor: `${palette.info!.main} !important`,
+              [`.${inputBaseClasses.disabled}`]: {
+                color: `${typography.body1!.color} !important`,
+                "-webkit-text-fill-color": "unset",
+              },
+            }
+          : {
+              border: "1px solid black !important",
+              borderRadius: "0px !important",
+              backgroundColor: "white !important",
+            }),
       },
       [`& > .${inputBaseClasses.root}.${inputBaseClasses.error}`]: {
         // @ts-expect-error
@@ -35,13 +48,13 @@ const MuiTextField: Components["MuiTextField"] = {
         borderColor: "black !important",
       },
       [`.${svgIconClasses.root}`]: {
-        color: `${typography.body1?.color} !important`,
+        color: `${typography.body1!.color} !important`,
       },
       [`.${filledInputClasses.root}::after`]: {
-        borderColor: `${typography.body1?.color} !important`,
+        borderColor: `${typography.body1!.color} !important`,
       },
       [`.${formLabelClasses.root}`]: {
-        color: `${typography.body1?.color} !important`,
+        color: `${typography.body1!.color} !important`,
       },
       [`.${formHelperTextClasses.root}`]: {
         fontSize: "12px !important",
