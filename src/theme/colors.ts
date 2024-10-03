@@ -11,6 +11,7 @@ export default interface Color {
   50: string
 }
 
+// primary / teacher
 export const primary: Color = {
   900: "#A60039",
   800: "#BE0947",
@@ -23,7 +24,9 @@ export const primary: Color = {
   100: "#FF6699",
   50: "#FF9ABC",
 }
+export { primary as teacher }
 
+// secondary / indy
 export const secondary: Color = {
   900: "#BF9400",
   800: "#CFA30B",
@@ -36,7 +39,9 @@ export const secondary: Color = {
   100: "#FFE382",
   50: "#FFEDAD",
 }
+export { secondary as indy }
 
+// tertiary / student
 export const tertiary: Color = {
   900: "#01668C",
   800: "#007FAF",
@@ -49,3 +54,4 @@ export const tertiary: Color = {
   100: "#4DCEFF",
   50: "#85DDFF",
 }
+export { tertiary as student }
