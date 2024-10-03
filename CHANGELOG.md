@@ -1,3 +1,10 @@
+## [2.3.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.3.7...v2.3.8) (2024-10-03)
+
+
+### Bug Fixes
+
+* trigger new version ([c8b5917](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c8b5917310a22ebca3007c6202f3d16f6e612a0c))
+
 ## [2.3.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.3.6...v2.3.7) (2024-10-02)
 
 
