@@ -25,14 +25,14 @@ const MuiTextField: Components["MuiTextField"] = {
       [`& > .${inputBaseClasses.root}`]: {
         ...(ownerState.disabled
           ? {
-              border: "0px !important",
-              borderRadius: "0px !important",
-              // @ts-expect-error
-              backgroundColor: `${palette.info!.main} !important`,
               [`.${inputBaseClasses.disabled}`]: {
                 color: `${typography.body1!.color} !important`,
                 "-webkit-text-fill-color": "unset",
               },
+              border: "0px !important",
+              borderRadius: "0px !important",
+              // @ts-expect-error
+              backgroundColor: `${palette.info!.main} !important`,
             }
           : {
               border: "1px solid black !important",
