@@ -2,6 +2,7 @@ import {
   createTheme,
   type PaletteColor,
   type PaletteOptions,
+  type PaletteColorOptions,
 } from "@mui/material"
 import { common, red } from "@mui/material/colors"
 
@@ -13,6 +14,9 @@ declare module "@mui/material/styles" {
     tertiary: PaletteColor
     white: PaletteColor
     black: PaletteColor
+    teacher: PaletteColor
+    student: PaletteColor
+    indy: PaletteColor
   }
   interface Palette extends CustomPaletteColors {}
   interface PaletteOptions extends CustomPaletteColors {}
@@ -22,6 +26,9 @@ export interface PropsColorOverrides {
   tertiary: true
   white: true
   black: true
+  teacher: true
+  student: true
+  indy: true
 }
 
 declare module "@mui/material" {
@@ -57,37 +64,36 @@ const {
   palette: { augmentColor },
 } = createTheme()
 
+const teacher: PaletteColorOptions = {
+  main: primary[500],
+  contrastText: common.white,
+}
+
+const student: PaletteColorOptions = {
+  main: tertiary[500],
+  contrastText: common.white,
+}
+
+const indy: PaletteColorOptions = {
+  main: secondary[500],
+  contrastText: common.black,
+}
+
 const palette: PaletteOptions = {
-  primary: {
-    main: primary[500],
-    contrastText: common.white,
-  },
-  secondary: {
-    main: secondary[500],
-    contrastText: common.black,
-  },
-  tertiary: augmentColor({
-    color: {
-      main: tertiary[500],
-      contrastText: common.white,
-    },
-  }),
-  white: augmentColor({
-    color: {
-      main: common.white,
-    },
-  }),
-  black: augmentColor({
-    color: {
-      main: common.black,
-    },
-  }),
-  info: {
-    main: "#f1ecec",
-  },
-  error: {
-    main: red.A700,
-  },
+  // primary / teacher
+  primary: teacher,
+  teacher: augmentColor({ color: teacher }),
+  // secondary / indy
+  secondary: indy,
+  indy: augmentColor({ color: indy }),
+  // tertiary / student
+  tertiary: augmentColor({ color: student }),
+  student: augmentColor({ color: student }),
+  // other
+  white: augmentColor({ color: { main: common.white } }),
+  black: augmentColor({ color: { main: common.black } }),
+  info: { main: "#f1ecec" },
+  error: { main: red.A700 },
 }
 
 export default palette

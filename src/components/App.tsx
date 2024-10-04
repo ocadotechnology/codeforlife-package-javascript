@@ -5,6 +5,7 @@ import { Provider, type ProviderProps } from "react-redux"
 import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
 import { type Action } from "redux"
 
+import "./App.css"
 import { InactiveDialog, ScreenTimeDialog } from "../features"
 import { useCountdown, useEventListener, useLocation } from "../hooks"
 // import "../scripts"
@@ -84,30 +85,6 @@ const App = <A extends Action = Action, S = unknown>({
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <style>{`
-        html, body {
-          box-sizing: border-box;
-          height: 100%;
-          padding: 0;
-          margin: 0;
-        }
-
-        #root {
-          box-sizing: border-box;
-          min-height: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-
-        #header, #footer {
-          flex-grow: 0;
-          flex-shrink: 0;
-        }
-
-        #body {
-          flex-grow: 1;
-        }   
-      `}</style>
       <Provider store={store}>
         <InactiveDialog open={isIdle} onClose={resetIdleSeconds} />
         <ScreenTimeDialog
