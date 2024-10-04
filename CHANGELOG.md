@@ -1,3 +1,10 @@
+## [2.3.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.3.9...v2.3.10) (2024-10-04)
+
+
+### Bug Fixes
+
+* scroll into view link ([a7a64ae](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/a7a64ae674befc766e9ecc51e245d4502d00e8bd))
+
 ## [2.3.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.3.8...v2.3.9) (2024-10-04)
 
 
