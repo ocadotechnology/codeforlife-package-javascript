@@ -39,7 +39,7 @@ const Table: FC<TableProps> = ({
           {headers.map((header, index) => {
             const key = `table-head-cell-${index}`
 
-            return isValidElement(header) ? (
+            return typeof header === "string" || isValidElement(header) ? (
               <TableCell key={key}>{header}</TableCell>
             ) : (
               <TableCell key={key} {...(header as TableCellProps)} />
