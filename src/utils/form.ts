@@ -35,7 +35,7 @@ export function setFormErrors(
 export type SubmitFormOptions<
   QueryArg extends object,
   ResultType,
-  FormValues extends QueryArg,
+  FormValues,
 > = Partial<{
   clean: (values: FormValues) => QueryArg
   exclude: string[]
@@ -52,10 +52,7 @@ export type SubmitFormOptions<
   finally: (values: FormValues, helpers: FormikHelpers<FormValues>) => void
 }>
 
-export type SubmitFormHandler<
-  QueryArg extends object,
-  FormValues extends QueryArg,
-> = (
+export type SubmitFormHandler<FormValues> = (
   values: FormValues,
   helpers: FormikHelpers<FormValues>,
 ) => void | Promise<any>
@@ -66,8 +63,25 @@ export function submitForm<
   FormValues extends QueryArg,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options?: Omit<SubmitFormOptions<QueryArg, ResultType, FormValues>, "clean">,
+): SubmitFormHandler<FormValues>
+
+export function submitForm<QueryArg extends object, ResultType, FormValues>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options?: Omit<
+    SubmitFormOptions<QueryArg, ResultType, FormValues>,
+    "clean"
+  > & {
+    clean: NonNullable<
+      SubmitFormOptions<QueryArg, ResultType, FormValues>["clean"]
+    >
+  },
+): SubmitFormHandler<FormValues>
+
+export function submitForm<QueryArg extends object, ResultType, FormValues>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
   options?: SubmitFormOptions<QueryArg, ResultType, FormValues>,
-): SubmitFormHandler<QueryArg, FormValues> {
+): SubmitFormHandler<FormValues> {
   const {
     clean,
     exclude,
@@ -77,7 +91,7 @@ export function submitForm<
   } = options || {}
 
   return (values, helpers) => {
-    let arg: QueryArg = clean ? clean(values) : values
+    let arg = clean ? clean(values) : (values as unknown as QueryArg)
 
     if (exclude) arg = excludeKeyPaths(arg, exclude)
 
