@@ -4,7 +4,7 @@ import {
   type FormikConfig,
   type FormikErrors,
 } from "formik"
-import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
+import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
 
 import {
   submitForm,
@@ -12,24 +12,60 @@ import {
   type FormValues,
 } from "../../utils/form"
 
+const _ = <Values extends FormValues>({
+  children,
+  ...otherFormikProps
+}: FormikConfig<Values>) => (
+  <Formik {...otherFormikProps}>
+    {formik => (
+      <FormikForm>
+        {typeof children === "function" ? children(formik) : children}
+      </FormikForm>
+    )}
+  </Formik>
+)
+
+type SubmitFormProps<
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+> = Omit<FormikConfig<Values>, "onSubmit"> & {
+  useMutation: TypedUseMutation<ResultType, QueryArg, any>
+  submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType>
+}
+
+const SubmitForm = <
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+>({
+  useMutation,
+  submitOptions,
+  ...formikProps
+}: SubmitFormProps<Values, QueryArg, ResultType>): JSX.Element => {
+  const [trigger] = useMutation()
+
+  return (
+    <_
+      {...formikProps}
+      onSubmit={submitForm<Values, QueryArg, ResultType>(
+        trigger,
+        submitOptions,
+      )}
+    />
+  )
+}
+
 export type FormProps<
   Values extends FormValues,
   QueryArg extends FormValues,
   ResultType,
-> =
-  | FormikConfig<Values>
-  | (Omit<FormikConfig<Values>, "onSubmit"> & {
-      mutationTrigger: TypedMutationTrigger<ResultType, QueryArg, any>
-      submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType>
-    })
+> = FormikConfig<Values> | SubmitFormProps<Values, QueryArg, ResultType>
 
 const Form: {
   <Values extends FormValues>(props: FormikConfig<Values>): JSX.Element
   <Values extends FormValues, QueryArg extends FormValues, ResultType>(
-    props: Omit<FormikConfig<Values>, "onSubmit"> & {
-      mutationTrigger: TypedMutationTrigger<ResultType, QueryArg, any>
-      submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType>
-    },
+    props: SubmitFormProps<Values, QueryArg, ResultType>,
   ): JSX.Element
 } = <
   Values extends FormValues = FormValues,
@@ -38,30 +74,7 @@ const Form: {
 >(
   props: FormProps<Values, QueryArg, ResultType>,
 ): JSX.Element => {
-  let config: FormikConfig<Values>
-  if ("onSubmit" in props) config = props
-  else {
-    const { mutationTrigger, submitOptions, ...formikProps } = props
-    config = {
-      ...formikProps,
-      onSubmit: submitForm<Values, QueryArg, ResultType>(
-        mutationTrigger,
-        submitOptions,
-      ),
-    }
-  }
-
-  const { children, ...otherFormikProps } = config
-
-  return (
-    <Formik {...otherFormikProps}>
-      {formik => (
-        <FormikForm>
-          {typeof children === "function" ? children(formik) : children}
-        </FormikForm>
-      )}
-    </Formik>
-  )
+  return "onSubmit" in props ? <_ {...props} /> : <SubmitForm {...props} />
 }
 
 export default Form
