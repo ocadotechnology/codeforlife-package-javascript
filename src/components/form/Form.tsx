@@ -31,8 +31,9 @@ type SubmitFormProps<
   ResultType,
 > = Omit<FormikConfig<Values>, "onSubmit"> & {
   useMutation: TypedUseMutation<ResultType, QueryArg, any>
-  submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType>
-}
+} & (Values extends QueryArg
+    ? { submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType> }
+    : { submitOptions: SubmitFormOptions<Values, QueryArg, ResultType> })
 
 const SubmitForm = <
   Values extends FormValues,
@@ -50,7 +51,7 @@ const SubmitForm = <
       {...formikProps}
       onSubmit={submitForm<Values, QueryArg, ResultType>(
         trigger,
-        submitOptions,
+        submitOptions as SubmitFormOptions<Values, QueryArg, ResultType>,
       )}
     />
   )
@@ -74,7 +75,7 @@ const Form: {
 >(
   props: FormProps<Values, QueryArg, ResultType>,
 ): JSX.Element => {
-  return "onSubmit" in props ? <_ {...props} /> : <SubmitForm {...props} />
+  return "onSubmit" in props ? <_ {...props} /> : SubmitForm(props)
 }
 
 export default Form

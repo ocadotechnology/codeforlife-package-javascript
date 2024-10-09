@@ -56,6 +56,29 @@ export type SubmitFormOptions<
     ? { clean?: (values: Values) => QueryArg }
     : { clean: (values: Values) => QueryArg })
 
+export type SubmitFormHandler<Values extends FormValues> = (
+  values: Values,
+  helpers: FormikHelpers<Values>,
+) => void | Promise<any>
+
+export function submitForm<
+  Values extends QueryArg,
+  QueryArg extends FormValues,
+  ResultType,
+>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options?: SubmitFormOptions<Values, QueryArg, ResultType>,
+): SubmitFormHandler<Values>
+
+export function submitForm<
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options: SubmitFormOptions<Values, QueryArg, ResultType>,
+): SubmitFormHandler<Values>
+
 export function submitForm<
   Values extends FormValues,
   QueryArg extends FormValues,
@@ -63,7 +86,7 @@ export function submitForm<
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
-): (values: Values, helpers: FormikHelpers<Values>) => void | Promise<any> {
+): SubmitFormHandler<Values> {
   const { exclude, then, catch: _catch, finally: _finally } = options || {}
 
   return (values, helpers) => {
