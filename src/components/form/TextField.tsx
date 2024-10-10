@@ -70,7 +70,11 @@ const TextField: FC<TextFieldProps> = ({
     }, [initialValue])
 
     useEffect(() => {
-      form.setFieldValue(name, split ? value.split(split) : value, true)
+      form.setFieldValue(
+        name,
+        split && typeof value === "string" ? value.split(split) : value,
+        true,
+      )
     }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
