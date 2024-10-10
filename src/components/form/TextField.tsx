@@ -5,6 +5,7 @@ import {
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type FC, useState, useEffect } from "react"
 import {
+  type ArraySchema,
   type StringSchema,
   type ValidateOptions,
   array as YupArray,
@@ -49,7 +50,10 @@ const TextField: FC<TextFieldProps> = ({
 
   let _schema: Schema = schema
   if (split) _schema = YupArray().of(_schema)
-  if (required) _schema = _schema.required()
+  if (required) {
+    _schema = _schema.required()
+    if (split) _schema = (_schema as ArraySchema<string[], any>).min(1)
+  }
   if (dirty)
     _schema = _schema.notOneOf([initialValue], "cannot be initial value")
 
