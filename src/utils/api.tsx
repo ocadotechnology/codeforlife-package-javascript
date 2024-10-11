@@ -8,7 +8,7 @@ import type {
 import { type ReactNode } from "react"
 
 import SyncError from "../components/SyncError"
-import type { Optional, Required } from "./general"
+import { type Optional, type Required, getNestedProperty } from "./general"
 
 // -----------------------------------------------------------------------------
 // Model Types
@@ -238,6 +238,10 @@ export function tagData<Type extends string, M extends Model<any>>(
     return tags
   }
 
+  function getModelId(result: Result<M, any>) {
+    return getNestedProperty(result, id)
+  }
+
   return (result, error, arg) => {
     if (!error) {
       if (arg) {
@@ -257,24 +261,19 @@ export function tagData<Type extends string, M extends Model<any>>(
       }
 
       if (result) {
-        // The result is a model that contains the id field.
-        if (id in result) {
-          return tags([(result as Result<M, any>)[id] as ModelId])
-        }
-
         // The result is an array of models that contain the id field.
         if (Array.isArray(result)) {
-          return tags(result.map(result => result[id] as ModelId))
+          return tags(result.map(getModelId))
+        }
+
+        // The result is a model that contains the id field.
+        if (getModelId(result as Result<M, any>) !== undefined) {
+          return tags([getModelId(result as Result<M, any>)])
         }
 
         // The result is a list that contains an array of models that contain
         // the id field.
-        return tags(
-          (result as ListResult<M, any>).data.map(
-            result => result[id] as ModelId,
-          ),
-          true,
-        )
+        return tags((result as ListResult<M, any>).data.map(getModelId), true)
       }
     }
 

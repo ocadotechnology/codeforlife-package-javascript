@@ -4,6 +4,8 @@ import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
 import { excludeKeyPaths } from "./general"
 
+export type FormValues = Record<string, any>
+
 export function isFormError(error: unknown): boolean {
   return (
     typeof error === "object" &&
@@ -33,51 +35,65 @@ export function setFormErrors(
 }
 
 export type SubmitFormOptions<
-  QueryArg extends object,
+  Values extends FormValues,
+  QueryArg extends FormValues,
   ResultType,
-  FormValues extends QueryArg,
 > = Partial<{
-  clean: (values: FormValues) => QueryArg
   exclude: string[]
   then: (
     result: ResultType,
-    values: FormValues,
-    helpers: FormikHelpers<FormValues>,
+    values: Values,
+    helpers: FormikHelpers<Values>,
   ) => void
   catch: (
     error: unknown,
-    values: FormValues,
-    helpers: FormikHelpers<FormValues>,
+    values: Values,
+    helpers: FormikHelpers<Values>,
   ) => void
-  finally: (values: FormValues, helpers: FormikHelpers<FormValues>) => void
-}>
+  finally: (values: Values, helpers: FormikHelpers<Values>) => void
+}> &
+  (Values extends QueryArg
+    ? { clean?: (values: Values) => QueryArg }
+    : { clean: (values: Values) => QueryArg })
 
-export type SubmitFormHandler<
-  QueryArg extends object,
-  FormValues extends QueryArg,
-> = (
-  values: FormValues,
-  helpers: FormikHelpers<FormValues>,
+export type SubmitFormHandler<Values extends FormValues> = (
+  values: Values,
+  helpers: FormikHelpers<Values>,
 ) => void | Promise<any>
 
 export function submitForm<
-  QueryArg extends object,
+  Values extends QueryArg,
+  QueryArg extends FormValues,
   ResultType,
-  FormValues extends QueryArg,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
-  options?: SubmitFormOptions<QueryArg, ResultType, FormValues>,
-): SubmitFormHandler<QueryArg, FormValues> {
-  const {
-    clean,
-    exclude,
-    then,
-    catch: _catch,
-    finally: _finally,
-  } = options || {}
+  options?: SubmitFormOptions<Values, QueryArg, ResultType>,
+): SubmitFormHandler<Values>
+
+export function submitForm<
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options: SubmitFormOptions<Values, QueryArg, ResultType>,
+): SubmitFormHandler<Values>
+
+export function submitForm<
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+>(
+  trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  options?: SubmitFormOptions<Values, QueryArg, ResultType>,
+): SubmitFormHandler<Values> {
+  const { exclude, then, catch: _catch, finally: _finally } = options || {}
 
   return (values, helpers) => {
-    let arg: QueryArg = clean ? clean(values) : values
+    let arg =
+      options && options.clean
+        ? options.clean(values as QueryArg & FormValues)
+        : (values as unknown as QueryArg)
 
     if (exclude) arg = excludeKeyPaths(arg, exclude)
 
@@ -116,7 +132,7 @@ export function schemaToFieldValidator(
 // Checking if individual fields are dirty is not currently supported.
 // https://github.com/jaredpalmer/formik/issues/1421
 export function getDirty<
-  Values extends Record<string, any>,
+  Values extends FormValues,
   Names extends Array<keyof Values>,
 >(
   values: Values,
@@ -128,9 +144,10 @@ export function getDirty<
   ) as Record<Names[number], boolean>
 }
 
-export function isDirty<
-  Values extends Record<string, any>,
-  Name extends keyof Values,
->(values: Values, initialValues: Values, name: Name): boolean {
+export function isDirty<Values extends FormValues, Name extends keyof Values>(
+  values: Values,
+  initialValues: Values,
+  name: Name,
+): boolean {
   return values[name] !== initialValues[name]
 }

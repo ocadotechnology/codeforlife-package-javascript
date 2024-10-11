@@ -4,7 +4,13 @@ import {
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type FC, useState, useEffect } from "react"
-import { type StringSchema, type ValidateOptions } from "yup"
+import {
+  type ArraySchema,
+  type StringSchema,
+  type ValidateOptions,
+  array as YupArray,
+  type Schema,
+} from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
@@ -23,6 +29,7 @@ export type TextFieldProps = Omit<
   schema: StringSchema
   validateOptions?: ValidateOptions
   dirty?: boolean
+  split?: string | RegExp
 }
 
 // https://formik.org/docs/examples/with-material-ui
@@ -33,20 +40,27 @@ const TextField: FC<TextFieldProps> = ({
   type = "text",
   required = false,
   dirty = false,
+  split,
   validateOptions,
   ...otherTextFieldProps
 }) => {
-  const [initialValue, setInitialValue] = useState("")
+  const [initialValue, setInitialValue] = useState<string | string[]>("")
 
   const dotPath = name.split(".")
 
-  if (required) schema = schema.required()
-  if (dirty) schema = schema.notOneOf([initialValue], "cannot be initial value")
+  let _schema: Schema = schema
+  if (split) _schema = YupArray().of(_schema)
+  if (required) {
+    _schema = _schema.required()
+    if (split) _schema = (_schema as ArraySchema<string[], any>).min(1)
+  }
+  if (dirty)
+    _schema = _schema.notOneOf([initialValue], "cannot be initial value")
 
   const fieldConfig: FieldConfig = {
     name,
     type,
-    validate: schemaToFieldValidator(schema, validateOptions),
+    validate: schemaToFieldValidator(_schema, validateOptions),
   }
 
   const _Field: FC<FieldProps> = ({ form }) => {
@@ -58,6 +72,14 @@ const TextField: FC<TextFieldProps> = ({
     useEffect(() => {
       setInitialValue(initialValue)
     }, [initialValue])
+
+    useEffect(() => {
+      form.setFieldValue(
+        name,
+        split && typeof value === "string" ? value.split(split) : value,
+        true,
+      )
+    }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
       <MuiTextField

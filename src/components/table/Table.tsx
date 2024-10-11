@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from "react"
+import { type FC, type ReactNode, isValidElement } from "react"
 import {
   Table as MuiTable,
   type TableProps as MuiTableProps,
@@ -15,11 +15,10 @@ import {
 } from "@mui/material"
 
 export interface TableProps extends MuiTableProps {
-  headers: ReactNode[]
+  headers: Array<ReactNode | TableCellProps>
   children: ReactNode
   containerProps?: TableContainerProps
   headProps?: TableHeadProps
-  headCellProps?: TableCellProps
   headRowProps?: TableRowProps
   bodyProps?: TableBodyProps
 }
@@ -29,7 +28,6 @@ const Table: FC<TableProps> = ({
   children,
   containerProps,
   headProps,
-  headCellProps,
   headRowProps,
   bodyProps,
   ...tableProps
@@ -38,11 +36,15 @@ const Table: FC<TableProps> = ({
     <MuiTable {...tableProps}>
       <TableHead {...headProps}>
         <TableRow {...headRowProps}>
-          {headers.map((header, index) => (
-            <TableCell {...headCellProps} key={`table-head-cell-${index}`}>
-              {header}
-            </TableCell>
-          ))}
+          {headers.map((header, index) => {
+            const key = `table-head-cell-${index}`
+
+            return typeof header === "string" || isValidElement(header) ? (
+              <TableCell key={key}>{header}</TableCell>
+            ) : (
+              <TableCell key={key} {...(header as TableCellProps)} />
+            )
+          })}
         </TableRow>
       </TableHead>
       <TableBody {...bodyProps}>{children}</TableBody>

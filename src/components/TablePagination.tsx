@@ -24,13 +24,7 @@ export type TablePaginationProps<
   AdditionalProps = {},
 > = Omit<
   MuiTablePaginationProps<RootComponent, AdditionalProps>,
-  | "component"
-  | "count"
-  | "rowsPerPage"
-  | "onRowsPerPageChange"
-  | "page"
-  | "onPageChange"
-  | "rowsPerPageOptions"
+  "component" | "count" | "rowsPerPage" | "page" | "rowsPerPageOptions"
 > & {
   children: (
     data: ResultType["data"],
@@ -60,6 +54,8 @@ const TablePagination = <
   rowsPerPage: initialLimit = 50,
   rowsPerPageOptions = [50, 100, 150],
   stackProps,
+  onRowsPerPageChange,
+  onPageChange,
   ...tablePaginationProps
 }: TablePaginationProps<
   QueryArg,
@@ -106,10 +102,12 @@ const TablePagination = <
         rowsPerPage={limit}
         onRowsPerPageChange={event => {
           setPagination({ limit: parseInt(event.target.value), page: 0 })
+          if (onRowsPerPageChange) onRowsPerPageChange(event)
         }}
         page={page}
-        onPageChange={(_, page) => {
+        onPageChange={(event, page) => {
           setPagination(({ limit }) => ({ limit, page }))
+          if (onPageChange) onPageChange(event, page)
         }}
         // ascending order
         rowsPerPageOptions={rowsPerPageOptions.sort((a, b) => a - b)}

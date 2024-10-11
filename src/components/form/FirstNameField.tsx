@@ -1,9 +1,9 @@
 import { PersonOutlined as PersonOutlinedIcon } from "@mui/icons-material"
 import { InputAdornment } from "@mui/material"
 import type { FC } from "react"
-import { string as YupString } from "yup"
 
 import TextField, { type TextFieldProps } from "./TextField"
+import { firstNameSchema } from "../../schemas/user"
 
 export type FirstNameFieldProps = Omit<
   TextFieldProps,
@@ -20,7 +20,7 @@ const FirstNameField: FC<FirstNameFieldProps> = ({
 }) => {
   return (
     <TextField
-      schema={YupString().max(150)}
+      schema={firstNameSchema}
       name={name}
       label={label}
       placeholder={placeholder}
