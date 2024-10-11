@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.4.0...v2.4.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* optional callbacks ([3b5f6bd](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3b5f6bdc50a3d974d01e22ade0be721f0197f611))
+
 # [2.4.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.3.10...v2.4.0) (2024-10-11)
 
 
