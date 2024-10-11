@@ -10,7 +10,7 @@
   "name": "codeforlife",
   "description": "Common frontend code",
   "private": true,
-  "version": "2.3.10",
+  "version": "2.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
