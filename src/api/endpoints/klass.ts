@@ -81,7 +81,7 @@ export default function getReadClassEndpoints<
         url: buildUrl(urls.class.list, { search }),
         method: "GET",
       }),
-      providesTags: tagData(CLASS_TAG),
+      providesTags: tagData(CLASS_TAG, { includeListTag: true }),
     }),
   }
 }

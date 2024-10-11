@@ -64,7 +64,7 @@ export default function getReadUserEndpoints<
         url: buildUrl(urls.user.list, { search }),
         method: "GET",
       }),
-      providesTags: tagData(USER_TAG),
+      providesTags: tagData(USER_TAG, { includeListTag: true }),
     }),
   }
 }

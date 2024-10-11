@@ -25,7 +25,7 @@ export default function getReadAuthFactorEndpoints<
         url: buildUrl(urls.authFactor.list, { search }),
         method: "GET",
       }),
-      providesTags: tagData(AUTH_FACTOR_TAG),
+      providesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
   }
 }
