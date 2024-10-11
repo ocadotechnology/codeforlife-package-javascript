@@ -24,20 +24,32 @@ export type TablePaginationProps<
   AdditionalProps = {},
 > = Omit<
   MuiTablePaginationProps<RootComponent, AdditionalProps>,
-  "component" | "count" | "rowsPerPage" | "page" | "rowsPerPageOptions"
-> & {
-  children: (
-    data: ResultType["data"],
-    pagination: Pagination & { count?: number; maxLimit?: number },
-  ) => ReactNode
-  useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
-  preferCacheValue?: boolean
-  filters?: Omit<QueryArg, "limit" | "offset">
-  rowsPerPageOptions?: number[]
-  stackProps?: StackProps
-  page?: number
-  rowsPerPage?: number
-}
+  | "component"
+  | "count"
+  | "rowsPerPage"
+  | "onRowsPerPageChange"
+  | "rowsPerPageOptions"
+  | "page"
+  | "onPageChange"
+> &
+  Partial<
+    Pick<
+      MuiTablePaginationProps<RootComponent, AdditionalProps>,
+      "onRowsPerPageChange" | "onPageChange"
+    >
+  > & {
+    children: (
+      data: ResultType["data"],
+      pagination: Pagination & { count?: number; maxLimit?: number },
+    ) => ReactNode
+    useLazyListQuery: TypedUseLazyQuery<ResultType, QueryArg, any>
+    preferCacheValue?: boolean
+    filters?: Omit<QueryArg, "limit" | "offset">
+    rowsPerPageOptions?: number[]
+    stackProps?: StackProps
+    page?: number
+    rowsPerPage?: number
+  }
 
 const TablePagination = <
   QueryArg extends ListArg,
