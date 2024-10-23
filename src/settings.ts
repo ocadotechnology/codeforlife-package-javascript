@@ -28,3 +28,9 @@ export const SERVICE_BASE_URL =
 
 // The api url of the current service.
 export const SERVICE_API_URL = `${SERVICE_BASE_URL}/api`
+
+// The names of cookies.
+export const CSRF_COOKIE_NAME = `${SERVICE_NAME}_csrftoken`
+export const SESSION_COOKIE_NAME = env.VITE_SESSION_COOKIE_NAME ?? "session_key"
+export const SESSION_METADATA_COOKIE_NAME =
+  env.VITE_SESSION_METADATA_COOKIE_NAME ?? "session_metadata"
