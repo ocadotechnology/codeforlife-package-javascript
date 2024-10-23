@@ -1,8 +1,11 @@
 import Cookies from "js-cookie"
 import { useEffect, type ReactNode } from "react"
 import { createSearchParams, useLocation, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 import { type AuthFactor, type User } from "../api"
+import { SESSION_METADATA_COOKIE_NAME } from "../env"
+import { selectIsLoggedIn } from "../slices/session"
 
 export interface SessionMetadata {
   user_id: User["id"]
@@ -12,9 +15,11 @@ export interface SessionMetadata {
 }
 
 export function useSessionMetadata(): SessionMetadata | undefined {
-  const sessionMetadata = Cookies.get("session_metadata")
-
-  return sessionMetadata ? JSON.parse(sessionMetadata) : undefined
+  return useSelector(selectIsLoggedIn)
+    ? (JSON.parse(
+        Cookies.get(SESSION_METADATA_COOKIE_NAME)!,
+      ) as SessionMetadata)
+    : undefined
 }
 
 export type UseSessionChildrenFunction<Required extends boolean> = (
