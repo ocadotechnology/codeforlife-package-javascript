@@ -11,7 +11,7 @@ const initialState: SessionState = {
   isLoggedIn: Boolean(Cookies.get(SESSION_METADATA_COOKIE_NAME)),
 }
 
-export const sessionSlice = createSlice({
+const sessionSlice = createSlice({
   name: "session",
   initialState,
   reducers: create => ({
@@ -27,5 +27,6 @@ export const sessionSlice = createSlice({
   },
 })
 
+export default sessionSlice
 export const { login, logout } = sessionSlice.actions
 export const { selectIsLoggedIn } = sessionSlice.selectors
