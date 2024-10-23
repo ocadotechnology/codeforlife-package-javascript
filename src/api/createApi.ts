@@ -2,11 +2,11 @@ import {
   createApi as _createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react"
-import Cookies from "js-cookie"
 
-import { SERVICE_API_URL, CSRF_COOKIE_NAME } from "../settings"
+import { SERVICE_API_URL } from "../settings"
 import defaultTagTypes from "./tagTypes"
 import { buildLogoutEndpoint } from "./endpoints/session"
+import { getCsrfCookie } from "../utils/auth"
 
 // TODO: decide if we want to keep any of this.
 // export function handleResponseError(error: FetchBaseQueryError): void {
@@ -33,9 +33,6 @@ export default function createApi<TagTypes extends string = never>({
 }: {
   tagTypes?: readonly TagTypes[]
 } = {}) {
-  // https://docs.djangoproject.com/en/3.2/ref/csrf/
-  const getCsrfCookie = () => Cookies.get(CSRF_COOKIE_NAME)
-
   const fetch = fetchBaseQuery({
     baseUrl: `${SERVICE_API_URL}/`,
     credentials: "include",
