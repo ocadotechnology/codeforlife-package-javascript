@@ -1,7 +1,7 @@
 import Cookies from "js-cookie"
 import { type Middleware, isAction } from "@reduxjs/toolkit"
 
-import { SESSION_COOKIE_NAME, SESSION_METADATA_COOKIE_NAME } from "../env"
+import { SESSION_COOKIE_NAME, SESSION_METADATA_COOKIE_NAME } from "../settings"
 
 export const logoutMiddleware: Middleware = api => next => action => {
   const response = next(action)

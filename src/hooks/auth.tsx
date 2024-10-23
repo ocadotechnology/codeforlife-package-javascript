@@ -4,7 +4,7 @@ import { createSearchParams, useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import { type AuthFactor, type User } from "../api"
-import { SESSION_METADATA_COOKIE_NAME } from "../env"
+import { SESSION_METADATA_COOKIE_NAME } from "../settings"
 import { selectIsLoggedIn } from "../slices/session"
 
 export interface SessionMetadata {

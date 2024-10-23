@@ -4,7 +4,7 @@ import {
 } from "@reduxjs/toolkit/query/react"
 import Cookies from "js-cookie"
 
-import { SERVICE_API_URL, CSRF_COOKIE_NAME } from "../env"
+import { SERVICE_API_URL, CSRF_COOKIE_NAME } from "../settings"
 import defaultTagTypes from "./tagTypes"
 import { buildLogoutEndpoint } from "./endpoints/session"
 
