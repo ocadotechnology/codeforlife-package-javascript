@@ -1,8 +1,2 @@
-import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit"
-
-// `buildCreateSlice` allows us to create a slice with async thunks.
-const createSlice = buildCreateSlice({
-  creators: { asyncThunk: asyncThunkCreator },
-})
-
-export default createSlice
+export { default as createSlice } from "./createSlice"
+export { default as sessionSlice, type SessionState } from "./session"

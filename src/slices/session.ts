@@ -1,7 +1,7 @@
 import Cookies from "js-cookie"
 
 import { SESSION_METADATA_COOKIE_NAME } from "../env"
-import createSlice from "."
+import createSlice from "./createSlice"
 
 export interface SessionState {
   isLoggedIn: boolean
