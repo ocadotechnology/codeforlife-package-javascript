@@ -33,7 +33,7 @@ export function buildLogoutEndpoint<ResultType, QueryArg>(
         console.error("Failed to call logout endpoint...", error)
       } finally {
         dispatch(logout())
-        dispatch(api().util.resetApiState())
+        dispatch(api.util.resetApiState())
       }
     },
   })
