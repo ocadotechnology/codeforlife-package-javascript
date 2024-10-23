@@ -2,10 +2,11 @@ import {
   createApi as _createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react"
+import Cookies from "js-cookie"
 
-import { SERVICE_API_URL } from "../env"
-import { getCsrfCookie, logout } from "../utils/auth"
+import { SERVICE_API_URL, CSRF_COOKIE_NAME } from "../env"
 import defaultTagTypes from "./tagTypes"
+import { buildLogoutEndpoint } from "./endpoints/session"
 
 // TODO: decide if we want to keep any of this.
 // export function handleResponseError(error: FetchBaseQueryError): void {
@@ -32,6 +33,9 @@ export default function createApi<TagTypes extends string = never>({
 }: {
   tagTypes?: readonly TagTypes[]
 } = {}) {
+  // https://docs.djangoproject.com/en/3.2/ref/csrf/
+  const getCsrfCookie = () => Cookies.get(CSRF_COOKIE_NAME)
+
   const fetch = fetchBaseQuery({
     baseUrl: `${SERVICE_API_URL}/`,
     credentials: "include",
@@ -72,25 +76,12 @@ export default function createApi<TagTypes extends string = never>({
       return await fetch(args, api, extraOptions)
     },
     tagTypes: [...defaultTagTypes, ...tagTypes],
-    endpoints: build => ({
-      logout: build.mutation<null, null>({
-        query: () => ({
-          url: "session/logout/",
-          method: "POST",
-        }),
-        async onQueryStarted(_, { dispatch, queryFulfilled }) {
-          try {
-            await queryFulfilled
-          } catch (error) {
-            console.error("Failed to call logout endpoint...", error)
-          } finally {
-            logout()
-            dispatch(api.util.resetApiState())
-          }
-        },
-      }),
-    }),
+    endpoints: () => ({}),
   })
 
-  return api
+  return api.injectEndpoints({
+    endpoints: build => ({
+      logout: buildLogoutEndpoint<null, null>(api, build),
+    }),
+  })
 }
