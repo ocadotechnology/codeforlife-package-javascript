@@ -3,7 +3,7 @@ import { type Middleware, isAction } from "@reduxjs/toolkit"
 
 import { SESSION_COOKIE_NAME, SESSION_METADATA_COOKIE_NAME } from "../settings"
 
-export const logoutMiddleware: Middleware = api => next => action => {
+export const logoutMiddleware: Middleware = _ => next => action => {
   const response = next(action)
 
   // The backend should delete these cookie upon calling the logout endpoint.
