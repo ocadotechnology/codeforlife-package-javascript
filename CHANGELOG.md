@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.4.1...v2.5.0) (2024-10-25)
+
+
+### Features
+
+* Contributor frontend 11 ([#66](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/66)) ([7512bf9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7512bf990ff729aaea1e3832624dfae33b2ad910))
+
 ## [2.4.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.4.0...v2.4.1) (2024-10-11)
 
 
