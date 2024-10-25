@@ -3,9 +3,10 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react"
 
-import { SERVICE_API_URL } from "../env"
-import { getCsrfCookie, logout } from "../utils/auth"
+import { SERVICE_API_URL } from "../settings"
 import defaultTagTypes from "./tagTypes"
+import { buildLogoutEndpoint } from "./endpoints/session"
+import { getCsrfCookie } from "../utils/auth"
 
 // TODO: decide if we want to keep any of this.
 // export function handleResponseError(error: FetchBaseQueryError): void {
@@ -72,25 +73,12 @@ export default function createApi<TagTypes extends string = never>({
       return await fetch(args, api, extraOptions)
     },
     tagTypes: [...defaultTagTypes, ...tagTypes],
-    endpoints: build => ({
-      logout: build.mutation<null, null>({
-        query: () => ({
-          url: "session/logout/",
-          method: "POST",
-        }),
-        async onQueryStarted(_, { dispatch, queryFulfilled }) {
-          try {
-            await queryFulfilled
-          } catch (error) {
-            console.error("Failed to call logout endpoint...", error)
-          } finally {
-            logout()
-            dispatch(api.util.resetApiState())
-          }
-        },
-      }),
-    }),
+    endpoints: () => ({}),
   })
 
-  return api
+  return api.injectEndpoints({
+    endpoints: build => ({
+      logout: buildLogoutEndpoint<null, null>(api, build),
+    }),
+  })
 }
