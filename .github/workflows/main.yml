@@ -19,5 +19,16 @@ jobs:
 
   release:
     needs: [test]
-    uses: ocadotechnology/codeforlife-workspace/.github/workflows/release.yaml@main
-    secrets: inherit
+    concurrency: release
+    runs-on: ubuntu-latest
+    # Release if:
+    #  - the repo's owner is Ocado Tech.
+    #  - a change is made to the default branch.
+    if: |
+      github.repository_owner_id == 2088731 &&
+      github.ref_name == github.event.repository.default_branch
+    steps:
+      - name: 🚀 Publish Semantic Release
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
+        with:
+          cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
