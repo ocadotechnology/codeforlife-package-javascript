@@ -19,7 +19,7 @@ export type User = Model<
     is_staff: boolean
     is_active: boolean
     date_joined: Date
-    requesting_to_join_class?: Class["id"]
+    requesting_to_join_class?: Class["id"] | null
     teacher?: _UserTeacher<Teacher>
     student?: _UserStudent<Student>
   }
