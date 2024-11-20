@@ -1,3 +1,11 @@
+## [2.5.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.5.0...v2.5.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* Allow null requesting_to_join_class ([#68](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/68)) ([241eed0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/241eed0440aea3721afa035571f003936dad578b))
+* reuse release workflow ([#67](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/67)) ([f5edeec](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/f5edeec6992c02087178e3d848dee35949e4974a))
+
 # [2.5.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.4.1...v2.5.0) (2024-10-25)
 
 
