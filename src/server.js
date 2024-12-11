@@ -95,6 +95,8 @@ export default class Server {
       const compression = (await import("compression")).default
       const sirv = (await import("sirv")).default
 
+      this.templateHtml = await fs.readFile("./dist/client/index.html", "utf-8")
+
       this.app.use(compression())
       this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
     } else {
