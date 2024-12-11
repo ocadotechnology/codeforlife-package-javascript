@@ -119,9 +119,9 @@ export default class Server {
     this.app.listen(this.port, this.hostname, () => {
       console.log(
         "Server started.\n" +
-          `\turl: http://${this.hostname}:${this.port}\n` +
-          `\tenvironment: ${process.env.NODE_ENV}\n` +
-          `\tmode: ${this.mode}`,
+          `url: http://${this.hostname}:${this.port}\n` +
+          `environment: ${process.env.NODE_ENV}\n` +
+          `mode: ${this.mode}\n`,
       )
     })
   }
