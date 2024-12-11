@@ -18,12 +18,10 @@ export default class Server {
     /** @type {string} */
     this.templateHtml = ""
     /** @type {string} */
-    this.hostname = this.envIsProduction ? "0.0.0.0" : "localhost"
+    this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1"
 
     /** @type {Express} */
     this.app = express()
-    this.app.get("/health-check", this.handleHealthCheck)
-    this.app.get("*", this.handleServeHtml)
 
     /** @type {import('vite').ViteDevServer | undefined} */
     this.vite = undefined
@@ -42,12 +40,12 @@ export default class Server {
     const healthCheck = this.getHealthCheck(request)
 
     response.json({
-      appId: process.env.APP_ID,
+      appId: process.env.APP_ID || "REPLACE_ME",
       healthStatus: healthCheck.healthStatus,
       lastCheckedTimestamp: new Date().toISOString(),
       additionalInformation: healthCheck.additionalInfo,
       startupTimestamp: new Date().toISOString(),
-      appVersion: process.env.APP_VERSION,
+      appVersion: process.env.APP_VERSION || "REPLACE_ME",
       details: healthCheck.details || [],
     })
   }
@@ -55,7 +53,7 @@ export default class Server {
   /** @type {(request: Request, response: Response) => Promise<void>} */
   async handleServeHtml(request, response) {
     try {
-      const path = request.originalUrl //.replace(this.base, "")
+      const path = request.originalUrl.replace(this.base, "")
 
       /** @type {string} */
       let template
@@ -89,11 +87,13 @@ export default class Server {
   }
 
   async run() {
+    this.app.get("/health-check", (request, response) => {
+      this.handleHealthCheck(request, response)
+    })
+
     if (this.envIsProduction) {
       const compression = (await import("compression")).default
       const sirv = (await import("sirv")).default
-
-      this.templateHtml = await fs.readFile("./dist/client/index.html", "utf-8")
 
       this.app.use(compression())
       this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
@@ -110,9 +110,17 @@ export default class Server {
       this.app.use(this.vite.middlewares)
     }
 
-    // Start http server
+    this.app.get("*", async (request, response) => {
+      await this.handleServeHtml(request, response)
+    })
+
     this.app.listen(this.port, this.hostname, () => {
-      console.log(`Server started at http://${this.hostname}:${this.port}`)
+      console.log(
+        "Server started.\n" +
+          `\turl: http://${this.hostname}:${this.port}\n` +
+          `\tenvironment: ${process.env.NODE_ENV}\n` +
+          `\tmode: ${this.mode}`,
+      )
     })
   }
 }
