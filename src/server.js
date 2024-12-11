@@ -3,11 +3,11 @@ import express from "express"
 
 export default class Server {
   constructor(
-    /** @type {Partial<{ mode: "local" | "development" | "staging" | "production"; port: number; base: string }>} */
+    /** @type {Partial<{ mode: "development" | "staging" | "production"; port: number; base: string }>} */
     { mode, port, base } = {},
   ) {
-    /** @type {"local" | "development" | "staging" | "production"} */
-    this.mode = mode || process.env.MODE || "local"
+    /** @type {"development" | "staging" | "production"} */
+    this.mode = mode || process.env.MODE || "development"
     /** @type {number} */
     this.port = port || (process.env.PORT ? Number(process.env.PORT) : 5173)
     /** @type {string} */
@@ -18,7 +18,7 @@ export default class Server {
     /** @type {string} */
     this.templateHtml = ""
     /** @type {string} */
-    this.hostname = this.mode === "local" ? "localhost" : "0.0.0.0"
+    this.hostname = this.envIsProduction ? "0.0.0.0" : "localhost"
 
     /** @type {Express} */
     this.app = express()
