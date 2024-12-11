@@ -3,19 +3,22 @@ import express from "express"
 
 export default class Server {
   constructor(
-    /** @type {Partial<{ env: "local" | "development" | "staging" | "production"; port: number; base: string }>} */
-    { env, port, base } = {},
+    /** @type {Partial<{ mode: "local" | "development" | "staging" | "production"; port: number; base: string }>} */
+    { mode, port, base } = {},
   ) {
-    /** @type {boolean} */
-    this.isLocal = (env || process.env.NODE_ENV) === "local"
+    /** @type {"local" | "development" | "staging" | "production"} */
+    this.mode = mode || process.env.MODE || "local"
     /** @type {number} */
     this.port = port || (process.env.PORT ? Number(process.env.PORT) : 5173)
     /** @type {string} */
     this.base = base || process.env.BASE || "/"
-    /** @type {string} */
-    this.hostname = this.isLocal ? "localhost" : "0.0.0.0"
+
+    /** @type {boolean} */
+    this.envIsProduction = process.env.NODE_ENV === "production"
     /** @type {string} */
     this.templateHtml = ""
+    /** @type {string} */
+    this.hostname = this.mode === "local" ? "localhost" : "0.0.0.0"
 
     /** @type {Express} */
     this.app = express()
@@ -52,25 +55,26 @@ export default class Server {
   /** @type {(request: Request, response: Response) => Promise<void>} */
   async handleServeHtml(request, response) {
     try {
-      const url = request.originalUrl //.replace(this.base, "")
+      const path = request.originalUrl //.replace(this.base, "")
 
       /** @type {string} */
       let template
-      /** @type {(url: string) => Promise<{ head?: string; html?: string }>} */
+      /** @type {(path: string) => Promise<{ head?: string; html?: string }>} */
       let render
-      if (this.isLocal) {
-        // Always read fresh template.
-        template = await fs.readFile("./index.html", "utf-8")
-        template = await this.vite.transformIndexHtml(url, template)
-        render = (await this.vite.ssrLoadModule("/src/entry-server.tsx")).render
-      } else {
+      if (this.envIsProduction) {
         render = (await import("./dist/server/entry-server.js")).render
 
         // Use cached template.
         template = this.templateHtml
+      } else {
+        render = (await this.vite.ssrLoadModule("/src/entry-server.tsx")).render
+
+        // Always read fresh template.
+        template = await fs.readFile("./index.html", "utf-8")
+        template = await this.vite.transformIndexHtml(path, template)
       }
 
-      const rendered = await render(url)
+      const rendered = await render(path)
 
       const html = template
         .replace(`<!--app-head-->`, rendered.head ?? "")
@@ -85,17 +89,7 @@ export default class Server {
   }
 
   async run() {
-    if (this.isLocal) {
-      const { createServer } = await import("vite")
-
-      this.vite = await createServer({
-        server: { middlewareMode: true },
-        appType: "custom",
-        base: this.base,
-      })
-
-      this.app.use(this.vite.middlewares)
-    } else {
+    if (this.envIsProduction) {
       const compression = (await import("compression")).default
       const sirv = (await import("sirv")).default
 
@@ -103,6 +97,17 @@ export default class Server {
 
       this.app.use(compression())
       this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
+    } else {
+      const { createServer } = await import("vite")
+
+      this.vite = await createServer({
+        server: { middlewareMode: true },
+        appType: "custom",
+        base: this.base,
+        mode: this.mode,
+      })
+
+      this.app.use(this.vite.middlewares)
     }
 
     // Start http server

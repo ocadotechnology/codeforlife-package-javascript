@@ -8,6 +8,7 @@ import { type Action } from "redux"
 
 import "./App.css"
 import { useLocation } from "../hooks"
+import { SSR } from "../settings"
 // import { InactiveDialog, ScreenTimeDialog } from "../features"
 // import { useCountdown, useEventListener } from "../hooks"
 // import "../scripts"
@@ -63,6 +64,23 @@ const App = <A extends Action = Action, S = unknown>({
   maxTotalSeconds = 60 * 60,
   ...routesProps
 }: AppProps<A, S>): JSX.Element => {
+  let router: ReactNode
+  if (SSR) {
+    if (!path) throw new Error("Running server and path not provided.")
+
+    router = (
+      <StaticRouter location={path}>
+        <Routes path={path} {...routesProps} />
+      </StaticRouter>
+    )
+  } else {
+    router = (
+      <BrowserRouter>
+        <BrowserRoutes {...routesProps} />
+      </BrowserRouter>
+    )
+  }
+
   // TODO: cannot use document during SSR
   // const root = document.getElementById("root") as HTMLElement
 
@@ -97,15 +115,7 @@ const App = <A extends Action = Action, S = unknown>({
             setTotalSeconds(maxTotalSeconds)
           }}
         /> */}
-        {path ? (
-          <StaticRouter location={path}>
-            <Routes path={path} {...routesProps} />
-          </StaticRouter>
-        ) : (
-          <BrowserRouter>
-            <BrowserRoutes {...routesProps} />
-          </BrowserRouter>
-        )}
+        {router}
       </Provider>
     </ThemeProvider>
   )
