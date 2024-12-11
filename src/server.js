@@ -39,6 +39,10 @@ export default class Server {
   handleHealthCheck(request, response) {
     const healthCheck = this.getHealthCheck(request)
 
+    if (healthCheck.healthStatus !== "healthy") {
+      console.warn(`health check: ${JSON.stringify(healthCheck)}`)
+    }
+
     response.json({
       appId: process.env.APP_ID || "REPLACE_ME",
       healthStatus: healthCheck.healthStatus,
