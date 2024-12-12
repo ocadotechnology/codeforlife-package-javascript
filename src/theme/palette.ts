@@ -4,7 +4,6 @@ import {
   type PaletteOptions,
   type PaletteColorOptions,
 } from "@mui/material"
-import { common, red } from "@mui/material/colors"
 
 import { primary, secondary, tertiary } from "./colors"
 
@@ -66,17 +65,17 @@ const {
 
 const teacher: PaletteColorOptions = {
   main: primary[500],
-  contrastText: common.white,
+  contrastText: "#fff",
 }
 
 const student: PaletteColorOptions = {
   main: tertiary[500],
-  contrastText: common.white,
+  contrastText: "#fff",
 }
 
 const indy: PaletteColorOptions = {
   main: secondary[500],
-  contrastText: common.black,
+  contrastText: "#000",
 }
 
 const palette: PaletteOptions = {
@@ -90,10 +89,10 @@ const palette: PaletteOptions = {
   tertiary: augmentColor({ color: student }),
   student: augmentColor({ color: student }),
   // other
-  white: augmentColor({ color: { main: common.white } }),
-  black: augmentColor({ color: { main: common.black } }),
+  white: augmentColor({ color: { main: "#fff" } }),
+  black: augmentColor({ color: { main: "#000" } }),
   info: { main: "#f1ecec" },
-  error: { main: red.A700 },
+  error: { main: "#d50000" },
 }
 
 export default palette
