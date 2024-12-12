@@ -30,12 +30,12 @@ export interface AppProps<A extends Action = Action, S = unknown> {
   maxTotalSeconds?: number
 }
 
-type RoutesProps = Pick<
+type BaseRoutesProps = Pick<
   AppProps,
   "routes" | "header" | "footer" | "headerExcludePaths" | "footerExcludePaths"
-> & { path: string }
+>
 
-const Routes: FC<RoutesProps> = ({
+const Routes: FC<BaseRoutesProps & { path: string }> = ({
   path,
   routes,
   header = <></>, // TODO: "header = <Header />"
@@ -50,7 +50,7 @@ const Routes: FC<RoutesProps> = ({
   </>
 )
 
-const BrowserRoutes: FC<Omit<RoutesProps, "path">> = props => {
+const BrowserRoutes: FC<BaseRoutesProps> = props => {
   const { pathname } = useLocation()
 
   return <Routes path={pathname} {...props} />
