@@ -72,7 +72,7 @@ export default class Server {
 
   /** @type {(request: import('express').Request, response: import('express').Response) => void} */
   handleHealthCheck(request, response) {
-    /** @type {{ appId: string; healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; lastCheckedTimestamp: string; additionalInformation: string; startupTimestamp: string; appVersion: string; details: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }} */
+    /** @type {{ appId: string; healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; lastCheckedTimestamp: string; additionalInformation: string; startupTimestamp: string; appVersion: string; details: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }> }} */
     let value = this.cache.get(this.healthCheckCacheKey)
     if (value === null) {
       const healthCheck = this.getHealthCheck(request)
