@@ -1,3 +1,11 @@
+/**
+ * © Ocado Group
+ * Created on 13/12/2024 at 12:15:05(+00:00).
+ *
+ * A server for an app in a live environment.
+ * Based off: https://github.com/bluwy/create-vite-extra/blob/master/template-ssr-react-ts/server.js
+ */
+
 import fs from "node:fs/promises"
 import express from "express"
 
