@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.5.2...v2.6.0) (2024-12-13)
+
+
+### Features
+
+* otp deploy ([#70](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/70)) ([d04dd59](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d04dd595c129f292f0e2da20a429fe629f158c67))
+
 ## [2.5.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.5.1...v2.5.2) (2024-12-09)
 
 
