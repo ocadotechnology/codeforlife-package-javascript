@@ -42,7 +42,7 @@ export default class Server {
     this.healthCheckCacheTimeout = 30000
   }
 
-  /** @type {(request: Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; }> }} */
+  /** @type {(request: import('express').Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; }> }} */
   getHealthCheck(request) {
     return {
       healthStatus: "healthy",
@@ -50,7 +50,7 @@ export default class Server {
     }
   }
 
-  /** @type {(request: Request, response: Response) => void} */
+  /** @type {(request: import('express').Request, response: import('express').Response) => void} */
   handleHealthCheck(request, response) {
     let value = this.cache.get(this.healthCheckCacheKey)
     if (value === null) {
@@ -80,7 +80,7 @@ export default class Server {
     response.json(value)
   }
 
-  /** @type {(request: Request, response: Response) => Promise<void>} */
+  /** @type {(request: import('express').Request, response: import('express').Response) => Promise<void>} */
   async handleServeHtml(request, response) {
     try {
       const path = request.originalUrl.replace(this.base, "")
@@ -111,8 +111,8 @@ export default class Server {
       response.status(200).set({ "Content-Type": "text/html" }).send(html)
     } catch (error) {
       this.vite?.ssrFixStacktrace(error)
-      console.log(error.stack)
-      response.status(500).end(error.stack)
+      console.error(error.stack)
+      response.status(500).end(this.envIsProduction ? undefined : error.stack)
     }
   }
 
