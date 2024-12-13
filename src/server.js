@@ -8,6 +8,7 @@
 
 import fs from "node:fs/promises"
 import express from "express"
+import { Cache } from "memory-cache"
 
 export default class Server {
   constructor(
@@ -28,11 +29,17 @@ export default class Server {
     /** @type {string} */
     this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1"
 
-    /** @type {Express} */
+    /** @type {import('express').Express} */
     this.app = express()
-
     /** @type {import('vite').ViteDevServer | undefined} */
     this.vite = undefined
+
+    /** @type {import('memory-cache').Cache<string, Record<string, any>>} */
+    this.cache = new Cache()
+    /** @type {string} */
+    this.healthCheckCacheKey = "health-check"
+    /** @type {number} */
+    this.healthCheckCacheTimeout = 30000
   }
 
   /** @type {(request: Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; }> }} */
@@ -45,21 +52,32 @@ export default class Server {
 
   /** @type {(request: Request, response: Response) => void} */
   handleHealthCheck(request, response) {
-    const healthCheck = this.getHealthCheck(request)
+    let value = this.cache.get(this.healthCheckCacheKey)
+    if (value === null) {
+      const healthCheck = this.getHealthCheck(request)
 
-    if (healthCheck.healthStatus !== "healthy") {
-      console.warn(`health check: ${JSON.stringify(healthCheck)}`)
+      if (healthCheck.healthStatus !== "healthy") {
+        console.warn(`health check: ${JSON.stringify(healthCheck)}`)
+      }
+
+      value = {
+        appId: process.env.APP_ID || "REPLACE_ME",
+        healthStatus: healthCheck.healthStatus,
+        lastCheckedTimestamp: new Date().toISOString(),
+        additionalInformation: healthCheck.additionalInfo,
+        startupTimestamp: new Date().toISOString(),
+        appVersion: process.env.APP_VERSION || "REPLACE_ME",
+        details: healthCheck.details || [],
+      }
+
+      this.cache.put(
+        this.healthCheckCacheKey,
+        value,
+        this.healthCheckCacheTimeout,
+      )
     }
 
-    response.json({
-      appId: process.env.APP_ID || "REPLACE_ME",
-      healthStatus: healthCheck.healthStatus,
-      lastCheckedTimestamp: new Date().toISOString(),
-      additionalInformation: healthCheck.additionalInfo,
-      startupTimestamp: new Date().toISOString(),
-      appVersion: process.env.APP_VERSION || "REPLACE_ME",
-      details: healthCheck.details || [],
-    })
+    response.json(value)
   }
 
   /** @type {(request: Request, response: Response) => Promise<void>} */
