@@ -168,12 +168,14 @@ export default class Server {
     })
 
     this.app.listen(this.port, this.hostname, () => {
-      console.log(
+      let startMessage =
         "Server started.\n" +
-          `url: http://${this.hostname}:${this.port}\n` +
-          `environment: ${process.env.NODE_ENV}\n` +
-          `mode: ${this.mode}\n`,
-      )
+        `url: http://${this.hostname}:${this.port}\n` +
+        `environment: ${process.env.NODE_ENV}\n`
+
+      if (!this.envIsProduction) startMessage += `mode: ${this.mode}\n`
+
+      console.log(startMessage)
     })
   }
 }
