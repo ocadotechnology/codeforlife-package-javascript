@@ -90,7 +90,7 @@ export default class Server {
       /** @type {(path: string) => Promise<{ head?: string; html?: string }>} */
       let render
       if (this.envIsProduction) {
-        render = (await import("./dist/server/entry-server.js")).render
+        render = (await import("../../../dist/server/entry-server.js")).render
 
         // Use cached template.
         template = this.templateHtml
