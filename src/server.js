@@ -33,16 +33,36 @@ export default class Server {
     this.app = express()
     /** @type {import('vite').ViteDevServer | undefined} */
     this.vite = undefined
-
-    /** @type {import('memory-cache').Cache<string, Record<string, any>>} */
+    /** @type {import('memory-cache').Cache<string, any>} */
     this.cache = new Cache()
+
     /** @type {string} */
     this.healthCheckCacheKey = "health-check"
     /** @type {number} */
     this.healthCheckCacheTimeout = 30000
+    /** @type {Record<"healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown", number>} */
+    this.healthCheckStatusCodes = {
+      // The app is running normally.
+      healthy: 200,
+      // The app is performing app-specific initialisation which must
+      // complete before it will serve normal application requests
+      // (perhaps the app is warming a cache or something similar). You
+      // only need to use this status if your app will be in a start-up
+      // mode for a prolonged period of time.
+      startingUp: 503,
+      // The app is shutting down. As with startingUp, you only need to
+      // use this status if your app takes a prolonged amount of time
+      // to shutdown, perhaps because it waits for a long-running
+      // process to complete before shutting down.
+      shuttingDown: 503,
+      // The app is not running normally.
+      unhealthy: 503,
+      // The app is not able to report its own state.
+      unknown: 503,
+    }
   }
 
-  /** @type {(request: import('express').Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; }> }} */
+  /** @type {(request: import('express').Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }> }} */
   getHealthCheck(request) {
     return {
       healthStatus: "healthy",
@@ -52,6 +72,7 @@ export default class Server {
 
   /** @type {(request: import('express').Request, response: import('express').Response) => void} */
   handleHealthCheck(request, response) {
+    /** @type {{ appId: string; healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; lastCheckedTimestamp: string; additionalInformation: string; startupTimestamp: string; appVersion: string; details: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }} */
     let value = this.cache.get(this.healthCheckCacheKey)
     if (value === null) {
       const healthCheck = this.getHealthCheck(request)
@@ -77,7 +98,7 @@ export default class Server {
       )
     }
 
-    response.json(value)
+    response.status(this.healthCheckStatusCodes[value.healthStatus]).json(value)
   }
 
   /** @type {(request: import('express').Request, response: import('express').Response) => Promise<void>} */
