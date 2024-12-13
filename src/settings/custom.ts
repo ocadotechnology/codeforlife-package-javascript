@@ -6,8 +6,7 @@
  */
 
 // Shorthand to access environment variables.
-const env = import.meta.env as Record<string, string>
-export default env
+const env = import.meta.env as Record<string, string | undefined>
 
 // The name of the current service.
 export const SERVICE_NAME = env.VITE_SERVICE_NAME ?? "REPLACE_ME"
