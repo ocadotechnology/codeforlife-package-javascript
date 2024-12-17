@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.0...v2.6.1) (2024-12-17)
+
+
+### Bug Fixes
+
+* publish to npm ([7eff05a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7eff05a6afc84a013263c2e29dab4bb3b785c4b8))
+
 # [2.6.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.5.2...v2.6.0) (2024-12-13)
 
 
