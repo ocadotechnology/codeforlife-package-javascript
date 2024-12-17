@@ -9,7 +9,7 @@
   ],
   "name": "codeforlife",
   "description": "Common frontend code",
-  "private": true,
+  "private": false,
   "version": "2.6.0",
   "type": "module",
   "scripts": {
