@@ -1,3 +1,10 @@
+## [2.6.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.2...v2.6.3) (2024-12-18)
+
+
+### Bug Fixes
+
+* port 8080 in prod ([79b1a42](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/79b1a423de37d98c4f392377e47f89d6d2ecc9a9))
+
 ## [2.6.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.1...v2.6.2) (2024-12-18)
 
 
