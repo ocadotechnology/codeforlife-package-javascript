@@ -1,12 +1,4 @@
 {
-  "//": [
-    "Based off of:",
-    "https://github.com/vitejs/vite/blob/main/packages/create-vite/template-react-ts/package.json",
-    "Dependency rules:",
-    "`peerDependencies` should contain everything required to build and test a",
-    "service's front end.",
-    "TODO: make devDependencies the same as peerDependencies"
-  ],
   "name": "codeforlife",
   "description": "Common frontend code",
   "private": false,
