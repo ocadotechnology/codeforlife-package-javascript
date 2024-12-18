@@ -15,19 +15,25 @@ export default class Server {
     /** @type {Partial<{ mode: "development" | "staging" | "production"; port: number; base: string }>} */
     { mode, port, base } = {},
   ) {
-    /** @type {"development" | "staging" | "production"} */
-    this.mode = mode || process.env.MODE || "development"
-    /** @type {number} */
-    this.port = port || (process.env.PORT ? Number(process.env.PORT) : 5173)
-    /** @type {string} */
-    this.base = base || process.env.BASE || "/"
-
     /** @type {boolean} */
     this.envIsProduction = process.env.NODE_ENV === "production"
     /** @type {string} */
     this.templateHtml = ""
     /** @type {string} */
     this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1"
+
+    /** @type {"development" | "staging" | "production"} */
+    this.mode = mode || process.env.MODE || "development"
+    /** @type {number} */
+    this.port =
+      port ||
+      (process.env.PORT
+        ? Number(process.env.PORT)
+        : this.envIsProduction
+          ? 8080
+          : 5173)
+    /** @type {string} */
+    this.base = base || process.env.BASE || "/"
 
     /** @type {import('express').Express} */
     this.app = express()
