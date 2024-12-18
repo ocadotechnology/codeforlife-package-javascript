@@ -1,3 +1,10 @@
+## [2.6.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.1...v2.6.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* remove peer dependencies ([#71](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/71)) ([9c3bf54](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9c3bf544cc53e00b0bb6a50e1a925d9370cf649e))
+
 ## [2.6.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.0...v2.6.1) (2024-12-17)
 
 
