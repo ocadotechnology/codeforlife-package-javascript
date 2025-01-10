@@ -1,6 +1,10 @@
 import { type ChipTypeMap } from "@mui/material"
 import { type ElementType } from "react"
-import { COUNTRY_ISO_CODES } from "../../utils/general"
+import {
+  COUNTRY_ISO_CODES,
+  COUNTRY_ISO_CODE_MAPPING,
+  type CountryIsoCodes,
+} from "../../utils/general"
 import AutocompleteField, {
   type AutocompleteFieldProps,
 } from "./AutocompleteField"
@@ -58,7 +62,9 @@ const CountryField = <
   return (
     <AutocompleteField
       options={COUNTRY_ISO_CODES}
-      getOptionLabel={isoCode => isoCode} // TODO: return country name
+      getOptionLabel={isoCode =>
+        COUNTRY_ISO_CODE_MAPPING[isoCode as CountryIsoCodes]
+      }
       textFieldProps={{ name, label, placeholder, ...otherTextFieldProps }}
       {...otherAutocompleteFieldProps}
     />
