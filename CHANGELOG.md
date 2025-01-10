@@ -1,3 +1,10 @@
+## [2.6.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.3...v2.6.4) (2025-01-10)
+
+
+### Bug Fixes
+
+* country iso code mapping ([#73](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/73)) ([162111c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/162111cc181a58c2bdf39df8ae566b8ab1f34426))
+
 ## [2.6.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.2...v2.6.3) (2024-12-18)
 
 
