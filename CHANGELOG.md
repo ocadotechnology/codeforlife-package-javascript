@@ -1,3 +1,10 @@
+## [2.6.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.4...v2.6.5) (2025-01-17)
+
+
+### Bug Fixes
+
+* unique values ([#74](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/74)) ([1d183d2](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1d183d2806a7aa8ba98e78bf8a3fa9927ff37389))
+
 ## [2.6.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.3...v2.6.4) (2025-01-10)
 
 
