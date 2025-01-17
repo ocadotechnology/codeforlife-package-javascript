@@ -30,6 +30,8 @@ export type TextFieldProps = Omit<
   validateOptions?: ValidateOptions
   dirty?: boolean
   split?: string | RegExp
+  unique?: boolean
+  uniqueCaseInsensitive?: boolean
 }
 
 // https://formik.org/docs/examples/with-material-ui
@@ -40,6 +42,8 @@ const TextField: FC<TextFieldProps> = ({
   type = "text",
   required = false,
   dirty = false,
+  unique = false,
+  uniqueCaseInsensitive = false,
   split,
   validateOptions,
   ...otherTextFieldProps
@@ -49,7 +53,27 @@ const TextField: FC<TextFieldProps> = ({
   const dotPath = name.split(".")
 
   let _schema: Schema = schema
-  if (split) _schema = YupArray().of(_schema)
+  if (split) {
+    _schema = YupArray().of(_schema)
+    if (unique || uniqueCaseInsensitive) {
+      _schema = _schema.test({
+        message: "cannot have duplicates",
+        test: values => {
+          if (Array.isArray(values) && values.length >= 2) {
+            return (
+              new Set(
+                uniqueCaseInsensitive && typeof values[0] === "string"
+                  ? values.map(value => value.toLowerCase())
+                  : values,
+              ).size === values.length
+            )
+          }
+
+          return true
+        },
+      })
+    }
+  }
   if (required) {
     _schema = _schema.required()
     if (split) _schema = (_schema as ArraySchema<string[], any>).min(1)
