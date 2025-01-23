@@ -1,12 +1,14 @@
 import {
   createApi as _createApi,
   fetchBaseQuery,
+  type FetchArgs,
 } from "@reduxjs/toolkit/query/react"
 
 import { SERVICE_API_URL } from "../settings"
 import defaultTagTypes from "./tagTypes"
 import { buildLogoutEndpoint } from "./endpoints/session"
 import { getCsrfCookie } from "../utils/auth"
+import { isSafeHttpMethod } from "../utils/api"
 
 // TODO: decide if we want to keep any of this.
 // export function handleResponseError(error: FetchBaseQueryError): void {
@@ -36,8 +38,13 @@ export default function createApi<TagTypes extends string = never>({
   const fetch = fetchBaseQuery({
     baseUrl: `${SERVICE_API_URL}/`,
     credentials: "include",
-    prepareHeaders: (headers, { type }) => {
-      if (type === "mutation") {
+    prepareHeaders: (headers, endpoint) => {
+      const { type, arg } = endpoint as typeof endpoint & {
+        arg: string | FetchArgs
+      }
+      const method = typeof arg === "string" ? "GET" : arg.method || "GET"
+
+      if (type === "mutation" || !isSafeHttpMethod(method)) {
         let csrfToken = getCsrfCookie()
         if (csrfToken) headers.set("x-csrftoken", csrfToken)
       }

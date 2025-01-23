@@ -325,3 +325,8 @@ export function handleResultState<QueryArg, ResultType>(
   // Have yet to call the API.
   return loadingNode
 }
+
+export function isSafeHttpMethod(method: string) {
+  // https://datatracker.ietf.org/doc/html/rfc9110.html#section-9.2.1
+  return ["GET", "HEAD", "OPTIONS", "TRACE"].includes(method.toUpperCase())
+}
