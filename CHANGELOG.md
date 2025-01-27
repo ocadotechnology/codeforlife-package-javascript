@@ -1,3 +1,10 @@
+## [2.6.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.5...v2.6.6) (2025-01-27)
+
+
+### Bug Fixes
+
+* csrf header for non-safe http methods ([#75](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/75)) ([d0b2b78](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d0b2b7852fbdc9f84ade5ec4d46cc8a980e60f1e))
+
 ## [2.6.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.4...v2.6.5) (2025-01-17)
 
 
