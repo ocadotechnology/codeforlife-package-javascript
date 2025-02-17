@@ -40,6 +40,7 @@ export type SubmitFormOptions<
   ResultType,
 > = Partial<{
   exclude: string[]
+  onlyDirtyValues: boolean
   then: (
     result: ResultType,
     values: Values,
@@ -67,6 +68,7 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values>
 
@@ -76,6 +78,7 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values>
 
@@ -85,9 +88,16 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values> {
-  const { exclude, then, catch: _catch, finally: _finally } = options || {}
+  let {
+    exclude = [],
+    onlyDirtyValues = false,
+    then,
+    catch: _catch,
+    finally: _finally,
+  } = options || {}
 
   return (values, helpers) => {
     let arg =
@@ -95,7 +105,16 @@ export function submitForm<
         ? options.clean(values as QueryArg & FormValues)
         : (values as unknown as QueryArg)
 
-    if (exclude) arg = excludeKeyPaths(arg, exclude)
+    if (onlyDirtyValues) {
+      exclude = [
+        ...exclude,
+        ...getCleanNames(values, initialValues).filter(
+          cleanName => !exclude.includes(cleanName),
+        ),
+      ]
+    }
+
+    if (exclude.length) arg = excludeKeyPaths(arg, exclude)
 
     trigger(arg)
       .unwrap()

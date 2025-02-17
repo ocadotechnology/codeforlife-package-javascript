@@ -51,6 +51,7 @@ const SubmitForm = <
       {...formikProps}
       onSubmit={submitForm<Values, QueryArg, ResultType>(
         trigger,
+        formikProps.initialValues,
         submitOptions as SubmitFormOptions<Values, QueryArg, ResultType>,
       )}
     />
