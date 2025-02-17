@@ -1,4 +1,9 @@
-import { excludeKeyPaths, getNestedProperty, withKeyPaths } from "./general"
+import {
+  excludeKeyPaths,
+  getNestedProperty,
+  withKeyPaths,
+  getKeyPaths,
+} from "./general"
 
 // getNestedProperty
 
@@ -24,10 +29,18 @@ test("get a nested property that doesn't exist", () => {
 
 // withKeyPaths
 
-test("get the paths of nested keys", () => {
+test("set the paths of nested keys", () => {
   const obj = withKeyPaths({ a: 1, b: { c: 2, d: { e: 3 } } })
 
   expect(obj).toMatchObject({ a: 1, b: { "b.c": 2, "b.d": { "b.d.e": 3 } } })
+})
+
+// getKeyPaths
+
+test("get the paths of nested keys", () => {
+  const keyPaths = getKeyPaths({ a: 1, b: { c: 2, d: { e: 3 } } })
+
+  expect(keyPaths).toMatchObject(["a", "b", "b.c", "b.d", "b.d.e"])
 })
 
 // excludeKeyPaths
