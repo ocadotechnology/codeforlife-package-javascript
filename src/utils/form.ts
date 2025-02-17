@@ -40,6 +40,7 @@ export type SubmitFormOptions<
   ResultType,
 > = Partial<{
   exclude: string[]
+  include: string[]
   onlyDirtyValues: boolean
   then: (
     result: ResultType,
@@ -93,6 +94,7 @@ export function submitForm<
 ): SubmitFormHandler<Values> {
   let {
     exclude = [],
+    include,
     onlyDirtyValues = false,
     then,
     catch: _catch,
@@ -113,6 +115,8 @@ export function submitForm<
         ),
       ]
     }
+
+    if (include) exclude = exclude.filter(name => !include.includes(name))
 
     if (exclude.length) arg = excludeKeyPaths(arg, exclude)
 
