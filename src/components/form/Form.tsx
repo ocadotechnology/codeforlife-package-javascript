@@ -1,9 +1,12 @@
+import { FormHelperText, type FormHelperTextProps } from "@mui/material"
 import {
   Formik,
   Form as FormikForm,
   type FormikConfig,
   type FormikErrors,
+  type FormikProps,
 } from "formik"
+import { type ReactNode, type FC, useRef, useEffect } from "react"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
 
 import {
@@ -12,15 +15,51 @@ import {
   type FormValues,
 } from "../../utils/form"
 
+type NonFieldErrorsProps = Omit<FormHelperTextProps, "error" | "ref">
+
+const NonFieldErrors: FC<NonFieldErrorsProps> = props => {
+  const pRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    if (pRef.current) {
+      pRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }, [])
+
+  return <FormHelperText ref={pRef} error {...props} />
+}
+
+export type FormErrors<Values> = FormikErrors<
+  Omit<Values, "non_field_errors"> & { non_field_errors: string }
+>
+
+type _FormikProps<Values> = Omit<FormikProps<Values>, "errors"> & {
+  errors: FormErrors<Values>
+}
+
+type _FormikConfig<Values> = Omit<FormikConfig<Values>, "children"> & {
+  children: ReactNode | ((props: _FormikProps<Values>) => ReactNode)
+  nonFieldErrorsProps?: Omit<NonFieldErrorsProps, "children">
+}
+
 const _ = <Values extends FormValues>({
   children,
+  nonFieldErrorsProps,
   ...otherFormikProps
-}: FormikConfig<Values>) => (
+}: _FormikConfig<Values>) => (
   <Formik {...otherFormikProps}>
-    {formik => (
-      <FormikForm>
-        {typeof children === "function" ? children(formik) : children}
-      </FormikForm>
+    {/* @ts-expect-error */}
+    {(formik: _FormikProps<Values>) => (
+      <>
+        {typeof formik.errors.non_field_errors === "string" && (
+          <NonFieldErrors {...nonFieldErrorsProps}>
+            {formik.errors.non_field_errors}
+          </NonFieldErrors>
+        )}
+        <FormikForm>
+          {typeof children === "function" ? children(formik) : children}
+        </FormikForm>
+      </>
     )}
   </Formik>
 )
@@ -29,7 +68,7 @@ type SubmitFormProps<
   Values extends FormValues,
   QueryArg extends FormValues,
   ResultType,
-> = Omit<FormikConfig<Values>, "onSubmit"> & {
+> = Omit<_FormikConfig<Values>, "onSubmit"> & {
   useMutation: TypedUseMutation<ResultType, QueryArg, any>
 } & (Values extends QueryArg
     ? { submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType> }
@@ -62,10 +101,10 @@ export type FormProps<
   Values extends FormValues,
   QueryArg extends FormValues,
   ResultType,
-> = FormikConfig<Values> | SubmitFormProps<Values, QueryArg, ResultType>
+> = _FormikConfig<Values> | SubmitFormProps<Values, QueryArg, ResultType>
 
 const Form: {
-  <Values extends FormValues>(props: FormikConfig<Values>): JSX.Element
+  <Values extends FormValues>(props: _FormikConfig<Values>): JSX.Element
   <Values extends FormValues, QueryArg extends FormValues, ResultType>(
     props: SubmitFormProps<Values, QueryArg, ResultType>,
   ): JSX.Element
@@ -80,4 +119,3 @@ const Form: {
 }
 
 export default Form
-export { type FormikErrors as FormErrors }
