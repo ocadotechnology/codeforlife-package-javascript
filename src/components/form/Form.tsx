@@ -6,27 +6,42 @@ import {
   type FormikErrors,
   type FormikProps,
 } from "formik"
-import { type ReactNode, type FC, useRef, useEffect } from "react"
+import {
+  type ReactNode,
+  type FC,
+  useRef,
+  useEffect,
+  type RefObject,
+} from "react"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
 
+import { getKeyPaths } from "../../utils/general"
 import {
   submitForm,
   type SubmitFormOptions,
   type FormValues,
 } from "../../utils/form"
 
-type NonFieldErrorsProps = Omit<FormHelperTextProps, "error" | "ref">
+const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
+  behavior: "smooth",
+  block: "start",
+}
 
-const NonFieldErrors: FC<NonFieldErrorsProps> = props => {
+type NonFieldErrorsProps = Omit<FormHelperTextProps, "error" | "ref"> & {
+  scrollIntoViewOptions?: ScrollIntoViewOptions
+}
+
+const NonFieldErrors: FC<NonFieldErrorsProps> = ({
+  scrollIntoViewOptions = SCROLL_INTO_VIEW_OPTIONS,
+  ...formHelperTextProps
+}) => {
   const pRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
-    if (pRef.current) {
-      pRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
-  }, [])
+    if (pRef.current) pRef.current.scrollIntoView(scrollIntoViewOptions)
+  }, [scrollIntoViewOptions])
 
-  return <FormHelperText ref={pRef} error {...props} />
+  return <FormHelperText ref={pRef} error {...formHelperTextProps} />
 }
 
 export type FormErrors<Values> = FormikErrors<
@@ -37,30 +52,53 @@ type _FormikProps<Values> = Omit<FormikProps<Values>, "errors"> & {
   errors: FormErrors<Values>
 }
 
-type _FormikConfig<Values> = Omit<FormikConfig<Values>, "children"> & {
+type BaseFormProps<Values> = Omit<FormikConfig<Values>, "children"> & {
   children: ReactNode | ((props: _FormikProps<Values>) => ReactNode)
+  scrollIntoViewOptions?: ScrollIntoViewOptions
   nonFieldErrorsProps?: Omit<NonFieldErrorsProps, "children">
+  order?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
 }
 
-const _ = <Values extends FormValues>({
+const BaseForm = <Values extends FormValues>({
   children,
+  scrollIntoViewOptions = SCROLL_INTO_VIEW_OPTIONS,
   nonFieldErrorsProps,
+  order,
   ...otherFormikProps
-}: _FormikConfig<Values>) => (
+}: BaseFormProps<Values>) => (
   <Formik {...otherFormikProps}>
     {/* @ts-expect-error */}
-    {(formik: _FormikProps<Values>) => (
-      <>
-        {typeof formik.errors.non_field_errors === "string" && (
-          <NonFieldErrors {...nonFieldErrorsProps}>
-            {formik.errors.non_field_errors}
-          </NonFieldErrors>
-        )}
-        <FormikForm>
-          {typeof children === "function" ? children(formik) : children}
-        </FormikForm>
-      </>
-    )}
+    {(formik: _FormikProps<Values>) => {
+      let nonFieldErrors: undefined | JSX.Element = undefined
+      if (Object.keys(formik.errors).length) {
+        if (typeof formik.errors.non_field_errors === "string") {
+          nonFieldErrors = (
+            <NonFieldErrors {...nonFieldErrorsProps}>
+              {formik.errors.non_field_errors}
+            </NonFieldErrors>
+          )
+        } else if (order && order.length) {
+          const errorNames = getKeyPaths(formik.errors)
+
+          const inputRef = order.find(({ name }) =>
+            errorNames.includes(name),
+          )?.inputRef
+
+          if (inputRef?.current) {
+            inputRef.current.scrollIntoView(scrollIntoViewOptions)
+          }
+        }
+      }
+
+      return (
+        <>
+          {nonFieldErrors}
+          <FormikForm>
+            {typeof children === "function" ? children(formik) : children}
+          </FormikForm>
+        </>
+      )
+    }}
   </Formik>
 )
 
@@ -68,7 +106,7 @@ type SubmitFormProps<
   Values extends FormValues,
   QueryArg extends FormValues,
   ResultType,
-> = Omit<_FormikConfig<Values>, "onSubmit"> & {
+> = Omit<BaseFormProps<Values>, "onSubmit"> & {
   useMutation: TypedUseMutation<ResultType, QueryArg, any>
 } & (Values extends QueryArg
     ? { submitOptions?: SubmitFormOptions<Values, QueryArg, ResultType> }
@@ -81,16 +119,16 @@ const SubmitForm = <
 >({
   useMutation,
   submitOptions,
-  ...formikProps
+  ...baseFormProps
 }: SubmitFormProps<Values, QueryArg, ResultType>): JSX.Element => {
   const [trigger] = useMutation()
 
   return (
-    <_
-      {...formikProps}
+    <BaseForm
+      {...baseFormProps}
       onSubmit={submitForm<Values, QueryArg, ResultType>(
         trigger,
-        formikProps.initialValues,
+        baseFormProps.initialValues,
         submitOptions as SubmitFormOptions<Values, QueryArg, ResultType>,
       )}
     />
@@ -101,10 +139,10 @@ export type FormProps<
   Values extends FormValues,
   QueryArg extends FormValues,
   ResultType,
-> = _FormikConfig<Values> | SubmitFormProps<Values, QueryArg, ResultType>
+> = BaseFormProps<Values> | SubmitFormProps<Values, QueryArg, ResultType>
 
 const Form: {
-  <Values extends FormValues>(props: _FormikConfig<Values>): JSX.Element
+  <Values extends FormValues>(props: BaseFormProps<Values>): JSX.Element
   <Values extends FormValues, QueryArg extends FormValues, ResultType>(
     props: SubmitFormProps<Values, QueryArg, ResultType>,
   ): JSX.Element
@@ -115,7 +153,7 @@ const Form: {
 >(
   props: FormProps<Values, QueryArg, ResultType>,
 ): JSX.Element => {
-  return "onSubmit" in props ? <_ {...props} /> : SubmitForm(props)
+  return "onSubmit" in props ? <BaseForm {...props} /> : SubmitForm(props)
 }
 
 export default Form
