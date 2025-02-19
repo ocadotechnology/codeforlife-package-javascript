@@ -966,7 +966,8 @@ export function withKeyPaths(obj: object, delimiter: string = "."): object {
       Object.entries(obj).map(([key, value]) => {
         const _path = [...path, key]
 
-        if (typeof value === "object") value = _withKeyPaths(value, _path)
+        if (typeof value === "object" && value !== null)
+          value = _withKeyPaths(value, _path)
 
         return [_path.join(delimiter), value]
       }),
@@ -974,6 +975,23 @@ export function withKeyPaths(obj: object, delimiter: string = "."): object {
   }
 
   return _withKeyPaths(obj, [])
+}
+
+export function getKeyPaths(obj: object, delimiter: string = "."): string[] {
+  function _getKeyPaths(obj: object, path: string[]): string[] {
+    return Object.entries(obj)
+      .map(([key, value]) => {
+        const _path = [...path, key]
+        const keyPath = _path.join(delimiter)
+
+        return typeof value === "object" && value !== null
+          ? [keyPath, ..._getKeyPaths(value, _path)]
+          : [keyPath]
+      })
+      .flat()
+  }
+
+  return _getKeyPaths(obj, [])
 }
 
 export function excludeKeyPaths(

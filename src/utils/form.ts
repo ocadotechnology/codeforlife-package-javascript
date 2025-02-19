@@ -2,7 +2,7 @@ import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import type { FieldValidator, FormikHelpers } from "formik"
 import { ValidationError, type Schema, type ValidateOptions } from "yup"
 
-import { excludeKeyPaths } from "./general"
+import { excludeKeyPaths, getNestedProperty, getKeyPaths } from "./general"
 
 export type FormValues = Record<string, any>
 
@@ -40,6 +40,8 @@ export type SubmitFormOptions<
   ResultType,
 > = Partial<{
   exclude: string[]
+  include: string[]
+  onlyDirtyValues: boolean
   then: (
     result: ResultType,
     values: Values,
@@ -67,6 +69,7 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values>
 
@@ -76,6 +79,7 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values>
 
@@ -85,9 +89,17 @@ export function submitForm<
   ResultType,
 >(
   trigger: TypedMutationTrigger<ResultType, QueryArg, any>,
+  initialValues: Values,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values> {
-  const { exclude, then, catch: _catch, finally: _finally } = options || {}
+  let {
+    exclude = [],
+    include,
+    onlyDirtyValues = false,
+    then,
+    catch: _catch,
+    finally: _finally,
+  } = options || {}
 
   return (values, helpers) => {
     let arg =
@@ -95,7 +107,18 @@ export function submitForm<
         ? options.clean(values as QueryArg & FormValues)
         : (values as unknown as QueryArg)
 
-    if (exclude) arg = excludeKeyPaths(arg, exclude)
+    if (onlyDirtyValues) {
+      exclude = [
+        ...exclude,
+        ...getCleanNames(values, initialValues).filter(
+          cleanName => !exclude.includes(cleanName),
+        ),
+      ]
+    }
+
+    if (include) exclude = exclude.filter(name => !include.includes(name))
+
+    if (exclude.length) arg = excludeKeyPaths(arg, exclude)
 
     trigger(arg)
       .unwrap()
@@ -131,23 +154,35 @@ export function schemaToFieldValidator(
 
 // Checking if individual fields are dirty is not currently supported.
 // https://github.com/jaredpalmer/formik/issues/1421
-export function getDirty<
-  Values extends FormValues,
-  Names extends Array<keyof Values>,
->(
+export function getDirty<Values extends FormValues>(
   values: Values,
   initialValues: Values,
-  names: Names,
-): Record<Names[number], boolean> {
+  names?: string[],
+): Record<string, boolean> {
+  if (!names) names = getKeyPaths(values)
+
   return Object.fromEntries(
     names.map(name => [name, isDirty(values, initialValues, name)]),
-  ) as Record<Names[number], boolean>
+  )
 }
 
-export function isDirty<Values extends FormValues, Name extends keyof Values>(
+export function isDirty<Values extends FormValues>(
   values: Values,
   initialValues: Values,
-  name: Name,
+  name: string,
 ): boolean {
-  return values[name] !== initialValues[name]
+  const value = getNestedProperty(values, name)
+  const initialValue = getNestedProperty(initialValues, name)
+
+  return value !== initialValue
+}
+
+export function getCleanNames<Values extends FormValues>(
+  values: Values,
+  initialValues: Values,
+  names?: string[],
+): string[] {
+  return Object.entries(getDirty(values, initialValues, names))
+    .filter(([_, isDirty]) => !isDirty)
+    .map(([name]) => name)
 }
