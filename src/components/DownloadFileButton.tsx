@@ -8,7 +8,7 @@ export type DownloadFileButtonProps = ButtonProps & {
     | MediaSource
     | {
         text: string
-        mimeType: "plain"
+        mimeType: "plain" | "csv"
         name: string
         charset?: string
         extension?: string
@@ -26,7 +26,7 @@ const DownloadFileButton: FC<DownloadFileButtonProps> = ({
   if ("mimeType" in file) {
     let { text, mimeType, name, charset = "utf-8", extension } = file
 
-    if (!extension) extension = "." + { plain: "txt" }[mimeType]
+    if (!extension) extension = "." + { plain: "txt", csv: "csv" }[mimeType]
 
     anchorProps = {
       download: name + extension,
