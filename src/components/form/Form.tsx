@@ -77,7 +77,9 @@ const BaseForm = <Values extends FormValues>({
               {formik.errors.non_field_errors}
             </NonFieldErrors>
           )
-        } else if (order && order.length) {
+        }
+        // If a submission was attempted and refs to the fields were provided.
+        else if (formik.isSubmitting && order && order.length) {
           const errorNames = getKeyPaths(formik.errors)
 
           const inputRef = order.find(({ name }) =>

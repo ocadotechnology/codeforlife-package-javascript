@@ -32,7 +32,13 @@ const SubmitButton: FC<SubmitButtonProps> = ({
           type="button"
           onClick={() => {
             form.setTouched(getTouched(form.values), true).then(errors => {
-              if (!errors || !Object.keys(errors).length) form.submitForm()
+              const hasErrors = Boolean(errors && Object.keys(errors).length)
+              // If has errors, set isSubmitting=true so fields in the form are
+              // aware that a submission was attempted. Else, set
+              // isSubmitting=false as it will be set to true when calling
+              // submitForm().
+              form.setSubmitting(hasErrors)
+              if (!hasErrors) form.submitForm()
             })
           }}
           {...otherButtonProps}
