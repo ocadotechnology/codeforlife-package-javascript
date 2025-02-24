@@ -1,3 +1,10 @@
+## [2.6.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.7...v2.6.8) (2025-02-24)
+
+
+### Bug Fixes
+
+* form submission behavior ([#79](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/79)) ([9b1ac2d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9b1ac2df0049cf473266798b6d210106045a86ee))
+
 ## [2.6.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.6...v2.6.7) (2025-02-19)
 
 
