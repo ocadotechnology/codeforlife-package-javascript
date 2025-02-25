@@ -1,3 +1,10 @@
+## [2.6.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.9...v2.6.10) (2025-02-25)
+
+
+### Bug Fixes
+
+* non field errors ([dddf8d5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dddf8d5d1990c201ef72eff74b2d4f260ce4c7a4))
+
 ## [2.6.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.8...v2.6.9) (2025-02-25)
 
 
