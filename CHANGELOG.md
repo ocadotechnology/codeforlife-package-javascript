@@ -1,3 +1,10 @@
+## [2.6.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.8...v2.6.9) (2025-02-25)
+
+
+### Bug Fixes
+
+* rename property ([35827d7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/35827d7452023f3a1ea8723b6b31fd9b84173cdd))
+
 ## [2.6.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.7...v2.6.8) (2025-02-24)
 
 
