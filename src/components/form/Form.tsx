@@ -56,14 +56,14 @@ type BaseFormProps<Values> = Omit<FormikConfig<Values>, "children"> & {
   children: ReactNode | ((props: _FormikProps<Values>) => ReactNode)
   scrollIntoViewOptions?: ScrollIntoViewOptions
   nonFieldErrorsProps?: Omit<NonFieldErrorsProps, "children">
-  order?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
+  fieldRefs?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
 }
 
 const BaseForm = <Values extends FormValues>({
   children,
   scrollIntoViewOptions = SCROLL_INTO_VIEW_OPTIONS,
   nonFieldErrorsProps,
-  order,
+  fieldRefs,
   ...otherFormikProps
 }: BaseFormProps<Values>) => (
   <Formik {...otherFormikProps}>
@@ -79,10 +79,10 @@ const BaseForm = <Values extends FormValues>({
           )
         }
         // If a submission was attempted and refs to the fields were provided.
-        else if (formik.isSubmitting && order && order.length) {
+        else if (formik.isSubmitting && fieldRefs && fieldRefs.length) {
           const errorNames = getKeyPaths(formik.errors)
 
-          const inputRef = order.find(({ name }) =>
+          const inputRef = fieldRefs.find(({ name }) =>
             errorNames.includes(name),
           )?.inputRef
 
