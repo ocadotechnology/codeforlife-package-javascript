@@ -45,7 +45,7 @@ const NonFieldErrors: FC<NonFieldErrorsProps> = ({
 }
 
 export type FormErrors<Values> = FormikErrors<
-  Omit<Values, "non_field_errors"> & { non_field_errors: string }
+  Omit<Values, "__all__"> & { __all__: string }
 >
 
 type _FormikProps<Values> = Omit<FormikProps<Values>, "errors"> & {
@@ -56,43 +56,45 @@ type BaseFormProps<Values> = Omit<FormikConfig<Values>, "children"> & {
   children: ReactNode | ((props: _FormikProps<Values>) => ReactNode)
   scrollIntoViewOptions?: ScrollIntoViewOptions
   nonFieldErrorsProps?: Omit<NonFieldErrorsProps, "children">
-  order?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
+  fieldRefs?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
 }
 
 const BaseForm = <Values extends FormValues>({
   children,
   scrollIntoViewOptions = SCROLL_INTO_VIEW_OPTIONS,
   nonFieldErrorsProps,
-  order,
+  fieldRefs = [],
   ...otherFormikProps
 }: BaseFormProps<Values>) => (
   <Formik {...otherFormikProps}>
     {/* @ts-expect-error */}
     {(formik: _FormikProps<Values>) => {
-      let nonFieldErrors: undefined | JSX.Element = undefined
-      if (Object.keys(formik.errors).length) {
-        if (typeof formik.errors.non_field_errors === "string") {
-          nonFieldErrors = (
-            <NonFieldErrors {...nonFieldErrorsProps}>
-              {formik.errors.non_field_errors}
-            </NonFieldErrors>
-          )
-        } else if (order && order.length) {
-          const errorNames = getKeyPaths(formik.errors)
+      const hasErrors = Boolean(Object.keys(formik.errors).length)
+      const hasNonFieldErrors =
+        hasErrors && typeof formik.errors.__all__ === "string"
 
-          const inputRef = order.find(({ name }) =>
-            errorNames.includes(name),
-          )?.inputRef
+      // If a submission was attempted and refs to the fields were provided.
+      if (
+        hasErrors &&
+        !hasNonFieldErrors &&
+        formik.isSubmitting &&
+        fieldRefs.length
+      ) {
+        const errorNames = getKeyPaths(formik.errors)
 
-          if (inputRef?.current) {
-            inputRef.current.scrollIntoView(scrollIntoViewOptions)
-          }
-        }
+        const input = fieldRefs.find(({ name }) => errorNames.includes(name))
+          ?.inputRef.current
+
+        if (input) input.scrollIntoView(scrollIntoViewOptions)
       }
 
       return (
         <>
-          {nonFieldErrors}
+          {hasNonFieldErrors && (
+            <NonFieldErrors {...nonFieldErrorsProps}>
+              {formik.errors.__all__ as string}
+            </NonFieldErrors>
+          )}
           <FormikForm>
             {typeof children === "function" ? children(formik) : children}
           </FormikForm>

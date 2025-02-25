@@ -1,3 +1,24 @@
+## [2.6.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.9...v2.6.10) (2025-02-25)
+
+
+### Bug Fixes
+
+* non field errors ([dddf8d5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/dddf8d5d1990c201ef72eff74b2d4f260ce4c7a4))
+
+## [2.6.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.8...v2.6.9) (2025-02-25)
+
+
+### Bug Fixes
+
+* rename property ([35827d7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/35827d7452023f3a1ea8723b6b31fd9b84173cdd))
+
+## [2.6.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.7...v2.6.8) (2025-02-24)
+
+
+### Bug Fixes
+
+* form submission behavior ([#79](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/79)) ([9b1ac2d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9b1ac2df0049cf473266798b6d210106045a86ee))
+
 ## [2.6.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.6...v2.6.7) (2025-02-19)
 
 
