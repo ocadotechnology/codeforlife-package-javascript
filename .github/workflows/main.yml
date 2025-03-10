@@ -34,3 +34,10 @@ jobs:
         with:
           cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
           npm-token: ${{ secrets.NPM_TOKEN }}
+
+  monitor:
+    uses: ocadotechnology/codeforlife-workspace/.github/workflows/monitor-javascript-release.yaml@main
+    secrets: inherit
+    needs: [release]
+    with:
+      node-version: 18
