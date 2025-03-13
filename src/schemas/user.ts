@@ -1,4 +1,6 @@
 import * as yup from "yup"
 
-// TODO: restrict character set; no special characters
-export const firstNameSchema = yup.string().max(150)
+export const firstNameSchema = yup
+  .string()
+  .max(150)
+  .matches(/^[a-zA-Z]*$/, "can only contain only letters characters")
