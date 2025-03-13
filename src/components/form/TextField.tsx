@@ -77,7 +77,7 @@ const TextField: FC<TextFieldProps> = ({
             return (
               new Set(
                 uniqueCaseInsensitive
-                  ? values.map(value => value.toLowerCase())
+                  ? values.map(value => (value as string).toLowerCase())
                   : values,
               ).size === values.length
             )
