@@ -1,6 +1,3 @@
-import * as yup from "yup"
+import { alphaString } from "../utils/schema"
 
-export const firstNameSchema = yup
-  .string()
-  .max(150)
-  .matches(/^[a-zA-Z]*$/, "can only contain only letters characters")
+export const firstNameSchema = alphaString().max(150)
