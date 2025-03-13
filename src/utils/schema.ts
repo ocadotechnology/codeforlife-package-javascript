@@ -10,7 +10,9 @@ import {
   type TypeFromShape,
   type ValidateOptions,
   type StringSchema,
+  type NumberSchema,
   string as YupString,
+  number as YupNumber,
 } from "yup"
 
 export type _<T> = T extends {}
@@ -32,6 +34,10 @@ export type ObjectSchemaFromShape<Shape extends ObjectShape> = ObjectSchema<
   ""
 >
 
+export function numericId(schema: NumberSchema = YupNumber()) {
+  return schema.min(1)
+}
+
 // -----------------------------------------------------------------------------
 // Limited Character Sets
 // -----------------------------------------------------------------------------
@@ -44,39 +50,80 @@ export function limitCharSet(
   return schema.matches(new RegExp(`^[${charSet}]*$`), message)
 }
 
-export function alphaString(schema: StringSchema = YupString()) {
-  return limitCharSet(
+type CharSetOptions = Partial<{
+  schema: StringSchema
+  spaces: boolean
+  specialChars: string
+}>
+
+function charSet(
+  charSet: string,
+  message: string,
+  options: CharSetOptions = {},
+) {
+  const { schema, spaces = false, specialChars } = options
+
+  if (spaces) {
+    charSet += " "
+    message += ", spaces"
+  }
+  if (specialChars) {
+    charSet += specialChars
+    message += `, special characters (${specialChars})`
+  }
+
+  return limitCharSet(charSet, message, schema)
+}
+
+export function alphaString(options?: CharSetOptions) {
+  return charSet(
     "a-zA-Z",
     "can only contain alpha characters (a-z, A-Z)",
-    schema,
+    options,
   )
 }
 
-export function lowercaseAlphaString(schema: StringSchema = YupString()) {
-  return limitCharSet(
+export function lowercaseAlphaString(options?: CharSetOptions) {
+  return charSet(
     "a-z",
     "can only contain lowercase alpha characters (a-z)",
-    schema,
+    options,
   )
 }
 
-export function uppercaseAlphaString(schema: StringSchema = YupString()) {
-  return limitCharSet(
+export function lowercaseAlphanumericString(options?: CharSetOptions) {
+  return charSet(
+    "a-z0-9",
+    "can only contain lowercase alphanumeric characters (a-z, 0-9)",
+    options,
+  )
+}
+
+export function uppercaseAlphaString(options?: CharSetOptions) {
+  return charSet(
     "A-Z",
     "can only contain uppercase alpha characters (A-Z)",
-    schema,
+    options,
   )
 }
 
-export function numericString(schema: StringSchema = YupString()) {
-  return limitCharSet("0-9", "can only contain numbers (0-9)", schema)
+export function uppercaseAlphanumericString(options?: CharSetOptions) {
+  return charSet(
+    "A-Z0-9",
+    "can only contain uppercase alphanumeric characters (A-Z, 0-9)",
+    options,
+  )
 }
 
-export function alphanumericString(schema: StringSchema = YupString()) {
-  return limitCharSet(
+export function numericString(options?: CharSetOptions) {
+  return charSet("0-9", "can only contain numbers (0-9)", options)
+}
+
+export function alphanumericString(options?: CharSetOptions) {
+  return charSet(
     "a-zA-Z0-9",
     "can only contain alphanumeric characters (a-z, A-Z, 0-9)",
-    schema,
+    options,
   )
 }
 
