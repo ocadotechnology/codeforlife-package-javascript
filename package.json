@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "serve -s dist",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -47,7 +46,6 @@
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.23.1",
-    "serve": "^14.2.3",
     "sirv": "^3.0.0",
     "yup": "^1.1.1"
   },

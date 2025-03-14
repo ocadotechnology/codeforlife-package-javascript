@@ -1,4 +1,7 @@
-import * as yup from "yup"
+import { alphaString, numericId } from "../utils/schema"
 
-// TODO: restrict character set; no special characters
-export const firstNameSchema = yup.string().max(150)
+export const idSchema = numericId()
+
+export const firstNameSchema = alphaString().max(150)
+
+export const lastNameSchema = alphaString().max(150)
