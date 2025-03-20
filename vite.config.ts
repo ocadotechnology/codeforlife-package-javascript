@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vitest/config"
 
 // https://vitejs.dev/config/
+// TODO: https://vite.dev/guide/build.html#library-mode
 export default defineConfig({
   plugins: [react()],
   server: {
