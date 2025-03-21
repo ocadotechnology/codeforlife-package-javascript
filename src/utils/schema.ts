@@ -42,26 +42,30 @@ export function numericId(schema: NumberSchema = YupNumber()) {
 // Limited Character Sets
 // -----------------------------------------------------------------------------
 
+export type MatchesCharSetOptions = Partial<{
+  schema: StringSchema
+  flags: string
+}>
+
 export function matchesCharSet(
   charSet: string,
   message: string,
-  schema: StringSchema = YupString(),
+  options: MatchesCharSetOptions = {},
 ) {
-  return schema.matches(new RegExp(`^[${charSet}]*$`), message)
+  const { schema = YupString(), flags } = options
+
+  return schema.matches(new RegExp(`^[${charSet}]*$`, flags), message)
 }
 
-export type BuildCharSetOptions = Partial<{
-  schema: StringSchema
-  spaces: boolean
-  specialChars: string
-}>
+export type BuildCharSetOptions = MatchesCharSetOptions &
+  Partial<{ spaces: boolean; specialChars: string }>
 
 export function buildCharSet(
   charSet: string,
   description: string,
   options: BuildCharSetOptions = {},
 ) {
-  const { schema, spaces = false, specialChars } = options
+  const { spaces = false, specialChars, ...matchesCharSetOptions } = options
 
   let message = `can only contain: ${description}`
 
@@ -74,45 +78,113 @@ export function buildCharSet(
     message += `, special characters (${specialChars})`
   }
 
-  return matchesCharSet(charSet, message, schema)
+  return matchesCharSet(charSet, message, matchesCharSetOptions)
 }
 
-export function alphaString(options?: BuildCharSetOptions) {
-  return buildCharSet("a-zA-Z", "alpha characters (a-z, A-Z)", options)
+export function buildUnicodeCharSet(
+  charSet: string,
+  description: string,
+  options: BuildCharSetOptions = {},
+) {
+  let { flags = "", ...otherOptions } = options
+
+  if (!flags.includes("u")) flags += "u"
+
+  return buildCharSet(charSet, description, { flags, ...otherOptions })
 }
 
-export function lowercaseAlphaString(options?: BuildCharSetOptions) {
-  return buildCharSet("a-z", "lowercase alpha characters (a-z)", options)
+export function asciiAlphaString(options?: BuildCharSetOptions) {
+  return buildCharSet("a-zA-Z", "ASCII alpha characters (a-z, A-Z)", options)
 }
 
-export function lowercaseAlphanumericString(options?: BuildCharSetOptions) {
-  return buildCharSet(
-    "a-z0-9",
-    "lowercase alphanumeric characters (a-z, 0-9)",
-    options,
-  )
+export function lowercaseAsciiAlphaString(options?: BuildCharSetOptions) {
+  return buildCharSet("a-z", "lowercase ASCII alpha characters (a-z)", options)
 }
 
-export function uppercaseAlphaString(options?: BuildCharSetOptions) {
-  return buildCharSet("A-Z", "uppercase alpha characters (A-Z)", options)
+export function uppercaseAsciiAlphaString(options?: BuildCharSetOptions) {
+  return buildCharSet("A-Z", "uppercase ASCII alpha characters (A-Z)", options)
 }
 
-export function uppercaseAlphanumericString(options?: BuildCharSetOptions) {
-  return buildCharSet(
-    "A-Z0-9",
-    "uppercase alphanumeric characters (A-Z, 0-9)",
-    options,
-  )
+export function asciiNumericString(options?: BuildCharSetOptions) {
+  return buildCharSet("0-9", "ASCII numbers (0-9)", options)
 }
 
-export function numericString(options?: BuildCharSetOptions) {
-  return buildCharSet("0-9", "numbers (0-9)", options)
-}
-
-export function alphanumericString(options?: BuildCharSetOptions) {
+export function asciiAlphanumericString(options?: BuildCharSetOptions) {
   return buildCharSet(
     "a-zA-Z0-9",
-    "alphanumeric characters (a-z, A-Z, 0-9)",
+    "ASCII alphanumeric characters (a-z, A-Z, 0-9)",
+    options,
+  )
+}
+
+export function lowercaseAsciiAlphanumericString(
+  options?: BuildCharSetOptions,
+) {
+  return buildCharSet(
+    "a-z0-9",
+    "lowercase ASCII alphanumeric characters (a-z, 0-9)",
+    options,
+  )
+}
+
+export function uppercaseAsciiAlphanumericString(
+  options?: BuildCharSetOptions,
+) {
+  return buildCharSet(
+    "A-Z0-9",
+    "uppercase ASCII alphanumeric characters (A-Z, 0-9)",
+    options,
+  )
+}
+
+export function unicodeAlphaString(options?: BuildCharSetOptions) {
+  return buildUnicodeCharSet("\\p{L}", "unicode alpha characters", options)
+}
+
+export function lowercaseUnicodeAlphaString(options?: BuildCharSetOptions) {
+  return buildUnicodeCharSet(
+    "\\p{Ll}",
+    "lowercase unicode alpha characters",
+    options,
+  )
+}
+
+export function uppercaseUnicodeAlphaString(options?: BuildCharSetOptions) {
+  return buildUnicodeCharSet(
+    "\\p{Lu}",
+    "uppercase unicode alpha characters",
+    options,
+  )
+}
+
+export function unicodeNumericString(options?: BuildCharSetOptions) {
+  return buildUnicodeCharSet("\\p{N}", "unicode numbers", options)
+}
+
+export function unicodeAlphanumericString(options?: BuildCharSetOptions) {
+  return buildUnicodeCharSet(
+    "\\p{L}\\p{N}",
+    "unicode alphanumeric characters",
+    options,
+  )
+}
+
+export function lowercaseUnicodeAlphanumericString(
+  options?: BuildCharSetOptions,
+) {
+  return buildUnicodeCharSet(
+    "\\p{Ll}\\p{N}",
+    "lowercase unicode alphanumeric characters",
+    options,
+  )
+}
+
+export function uppercaseUnicodeAlphanumericString(
+  options?: BuildCharSetOptions,
+) {
+  return buildUnicodeCharSet(
+    "\\p{Lu}\\p{N}",
+    "uppercase unicode alphanumeric characters",
     options,
   )
 }

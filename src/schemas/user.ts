@@ -1,7 +1,7 @@
-import { alphaString, numericId } from "../utils/schema"
+import { unicodeAlphaString, numericId } from "../utils/schema"
 
 export const idSchema = numericId()
 
-export const firstNameSchema = alphaString().max(150)
+export const firstNameSchema = unicodeAlphaString().max(150)
 
-export const lastNameSchema = alphaString().max(150)
+export const lastNameSchema = unicodeAlphaString().max(150)

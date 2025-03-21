@@ -1,5 +1,5 @@
-import { numericId, lowercaseAlphanumericString } from "../utils/schema"
+import { numericId, lowercaseAsciiAlphanumericString } from "../utils/schema"
 
 export const idSchema = numericId()
 
-export const tokenSchema = lowercaseAlphanumericString().length(8)
+export const tokenSchema = lowercaseAsciiAlphanumericString().length(8)

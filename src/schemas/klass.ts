@@ -1,5 +1,8 @@
-import { uppercaseAlphanumericString, alphaString } from "../utils/schema"
+import {
+  uppercaseAsciiAlphanumericString,
+  unicodeAlphaString,
+} from "../utils/schema"
 
-export const idSchema = uppercaseAlphanumericString().length(5)
+export const idSchema = uppercaseAsciiAlphanumericString().length(5)
 
-export const nameSchema = alphaString({ spaces: true }).max(200)
+export const nameSchema = unicodeAlphaString({ spaces: true }).max(200)

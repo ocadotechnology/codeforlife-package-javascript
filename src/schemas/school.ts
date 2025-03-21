@@ -1,5 +1,5 @@
-import { alphaString, numericId } from "../utils/schema"
+import { unicodeAlphaString, numericId } from "../utils/schema"
 
 export const idSchema = numericId()
 
-export const nameSchema = alphaString({ spaces: true }).max(200)
+export const nameSchema = unicodeAlphaString({ spaces: true }).max(200)
