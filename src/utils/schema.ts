@@ -86,7 +86,7 @@ export function buildUnicodeCharSet(
   description: string,
   options: BuildCharSetOptions = {},
 ) {
-  let { flags = "", ...otherOptions } = options
+  let { flags = "u", ...otherOptions } = options
 
   if (!flags.includes("u")) flags += "u"
 
