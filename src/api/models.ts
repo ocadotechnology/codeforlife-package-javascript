@@ -91,6 +91,7 @@ export type NonAdminSchoolTeacher<Fields = Teacher> = SchoolTeacher<Fields> & {
 
 export type NonSchoolTeacher<Fields = Teacher> = Fields & {
   school?: undefined
+  is_admin: false
 }
 
 // -----------------------------------------------------------------------------

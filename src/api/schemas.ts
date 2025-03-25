@@ -3,12 +3,23 @@ import * as yup from "yup"
 import { UK_COUNTIES, COUNTRY_ISO_CODES } from "../utils/general"
 import type {
   User,
+  TeacherUser,
+  SchoolTeacherUser,
+  AdminSchoolTeacherUser,
+  NonAdminSchoolTeacherUser,
+  NonSchoolTeacherUser,
   Teacher,
   Student,
   Class,
   School,
   AuthFactor,
   OtpBypassToken,
+  StudentUser,
+  IndependentUser,
+  SchoolTeacher,
+  AdminSchoolTeacher,
+  NonAdminSchoolTeacher,
+  NonSchoolTeacher,
 } from "./models"
 import {
   unicodeAlphanumericString,
@@ -28,6 +39,10 @@ const id = {
   authFactor: numericId(),
   otpBypassToken: numericId(),
 }
+
+// -----------------------------------------------------------------------------
+// User Schemas
+// -----------------------------------------------------------------------------
 
 const _userTeacher: Omit<Schemas<Teacher>, "user"> = {
   id: id.teacher.required(),
@@ -65,10 +80,121 @@ export const user: Schemas<User> = {
   student: yup.object(_userStudent).optional(),
 }
 
+export const teacherUser: Schemas<TeacherUser> = {
+  ...user,
+  password: user.password
+    .min(10, "must be at least 10 characters long")
+    .matches(/[A-Z]/, "must contain at least one uppercase letter")
+    .matches(/[a-z]/, "must contain at least one lowercase letter")
+    .matches(/[0-9]/, "must contain at least one digit")
+    .matches(
+      /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
+      "must contain at least one special character",
+    ),
+  email: user.email.required(),
+  last_name: user.last_name.required(),
+  teacher: user.teacher.required(),
+  student: yup.string().oneOf([undefined]),
+}
+
+const _userSchoolTeacher: Omit<Schemas<SchoolTeacher>, "user"> = {
+  ..._userTeacher,
+  school: _userTeacher.school.required(),
+}
+
+export const schoolTeacherUser: Schemas<SchoolTeacherUser> = {
+  ...teacherUser,
+  teacher: yup.object(_userSchoolTeacher),
+}
+
+const _userAdminSchoolTeacher: Omit<Schemas<AdminSchoolTeacher>, "user"> = {
+  ..._userSchoolTeacher,
+  is_admin: _userSchoolTeacher.is_admin.isTrue(),
+}
+
+export const adminSchoolTeacherUser: Schemas<AdminSchoolTeacherUser> = {
+  ...schoolTeacherUser,
+  teacher: yup.object(_userAdminSchoolTeacher),
+}
+
+const _userNonAdminSchoolTeacher: Omit<
+  Schemas<NonAdminSchoolTeacher>,
+  "user"
+> = {
+  ..._userSchoolTeacher,
+  is_admin: _userSchoolTeacher.is_admin.isFalse(),
+}
+
+export const nonAdminSchoolTeacherUser: Schemas<NonAdminSchoolTeacherUser> = {
+  ...schoolTeacherUser,
+  teacher: yup.object(_userNonAdminSchoolTeacher),
+}
+
+const _userNonSchoolTeacher: Omit<Schemas<NonSchoolTeacher>, "user"> = {
+  ..._userTeacher,
+  school: yup.string().oneOf([undefined]),
+  is_admin: _userTeacher.is_admin.isFalse(),
+}
+
+export const nonSchoolTeacherUser: Schemas<NonSchoolTeacherUser> = {
+  ...teacherUser,
+  teacher: yup.object(_userNonSchoolTeacher),
+}
+
+export const studentUser: Schemas<StudentUser> = {
+  ...user,
+  password: user.password.min(6, "must be at least 6 characters long"),
+  email: user.email.oneOf([undefined]),
+  last_name: user.last_name.oneOf([undefined]),
+  teacher: yup.string().oneOf([undefined]),
+  student: user.student.required(),
+}
+
+export const indyUser: Schemas<IndependentUser> = {
+  ...user,
+  password: user.password
+    .min(8, "must be at least 8 characters long")
+    .matches(/[A-Z]/, "must contain at least one uppercase letter")
+    .matches(/[a-z]/, "must contain at least one lowercase letter")
+    .matches(/[0-9]/, "must contain at least one digit"),
+  email: user.email.required(),
+  last_name: user.last_name.required(),
+  teacher: yup.string().oneOf([undefined]),
+  student: yup.string().oneOf([undefined]),
+}
+
+// -----------------------------------------------------------------------------
+// Teacher Schemas
+// -----------------------------------------------------------------------------
+
 export const teacher: Schemas<Teacher> = {
   ..._userTeacher,
   user: id.user.required(),
 }
+
+export const schoolTeacher: Schemas<SchoolTeacher> = {
+  ..._userSchoolTeacher,
+  user: id.user.required(),
+}
+
+export const adminSchoolTeacher: Schemas<AdminSchoolTeacher> = {
+  ..._userAdminSchoolTeacher,
+  user: id.user.required(),
+}
+
+export const nonAdminSchoolTeacher: Schemas<NonAdminSchoolTeacher> = {
+  ..._userNonAdminSchoolTeacher,
+  user: id.user.required(),
+}
+
+export const nonSchoolTeacher: Schemas<NonSchoolTeacher> = {
+  ..._userNonSchoolTeacher,
+  user: id.user.required(),
+}
+
+// -----------------------------------------------------------------------------
+// Other Schemas
+// -----------------------------------------------------------------------------
 
 export const student: Schemas<Student> = {
   ..._userStudent,
