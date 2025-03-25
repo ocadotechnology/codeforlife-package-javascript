@@ -1,3 +1,10 @@
+## [2.6.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.13...v2.6.14) (2025-03-25)
+
+
+### Bug Fixes
+
+* schemas for user and teacher derivatives ([b068235](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b0682358a07d2452d526d3bdad9c991302a2203d))
+
 ## [2.6.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.12...v2.6.13) (2025-03-25)
 
 
