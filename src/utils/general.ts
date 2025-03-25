@@ -1,5 +1,10 @@
 export type Required<T, K extends keyof T> = { [P in K]-?: T[P] }
 export type Optional<T, K extends keyof T> = Partial<Pick<T, K>>
+export type OptionalPropertyNames<T> = {
+  [K in keyof T]-?: {} extends { [P in K]: T[K] } ? K : never
+}[keyof T]
+export type IsOptional<T, K extends keyof T> =
+  K extends OptionalPropertyNames<T> ? true : false
 
 export function openInNewTab(url: string, target = "_blank"): void {
   window.open(url, target)

@@ -4,13 +4,7 @@ import {
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type FC, useState, useEffect } from "react"
-import {
-  type ArraySchema,
-  type StringSchema,
-  type ValidateOptions,
-  array as YupArray,
-  type Schema,
-} from "yup"
+import { type StringSchema, type ValidateOptions, array as YupArray } from "yup"
 
 import { schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
@@ -52,18 +46,40 @@ const TextField: FC<TextFieldProps> = ({
 
   const dotPath = name.split(".")
 
-  let _schema: Schema = schema
-  if (split) {
-    _schema = YupArray().of(_schema)
-    if (unique || uniqueCaseInsensitive) {
-      _schema = _schema.test({
+  function buildSchema() {
+    // Build a schema for a single string.
+    let stringSchema = schema
+    // 1: Validate string is required.
+    stringSchema = required ? stringSchema.required() : stringSchema.optional()
+    // 2: Validate string is dirty.
+    if (dirty && !split)
+      stringSchema = stringSchema.notOneOf(
+        [initialValue as string],
+        "cannot be initial value",
+      )
+    // Return a schema for a single string.
+    if (!split) return stringSchema
+
+    // Build a schema for an array of strings.
+    let arraySchema = YupArray().of(stringSchema)
+    // 1: Validate array has min one string.
+    arraySchema = required
+      ? arraySchema.required().min(1)
+      : arraySchema.optional()
+    // 2: Validate array has unique strings.
+    if (unique || uniqueCaseInsensitive)
+      arraySchema = arraySchema.test({
         message: "cannot have duplicates",
         test: values => {
-          if (Array.isArray(values) && values.length >= 2) {
+          if (
+            Array.isArray(values) &&
+            values.length >= 2 &&
+            values.every(value => typeof value === "string")
+          ) {
             return (
               new Set(
-                uniqueCaseInsensitive && typeof values[0] === "string"
-                  ? values.map(value => value.toLowerCase())
+                uniqueCaseInsensitive
+                  ? values.map(value => (value as string).toLowerCase())
                   : values,
               ).size === values.length
             )
@@ -72,19 +88,20 @@ const TextField: FC<TextFieldProps> = ({
           return true
         },
       })
-    }
+    // 3: Validate array is dirty.
+    if (dirty)
+      arraySchema = arraySchema.notOneOf(
+        [initialValue as string[]],
+        "cannot be initial value",
+      )
+    // Return a schema for an array of strings.
+    return arraySchema
   }
-  if (required) {
-    _schema = _schema.required()
-    if (split) _schema = (_schema as ArraySchema<string[], any>).min(1)
-  }
-  if (dirty)
-    _schema = _schema.notOneOf([initialValue], "cannot be initial value")
 
   const fieldConfig: FieldConfig = {
     name,
     type,
-    validate: schemaToFieldValidator(_schema, validateOptions),
+    validate: schemaToFieldValidator(buildSchema(), validateOptions),
   }
 
   const _Field: FC<FieldProps> = ({ form }) => {

@@ -7,8 +7,9 @@ import type {
 } from "@reduxjs/toolkit/query/react"
 import { type ReactNode } from "react"
 
-import SyncError from "../components/SyncError"
 import { type Optional, type Required, getNestedProperty } from "./general"
+import { type SchemaMap } from "./schema"
+import SyncError from "../components/SyncError"
 
 // -----------------------------------------------------------------------------
 // Model Types
@@ -32,6 +33,10 @@ export type ModelId = string | number
 export type Model<Id extends ModelId, MFields extends Fields = Fields> = {
   id: Id
 } & Omit<MFields, "id">
+
+export type Schemas<M extends Model<any>> = {
+  [K in keyof M]-?: SchemaMap<M[K]>
+}
 
 export type Result<
   M extends Model<any>,
