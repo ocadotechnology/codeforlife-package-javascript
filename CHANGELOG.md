@@ -1,3 +1,10 @@
+## [2.6.13](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.12...v2.6.13) (2025-03-25)
+
+
+### Bug Fixes
+
+* char set validators ([#81](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/81)) ([9ff1f60](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9ff1f60808f4a50eb2cbcae997de4ae892665c28))
+
 ## [2.6.12](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.11...v2.6.12) (2025-03-20)
 
 
