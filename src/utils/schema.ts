@@ -11,6 +11,9 @@ import {
   type ValidateOptions,
   type StringSchema,
   type NumberSchema,
+  type Flags,
+  type BooleanSchema,
+  type DateSchema,
   string as YupString,
   number as YupNumber,
 } from "yup"
@@ -33,6 +36,54 @@ export type ObjectSchemaFromShape<Shape extends ObjectShape> = ObjectSchema<
   _<DefaultFromShape<Shape>>,
   ""
 >
+
+export type SchemaMap<
+  TType,
+  TContext = AnyObject,
+  TDefault = any,
+  TFlags extends Flags = "",
+> =
+  NonNullable<TType> extends string
+    ? StringSchema<
+        // @ts-expect-error type is fine
+        TType extends undefined ? TType | undefined : TType,
+        TContext,
+        TDefault,
+        TFlags
+      >
+    : NonNullable<TType> extends number
+      ? NumberSchema<
+          // @ts-expect-error type is fine
+          TType extends undefined ? TType | undefined : TType,
+          TContext,
+          TDefault,
+          TFlags
+        >
+      : NonNullable<TType> extends boolean
+        ? BooleanSchema<
+            // @ts-expect-error type is fine
+            TType extends undefined ? TType | undefined : TType,
+            TContext,
+            TDefault,
+            TFlags
+          >
+        : NonNullable<TType> extends Date
+          ? DateSchema<
+              // @ts-expect-error type is fine
+              TType extends undefined ? TType | undefined : TType,
+              TContext,
+              TDefault,
+              TFlags
+            >
+          : NonNullable<TType> extends object
+            ? ObjectSchema<
+                // @ts-expect-error type is fine
+                TType extends undefined ? TType | undefined : TType,
+                TContext,
+                TDefault,
+                TFlags
+              >
+            : Schema<TType, TContext, TDefault, TFlags>
 
 export function numericId(schema: NumberSchema = YupNumber()) {
   return schema.min(1)

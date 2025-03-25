@@ -3,7 +3,7 @@ import { InputAdornment } from "@mui/material"
 import type { FC } from "react"
 
 import TextField, { type TextFieldProps } from "./TextField"
-import { firstNameSchema } from "../../schemas/user"
+import { schemas } from "../../api"
 
 export type FirstNameFieldProps = Omit<
   TextFieldProps,
@@ -20,7 +20,7 @@ const FirstNameField: FC<FirstNameFieldProps> = ({
 }) => {
   return (
     <TextField
-      schema={firstNameSchema}
+      schema={schemas.user.first_name}
       name={name}
       label={label}
       placeholder={placeholder}

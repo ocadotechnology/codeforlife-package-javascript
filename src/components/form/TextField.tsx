@@ -50,7 +50,7 @@ const TextField: FC<TextFieldProps> = ({
     // Build a schema for a single string.
     let stringSchema = schema
     // 1: Validate string is required.
-    if (required) stringSchema = stringSchema.required()
+    stringSchema = required ? stringSchema.required() : stringSchema.optional()
     // 2: Validate string is dirty.
     if (dirty && !split)
       stringSchema = stringSchema.notOneOf(
@@ -63,7 +63,9 @@ const TextField: FC<TextFieldProps> = ({
     // Build a schema for an array of strings.
     let arraySchema = YupArray().of(stringSchema)
     // 1: Validate array has min one string.
-    if (required) arraySchema = arraySchema.required().min(1)
+    arraySchema = required
+      ? arraySchema.required().min(1)
+      : arraySchema.optional()
     // 2: Validate array has unique strings.
     if (unique || uniqueCaseInsensitive)
       arraySchema = arraySchema.test({
