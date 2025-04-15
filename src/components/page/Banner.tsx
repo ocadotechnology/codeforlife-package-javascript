@@ -69,7 +69,7 @@ const Banner: FC<BannerProps> = ({
               {subheader}
             </Typography>
           )}
-          <Stack>
+          <Stack direction="row" gap={2}>
             {button1Props !== undefined && <LinkButton {...button1Props} />}
             {button2Props !== undefined && <LinkButton {...button2Props} />}
           </Stack>
