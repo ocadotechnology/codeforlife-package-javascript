@@ -1,6 +1,7 @@
-import { Button, Stack, Typography, type ButtonProps } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 
+import { LinkButton, type LinkButtonProps } from "../router"
 import { primary, secondary, tertiary } from "../../theme/colors"
 import palette from "../../theme/palette"
 import Image, { type ImageProps } from "../Image"
@@ -11,7 +12,8 @@ export interface BannerProps {
   subheader?: string
   textAlign?: "start" | "center"
   imageProps?: ImageProps
-  buttonProps?: ButtonProps
+  button1Props?: LinkButtonProps<"to">
+  button2Props?: LinkButtonProps<"to">
   bgcolor?: "primary" | "secondary" | "tertiary"
 }
 
@@ -20,7 +22,8 @@ const Banner: FC<BannerProps> = ({
   subheader,
   textAlign = "start",
   imageProps,
-  buttonProps,
+  button1Props,
+  button2Props,
   bgcolor = "primary",
 }) => {
   // @ts-expect-error guaranteed to be in palette
@@ -61,12 +64,15 @@ const Banner: FC<BannerProps> = ({
             <Typography
               color={contrastText}
               variant="h4"
-              mb={buttonProps !== undefined ? undefined : 0}
+              mb={button1Props !== undefined ? undefined : 0}
             >
               {subheader}
             </Typography>
           )}
-          {buttonProps !== undefined && <Button {...buttonProps} />}
+          <Stack>
+            {button1Props !== undefined && <LinkButton {...button1Props} />}
+            {button2Props !== undefined && <LinkButton {...button2Props} />}
+          </Stack>
         </Stack>
         {imageProps !== undefined && (
           <Image
