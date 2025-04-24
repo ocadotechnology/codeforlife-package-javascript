@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material"
-import { type FC } from "react"
 
 import { LinkButton, type LinkButtonProps } from "../router"
 import { primary, secondary, tertiary } from "../../theme/colors"
@@ -7,17 +6,23 @@ import palette from "../../theme/palette"
 import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
 
-export interface BannerProps {
+export interface BannerProps<
+  Button1State extends Record<string, any> = Record<string, any>,
+  Button2State extends Record<string, any> = Record<string, any>,
+> {
   header: string
   subheader?: string
   textAlign?: "start" | "center"
   imageProps?: ImageProps
-  button1Props?: LinkButtonProps<"to">
-  button2Props?: LinkButtonProps<"to">
+  button1Props?: LinkButtonProps<"to", Button1State>
+  button2Props?: LinkButtonProps<"to", Button2State>
   bgcolor?: "primary" | "secondary" | "tertiary"
 }
 
-const Banner: FC<BannerProps> = ({
+const Banner = <
+  Button1State extends Record<string, any> = Record<string, any>,
+  Button2State extends Record<string, any> = Record<string, any>,
+>({
   header,
   subheader,
   textAlign = "start",
@@ -25,7 +30,7 @@ const Banner: FC<BannerProps> = ({
   button1Props,
   button2Props,
   bgcolor = "primary",
-}) => {
+}: BannerProps<Button1State, Button2State>) => {
   // @ts-expect-error guaranteed to be in palette
   const contrastText = palette[bgcolor].contrastText
 
