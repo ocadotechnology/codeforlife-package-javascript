@@ -1,3 +1,10 @@
+## [2.6.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.14...v2.6.15) (2025-04-24)
+
+
+### Bug Fixes
+
+* Upgrade to Node 22 ([#84](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/84)) ([78de472](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/78de472ae5632df0410536f6593f9cde9beded82))
+
 ## [2.6.14](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.13...v2.6.14) (2025-03-25)
 
 
