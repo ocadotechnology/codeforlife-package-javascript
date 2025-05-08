@@ -1,28 +1,36 @@
-import { Button, Stack, Typography, type ButtonProps } from "@mui/material"
-import { type FC } from "react"
+import { Stack, Typography } from "@mui/material"
 
+import { LinkButton, type LinkButtonProps } from "../router"
 import { primary, secondary, tertiary } from "../../theme/colors"
 import palette from "../../theme/palette"
 import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
 
-export interface BannerProps {
+export interface BannerProps<
+  Button1State extends Record<string, any> = Record<string, any>,
+  Button2State extends Record<string, any> = Record<string, any>,
+> {
   header: string
   subheader?: string
   textAlign?: "start" | "center"
   imageProps?: ImageProps
-  buttonProps?: ButtonProps
+  button1Props?: LinkButtonProps<"to", Button1State>
+  button2Props?: LinkButtonProps<"to", Button2State>
   bgcolor?: "primary" | "secondary" | "tertiary"
 }
 
-const Banner: FC<BannerProps> = ({
+const Banner = <
+  Button1State extends Record<string, any> = Record<string, any>,
+  Button2State extends Record<string, any> = Record<string, any>,
+>({
   header,
   subheader,
   textAlign = "start",
   imageProps,
-  buttonProps,
+  button1Props,
+  button2Props,
   bgcolor = "primary",
-}) => {
+}: BannerProps<Button1State, Button2State>) => {
   // @ts-expect-error guaranteed to be in palette
   const contrastText = palette[bgcolor].contrastText
 
@@ -61,12 +69,15 @@ const Banner: FC<BannerProps> = ({
             <Typography
               color={contrastText}
               variant="h4"
-              mb={buttonProps !== undefined ? undefined : 0}
+              mb={button1Props !== undefined ? undefined : 0}
             >
               {subheader}
             </Typography>
           )}
-          {buttonProps !== undefined && <Button {...buttonProps} />}
+          <Stack direction="row" gap={2}>
+            {button1Props !== undefined && <LinkButton {...button1Props} />}
+            {button2Props !== undefined && <LinkButton {...button2Props} />}
+          </Stack>
         </Stack>
         {imageProps !== undefined && (
           <Image
