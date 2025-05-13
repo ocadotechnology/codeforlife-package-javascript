@@ -72,7 +72,6 @@ export function getFontStyleOverrides(props: CommonProps): CSSObject {
   ;["h1", "h2", "h3", "h4", "h5", "h6", "body1", "body2"]
     .filter(className => className in typography)
     .forEach(className => {
-      // @ts-expect-error
       const typographyClass = typography[className]
 
       if (includesClassNames(classNames, [className])) {

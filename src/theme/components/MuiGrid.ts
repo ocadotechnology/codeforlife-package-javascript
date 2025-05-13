@@ -1,9 +1,8 @@
 import type Components from "./_components"
 import { getFlexStyleOverrides } from "./_components"
 
-const MuiGrid2: Components["MuiGrid2"] = {
+const MuiGrid: Components["MuiGrid"] = {
   defaultProps: {
-    disableEqualOverflow: true,
     // padding: 0 // TODO: normalize padding.
   },
   styleOverrides: {
@@ -13,4 +12,4 @@ const MuiGrid2: Components["MuiGrid2"] = {
   },
 }
 
-export default MuiGrid2
+export default MuiGrid

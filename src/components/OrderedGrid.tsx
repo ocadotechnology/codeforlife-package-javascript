@@ -1,9 +1,9 @@
 import type React from "react"
-import { Unstable_Grid2 as Grid, type Grid2Props } from "@mui/material"
+import { Grid, type GridProps } from "@mui/material"
 
 interface ItemProps
   extends Omit<
-    Grid2Props,
+    GridProps,
     | "key"
     | "order"
     | "xs"
@@ -33,7 +33,7 @@ export interface OrderedGridProps {
       itemProps?: ItemProps
     }>
   >
-  containerProps?: Omit<Grid2Props, "container">
+  containerProps?: Omit<GridProps, "container">
   globalItemProps: GlobalItemProps
 }
 

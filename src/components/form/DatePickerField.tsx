@@ -97,8 +97,8 @@ const DatePickerField = <
               slotProps={{
                 textField: {
                   id: name,
+                  // @ts-expect-error
                   onChange: value => {
-                    // @ts-expect-error
                     handleChange(value as Dayjs | null)
                   },
                   onBlur: form.handleBlur,
