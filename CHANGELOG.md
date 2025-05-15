@@ -1,3 +1,11 @@
+## [2.6.16](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.15...v2.6.16) (2025-05-15)
+
+
+### Bug Fixes
+
+* Allow for 2 buttons in Banner ([#83](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/83)) ([d203986](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d2039869c1359906090b9973f2094753991a79ba))
+* Node 22 ([#86](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/86)) ([e66e1ca](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e66e1caa61fcaaf28afc5d2df8b05a6908590fe2))
+
 ## [2.6.15](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.14...v2.6.15) (2025-04-24)
 
 

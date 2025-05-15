@@ -2,7 +2,7 @@
   "name": "codeforlife",
   "description": "Common frontend code",
   "private": false,
-  "version": "2.6.15",
+  "version": "2.6.16",
   "type": "module",
   "scripts": {
     "cli": "VITE_CONFIG=./vite.config.ts ../scripts/frontend/cli $@"
