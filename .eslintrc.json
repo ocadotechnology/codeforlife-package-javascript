@@ -18,7 +18,7 @@
     "dist",
     "src/scripts",
     "**/*.d.ts",
-    "vite.config.js"
+    "vite.config.ts"
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
