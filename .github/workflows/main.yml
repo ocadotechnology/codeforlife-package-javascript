@@ -14,7 +14,7 @@ jobs:
     uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@main
     secrets: inherit
     with:
-      node-version: 18
+      node-version: 22
 
   release:
     needs: [test]
@@ -40,4 +40,4 @@ jobs:
     secrets: inherit
     needs: [release]
     with:
-      node-version: 18
+      node-version: 22
