@@ -1,3 +1,10 @@
+## [2.6.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.16...v2.6.17) (2025-06-25)
+
+
+### Bug Fixes
+
+* get csrf cookie ([7bd0b71](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7bd0b716228c17e89478556f42eb4fcd8dff26ac))
+
 ## [2.6.16](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.15...v2.6.16) (2025-05-15)
 
 
