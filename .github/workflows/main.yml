@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 
 jobs:
+  contributor:
+    uses: ocadotechnology/codeforlife-contributor-backend/.github/workflows/check-pr-authors-signed-latest-agreement.yaml@main
+
   test:
     uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@main
     secrets: inherit
@@ -17,7 +20,7 @@ jobs:
       node-version: 22
 
   release:
-    needs: [test]
+    needs: [test] # TODO: add contributor
     concurrency: release
     runs-on: ubuntu-latest
     permissions:

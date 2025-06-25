@@ -59,7 +59,7 @@ export default function createApi<TagTypes extends string = never>({
       if (api.type === "mutation" && getCsrfCookie() === undefined) {
         // Get the CSRF token.
         const { error } = await fetch(
-          { url: "/csrf/cookie", method: "GET" },
+          { url: "/csrf/cookie/", method: "GET" },
           api,
           {},
         )
