@@ -14,8 +14,7 @@ jobs:
   contributor:
     uses: ocadotechnology/codeforlife-contributor-backend/.github/workflows/check-pr-authors-signed-latest-agreement.yaml@main
 
-  test:
-    if: github.event_name != 'pull_request'
+  test: 
     uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@main
     secrets: inherit
     with:
