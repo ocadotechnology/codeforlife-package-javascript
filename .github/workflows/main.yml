@@ -45,3 +45,8 @@ jobs:
     needs: [release]
     with:
       node-version: 22
+
+  submodule:
+    uses: ocadotechnology/codeforlife-workspace/.github/workflows/gitmodules.yaml@main
+    secrets: inherit
+    needs: [release]
