@@ -198,10 +198,7 @@ export function useOAuth2CodeChallenge(
   return [_codeChallenge, resetCodeChallenge]
 }
 
-export interface UseOAuth2KwArgs<
-  ResultType = ExchangeOAuth2CodeResult,
-  QueryArgExtra = {},
-> {
+export interface UseOAuth2KwArgs<ResultType = ExchangeOAuth2CodeResult> {
   provider: string
   authUri: string
   clientId: string
@@ -210,12 +207,7 @@ export interface UseOAuth2KwArgs<
   responseType?: "code"
   accessType?: "offline"
   prompt?: string
-  argExtra?: QueryArgExtra
-  useLoginMutation: TypedUseMutation<
-    ResultType,
-    ExchangeOAuth2CodeArg & QueryArgExtra,
-    any
-  >
+  useLoginMutation: TypedUseMutation<ResultType, ExchangeOAuth2CodeArg, any>
   onCreateSession: (result: ResultType) => void
   onRetrieveSession: (metadata: SessionMetadata) => void
 }
@@ -223,10 +215,7 @@ export interface UseOAuth2KwArgs<
 export type OAuth2 = [string, OAuth2RequestCodeUrlSearchParams] | []
 
 // https://datatracker.ietf.org/doc/html/rfc7636
-export function useOAuth2<
-  ResultType = ExchangeOAuth2CodeResult,
-  QueryArgExtra = {},
->({
+export function useOAuth2<ResultType = ExchangeOAuth2CodeResult>({
   provider,
   authUri,
   clientId,
@@ -235,11 +224,10 @@ export function useOAuth2<
   responseType = "code",
   accessType = "offline",
   prompt,
-  argExtra = {} as QueryArgExtra,
   useLoginMutation,
   onCreateSession,
   onRetrieveSession,
-}: UseOAuth2KwArgs<ResultType, QueryArgExtra>): OAuth2 {
+}: UseOAuth2KwArgs<ResultType>): OAuth2 {
   const [state, resetState] = useOAuth2State(provider)
   const [
     {
@@ -249,7 +237,14 @@ export function useOAuth2<
     } = {},
     resetCodeChallenge,
   ] = useOAuth2CodeChallenge(provider)
-  const [login, { isLoading, isError }] = useLoginMutation()
+  const [
+    login,
+    {
+      originalArgs: loginArgs = {} as ExchangeOAuth2CodeArg,
+      isLoading: loginIsLoading,
+      isError: loginIsError,
+    },
+  ] = useLoginMutation()
   const sessionMetadata = useSessionMetadata()
   const navigate = useNavigate()
   const searchParams =
@@ -259,26 +254,45 @@ export function useOAuth2<
   const locationState = location.state || {}
 
   useEffect(() => {
-    if (sessionMetadata) onRetrieveSession(sessionMetadata)
-    else if (searchParams.code && searchParams.state) {
+    // If the the auth provider has redirected back to our site with the
+    // expected search params, we redirect to the current page to remove them.
+    if (searchParams.code && searchParams.state) {
       navigate<OAuth2ReceiveCodeUrlSearchParams>(".", {
+        // Removes the URL containing the search params from the history stack.
         replace: true,
+        // Ensure we don't break the auth flow by navigating to another page.
         next: false,
+        // Store the search params in the page's state instead.
         state: { code: searchParams.code, state: searchParams.state },
       })
-    } else if (
+    }
+  }, [searchParams.code, searchParams.state, navigate])
+
+  useEffect(() => {
+    // If we're already logged in, no need to log in again.
+    if (sessionMetadata) onRetrieveSession(sessionMetadata)
+    else if (
+      // If the state and code verifier have been generated...
       state &&
       codeVerifier &&
+      // ...and the page's state contains a code...
       locationState.code &&
+      // ...and the page's state contains the stored state...
       locationState.state === state &&
-      !isLoading &&
-      !isError
+      // ...and the login endpoint was not called with the current values or has
+      // not returned and error...
+      (loginArgs.code !== locationState.code ||
+        loginArgs.code_verifier !== codeVerifier ||
+        loginArgs.redirect_uri !== redirectUri ||
+        !loginIsError) &&
+      // ...and the login endpoint is not currently being called...
+      !loginIsLoading
     ) {
+      // ...call the login endpoint.
       login({
         code: locationState.code,
         code_verifier: codeVerifier,
         redirect_uri: redirectUri,
-        ...argExtra,
       })
         .unwrap()
         .then(onCreateSession)
@@ -303,24 +317,25 @@ export function useOAuth2<
         })
     }
   }, [
-    sessionMetadata,
     navigate,
     redirectUri,
     // State
     state,
-    searchParams.state,
     locationState.state,
     resetState,
     // Code
     codeVerifier,
-    searchParams.code,
     locationState.code,
     resetCodeChallenge,
     // Login
-    argExtra,
     login,
-    isLoading,
-    isError,
+    loginIsLoading,
+    loginIsError,
+    loginArgs.code,
+    loginArgs.code_verifier,
+    loginArgs.redirect_uri,
+    // Session
+    sessionMetadata,
     onCreateSession,
     onRetrieveSession,
   ])
