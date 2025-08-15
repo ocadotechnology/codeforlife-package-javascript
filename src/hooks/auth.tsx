@@ -31,12 +31,18 @@ export interface SessionMetadata {
   otp_bypass_token_exists: boolean
 }
 
-export function useSessionMetadata(): SessionMetadata | undefined {
+export function useSessionMetadata<T = SessionMetadata>(
+  cookieName = SESSION_METADATA_COOKIE_NAME,
+): T | undefined {
   return useSelector(selectIsLoggedIn)
-    ? (JSON.parse(
-        Cookies.get(SESSION_METADATA_COOKIE_NAME)!,
-      ) as SessionMetadata)
+    ? (JSON.parse(Cookies.get(cookieName)!) as T)
     : undefined
+}
+
+useSessionMetadata.predefine = <SessionMetadata,>(
+  cookieName = SESSION_METADATA_COOKIE_NAME,
+) => {
+  return () => useSessionMetadata<SessionMetadata>(cookieName)
 }
 
 export type UseSessionChildrenFunction<Required extends boolean> = (
