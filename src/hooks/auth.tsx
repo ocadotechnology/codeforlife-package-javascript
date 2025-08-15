@@ -15,10 +15,7 @@ import {
   type OAuth2RequestCodeUrlSearchParams,
   type OAuth2ReceiveCodeUrlSearchParams,
 } from "../utils/auth"
-import {
-  type ExchangeOAuth2CodeResult,
-  type ExchangeOAuth2CodeArg,
-} from "../api/endpoints/session"
+import { type ExchangeOAuth2CodeArg } from "../api/endpoints/session"
 import { useSearchParams, useLocation, useNavigate } from "./router"
 import { SESSION_METADATA_COOKIE_NAME } from "../settings"
 import { selectIsLoggedIn } from "../slices/session"
@@ -198,7 +195,7 @@ export function useOAuth2CodeChallenge(
   return [_codeChallenge, resetCodeChallenge]
 }
 
-export interface UseOAuth2KwArgs<ResultType = ExchangeOAuth2CodeResult> {
+interface BaseUseOAuth2KwArgs<SessionMetadata> {
   provider: string
   authUri: string
   clientId: string
@@ -207,15 +204,24 @@ export interface UseOAuth2KwArgs<ResultType = ExchangeOAuth2CodeResult> {
   responseType?: "code"
   accessType?: "offline"
   prompt?: string
-  useLoginMutation: TypedUseMutation<ResultType, ExchangeOAuth2CodeArg, any>
-  onCreateSession: (result: ResultType) => void
+  useLoginMutation: TypedUseMutation<
+    SessionMetadata,
+    ExchangeOAuth2CodeArg,
+    any
+  >
+  onCreateSession: (result: SessionMetadata) => void
   onRetrieveSession: (metadata: SessionMetadata) => void
+}
+
+interface UseOAuth2KwArgs<SessionMetadata>
+  extends BaseUseOAuth2KwArgs<SessionMetadata> {
+  useSessionMetadata: () => SessionMetadata | undefined
 }
 
 export type OAuth2 = [string, OAuth2RequestCodeUrlSearchParams] | []
 
 // https://datatracker.ietf.org/doc/html/rfc7636
-export function useOAuth2<ResultType = ExchangeOAuth2CodeResult>({
+function _useOAuth2<SessionMetadata>({
   provider,
   authUri,
   clientId,
@@ -224,10 +230,11 @@ export function useOAuth2<ResultType = ExchangeOAuth2CodeResult>({
   responseType = "code",
   accessType = "offline",
   prompt,
+  useSessionMetadata,
   useLoginMutation,
   onCreateSession,
   onRetrieveSession,
-}: UseOAuth2KwArgs<ResultType>): OAuth2 {
+}: UseOAuth2KwArgs<SessionMetadata>): OAuth2 {
   const [state, resetState] = useOAuth2State(provider)
   const [
     {
@@ -280,7 +287,7 @@ export function useOAuth2<ResultType = ExchangeOAuth2CodeResult>({
       // ...and the page's state contains the stored state...
       locationState.state === state &&
       // ...and the login endpoint was not called with the current values or has
-      // not returned and error...
+      // not returned an error...
       (loginArgs.code !== locationState.code ||
         loginArgs.code_verifier !== codeVerifier ||
         loginArgs.redirect_uri !== redirectUri ||
@@ -361,4 +368,17 @@ export function useOAuth2<ResultType = ExchangeOAuth2CodeResult>({
   }
 
   return []
+}
+
+export const useOAuth2: {
+  <SessionMetadata>(kwargs: UseOAuth2KwArgs<SessionMetadata>): OAuth2
+  (kwargs: BaseUseOAuth2KwArgs<SessionMetadata>): OAuth2
+} = <_SessionMetadata,>(
+  kwargs:
+    | UseOAuth2KwArgs<_SessionMetadata>
+    | BaseUseOAuth2KwArgs<SessionMetadata>,
+): OAuth2 => {
+  return "useSessionMetadata" in kwargs
+    ? _useOAuth2(kwargs)
+    : _useOAuth2({ ...kwargs, useSessionMetadata })
 }

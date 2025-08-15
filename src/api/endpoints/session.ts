@@ -2,7 +2,6 @@ import { type EndpointBuilder, type Api } from "@reduxjs/toolkit/query/react"
 
 import { login, logout } from "../../slices/session"
 
-export type ExchangeOAuth2CodeResult = null
 export type ExchangeOAuth2CodeArg = {
   code: string
   code_verifier: string
