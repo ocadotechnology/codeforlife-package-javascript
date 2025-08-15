@@ -39,6 +39,11 @@ export function useSessionMetadata<T = SessionMetadata>(
     : undefined
 }
 
+/**
+ * A utility function to predefine a useSessionMetadata hook.
+ * @param cookieName The name of the session metadata cookie.
+ * @returns An object containing the session metadata.
+ */
 useSessionMetadata.predefine = <SessionMetadata,>(
   cookieName = SESSION_METADATA_COOKIE_NAME,
 ) => {
