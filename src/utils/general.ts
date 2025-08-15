@@ -1025,3 +1025,19 @@ export function excludeKeyPaths(
 
   return exclude.length ? _excludeKeyPaths(obj, []) : obj
 }
+
+export function generateSecureRandomString(
+  length: number,
+  charSet: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+) {
+  // Create an array of 32-bit unsigned integers
+  const randomValues = window.crypto.getRandomValues(new Uint8Array(length))
+
+  // Map the random values to characters from our string
+  let result = ""
+  for (let i = 0; i < length; i++) {
+    result += charSet.charAt(randomValues[i] % charSet.length)
+  }
+
+  return result
+}
