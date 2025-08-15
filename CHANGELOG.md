@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.7.0...v2.7.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* optionally set useSessionMetadata ([22c5253](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/22c525341badef6f13fe9adc1489d033792d2340))
+
 # [2.7.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.17...v2.7.0) (2025-08-15)
 
 
