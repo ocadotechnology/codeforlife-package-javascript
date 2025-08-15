@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.17...v2.7.0) (2025-08-15)
+
+
+### Features
+
+* oauth2 support ([#87](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/87)) ([6332e5c](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/6332e5c9583a4936066e4144a2436af59fdaa46c))
+
 ## [2.6.17](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.6.16...v2.6.17) (2025-06-25)
 
 
