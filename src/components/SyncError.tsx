@@ -1,6 +1,6 @@
-import { SyncProblem as SyncProblemIcon } from "@mui/icons-material"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
+import { SyncProblem as SyncProblemIcon } from "@mui/icons-material"
 
 export interface SyncErrorProps {}
 

@@ -1,4 +1,4 @@
-import type React from "react"
+import { type FC, type ReactElement } from "react"
 import { Unstable_Grid2 as Grid, type Grid2Props } from "@mui/material"
 
 interface ItemProps
@@ -29,7 +29,7 @@ interface GlobalItemProps extends ItemProps {
 export interface OrderedGridProps {
   rows: Array<
     Array<{
-      element: React.ReactElement
+      element: ReactElement
       itemProps?: ItemProps
     }>
   >
@@ -37,7 +37,7 @@ export interface OrderedGridProps {
   globalItemProps: GlobalItemProps
 }
 
-const OrderedGrid: React.FC<OrderedGridProps> = ({
+const OrderedGrid: FC<OrderedGridProps> = ({
   rows,
   containerProps = {},
   globalItemProps,

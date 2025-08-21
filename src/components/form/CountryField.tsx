@@ -1,13 +1,14 @@
-import { type ChipTypeMap } from "@mui/material"
 import { type ElementType, type JSX } from "react"
+import { type ChipTypeMap } from "@mui/material"
+
+import AutocompleteField, {
+  type AutocompleteFieldProps,
+} from "./AutocompleteField"
 import {
   COUNTRY_ISO_CODES,
   COUNTRY_ISO_CODE_MAPPING,
   type CountryIsoCodes,
 } from "../../utils/general"
-import AutocompleteField, {
-  type AutocompleteFieldProps,
-} from "./AutocompleteField"
 
 export interface CountryFieldProps<
   Multiple extends boolean | undefined = false,

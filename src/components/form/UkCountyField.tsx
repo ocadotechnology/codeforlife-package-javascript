@@ -1,9 +1,10 @@
-import { type ChipTypeMap } from "@mui/material"
 import { type ElementType, type JSX } from "react"
-import { UK_COUNTIES } from "../../utils/general"
+import { type ChipTypeMap } from "@mui/material"
+
 import AutocompleteField, {
   type AutocompleteFieldProps,
 } from "./AutocompleteField"
+import { UK_COUNTIES } from "../../utils/general"
 
 export interface UkCountyFieldProps<
   Multiple extends boolean | undefined = false,
