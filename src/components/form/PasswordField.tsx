@@ -1,9 +1,9 @@
+import { type FC, useState } from "react"
+import { IconButton, InputAdornment } from "@mui/material"
 import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
 } from "@mui/icons-material"
-import { IconButton, InputAdornment } from "@mui/material"
-import { useState, type FC } from "react"
 import { string as YupString } from "yup"
 
 import RepeatField, { type RepeatFieldProps } from "./RepeatField"

@@ -1,27 +1,27 @@
 import {
-  Circle as CircleIcon,
-  Hexagon as HexagonIcon,
-} from "@mui/icons-material"
-import {
   Box,
-  ThemeProvider,
-  buttonClasses,
-  createTheme,
-  responsiveFontSizes,
   type BoxProps,
   type CSSObject,
   type PaletteColor,
   type SxProps,
   type ThemeOptions,
+  ThemeProvider,
+  buttonClasses,
+  createTheme,
+  responsiveFontSizes,
 } from "@mui/material"
+import {
+  Circle as CircleIcon,
+  Hexagon as HexagonIcon,
+} from "@mui/icons-material"
 import { type CommonProps } from "@mui/material/OverridableComponent"
 import type React from "react"
 
-import { themeOptions } from "."
 import { getStyleOverrides, includesClassNames } from "../utils/theme"
 import { primary, secondary, tertiary } from "./colors"
 import type Components from "./components/_components"
 import palette from "./palette"
+import { themeOptions } from "."
 
 export interface ThemedBoxProps extends BoxProps {
   options?: ThemeOptions

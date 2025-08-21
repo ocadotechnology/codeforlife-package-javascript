@@ -1,17 +1,17 @@
+import "dayjs/locale/en-gb"
 import {
   DatePicker,
-  LocalizationProvider,
   type DatePickerProps,
+  LocalizationProvider,
   type PickerValidDate,
 } from "@mui/x-date-pickers"
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
-import dayjs, { type Dayjs } from "dayjs"
-import "dayjs/locale/en-gb"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import { date as YupDate, type ValidateOptions } from "yup"
+import { type ValidateOptions, date as YupDate } from "yup"
+import dayjs, { type Dayjs } from "dayjs"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { type JSX } from "react"
 
-import { schemaToFieldValidator } from "../../utils/form"
+import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export interface DatePickerFieldProps<
@@ -70,14 +70,19 @@ const DatePickerField = <
   return (
     <Field {...fieldConfig}>
       {({ form }: FieldProps) => {
-        const error = getNestedProperty(form.errors, dotPath)
-        const touched = getNestedProperty(form.touched, dotPath)
-        let value = getNestedProperty(form.values, dotPath)
+        const error = getNestedProperty(form.errors, dotPath) as
+          | string
+          | undefined
+        const touched = getNestedProperty(form.touched, dotPath) as boolean
+        let value: Dayjs | null | string = getNestedProperty(
+          form.values as FormValues,
+          dotPath,
+        ) as string
 
         value = value ? dayjs(value) : null
 
         function handleChange(value: Dayjs | null) {
-          form.setFieldValue(
+          void form.setFieldValue(
             name,
             value && value.isValid() ? value.format("YYYY-MM-DD") : null,
             true,
@@ -89,6 +94,7 @@ const DatePickerField = <
             dateAdapter={AdapterDayjs}
             adapterLocale="en-gb"
           >
+            {/* @ts-expect-error value is compatible */}
             <DatePicker
               name={name}
               value={value}
@@ -99,7 +105,7 @@ const DatePickerField = <
                 textField: {
                   id: name,
                   onChange: value => {
-                    // @ts-expect-error
+                    // @ts-expect-error value is compatible
                     handleChange(value as Dayjs | null)
                   },
                   onBlur: form.handleBlur,

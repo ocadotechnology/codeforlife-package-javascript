@@ -78,5 +78,5 @@ export function matchClassNames(
   return classNames
     .map(className => className.match(pattern))
     .filter(match => match !== null)
-    .map(match => match as RegExpMatchArray)
+    .map(match => match)
 }

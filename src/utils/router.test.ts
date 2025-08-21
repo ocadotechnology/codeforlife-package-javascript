@@ -1,4 +1,4 @@
-import { path as p, type Parameters, type Path } from "./router"
+import { type Parameters, type Path, path as p } from "./router"
 
 const m = <SubMatches extends Record<string, Path>>(
   _: string,

@@ -1,21 +1,21 @@
 import {
-  ValidationError,
   type AnyObject,
+  type BooleanSchema,
+  type DateSchema,
   type DefaultFromShape,
+  type Flags,
   type InferType,
   type MakePartial,
+  type NumberSchema,
   type ObjectSchema,
   type ObjectShape,
   type Schema,
+  type StringSchema,
   type TypeFromShape,
   type ValidateOptions,
-  type StringSchema,
-  type NumberSchema,
-  type Flags,
-  type BooleanSchema,
-  type DateSchema,
-  string as YupString,
+  ValidationError,
   number as YupNumber,
+  string as YupString,
 } from "yup"
 
 export type _<T> = T extends {}

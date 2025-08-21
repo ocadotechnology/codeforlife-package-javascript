@@ -1,9 +1,9 @@
+import { Button, type ButtonProps } from "@mui/material"
 import {
-  type FC,
   type DetailedHTMLProps,
+  type FC,
   type InputHTMLAttributes,
 } from "react"
-import { Button, type ButtonProps } from "@mui/material"
 
 export interface InputFileButtonProps
   extends Omit<ButtonProps<"label">, "component"> {

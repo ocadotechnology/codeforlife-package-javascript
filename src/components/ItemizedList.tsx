@@ -1,12 +1,12 @@
-import type React from "react"
+import { type FC, type ReactElement } from "react"
 import {
   List,
-  type ListProps,
   type ListItem,
   type ListItemText,
+  type ListProps,
 } from "@mui/material"
 
-type ListItemElement = React.ReactElement<typeof ListItem | typeof ListItemText>
+type ListItemElement = ReactElement<typeof ListItem | typeof ListItemText>
 
 export interface ItemizedListProps {
   styleType:
@@ -33,7 +33,7 @@ export interface ItemizedListProps {
   children: ListItemElement | ListItemElement[]
 }
 
-const ItemizedList: React.FC<ItemizedListProps> = ({
+const ItemizedList: FC<ItemizedListProps> = ({
   styleType,
   listProps = {},
   pl = 4,

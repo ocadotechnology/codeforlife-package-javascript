@@ -3,11 +3,11 @@ import {
   ErrorOutline as ErrorOutlineIcon,
   InfoOutlined as InfoOutlinedIcon,
 } from "@mui/icons-material"
+import { type FC, type ReactNode, useEffect, useState } from "react"
 import { IconButton, Stack, Typography } from "@mui/material"
-import { useEffect, useState, type FC, type ReactNode } from "react"
 
-import palette from "../../theme/palette"
 import Section from "./Section"
+import palette from "../../theme/palette"
 
 export interface NotificationProps {
   open?: boolean
@@ -33,7 +33,7 @@ const Notification: FC<NotificationProps> = ({
   if (!_open) return <></>
 
   // @ts-expect-error guaranteed to be in palette
-  const contrastText = palette[bgcolor].contrastText
+  const contrastText = palette[bgcolor].contrastText as string
 
   return (
     <Section

@@ -1,14 +1,14 @@
-import { CssBaseline, ThemeProvider } from "@mui/material"
-import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
-import { type FC, type ReactNode, type JSX } from "react"
-import { Provider, type ProviderProps } from "react-redux"
 import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
-import { StaticRouter } from "react-router-dom/server"
+import { CssBaseline, ThemeProvider } from "@mui/material"
+import { type FC, type JSX, type ReactNode } from "react"
+import { Provider, type ProviderProps } from "react-redux"
 import { type Action } from "redux"
+import { StaticRouter } from "react-router-dom/server"
+import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 
 import "./App.css"
-import { useLocation } from "../hooks"
 import { SSR } from "../settings"
+import { useLocation } from "../hooks"
 // import { InactiveDialog, ScreenTimeDialog } from "../features"
 // import { useCountdown, useEventListener } from "../hooks"
 // import "../scripts"
@@ -60,7 +60,9 @@ const App = <A extends Action = Action, S = unknown>({
   path,
   theme,
   store,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   maxIdleSeconds = 60 * 60,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   maxTotalSeconds = 60 * 60,
   ...routesProps
 }: AppProps<A, S>): JSX.Element => {

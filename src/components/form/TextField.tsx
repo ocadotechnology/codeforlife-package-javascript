@@ -1,12 +1,12 @@
+import { type FC, useEffect, useState } from "react"
+import { Field, type FieldConfig, type FieldProps } from "formik"
 import {
   TextField as MuiTextField,
   type TextFieldProps as MuiTextFieldProps,
 } from "@mui/material"
-import { Field, type FieldConfig, type FieldProps } from "formik"
-import { type FC, useState, useEffect } from "react"
 import { type StringSchema, type ValidateOptions, array as YupArray } from "yup"
 
-import { schemaToFieldValidator } from "../../utils/form"
+import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export type TextFieldProps = Omit<
@@ -79,7 +79,7 @@ const TextField: FC<TextFieldProps> = ({
             return (
               new Set(
                 uniqueCaseInsensitive
-                  ? values.map(value => (value as string).toLowerCase())
+                  ? values.map(value => value.toLowerCase())
                   : values,
               ).size === values.length
             )
@@ -104,18 +104,24 @@ const TextField: FC<TextFieldProps> = ({
     validate: schemaToFieldValidator(buildSchema(), validateOptions),
   }
 
-  const _Field: FC<FieldProps> = ({ form }) => {
-    const initialValue = getNestedProperty(form.initialValues, dotPath)
-    const value = getNestedProperty(form.values, dotPath)
-    const error = getNestedProperty(form.errors, dotPath)
-    const touched = getNestedProperty(form.touched, dotPath)
+  const FieldInternal: FC<FieldProps> = ({ form }) => {
+    const initialValue = getNestedProperty(
+      form.initialValues as FormValues,
+      dotPath,
+    ) as string
+    const value = getNestedProperty(
+      form.values as FormValues,
+      dotPath,
+    ) as string
+    const error = getNestedProperty(form.errors, dotPath) as string | undefined
+    const touched = getNestedProperty(form.touched, dotPath) as boolean
 
     useEffect(() => {
       setInitialValue(initialValue)
     }, [initialValue])
 
     useEffect(() => {
-      form.setFieldValue(
+      void form.setFieldValue(
         name,
         split && typeof value === "string" ? value.split(split) : value,
         true,
@@ -138,7 +144,7 @@ const TextField: FC<TextFieldProps> = ({
     )
   }
 
-  return <Field {...fieldConfig}>{_Field}</Field>
+  return <Field {...fieldConfig}>{FieldInternal}</Field>
 }
 
 export default TextField

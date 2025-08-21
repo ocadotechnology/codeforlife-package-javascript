@@ -1,19 +1,19 @@
 import { type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 
+import type {
+  Class,
+  SchoolTeacher,
+  SchoolTeacherUser,
+  Teacher,
+} from "../models"
 import {
-  buildUrl,
-  tagData,
   type ListArg as _ListArg,
   type ListResult as _ListResult,
   type RetrieveArg as _RetrieveArg,
   type RetrieveResult as _RetrieveResult,
+  buildUrl,
+  tagData,
 } from "../../utils/api"
-import type {
-  Class,
-  Teacher,
-  SchoolTeacher,
-  SchoolTeacherUser,
-} from "../models"
 import { type TagTypes } from "../tagTypes"
 import urls from "../urls"
 

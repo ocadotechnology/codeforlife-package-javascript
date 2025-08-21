@@ -1,19 +1,19 @@
 import {
   Autocomplete,
-  TextField,
   type AutocompleteProps,
   type ChipTypeMap,
+  TextField,
   type TextFieldProps,
 } from "@mui/material"
-import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type ElementType, type JSX } from "react"
+import { Field, type FieldConfig, type FieldProps } from "formik"
 import {
+  type ValidateOptions,
   number as YupNumber,
   string as YupString,
-  type ValidateOptions,
 } from "yup"
 
-import { schemaToFieldValidator } from "../../utils/form"
+import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export interface AutocompleteFieldProps<
@@ -86,17 +86,28 @@ const AutocompleteField = <
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
-        const value = getNestedProperty(form.values, dotPath)
-        const touched = getNestedProperty(form.touched, dotPath)
-        const error = getNestedProperty(form.errors, dotPath)
+        const value = getNestedProperty(
+          form.values as FormValues,
+          dotPath,
+        ) as string
+        const touched = getNestedProperty(form.touched, dotPath) as boolean
+        const error = getNestedProperty(form.errors, dotPath) as
+          | string
+          | undefined
 
         return (
           <Autocomplete
             options={options}
+            // @ts-expect-error value can be assigned
             defaultValue={
-              meta.initialValue === "" ? undefined : meta.initialValue
+              meta.initialValue === ""
+                ? undefined
+                : (meta.initialValue as string)
             }
-            renderInput={({ id: _, ...otherParams }) => (
+            renderInput={({
+              id: _, // eslint-disable-line @typescript-eslint/no-unused-vars
+              ...otherParams
+            }) => (
               <TextField
                 id={id ?? name}
                 name={name}
@@ -104,13 +115,13 @@ const AutocompleteField = <
                 type="text" // Force to be string to avoid number incrementor/decrementor
                 value={value}
                 error={touched && Boolean(error)}
-                helperText={(touched && error) as false | string}
+                helperText={touched && error}
                 {...otherTextFieldProps}
                 {...otherParams}
               />
             )}
             onChange={(_, value) => {
-              form.setFieldValue(name, value ?? undefined, true)
+              void form.setFieldValue(name, value ?? undefined, true)
             }}
             onBlur={form.handleBlur}
             {...otherAutocompleteProps}

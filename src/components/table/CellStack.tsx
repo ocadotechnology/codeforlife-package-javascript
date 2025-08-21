@@ -1,10 +1,10 @@
-import { type FC } from "react"
 import {
   Stack,
+  type StackProps,
   TableCell,
   type TableCellProps,
-  type StackProps,
 } from "@mui/material"
+import { type FC } from "react"
 
 export interface CellStackProps extends StackProps {
   cellProps?: TableCellProps

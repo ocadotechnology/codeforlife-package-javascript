@@ -1,20 +1,20 @@
-import React from "react"
 import {
   AppBar,
   type AppBarProps,
+  Container,
+  type ContainerProps,
   Toolbar,
   type ToolbarProps,
   useScrollTrigger,
-  Container,
-  type ContainerProps,
 } from "@mui/material"
+import { type FC, cloneElement } from "react"
 
 export interface ElevatedAppBarProps extends Omit<AppBarProps, "position"> {
   containerProps: ContainerProps
   toolbarProps?: ToolbarProps
 }
 
-const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
+const ElevatedAppBar: FC<ElevatedAppBarProps> = ({
   containerProps,
   toolbarProps,
   elevation = 4,
@@ -26,7 +26,7 @@ const ElevatedAppBar: React.FC<ElevatedAppBarProps> = ({
     threshold: 0,
   })
 
-  return React.cloneElement(
+  return cloneElement(
     <AppBar elevation={elevation} {...otherProps}>
       <Container {...containerProps}>
         <Toolbar {...toolbarProps}>{children}</Toolbar>

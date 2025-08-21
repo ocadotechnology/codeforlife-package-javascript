@@ -40,7 +40,7 @@ export function snakeCaseToCamelCase(obj: Record<string, any>): void {
       _char[_char.length - 1].toUpperCase(),
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+     
     delete obj[snakeKey]
     obj[camelKey] = value
   })
@@ -55,7 +55,7 @@ export function camelCaseToSnakeCase(obj: Record<string, any>): void {
       char => `_${char.toLowerCase()}`,
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+     
     delete obj[camelKey]
     obj[snakeKey] = value
   })

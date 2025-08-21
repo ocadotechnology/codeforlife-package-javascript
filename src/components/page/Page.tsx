@@ -1,14 +1,14 @@
-import { Children, useEffect, type JSX } from "react"
-import { useLocation, type Location } from "react-router-dom"
+import { Children, type JSX, useEffect } from "react"
+import { type Location, useLocation } from "react-router-dom"
 
+import Notification, { type NotificationProps } from "./Notification"
 import {
-  useSession,
   type SessionMetadata,
   type UseSessionChildren,
   type UseSessionChildrenFunction,
   type UseSessionOptions,
+  useSession,
 } from "../../hooks/auth"
-import Notification, { type NotificationProps } from "./Notification"
 
 export type PageState = {
   notifications: Array<{
@@ -54,7 +54,7 @@ const Page = <
           const childrenArray = Children.toArray(children)
 
           notifications.forEach((notification, index) => {
-            childrenArray.splice(
+            void childrenArray.splice(
               notification.index ?? index,
               0,
               <Notification {...notification.props} />,

@@ -1,9 +1,9 @@
 import Cookies from "js-cookie"
 
 import {
+  CSRF_COOKIE_NAME,
   SESSION_COOKIE_NAME,
   SESSION_METADATA_COOKIE_NAME,
-  CSRF_COOKIE_NAME,
 } from "../settings"
 import { generateSecureRandomString } from "./general"
 

@@ -1,4 +1,4 @@
-import { type EndpointBuilder, type Api } from "@reduxjs/toolkit/query/react"
+import { type Api, type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 
 import { login, logout } from "../../slices/session"
 

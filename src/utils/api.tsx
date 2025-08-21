@@ -1,9 +1,9 @@
 import { CircularProgress } from "@mui/material"
 import type {
   FetchBaseQueryError,
+  TypedUseMutationResult,
   TypedUseQueryHookResult,
   TypedUseQueryStateResult,
-  TypedUseMutationResult,
 } from "@reduxjs/toolkit/query/react"
 import { type ReactNode } from "react"
 
@@ -244,7 +244,7 @@ export function tagData<Type extends string, M extends Model<any>>(
   }
 
   function getModelId(result: Result<M, any>) {
-    return getNestedProperty(result, id)
+    return getNestedProperty(result, id) as ModelId
   }
 
   return (result, error, arg) => {

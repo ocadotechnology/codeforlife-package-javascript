@@ -1,9 +1,9 @@
 import {
-  useEffect,
-  useState,
   type DependencyList,
   type Dispatch,
   type SetStateAction,
+  useEffect,
+  useState,
 } from "react"
 
 export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
@@ -27,7 +27,7 @@ export function useExternalScript<EventType extends keyof HTMLElementEventMap>({
     const script = document.createElement("script")
 
     Object.entries(props).forEach(([key, value]) => {
-      // @ts-expect-error
+      // @ts-expect-error value is assignable
       script[key] = value
     })
 
