@@ -2,6 +2,8 @@ import { Button, type ButtonProps } from "@mui/material"
 import { Field, type FieldProps } from "formik"
 import type { FC } from "react"
 
+import { type FormValues } from "../../utils/form"
+
 export interface SubmitButtonProps
   extends Omit<ButtonProps, "type" | "onClick"> {}
 
@@ -15,7 +17,7 @@ const SubmitButton: FC<SubmitButtonProps> = ({
   ) {
     touched = touched || {}
     for (const key in values) {
-      const value = values[key]
+      const value: unknown = values[key]
       touched[key] =
         value instanceof Object && value.constructor === Object
           ? getTouched(value, touched)
@@ -31,15 +33,17 @@ const SubmitButton: FC<SubmitButtonProps> = ({
         <Button
           type="button"
           onClick={() => {
-            form.setTouched(getTouched(form.values), true).then(errors => {
-              const hasErrors = Boolean(errors && Object.keys(errors).length)
-              // If has errors, set isSubmitting=true so fields in the form are
-              // aware that a submission was attempted. Else, set
-              // isSubmitting=false as it will be set to true when calling
-              // submitForm().
-              form.setSubmitting(hasErrors)
-              if (!hasErrors) form.submitForm()
-            })
+            void form
+              .setTouched(getTouched(form.values as FormValues), true)
+              .then(errors => {
+                const hasErrors = Boolean(errors && Object.keys(errors).length)
+                // If has errors, set isSubmitting=true so fields in the form are
+                // aware that a submission was attempted. Else, set
+                // isSubmitting=false as it will be set to true when calling
+                // submitForm().
+                form.setSubmitting(hasErrors)
+                if (!hasErrors) void form.submitForm()
+              })
           }}
           {...otherButtonProps}
         >

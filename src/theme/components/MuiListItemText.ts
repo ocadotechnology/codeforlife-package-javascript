@@ -1,7 +1,7 @@
 import { listItemTextClasses } from "@mui/material"
 
-import { includesClassNames } from "../../utils/theme"
 import type Components from "./_components"
+import { includesClassNames } from "../../utils/theme"
 
 const MuiListItemText: Components["MuiListItemText"] = {
   styleOverrides: {

@@ -1,21 +1,23 @@
-import { Button, CircularProgress, type ChipTypeMap } from "@mui/material"
-import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
+import { Button, type ChipTypeMap, CircularProgress } from "@mui/material"
 import {
   Children,
+  type ElementType,
+  type ForwardRefRenderFunction,
+  type HTMLAttributes,
+  type JSX,
   forwardRef,
   useEffect,
   useState,
-  type ElementType,
-  type JSX,
 } from "react"
+import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
 
 import {
   AutocompleteField,
   type AutocompleteFieldProps,
 } from "../../components/form"
-import { usePagination } from "../../hooks/api"
 import type { ListArg, ListResult, ModelId } from "../../utils/api"
 import SyncError from "../SyncError"
+import { usePagination } from "../../hooks/api"
 
 export interface ApiAutocompleteFieldProps<
   SearchKey extends keyof Omit<QueryArg, "limit" | "offset">,
@@ -63,7 +65,7 @@ const ApiAutocompleteField = <
   useLazyListQuery,
   filterOptions,
   getOptionLabel,
-  getOptionKey = result => result.id,
+  getOptionKey = result => result.id as ModelId,
   searchKey,
   ...otherAutocompleteFieldProps
 }: ApiAutocompleteFieldProps<
@@ -89,7 +91,7 @@ const ApiAutocompleteField = <
   useEffect(
     () => {
       const arg = { limit, offset, ...filterOptions } as QueryArg
-      // @ts-expect-error
+      // @ts-expect-error search key can index arg
       if (search) arg[searchKey] = search
 
       trigger(arg, true)
@@ -131,6 +133,44 @@ const ApiAutocompleteField = <
     setPagination(({ page, limit }) => ({ page: page + 1, limit }))
   }
 
+  const ListboxComponent: ForwardRefRenderFunction<
+    unknown,
+    HTMLAttributes<HTMLElement>
+  > = ({ children, ...props }, ref) => {
+    const listItems = Children.toArray(children)
+    if (isLoading) listItems.push(<CircularProgress key="is-loading" />)
+    else {
+      if (isError) listItems.push(<SyncError key="is-error" />)
+      if (hasMore) {
+        listItems.push(
+          <Button key="load-more" onClick={loadNextPage}>
+            Load more
+          </Button>,
+        )
+      }
+    }
+
+    return (
+      <ul
+        {...props}
+        // @ts-expect-error ref is assignable
+        ref={ref}
+        onScroll={event => {
+          // If not already loading and scrolled to bottom
+          if (
+            !isLoading &&
+            event.currentTarget.clientHeight + event.currentTarget.scrollTop >=
+              event.currentTarget.scrollHeight
+          ) {
+            loadNextPage()
+          }
+        }}
+      >
+        {listItems}
+      </ul>
+    )
+  }
+
   return (
     <AutocompleteField
       options={optionKeys}
@@ -138,41 +178,7 @@ const ApiAutocompleteField = <
       onInputChange={(_, value, reason) => {
         setSearch(reason === "input" ? value : "")
       }}
-      ListboxComponent={forwardRef(({ children, ...props }, ref) => {
-        const listItems = Children.toArray(children)
-        if (isLoading) listItems.push(<CircularProgress key="is-loading" />)
-        else {
-          if (isError) listItems.push(<SyncError key="is-error" />)
-          if (hasMore) {
-            listItems.push(
-              <Button key="load-more" onClick={loadNextPage}>
-                Load more
-              </Button>,
-            )
-          }
-        }
-
-        return (
-          <ul
-            {...props}
-            // @ts-expect-error
-            ref={ref}
-            onScroll={event => {
-              // If not already loading and scrolled to bottom
-              if (
-                !isLoading &&
-                event.currentTarget.clientHeight +
-                  event.currentTarget.scrollTop >=
-                  event.currentTarget.scrollHeight
-              ) {
-                loadNextPage()
-              }
-            }}
-          >
-            {listItems}
-          </ul>
-        )
-      })}
+      ListboxComponent={forwardRef(ListboxComponent)}
       {...otherAutocompleteFieldProps}
     />
   )

@@ -1,31 +1,31 @@
 import * as yup from "yup"
 
-import { UK_COUNTIES, COUNTRY_ISO_CODES } from "../utils/general"
 import type {
-  User,
-  TeacherUser,
-  SchoolTeacherUser,
-  AdminSchoolTeacherUser,
-  NonAdminSchoolTeacherUser,
-  NonSchoolTeacherUser,
-  Teacher,
-  Student,
-  Class,
-  School,
-  AuthFactor,
-  OtpBypassToken,
-  StudentUser,
-  IndependentUser,
-  SchoolTeacher,
   AdminSchoolTeacher,
+  AdminSchoolTeacherUser,
+  AuthFactor,
+  Class,
+  IndependentUser,
   NonAdminSchoolTeacher,
+  NonAdminSchoolTeacherUser,
   NonSchoolTeacher,
+  NonSchoolTeacherUser,
+  OtpBypassToken,
+  School,
+  SchoolTeacher,
+  SchoolTeacherUser,
+  Student,
+  StudentUser,
+  Teacher,
+  TeacherUser,
+  User,
 } from "./models"
+import { COUNTRY_ISO_CODES, UK_COUNTIES } from "../utils/general"
 import {
-  unicodeAlphanumericString,
-  uppercaseAsciiAlphanumericString,
   lowercaseAsciiAlphanumericString,
   numericId,
+  unicodeAlphanumericString,
+  uppercaseAsciiAlphanumericString,
 } from "../utils/schema"
 import { type Schemas } from "../utils/api"
 

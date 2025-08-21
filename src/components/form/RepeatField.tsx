@@ -1,15 +1,15 @@
-import { TextField as MuiTextField, type TextFieldProps } from "@mui/material"
-import { Field, type FieldConfig, type FieldProps } from "formik"
 import {
-  useEffect,
-  useState,
   type Dispatch,
   type FC,
   type SetStateAction,
+  useEffect,
+  useState,
 } from "react"
-import { string as YupString, type ValidateOptions } from "yup"
+import { Field, type FieldConfig, type FieldProps } from "formik"
+import { TextField as MuiTextField, type TextFieldProps } from "@mui/material"
+import { type ValidateOptions, string as YupString } from "yup"
 
-import { schemaToFieldValidator } from "../../utils/form"
+import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export type RepeatFieldProps = Omit<
@@ -47,12 +47,20 @@ const TextField: FC<
   const { form } = fieldProps
 
   const dotPath = name.split(".")
-  const value = getNestedProperty(form.values, dotPath)
+  const value = getNestedProperty(form.values as FormValues, dotPath) as string
 
   const repeatDotPath = repeatName.split(".")
-  const repeatValue = getNestedProperty(form.values, repeatDotPath)
-  const repeatTouched = getNestedProperty(form.touched, repeatDotPath)
-  const repeatError = getNestedProperty(form.errors, repeatDotPath)
+  const repeatValue = getNestedProperty(
+    form.values as FormValues,
+    repeatDotPath,
+  ) as string
+  const repeatTouched = getNestedProperty(
+    form.touched,
+    repeatDotPath,
+  ) as boolean
+  const repeatError = getNestedProperty(form.errors, repeatDotPath) as
+    | string
+    | undefined
 
   useEffect(() => {
     setValue(value)

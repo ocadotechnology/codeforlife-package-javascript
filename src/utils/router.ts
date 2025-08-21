@@ -1,7 +1,7 @@
 import {
-  generatePath,
-  type LinkProps as _LinkProps,
   type To,
+  type LinkProps as _LinkProps,
+  generatePath,
 } from "react-router-dom"
 
 import { type PageState } from "../components/page/Page"

@@ -1,7 +1,7 @@
 import { typographyClasses } from "@mui/material"
 
-import { form } from "../typography"
 import type Components from "./_components"
+import { form } from "../typography"
 
 const MuiFormControlLabel: Components["MuiFormControlLabel"] = {
   styleOverrides: {

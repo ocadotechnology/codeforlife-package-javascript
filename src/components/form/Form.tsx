@@ -1,27 +1,27 @@
+import {
+  type FC,
+  type JSX,
+  type ReactNode,
+  type RefObject,
+  useEffect,
+  useRef,
+} from "react"
 import { FormHelperText, type FormHelperTextProps } from "@mui/material"
 import {
   Formik,
-  Form as FormikForm,
   type FormikConfig,
   type FormikErrors,
+  Form as FormikForm,
   type FormikProps,
 } from "formik"
-import {
-  type ReactNode,
-  type FC,
-  useRef,
-  useEffect,
-  type RefObject,
-  type JSX,
-} from "react"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
 
-import { getKeyPaths } from "../../utils/general"
 import {
-  submitForm,
-  type SubmitFormOptions,
   type FormValues,
+  type SubmitFormOptions,
+  submitForm,
 } from "../../utils/form"
+import { getKeyPaths } from "../../utils/general"
 
 const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
   behavior: "smooth",
@@ -68,7 +68,7 @@ const BaseForm = <Values extends FormValues>({
   ...otherFormikProps
 }: BaseFormProps<Values>) => (
   <Formik {...otherFormikProps}>
-    {/* @ts-expect-error */}
+    {/* @ts-expect-error value is assignable */}
     {(formik: _FormikProps<Values>) => {
       const hasErrors = Boolean(Object.keys(formik.errors).length)
       const hasNonFieldErrors =

@@ -1,23 +1,24 @@
 import * as yup from "yup"
+import { type ReactNode, useCallback, useEffect, useState } from "react"
 import Cookies from "js-cookie"
-import { useEffect, useState, useCallback, type ReactNode } from "react"
-import { createSearchParams } from "react-router-dom"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
+import { createSearchParams } from "react-router-dom"
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useSelector } from "react-redux"
 
 import { type AuthFactor, type User } from "../api"
-import { generateSecureRandomString } from "../utils/general"
 import {
-  makeOAuth2StorageKey,
-  generateOAuth2CodeChallenge,
-  type OAuth2CodeChallengeLengths,
   type OAuth2CodeChallenge,
-  type OAuth2RequestCodeUrlSearchParams,
+  type OAuth2CodeChallengeLengths,
   type OAuth2ReceiveCodeUrlSearchParams,
+  type OAuth2RequestCodeUrlSearchParams,
+  generateOAuth2CodeChallenge,
+  makeOAuth2StorageKey,
 } from "../utils/auth"
+import { useLocation, useNavigate, useSearchParams } from "./router"
 import { type ExchangeOAuth2CodeArg } from "../api/endpoints/session"
-import { useSearchParams, useLocation, useNavigate } from "./router"
 import { SESSION_METADATA_COOKIE_NAME } from "../settings"
+import { generateSecureRandomString } from "../utils/general"
 import { selectIsLoggedIn } from "../slices/session"
 
 // -----------------------------------------------------------------------------
@@ -232,7 +233,7 @@ interface UseOAuth2KwArgs<SessionMetadata>
 export type OAuth2 = [string, OAuth2RequestCodeUrlSearchParams] | []
 
 // https://datatracker.ietf.org/doc/html/rfc7636
-function _useOAuth2<SessionMetadata>({
+function useOAuth2Internal<SessionMetadata>({
   provider,
   authUri,
   clientId,
@@ -389,7 +390,8 @@ export const useOAuth2: {
     | UseOAuth2KwArgs<_SessionMetadata>
     | BaseUseOAuth2KwArgs<SessionMetadata>,
 ): OAuth2 => {
-  return "useSessionMetadata" in kwargs
-    ? _useOAuth2(kwargs)
-    : _useOAuth2({ ...kwargs, useSessionMetadata })
+  return useOAuth2Internal(
+    // @ts-expect-error value is assignable
+    "useSessionMetadata" in kwargs ? kwargs : { ...kwargs, useSessionMetadata },
+  )
 }

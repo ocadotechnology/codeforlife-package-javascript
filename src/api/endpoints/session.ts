@@ -1,4 +1,4 @@
-import { type EndpointBuilder, type Api } from "@reduxjs/toolkit/query/react"
+import { type Api, type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 
 import { login, logout } from "../../slices/session"
 
@@ -39,6 +39,7 @@ export function buildLogoutEndpoint<ResultType, QueryArg>(
         console.error("Failed to call logout endpoint...", error)
       } finally {
         dispatch(logout())
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         dispatch(api.util.resetApiState())
       }
     },

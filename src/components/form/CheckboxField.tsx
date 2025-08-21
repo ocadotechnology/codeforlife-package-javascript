@@ -1,16 +1,16 @@
 import {
   Checkbox,
+  type CheckboxProps,
   FormControl,
   FormControlLabel,
-  FormHelperText,
-  type CheckboxProps,
   type FormControlLabelProps,
+  FormHelperText,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
+import { type ValidateOptions, bool as YupBool } from "yup"
 import { type FC } from "react"
-import { bool as YupBool, type ValidateOptions } from "yup"
 
-import { schemaToFieldValidator } from "../../utils/form"
+import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export interface CheckboxFieldProps
@@ -47,9 +47,14 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
   return (
     <Field {...fieldConfig}>
       {({ form, meta }: FieldProps) => {
-        const touched = getNestedProperty(form.touched, dotPath)
-        const error = getNestedProperty(form.errors, dotPath)
-        const value = getNestedProperty(form.values, dotPath)
+        const touched = getNestedProperty(form.touched, dotPath) as boolean
+        const error = getNestedProperty(form.errors, dotPath) as
+          | string
+          | undefined
+        const value = getNestedProperty(
+          form.values as FormValues,
+          dotPath,
+        ) as boolean
 
         const hasError = touched && Boolean(error)
 
@@ -59,7 +64,7 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
             <FormControlLabel
               control={
                 <Checkbox
-                  defaultChecked={meta.initialValue}
+                  defaultChecked={meta.initialValue as boolean}
                   id={id ?? name}
                   name={name}
                   value={value}
@@ -70,7 +75,7 @@ const CheckboxField: FC<CheckboxFieldProps> = ({
               }
               {...formControlLabelProps}
             />
-            {hasError && <FormHelperText>{error as string}</FormHelperText>}
+            {hasError && <FormHelperText>{error}</FormHelperText>}
           </FormControl>
         )
       }}

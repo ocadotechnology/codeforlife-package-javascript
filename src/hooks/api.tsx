@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type SetStateAction } from "react"
+import { type Dispatch, type SetStateAction, useState } from "react"
 
 export type Pagination = { page: number; limit: number; offset: number }
 export type SetPagination = Dispatch<
@@ -22,10 +22,12 @@ export function usePagination(
 
   const setPagination: SetPagination = value => {
     _setPagination(({ page: previousPage, limit: previousLimit }) => {
-      let { page, limit } =
+      const pagination =
         typeof value === "function"
           ? value({ page: previousPage, limit: previousLimit })
           : value
+      let page = pagination.page
+      const limit = pagination.limit
 
       if (limit !== previousLimit) page = 0
 

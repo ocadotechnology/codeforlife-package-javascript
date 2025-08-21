@@ -1,10 +1,10 @@
-import { CircularProgress } from "@mui/material"
 import type {
   FetchBaseQueryError,
+  TypedUseMutationResult,
   TypedUseQueryHookResult,
   TypedUseQueryStateResult,
-  TypedUseMutationResult,
 } from "@reduxjs/toolkit/query/react"
+import { CircularProgress } from "@mui/material"
 import { type ReactNode } from "react"
 
 import { type Optional, type Required, getNestedProperty } from "./general"
@@ -181,6 +181,7 @@ export function buildUrl(
       if (Array.isArray(values)) {
         for (const value of values) searchParams.push([key, String(value)])
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
         searchParams.push([key, String(values)])
       }
     }
@@ -244,7 +245,7 @@ export function tagData<Type extends string, M extends Model<any>>(
   }
 
   function getModelId(result: Result<M, any>) {
-    return getNestedProperty(result, id)
+    return getNestedProperty(result, id) as ModelId
   }
 
   return (result, error, arg) => {
@@ -305,7 +306,8 @@ export function handleResultState<QueryArg, ResultType>(
   children: (data: NonNullable<ResultType>) => ReactNode,
   options?: HandleQueryStateOptions,
 ): ReactNode {
-  const { data, isLoading, isSuccess, error } = result
+  const { data, isLoading, isSuccess } = result
+  const error = result.error as string | undefined
 
   const {
     loading: loadingNode = <CircularProgress />,

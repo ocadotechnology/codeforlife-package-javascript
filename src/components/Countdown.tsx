@@ -1,4 +1,4 @@
-import React from "react"
+import { type FC, useState } from "react"
 import { Typography, type TypographyProps } from "@mui/material"
 
 import { useCountdown } from "../hooks"
@@ -9,7 +9,7 @@ export interface CountdownProps extends Omit<TypographyProps, "children"> {
   onEnd: () => void
 }
 
-const Countdown: React.FC<CountdownProps> = ({
+const Countdown: FC<CountdownProps> = ({
   seconds,
   start = true,
   onEnd,
@@ -17,7 +17,7 @@ const Countdown: React.FC<CountdownProps> = ({
 }) => {
   seconds = Math.floor(seconds)
   const _seconds = useCountdown(seconds)[0]
-  const [end, setEnd] = React.useState(!start)
+  const [end, setEnd] = useState(!start)
 
   if (_seconds === 0 && !end) {
     setEnd(true)

@@ -1,12 +1,12 @@
 import {
+  type FetchArgs,
   createApi as _createApi,
   fetchBaseQuery,
-  type FetchArgs,
 } from "@reduxjs/toolkit/query/react"
 
 import { SERVICE_API_URL } from "../settings"
-import defaultTagTypes from "./tagTypes"
 import { buildLogoutEndpoint } from "./endpoints/session"
+import defaultTagTypes from "./tagTypes"
 import { getCsrfCookie } from "../utils/auth"
 import { isSafeHttpMethod } from "../utils/api"
 
@@ -45,7 +45,7 @@ export default function createApi<TagTypes extends string = never>({
       const method = typeof arg === "string" ? "GET" : arg.method || "GET"
 
       if (type === "mutation" || !isSafeHttpMethod(method)) {
-        let csrfToken = getCsrfCookie()
+        const csrfToken = getCsrfCookie()
         if (csrfToken) headers.set("x-csrftoken", csrfToken)
       }
 
@@ -55,7 +55,7 @@ export default function createApi<TagTypes extends string = never>({
 
   const api = _createApi({
     // https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-custom-basequery
-    baseQuery: async (args, api, extraOptions) => {
+    baseQuery: async (args: string | FetchArgs, api, extraOptions) => {
       if (api.type === "mutation" && getCsrfCookie() === undefined) {
         // Get the CSRF token.
         const { error } = await fetch(

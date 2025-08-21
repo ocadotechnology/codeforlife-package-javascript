@@ -1,8 +1,8 @@
 import {
   excludeKeyPaths,
+  getKeyPaths,
   getNestedProperty,
   withKeyPaths,
-  getKeyPaths,
 } from "./general"
 
 // getNestedProperty
@@ -10,19 +10,19 @@ import {
 const PERSON = { father: { father: { name: "John" } } }
 
 test("get a nested property with dot notation", () => {
-  const name = getNestedProperty(PERSON, "father.father.name")
+  const name = getNestedProperty(PERSON, "father.father.name") as string
 
   expect(name).toEqual("John")
 })
 
 test("get a nested property with string array", () => {
-  const name = getNestedProperty(PERSON, ["father", "father", "name"])
+  const name = getNestedProperty(PERSON, ["father", "father", "name"]) as string
 
   expect(name).toEqual("John")
 })
 
 test("get a nested property that doesn't exist", () => {
-  const name = getNestedProperty(PERSON, "mother.mother.name")
+  const name = getNestedProperty(PERSON, "mother.mother.name") as undefined
 
   expect(name).toBeUndefined()
 })
@@ -49,7 +49,7 @@ test("exclude nested keys by their path", () => {
   const obj = excludeKeyPaths({ a: 1, b: { c: 2, d: { e: 3 } } }, [
     "b.c",
     "b.d.e",
-  ])
+  ]) as object
 
   expect(obj).toMatchObject({ a: 1, b: { d: {} } })
 })

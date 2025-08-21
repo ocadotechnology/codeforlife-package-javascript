@@ -1,7 +1,7 @@
 import {
   Box,
-  Container,
   type BoxProps,
+  Container,
   type ContainerProps,
 } from "@mui/material"
 import type { FC } from "react"

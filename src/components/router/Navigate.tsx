@@ -1,7 +1,7 @@
-import { useEffect, type JSX } from "react"
+import { type JSX, useEffect } from "react"
 import { type To } from "react-router-dom"
 
-import { useNavigate, type NavigateOptions } from "../../hooks"
+import { type NavigateOptions, useNavigate } from "../../hooks"
 
 export type NavigateProps<
   Override extends "delta" | "to",

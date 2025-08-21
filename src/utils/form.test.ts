@@ -1,4 +1,4 @@
-import { isDirty, getDirty, getCleanNames } from "./form"
+import { getCleanNames, getDirty, isDirty } from "./form"
 
 const VALUES = {
   name: { first: "Peter", last: "Parker" },

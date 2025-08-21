@@ -1,4 +1,11 @@
 import {
+  type ElementType,
+  type JSX,
+  type JSXElementConstructor,
+  type ReactNode,
+  useEffect,
+} from "react"
+import {
   TablePagination as MuiTablePagination,
   type TablePaginationProps as MuiTablePaginationProps,
   Stack,
@@ -6,16 +13,9 @@ import {
   type TablePaginationBaseProps,
 } from "@mui/material"
 import type { TypedUseLazyQuery } from "@reduxjs/toolkit/query/react"
-import {
-  type ElementType,
-  type JSXElementConstructor,
-  type ReactNode,
-  useEffect,
-  type JSX,
-} from "react"
 
-import { type Pagination, usePagination } from "../hooks/api"
 import { type ListArg, type ListResult, handleResultState } from "../utils/api"
+import { type Pagination, usePagination } from "../hooks/api"
 
 export type TablePaginationProps<
   QueryArg extends ListArg,
@@ -84,10 +84,17 @@ const TablePagination = <
 
   useEffect(
     () => {
-      trigger({ limit, offset, ...filters } as QueryArg, preferCacheValue)
+      void trigger({ limit, offset, ...filters } as QueryArg, preferCacheValue)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [trigger, limit, offset, ...Object.values(filters || {}), preferCacheValue],
+    [
+      trigger,
+      limit,
+      offset,
+      // eslint-disable-next-line react-hooks/exhaustive-deps,@typescript-eslint/no-unsafe-assignment
+      ...Object.values(filters || {}),
+      preferCacheValue,
+    ],
   )
 
   const { count, max_limit } = result.data || {}
@@ -115,11 +122,13 @@ const TablePagination = <
         rowsPerPage={limit}
         onRowsPerPageChange={event => {
           setPagination({ limit: parseInt(event.target.value), page: 0 })
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           if (onRowsPerPageChange) onRowsPerPageChange(event)
         }}
         page={page}
         onPageChange={(event, page) => {
           setPagination(({ limit }) => ({ limit, page }))
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           if (onPageChange) onPageChange(event, page)
         }}
         // ascending order

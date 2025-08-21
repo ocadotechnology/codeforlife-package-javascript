@@ -1,5 +1,5 @@
-import type React from "react"
 import { Button, Dialog, Typography } from "@mui/material"
+import { type FC } from "react"
 
 import { Countdown } from "../components"
 
@@ -8,7 +8,7 @@ export interface InactiveDialogProps {
   onClose: () => void
 }
 
-const InactiveDialog: React.FC<InactiveDialogProps> = ({ open, onClose }) => {
+const InactiveDialog: FC<InactiveDialogProps> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <Typography variant="h5" textAlign="center">

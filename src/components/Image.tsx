@@ -1,5 +1,5 @@
 import { Box, type BoxProps } from "@mui/material"
-import type React from "react"
+import { type FC } from "react"
 
 import { openInNewTab } from "../utils/general"
 
@@ -10,12 +10,12 @@ export interface ImageProps extends Omit<BoxProps, "component"> {
   hrefInNewTab?: boolean
 }
 
-const Image: React.FC<ImageProps> = ({
-  href,
-  hrefInNewTab = false,
-  ...props
-}) => {
-  let { onClick, style = {}, ...otherProps } = props
+const Image: FC<ImageProps> = ({ href, hrefInNewTab = false, ...props }) => {
+  let {
+    onClick,
+    style = {},
+    ...otherProps // eslint-disable-line prefer-const
+  } = props
 
   if (style.width === undefined) {
     style.width = "100%"

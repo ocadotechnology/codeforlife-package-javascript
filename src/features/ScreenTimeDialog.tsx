@@ -1,18 +1,15 @@
-import type React from "react"
 import { Button, Dialog, Typography } from "@mui/material"
+import { type FC } from "react"
 
-import { Image } from "../components"
 import BrainImage from "../images/svg/brain.svg"
+import { Image } from "../components"
 
 export interface ScreenTimeDialogProps {
   open: boolean
   onClose: () => void
 }
 
-const ScreenTimeDialog: React.FC<ScreenTimeDialogProps> = ({
-  open,
-  onClose,
-}) => {
+const ScreenTimeDialog: FC<ScreenTimeDialogProps> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm">
       <Image src={BrainImage} alt="brain" maxWidth={100} marginY={3} />

@@ -1,11 +1,11 @@
-import type React from "react"
 import { Box, type BoxProps } from "@mui/material"
+import { type FC } from "react"
 
 export interface YouTubeVideoProps extends Omit<BoxProps, "component"> {
   src: string
 }
 
-const YouTubeVideo: React.FC<YouTubeVideoProps> = ({
+const YouTubeVideo: FC<YouTubeVideoProps> = ({
   src,
   style = {},
   ...otherProps

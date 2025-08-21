@@ -1,5 +1,5 @@
-import typography from "../typography"
 import type Components from "./_components"
+import typography from "../typography"
 
 const MuiInputBase: Components["MuiInputBase"] = {
   styleOverrides: {

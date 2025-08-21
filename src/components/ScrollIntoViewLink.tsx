@@ -1,6 +1,5 @@
-import { type FC } from "react"
 import { Link, type LinkProps } from "@mui/material"
-
+import { type FC } from "react"
 export interface ScrollIntoViewLinkProps extends Omit<LinkProps, "onClick"> {
   elementId: string
   options?: ScrollIntoViewOptions

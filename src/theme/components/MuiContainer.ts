@@ -1,6 +1,6 @@
-import spacing from "../spacing"
 import type Components from "./_components"
 import { getFlexStyleOverrides } from "./_components"
+import spacing from "../spacing"
 
 const MuiContainer: Components["MuiContainer"] = {
   defaultProps: {

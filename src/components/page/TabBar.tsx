@@ -2,20 +2,20 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material"
+import { type FC, type ReactNode, useEffect, useState } from "react"
 import {
   IconButton,
   Tab,
+  type TabScrollButtonProps,
   Tabs,
   Typography,
-  type TabScrollButtonProps,
 } from "@mui/material"
-import { useEffect, useState, type FC, type ReactNode } from "react"
-import { generatePath, useNavigate, useParams } from "react-router-dom"
 import { object as YupObject, string as YupString } from "yup"
+import { generatePath, useNavigate, useParams } from "react-router-dom"
 
+import Section from "./Section"
 import { primary } from "../../theme/colors"
 import { tryValidateSync } from "../../utils/schema"
-import Section from "./Section"
 
 export interface TabBarProps {
   header: string
@@ -79,7 +79,7 @@ const TabBar: FC<TabBarProps> = ({ header, tabs, originalPath, value = 0 }) => {
       >
         <Tabs
           value={_value}
-          onChange={(_, value) => {
+          onChange={(_, value: number) => {
             navigate(
               generatePath(originalPath, {
                 tab: paths[value],

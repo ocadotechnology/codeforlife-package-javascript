@@ -1,10 +1,10 @@
 import { type EndpointBuilder } from "@reduxjs/toolkit/query/react"
 
 import {
-  buildUrl,
-  tagData,
   type ListArg as _ListArg,
   type ListResult as _ListResult,
+  buildUrl,
+  tagData,
 } from "../../utils/api"
 import type { AuthFactor } from "../models"
 import { type TagTypes } from "../tagTypes"

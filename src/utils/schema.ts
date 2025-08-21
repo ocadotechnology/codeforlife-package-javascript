@@ -1,21 +1,21 @@
 import {
-  ValidationError,
   type AnyObject,
+  type BooleanSchema,
+  type DateSchema,
   type DefaultFromShape,
+  type Flags,
   type InferType,
   type MakePartial,
+  type NumberSchema,
   type ObjectSchema,
   type ObjectShape,
   type Schema,
+  type StringSchema,
   type TypeFromShape,
   type ValidateOptions,
-  type StringSchema,
-  type NumberSchema,
-  type Flags,
-  type BooleanSchema,
-  type DateSchema,
-  string as YupString,
+  ValidationError,
   number as YupNumber,
+  string as YupString,
 } from "yup"
 
 export type _<T> = T extends {}
@@ -137,11 +137,11 @@ export function buildUnicodeCharSet(
   description: string,
   options: BuildCharSetOptions = {},
 ) {
-  let { flags = "u", ...otherOptions } = options
+  let { flags = "u" } = options
 
   if (!flags.includes("u")) flags += "u"
 
-  return buildCharSet(charSet, description, { flags, ...otherOptions })
+  return buildCharSet(charSet, description, { ...options, flags })
 }
 
 export function asciiAlphaString(options?: BuildCharSetOptions) {
@@ -282,9 +282,9 @@ export function tryValidateSync<
   const { onError, ...validateOptions } = options || {}
 
   try {
-    return schema.validateSync(value, validateOptions)
+    return schema.validateSync(value, validateOptions) as unknown
   } catch (error) {
     if (!(error instanceof ValidationError)) throw error
-    else if (onError) return onError(error)
+    else if (onError) return onError(error) as unknown
   }
 }

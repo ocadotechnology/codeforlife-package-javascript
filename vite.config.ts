@@ -1,5 +1,5 @@
-import react from "@vitejs/plugin-react"
 import { defineConfig } from "vitest/config"
+import react from "@vitejs/plugin-react"
 
 // https://vitejs.dev/config/
 // TODO: https://vite.dev/guide/build.html#library-mode

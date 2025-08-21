@@ -8,10 +8,10 @@ import {
   svgIconClasses,
 } from "@mui/material"
 
+import type Components from "./_components"
 import { includesClassNames } from "../../utils/theme"
 import palette from "../palette"
 import typography from "../typography"
-import type Components from "./_components"
 
 const MuiTextField: Components["MuiTextField"] = {
   defaultProps: {
@@ -31,7 +31,7 @@ const MuiTextField: Components["MuiTextField"] = {
               },
               border: "0px !important",
               borderRadius: "0px !important",
-              // @ts-expect-error
+              // @ts-expect-error value is assignable
               backgroundColor: `${palette.info!.main} !important`,
             }
           : {
@@ -41,7 +41,7 @@ const MuiTextField: Components["MuiTextField"] = {
             }),
       },
       [`& > .${inputBaseClasses.root}.${inputBaseClasses.error}`]: {
-        // @ts-expect-error
+        // @ts-expect-error value is assignable
         border: `1px solid ${palette.error!.main} !important`,
       },
       [`& .${outlinedInputClasses.root}.${inputClasses.focused} > fieldset`]: {
