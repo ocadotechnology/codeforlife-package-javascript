@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.7.2...v2.8.0) (2025-08-21)
+
+
+### Features
+
+* type fixes ([#89](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/89)) ([386f6e3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/386f6e3fe135d59480a18034741ff5d33a7a76ac))
+
 ## [2.7.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.7.1...v2.7.2) (2025-08-15)
 
 
