@@ -39,6 +39,7 @@ export function buildLogoutEndpoint<ResultType, QueryArg>(
         console.error("Failed to call logout endpoint...", error)
       } finally {
         dispatch(logout())
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         dispatch(api.util.resetApiState())
       }
     },

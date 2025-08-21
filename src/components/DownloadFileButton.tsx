@@ -24,7 +24,8 @@ const DownloadFileButton: FC<DownloadFileButtonProps> = ({
   let url: undefined | string = undefined
   let anchorProps: undefined | { download?: string; href: string } = undefined
   if ("mimeType" in file) {
-    let { text, mimeType, name, charset = "utf-8", extension } = file
+    const { text, mimeType, name, charset = "utf-8" } = file
+    let { extension } = file
 
     if (!extension) extension = "." + { plain: "txt", csv: "csv" }[mimeType]
 

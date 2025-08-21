@@ -1,6 +1,6 @@
-import { PersonOutlined as PersonOutlinedIcon } from "@mui/icons-material"
-import { InputAdornment } from "@mui/material"
 import type { FC } from "react"
+import { InputAdornment } from "@mui/material"
+import { PersonOutlined as PersonOutlinedIcon } from "@mui/icons-material"
 
 import TextField, { type TextFieldProps } from "./TextField"
 import { schemas } from "../../api"

@@ -1,8 +1,8 @@
 import { buttonClasses } from "@mui/material"
 
+import type Components from "./_components"
 import { includesClassNames } from "../../utils/theme"
 import typography from "../typography"
-import type Components from "./_components"
 
 const MuiButton: Components["MuiButton"] = {
   defaultProps: {

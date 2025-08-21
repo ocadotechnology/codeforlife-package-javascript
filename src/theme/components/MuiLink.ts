@@ -1,6 +1,6 @@
+import type Components from "./_components"
 import { includesClassNames } from "../../utils/theme"
 import typography from "../typography"
-import type Components from "./_components"
 
 const MuiLink: Components["MuiLink"] = {
   defaultProps: {
