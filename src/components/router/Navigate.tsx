@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, type JSX } from "react"
 import { type To } from "react-router-dom"
 
 import { useNavigate, type NavigateOptions } from "../../hooks"

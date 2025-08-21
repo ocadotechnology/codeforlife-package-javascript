@@ -1,5 +1,6 @@
 import { Button, type ButtonProps } from "@mui/material"
 import { Link } from "react-router-dom"
+import { type JSX } from "react"
 
 import { type LinkProps } from "../../utils/router"
 

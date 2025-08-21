@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
-import { type FC, type ReactNode } from "react"
+import { type FC, type ReactNode, type JSX } from "react"
 import { Provider, type ProviderProps } from "react-redux"
 import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
 import { StaticRouter } from "react-router-dom/server"

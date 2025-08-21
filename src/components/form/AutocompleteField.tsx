@@ -6,7 +6,7 @@ import {
   type TextFieldProps,
 } from "@mui/material"
 import { Field, type FieldConfig, type FieldProps } from "formik"
-import { type ElementType } from "react"
+import { type ElementType, type JSX } from "react"
 import {
   number as YupNumber,
   string as YupString,

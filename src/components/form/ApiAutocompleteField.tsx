@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
   type ElementType,
+  type JSX,
 } from "react"
 
 import {

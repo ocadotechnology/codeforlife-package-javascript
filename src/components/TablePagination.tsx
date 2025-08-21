@@ -11,6 +11,7 @@ import {
   type JSXElementConstructor,
   type ReactNode,
   useEffect,
+  type JSX,
 } from "react"
 
 import { type Pagination, usePagination } from "../hooks/api"
