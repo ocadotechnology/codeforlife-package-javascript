@@ -4,9 +4,6 @@ on:
   push:
     paths-ignore:
       - '**/*.md'
-      - '**/*.code-*'
-      - '.vscode/**'
-      - '.devcontainer.json'
   pull_request:
   issues:
   issue_comment:
