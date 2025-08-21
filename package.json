@@ -5,7 +5,7 @@
   "version": "2.7.2",
   "type": "module",
   "scripts": {
-    "cli": "VITE_CONFIG=./vite.config.ts ../scripts/frontend $@"
+    "cli": "../scripts/frontend $@"
   },
   "repository": {
     "type": "git",
