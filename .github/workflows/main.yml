@@ -25,6 +25,7 @@ jobs:
     secrets: inherit
     with:
       node-version: 22
+      configs-download-branch: workspace-275 # TODO: delete
 
   release:
     needs: [test] # TODO: add contributor
