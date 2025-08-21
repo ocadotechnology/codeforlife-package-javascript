@@ -1,4 +1,4 @@
-import { Children, useEffect } from "react"
+import { Children, useEffect, type JSX } from "react"
 import { useLocation, type Location } from "react-router-dom"
 
 import {

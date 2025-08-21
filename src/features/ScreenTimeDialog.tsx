@@ -2,7 +2,7 @@ import type React from "react"
 import { Button, Dialog, Typography } from "@mui/material"
 
 import { Image } from "../components"
-import BrainImage from "../public/images/brain.svg"
+import BrainImage from "../images/svg/brain.svg"
 
 export interface ScreenTimeDialogProps {
   open: boolean

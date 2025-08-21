@@ -12,13 +12,13 @@ const PERSON = { father: { father: { name: "John" } } }
 test("get a nested property with dot notation", () => {
   const name = getNestedProperty(PERSON, "father.father.name")
 
-  expect(name).equal("John")
+  expect(name).toEqual("John")
 })
 
 test("get a nested property with string array", () => {
   const name = getNestedProperty(PERSON, ["father", "father", "name"])
 
-  expect(name).equal("John")
+  expect(name).toEqual("John")
 })
 
 test("get a nested property that doesn't exist", () => {

@@ -1,5 +1,5 @@
 import { type ChipTypeMap } from "@mui/material"
-import { type ElementType } from "react"
+import { type ElementType, type JSX } from "react"
 import { UK_COUNTIES } from "../../utils/general"
 import AutocompleteField, {
   type AutocompleteFieldProps,
