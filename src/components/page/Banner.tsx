@@ -1,10 +1,10 @@
 import { Stack, Typography } from "@mui/material"
 
+import Image, { type ImageProps } from "../Image"
 import { LinkButton, type LinkButtonProps } from "../router"
 import { primary, secondary, tertiary } from "../../theme/colors"
-import palette from "../../theme/palette"
-import Image, { type ImageProps } from "../Image"
 import Section from "./Section"
+import palette from "../../theme/palette"
 
 export interface BannerProps<
   Button1State extends Record<string, any> = Record<string, any>,
@@ -32,7 +32,7 @@ const Banner = <
   bgcolor = "primary",
 }: BannerProps<Button1State, Button2State>) => {
   // @ts-expect-error guaranteed to be in palette
-  const contrastText = palette[bgcolor].contrastText
+  const contrastText = palette[bgcolor].contrastText as string
 
   return (
     <Section
