@@ -122,11 +122,13 @@ const TablePagination = <
         rowsPerPage={limit}
         onRowsPerPageChange={event => {
           setPagination({ limit: parseInt(event.target.value), page: 0 })
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           if (onRowsPerPageChange) onRowsPerPageChange(event)
         }}
         page={page}
         onPageChange={(event, page) => {
           setPagination(({ limit }) => ({ limit, page }))
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           if (onPageChange) onPageChange(event, page)
         }}
         // ascending order

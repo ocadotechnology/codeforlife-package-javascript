@@ -1,6 +1,6 @@
-import type React from "react"
 import { Divider, type DividerProps, type ThemeOptions } from "@mui/material"
 import { type CommonProps } from "@mui/material/OverridableComponent"
+import { type ReactElement } from "react"
 
 import _components from "../theme/components"
 
@@ -8,9 +8,9 @@ export function insertDividerBetweenElements({
   elements,
   dividerProps,
 }: {
-  elements: React.ReactElement[]
+  elements: ReactElement[]
   dividerProps?: DividerProps
-}): React.ReactElement[] {
+}): ReactElement[] {
   return elements.map((element, index) => (
     <>
       {element}
@@ -38,11 +38,12 @@ export function getStyleOverrides(
     ) {
       const muiClass = (component.styleOverrides as Record<string, any>)[
         muiClassName
-      ]
+      ] as object
 
       switch (typeof muiClass) {
         case "function":
-          return muiClass({ ownerState })
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          return muiClass({ ownerState }) as object
         case "object":
           return muiClass
       }

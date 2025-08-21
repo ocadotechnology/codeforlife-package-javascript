@@ -1,6 +1,6 @@
-import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import type { FieldValidator, FormikHelpers } from "formik"
 import { type Schema, type ValidateOptions, ValidationError } from "yup"
+import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 
 import { excludeKeyPaths, getKeyPaths, getNestedProperty } from "./general"
 
@@ -92,14 +92,14 @@ export function submitForm<
   initialValues: Values,
   options?: SubmitFormOptions<Values, QueryArg, ResultType>,
 ): SubmitFormHandler<Values> {
-  let {
-    exclude = [],
+  const {
     include,
     onlyDirtyValues = false,
     then,
     catch: _catch,
     finally: _finally,
   } = options || {}
+  let { exclude = [] } = options || {}
 
   return (values, helpers) => {
     let arg =
@@ -118,7 +118,7 @@ export function submitForm<
 
     if (include) exclude = exclude.filter(name => !include.includes(name))
 
-    if (exclude.length) arg = excludeKeyPaths(arg, exclude)
+    if (exclude.length) arg = excludeKeyPaths(arg, exclude) as QueryArg
 
     trigger(arg)
       .unwrap()
@@ -171,8 +171,8 @@ export function isDirty<Values extends FormValues>(
   initialValues: Values,
   name: string,
 ): boolean {
-  const value = getNestedProperty(values, name)
-  const initialValue = getNestedProperty(initialValues, name)
+  const value: unknown = getNestedProperty(values, name)
+  const initialValue: unknown = getNestedProperty(initialValues, name)
 
   return value !== initialValue
 }
@@ -183,6 +183,11 @@ export function getCleanNames<Values extends FormValues>(
   names?: string[],
 ): string[] {
   return Object.entries(getDirty(values, initialValues, names))
-    .filter(([_, isDirty]) => !isDirty)
+    .filter(
+      ([
+        _, // eslint-disable-line @typescript-eslint/no-unused-vars
+        isDirty,
+      ]) => !isDirty,
+    )
     .map(([name]) => name)
 }

@@ -19,14 +19,14 @@ export function wrap(
 ): (...args: any[]) => any {
   return (...args) => {
     if (newFn.before !== undefined) {
-      newFn.before(...args)
+      newFn.before(...(args as unknown[]))
     }
     let value
     if (fn !== undefined) {
-      value = fn(...args)
+      value = fn(...(args as unknown[])) as unknown
     }
     if (newFn.after !== undefined) {
-      newFn.after(...args)
+      newFn.after(...(args as unknown[]))
     }
     return value
   }
@@ -34,30 +34,28 @@ export function wrap(
 
 export function snakeCaseToCamelCase(obj: Record<string, any>): void {
   Object.entries(obj).forEach(([snakeKey, value]) => {
-    if (typeof value === "object") snakeCaseToCamelCase(value)
+    if (typeof value === "object") snakeCaseToCamelCase(value as object)
 
     const camelKey = snakeKey.replace(/_+[a-z]/g, _char =>
       _char[_char.length - 1].toUpperCase(),
     )
 
-     
     delete obj[snakeKey]
-    obj[camelKey] = value
+    obj[camelKey] = value as unknown
   })
 }
 
 export function camelCaseToSnakeCase(obj: Record<string, any>): void {
   Object.entries(obj).forEach(([camelKey, value]) => {
-    if (typeof value === "object") camelCaseToSnakeCase(value)
+    if (typeof value === "object") camelCaseToSnakeCase(value as object)
 
     const snakeKey = camelKey.replace(
       /[A-Z]/g,
       char => `_${char.toLowerCase()}`,
     )
 
-     
     delete obj[camelKey]
-    obj[snakeKey] = value
+    obj[snakeKey] = value as unknown
   })
 }
 
@@ -972,7 +970,7 @@ export function withKeyPaths(obj: object, delimiter: string = "."): object {
         const _path = [...path, key]
 
         if (typeof value === "object" && value !== null)
-          value = _withKeyPaths(value, _path)
+          value = _withKeyPaths(value as object, _path)
 
         return [_path.join(delimiter), value]
       }),
@@ -990,7 +988,7 @@ export function getKeyPaths(obj: object, delimiter: string = "."): string[] {
         const keyPath = _path.join(delimiter)
 
         return typeof value === "object" && value !== null
-          ? [keyPath, ..._getKeyPaths(value, _path)]
+          ? [keyPath, ..._getKeyPaths(value as object, _path)]
           : [keyPath]
       })
       .flat()
@@ -1020,7 +1018,7 @@ export function excludeKeyPaths(
           return exclude.includes(_path.join(delimiter)) ? [] : [key, value]
         })
         .filter(entry => entry.length),
-    )
+    ) as object
   }
 
   return exclude.length ? _excludeKeyPaths(obj, []) : obj
