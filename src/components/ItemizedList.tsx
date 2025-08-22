@@ -6,7 +6,9 @@ import {
   type ListProps,
 } from "@mui/material"
 
-type ListItemElement = ReactElement<typeof ListItem | typeof ListItemText>
+type ListItemElement =
+  | ReactElement<typeof ListItem | typeof ListItemText>
+  | string
 
 export interface ItemizedListProps {
   styleType:
