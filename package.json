@@ -40,7 +40,7 @@
     "./components/*": "./src/components/*.tsx",
     "./features": "./src/features/index.ts",
     "./features/*": "./src/features/*.tsx",
-    "./fonts/*": "./src/fonts/*.ttf",
+    "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
     "./hooks": "./src/hooks/index.ts",
     "./hooks/*": "./src/hooks/*.tsx",
     "./images/svg/*": "./src/images/svg/*.svg",
