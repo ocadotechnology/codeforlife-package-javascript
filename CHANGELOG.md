@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.8.0...v2.8.1) (2025-08-22)
+
+
+### Bug Fixes
+
+* font paths ([7379d8e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7379d8eadc05422a921097d12b92a1587b51e22f))
+
 # [2.8.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.7.2...v2.8.0) (2025-08-21)
 
 
