@@ -57,7 +57,10 @@ type BaseFormProps<Values> = Omit<FormikConfig<Values>, "children"> & {
   children: ReactNode | ((props: _FormikProps<Values>) => ReactNode)
   scrollIntoViewOptions?: ScrollIntoViewOptions
   nonFieldErrorsProps?: Omit<NonFieldErrorsProps, "children">
-  fieldRefs?: Array<{ name: string; inputRef: RefObject<HTMLInputElement> }>
+  fieldRefs?: Array<{
+    name: string
+    inputRef: RefObject<HTMLInputElement | null>
+  }>
 }
 
 const BaseForm = <Values extends FormValues>({
