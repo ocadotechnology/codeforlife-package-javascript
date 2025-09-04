@@ -4,6 +4,16 @@
   "private": false,
   "version": "2.8.3",
   "type": "module",
+  "types": "dist/codeforlife.d.ts",
+  "module": "dist/codeforlife.es.js",
+  "main": "dist/codeforlife.cjs.js",
+  "exports": {
+    ".": {
+      "types": "./dist/codeforlife.d.ts",
+      "import": "./dist/codeforlife.es.js",
+      "require": "./dist/codeforlife.cjs.js"
+    }
+  },
   "scripts": {
     "scripts": "../scripts/frontend"
   },
@@ -18,47 +28,12 @@
   },
   "homepage": "https://github.com/ocadotechnology/codeforlife-package-javascript#readme",
   "//": [
-    "Export rules:",
-    "🚫 Don't export anything not contained in the src directory.",
-    "",
     "Dependency rules:",
     "✅ Do add `dependencies` that are required to use this package.",
     "✅ Do add `dependencies` that are shared across all services.",
     "🚫 Don't add `devDependencies` that are inherited from the CFL workspace.",
     "✅ Do add `devDependencies` that are unique to this package."
   ],
-  "exports": {
-    ".": "./src/index.ts",
-    "./api": "./src/api/index.ts",
-    "./api/endpoints": "./src/api/endpoints/index.ts",
-    "./api/*": "./src/api/*.ts",
-    "./components": "./src/components/index.ts",
-    "./components/form": "./src/components/form/index.tsx",
-    "./components/page": "./src/components/page/index.ts",
-    "./components/router": "./src/components/router/index.tsx",
-    "./components/table": "./src/components/table/index.tsx",
-    "./components/*": "./src/components/*.tsx",
-    "./features": "./src/features/index.ts",
-    "./features/*": "./src/features/*.tsx",
-    "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
-    "./hooks": "./src/hooks/index.ts",
-    "./hooks/*": "./src/hooks/*.tsx",
-    "./images/svg/*": "./src/images/svg/*.svg",
-    "./middlewares": "./src/middlewares/index.ts",
-    "./middlewares/*": "./src/middlewares/*.ts",
-    "./settings": "./src/settings/index.ts",
-    "./settings/*": "./src/settings/*.ts",
-    "./slices": "./src/slices/index.ts",
-    "./slices/*": "./src/slices/*.ts",
-    "./theme": "./src/theme/index.ts",
-    "./theme/components": "./src/theme/components/index.ts",
-    "./theme/*": "./src/theme/*.ts",
-    "./utils/api": "./src/utils/api.tsx",
-    "./utils/test": "./src/utils/test.tsx",
-    "./utils/theme": "./src/utils/theme.tsx",
-    "./utils/*": "./src/utils/*.ts",
-    "./server": "./src/server.js"
-  },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -81,7 +56,8 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@codeforlife/workspace": "link:../configs/frontend"
+    "@codeforlife/workspace": "link:../configs/frontend",
+    "vite-plugin-dts": "4.5.4"
   },
   "release": {
     "branches": [

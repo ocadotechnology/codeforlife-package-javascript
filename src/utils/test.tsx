@@ -1,16 +1,36 @@
 import type { Middleware, Reducer, Store } from "@reduxjs/toolkit"
 import type { PropsWithChildren, ReactElement } from "react"
+import { type Queries, type queries } from "@testing-library/dom"
+import {
+  type RenderOptions,
+  type RenderResult,
+  render,
+} from "@testing-library/react"
+import {
+  type Container as RendererableContainer,
+  type hydrateRoot,
+} from "react-dom/client"
+import userEvent, { type UserEvent } from "@testing-library/user-event"
 import { Provider } from "react-redux"
-import type { RenderOptions } from "@testing-library/react"
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
 
 import { makeStore } from "./store"
 
-export function renderWithUser(
+type HydrateableContainer = Parameters<typeof hydrateRoot>[0]
+
+type RenderWithUserResult<
+  Q extends Queries = typeof queries,
+  Container extends RendererableContainer | HydrateableContainer = HTMLElement,
+  BaseElement extends RendererableContainer | HydrateableContainer = Container,
+> = RenderResult<Q, Container, BaseElement> & { user: UserEvent }
+
+export function renderWithUser<
+  Q extends Queries = typeof queries,
+  Container extends RendererableContainer | HydrateableContainer = HTMLElement,
+  BaseElement extends RendererableContainer | HydrateableContainer = Container,
+>(
   ui: ReactElement,
-  renderOptions: RenderOptions = {},
-) {
+  renderOptions: RenderOptions<Q, Container, BaseElement> = {},
+): RenderWithUserResult<Q, Container, BaseElement> {
   return {
     user: userEvent.setup(),
     ...render(ui, renderOptions),
@@ -32,10 +52,15 @@ export function renderWithUser(
  *  API for simulating user interactions in tests, and all of React Testing
  *  Library's query functions for testing the component.
  */
-export function renderWithStore<R extends Reducer>(
+export function renderWithStore<
+  R extends Reducer,
+  Q extends Queries = typeof queries,
+  Container extends RendererableContainer | HydrateableContainer = HTMLElement,
+  BaseElement extends RendererableContainer | HydrateableContainer = Container,
+>(
   ui: ReactElement,
   reducer: R,
-  extendedRenderOptions: RenderOptions & {
+  extendedRenderOptions: RenderOptions<Q, Container, BaseElement> & {
     /**
      * The middlewares used to create the Redux store.
      */
@@ -60,7 +85,9 @@ export function renderWithStore<R extends Reducer>(
      */
     store?: Store
   } = {},
-) {
+): RenderWithUserResult<Q, Container, BaseElement> & {
+  store: ReturnType<typeof makeStore<R>>
+} {
   const {
     middlewares,
     preloadedState,
