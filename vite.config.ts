@@ -55,6 +55,7 @@ export default defineConfig({
         "@mui/material/styles/overrides",
         "@mui/material/styles/createTypography",
         "@mui/material/styles/ThemeProvider",
+        "@reduxjs/toolkit/query/react",
       ],
     },
     // Vite will output both your built .js file and a corresponding .js.map
