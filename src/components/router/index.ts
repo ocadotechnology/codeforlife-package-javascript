@@ -6,4 +6,4 @@ export {
 } from "./LinkIconButton"
 export { default as LinkListItem, type LinkListItemProps } from "./LinkListItem"
 export { default as LinkTab, type LinkTabProps } from "./LinkTab"
-export { default as Navigator, type NavigatorProps } from "./Navigator"
+export { default as Navigate, type NavigateProps } from "./Navigate"
