@@ -5,7 +5,23 @@ import react from "@vitejs/plugin-react"
 
 import packageJson from "./package.json"
 
-const dependencies = Object.keys(packageJson.dependencies || {})
+function generateEntries(...indexDirs: string[]) {
+  return Object.fromEntries(
+    indexDirs.reduce(
+      (entries, indexDir) => {
+        const indexPath = `${indexDir}/index`
+
+        entries.push([
+          indexPath,
+          path.resolve(__dirname, `src/${indexPath}.ts`),
+        ])
+
+        return entries
+      },
+      [["index", path.resolve(__dirname, "src/index.ts")]],
+    ),
+  )
+}
 
 export default defineConfig({
   plugins: [
@@ -27,9 +43,9 @@ export default defineConfig({
   build: {
     // Informs Vite we are building a library.
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: generateEntries("components"),
       name: packageJson.name,
-      fileName: format => `${packageJson.name}.${format}.js`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
       formats: [
         // ES Modules are the official, standardized module system for
         // JavaScript. They use import and export statements, which are a part
@@ -50,7 +66,7 @@ export default defineConfig({
       // - Efficient caching: The user's browser may already have these common
       //  libraries cached, so not bundling them saves download time.
       external: [
-        ...dependencies,
+        ...Object.keys(packageJson.dependencies || {}),
         "@mui/material/OverridableComponent",
         "@mui/material/styles/overrides",
         "@mui/material/styles/createTypography",

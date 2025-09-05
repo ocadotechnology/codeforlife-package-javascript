@@ -1,5 +1,4 @@
 export * from "./api"
-export * from "./components"
 export * from "./features"
 export * from "./hooks"
 export * from "./middlewares"
