@@ -88,14 +88,7 @@ export default defineConfig({
       //  include the entire code for MUI, React, etc.
       // - Efficient caching: The user's browser may already have these common
       //  libraries cached, so not bundling them saves download time.
-      external: [
-        ...Object.keys(packageJson.dependencies || {}),
-        "@mui/material/OverridableComponent",
-        "@mui/material/styles/overrides",
-        "@mui/material/styles/createTypography",
-        "@mui/material/styles/ThemeProvider",
-        "@reduxjs/toolkit/query/react",
-      ],
+      external: Object.keys(packageJson.dependencies || {}),
     },
     // Vite will output both your built .js file and a corresponding .js.map
     // file. When you install this package in your application and open your

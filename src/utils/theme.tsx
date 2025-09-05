@@ -1,5 +1,5 @@
 import { Divider, type DividerProps, type ThemeOptions } from "@mui/material"
-import { type CommonProps } from "@mui/material/OverridableComponent"
+import type { CommonProps } from "@mui/material/OverridableComponent"
 import { type ReactElement } from "react"
 
 import _components from "../theme/components"

@@ -5,8 +5,8 @@ import {
   type Theme,
   type ThemeOptions,
 } from "@mui/material"
-import { type CommonProps } from "@mui/material/OverridableComponent"
-import { type OverridesStyleRules } from "@mui/material/styles/overrides"
+import type { CommonProps } from "@mui/material/OverridableComponent"
+import type { OverridesStyleRules } from "@mui/material/styles/overrides"
 import { type TypographyOptions } from "@mui/material/styles/createTypography"
 
 import {
