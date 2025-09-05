@@ -43,7 +43,15 @@ export default defineConfig({
   build: {
     // Informs Vite we are building a library.
     lib: {
-      entry: generateEntries("components"),
+      entry: generateEntries(
+        "api",
+        "api/endpoints",
+        "components",
+        "components/form",
+        "components/page",
+        "components/router",
+        "components/table",
+      ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,
       formats: [

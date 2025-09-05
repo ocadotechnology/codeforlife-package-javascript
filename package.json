@@ -13,10 +13,40 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "import": "./dist/api/index.es.js",
+      "require": "./dist/api/index.cjs.js"
+    },
+    "./api/endpoints": {
+      "types": "./dist/api/endpoints/index.d.ts",
+      "import": "./dist/api/endpoints/index.es.js",
+      "require": "./dist/api/endpoints/index.cjs.js"
+    },
     "./components": {
       "types": "./dist/components/index.d.ts",
       "import": "./dist/components/index.es.js",
       "require": "./dist/components/index.cjs.js"
+    },
+    "./components/form": {
+      "types": "./dist/components/form/index.d.ts",
+      "import": "./dist/components/form/index.es.js",
+      "require": "./dist/components/form/index.cjs.js"
+    },
+    "./components/page": {
+      "types": "./dist/components/page/index.d.ts",
+      "import": "./dist/components/page/index.es.js",
+      "require": "./dist/components/page/index.cjs.js"
+    },
+    "./components/router": {
+      "types": "./dist/components/router/index.d.ts",
+      "import": "./dist/components/router/index.es.js",
+      "require": "./dist/components/router/index.cjs.js"
+    },
+    "./components/table": {
+      "types": "./dist/components/table/index.d.ts",
+      "import": "./dist/components/table/index.es.js",
+      "require": "./dist/components/table/index.cjs.js"
     }
   },
   "files": [
