@@ -57,6 +57,11 @@
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.es.js",
       "require": "./dist/hooks/index.cjs.js"
+    },
+    "./middlewares": {
+      "types": "./dist/middlewares/index.d.ts",
+      "import": "./dist/middlewares/index.es.js",
+      "require": "./dist/middlewares/index.cjs.js"
     }
   },
   "files": [

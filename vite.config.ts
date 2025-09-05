@@ -25,8 +25,6 @@ function generateEntries(...indexDirs: string[]) {
 
 // "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
 // "./images/svg/*": "./src/images/svg/*.svg",
-// "./middlewares": "./src/middlewares/index.ts",
-// "./middlewares/*": "./src/middlewares/*.ts",
 // "./settings": "./src/settings/index.ts",
 // "./settings/*": "./src/settings/*.ts",
 // "./slices": "./src/slices/index.ts",
@@ -70,6 +68,7 @@ export default defineConfig({
         "components/table",
         "features",
         "hooks",
+        "middlewares",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,

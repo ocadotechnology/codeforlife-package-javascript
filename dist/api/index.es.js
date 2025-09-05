@@ -1,9 +1,10 @@
 import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
-import { c as u, i as d } from "../urls-DGMVuEdF.js";
-import { u as x } from "../urls-DGMVuEdF.js";
-import { b as l } from "../session-CepdkqF9.js";
-import { g as s } from "../auth-CA9GLP7t.js";
-import { s as v } from "../schemas-C9Qg9gE9.js";
+import { b as u } from "../general-DsmN0W6Q.js";
+import { b as d } from "../session-Crq887C4.js";
+import { g as s } from "../auth-DpHNJqSB.js";
+import { i as l } from "../urls-Bl1eUttT.js";
+import { u as C } from "../urls-Bl1eUttT.js";
+import { s as G } from "../schemas-Dhvt1lNE.js";
 const g = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
@@ -21,7 +22,7 @@ function A({
     credentials: "include",
     prepareHeaders: (t, o) => {
       const { type: r, arg: e } = o, p = typeof e == "string" ? "GET" : e.method || "GET";
-      if (r === "mutation" || !d(p)) {
+      if (r === "mutation" || !l(p)) {
         const a = s();
         a && t.set("x-csrftoken", a);
       }
@@ -45,14 +46,14 @@ function A({
   });
   return n.injectEndpoints({
     endpoints: (t) => ({
-      logout: l(n, t)
+      logout: d(n, t)
     })
   });
 }
 export {
   A as createApi,
-  v as schemas,
+  G as schemas,
   g as tagTypes,
-  x as urls
+  C as urls
 };
 //# sourceMappingURL=index.es.js.map
