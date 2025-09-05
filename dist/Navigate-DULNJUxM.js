@@ -22,4 +22,4 @@ export {
   N as b,
   B as c
 };
-//# sourceMappingURL=Navigator-DULNJUxM.js.map
+//# sourceMappingURL=Navigate-DULNJUxM.js.map

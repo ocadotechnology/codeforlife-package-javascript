@@ -1,6 +1,6 @@
 import { i as Rt } from "../index-yfaQeMsK.js";
 import { i as Bt } from "../index-DnmwtSxe.js";
-import { L as bt, a as Ct, b as wt, c as St, N as Et } from "../Navigator-DULNJUxM.js";
+import { L as bt, a as Ct, b as wt, c as St, N as Et } from "../Navigate-DULNJUxM.js";
 import { L as Mt } from "../LinkButton-Ccgp21bV.js";
 import { i as _t } from "../index-2W--_sNE.js";
 import { j as o } from "../jsx-runtime-Dpn_P65e.js";
@@ -291,7 +291,7 @@ export {
   Ct as LinkIconButton,
   wt as LinkListItem,
   St as LinkTab,
-  Et as Navigator,
+  Et as Navigate,
   ht as OrderedGrid,
   gt as ScrollIntoViewLink,
   Pt as SyncError,
