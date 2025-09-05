@@ -82,6 +82,56 @@
       "types": "./dist/theme/components/index.d.ts",
       "import": "./dist/theme/components/index.es.js",
       "require": "./dist/theme/components/index.cjs.js"
+    },
+    "./utils/api": {
+      "types": "./dist/utils/api/index.d.ts",
+      "import": "./dist/utils/api/index.es.js",
+      "require": "./dist/utils/api/index.cjs.js"
+    },
+    "./utils/auth": {
+      "types": "./dist/utils/auth/index.d.ts",
+      "import": "./dist/utils/auth/index.es.js",
+      "require": "./dist/utils/auth/index.cjs.js"
+    },
+    "./utils/form": {
+      "types": "./dist/utils/form/index.d.ts",
+      "import": "./dist/utils/form/index.es.js",
+      "require": "./dist/utils/form/index.cjs.js"
+    },
+    "./utils/general": {
+      "types": "./dist/utils/general/index.d.ts",
+      "import": "./dist/utils/general/index.es.js",
+      "require": "./dist/utils/general/index.cjs.js"
+    },
+    "./utils/router": {
+      "types": "./dist/utils/router/index.d.ts",
+      "import": "./dist/utils/router/index.es.js",
+      "require": "./dist/utils/router/index.cjs.js"
+    },
+    "./utils/schema": {
+      "types": "./dist/utils/schema/index.d.ts",
+      "import": "./dist/utils/schema/index.es.js",
+      "require": "./dist/utils/schema/index.cjs.js"
+    },
+    "./utils/store": {
+      "types": "./dist/utils/store/index.d.ts",
+      "import": "./dist/utils/store/index.es.js",
+      "require": "./dist/utils/store/index.cjs.js"
+    },
+    "./utils/test": {
+      "types": "./dist/utils/test/index.d.ts",
+      "import": "./dist/utils/test/index.es.js",
+      "require": "./dist/utils/test/index.cjs.js"
+    },
+    "./utils/theme": {
+      "types": "./dist/utils/theme/index.d.ts",
+      "import": "./dist/utils/theme/index.es.js",
+      "require": "./dist/utils/theme/index.cjs.js"
+    },
+    "./utils/window": {
+      "types": "./dist/utils/window/index.d.ts",
+      "import": "./dist/utils/window/index.es.js",
+      "require": "./dist/utils/window/index.cjs.js"
     }
   },
   "files": [

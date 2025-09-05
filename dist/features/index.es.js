@@ -1,4 +1,4 @@
-import { j as c } from "../jsx-runtime-XvoU0p7t.js";
+import { j as c } from "../jsx-runtime-Dpn_P65e.js";
 import { Dialog as t, Typography as l, Button as a } from "@mui/material";
 import "react";
 import "@mui/icons-material";
@@ -11,15 +11,15 @@ import "@reduxjs/toolkit/query/react";
 import "../settings/index.es.js";
 import "../session-oI-Ht2C8.js";
 import "js-cookie";
-import "../schemas-BoS4A2yH.js";
-import "../urls-dtY2-PoS.js";
+import "../schemas-DlOtf2vf.js";
+import "../urls-DtHr1d3H.js";
 import "react-router-dom";
 import "../palette-C_L0akN_.js";
-import "../auth-mnGZUVoq.js";
+import "../auth-CfZ45JXA.js";
 import "react-redux";
 import "@mui/material/styles/ThemeProvider";
-import { C as i } from "../Countdown-Boginf1M.js";
-import { I as r } from "../Image-CnJ1LCCQ.js";
+import { C as i } from "../Countdown-DH0F1XVY.js";
+import { I as r } from "../Image-D5jC9UoX.js";
 const F = ({ open: s, onClose: e }) => /* @__PURE__ */ c.jsxs(t, { open: s, onClose: e, children: [
   /* @__PURE__ */ c.jsx(l, { variant: "h5", textAlign: "center", children: "Where did you go? 👀" }),
   /* @__PURE__ */ c.jsx(l, { textAlign: "center", children: "We noticed that you have been inactive for a while. Are you still there? For your online safety we will log you out in:" }),

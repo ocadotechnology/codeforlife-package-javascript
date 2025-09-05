@@ -1,11 +1,11 @@
 import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
 import { SERVICE_API_URL as u } from "../settings/index.es.js";
 import { b as d } from "../session-COyN01K0.js";
-import { g as s } from "../auth-BkL9GD7F.js";
-import { i as l } from "../urls-dtY2-PoS.js";
-import { u as C } from "../urls-dtY2-PoS.js";
-import { s as G } from "../schemas-BoS4A2yH.js";
-const g = [
+import { getCsrfCookie as s } from "../utils/auth.es.js";
+import { i as l } from "../api-Cbyt3rw0.js";
+import { s as C } from "../schemas-DlOtf2vf.js";
+import { u as G } from "../urls-DtHr1d3H.js";
+const y = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
   // NOTE: Don't use the "Teacher" and "Student" tags. Use "User" instead.
@@ -41,7 +41,7 @@ function b({
       }
       return await i(t, o, r);
     },
-    tagTypes: [...g, ...c],
+    tagTypes: [...y, ...c],
     endpoints: () => ({})
   });
   return n.injectEndpoints({
@@ -52,8 +52,8 @@ function b({
 }
 export {
   b as createApi,
-  G as schemas,
-  g as tagTypes,
-  C as urls
+  C as schemas,
+  y as tagTypes,
+  G as urls
 };
 //# sourceMappingURL=index.es.js.map

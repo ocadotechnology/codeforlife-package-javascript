@@ -1,8 +1,8 @@
-import { isAction as t } from "@reduxjs/toolkit";
-import { l as e } from "../auth-BkL9GD7F.js";
+import { isAction as e } from "@reduxjs/toolkit";
+import { logout as s } from "../utils/auth.es.js";
 const m = (i) => (r) => (o) => {
-  const s = r(o);
-  return t(o) && o.type === "session/logout" && e(), s;
+  const t = r(o);
+  return e(o) && o.type === "session/logout" && s(), t;
 };
 export {
   m as logoutMiddleware

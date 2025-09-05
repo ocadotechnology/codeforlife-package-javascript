@@ -8,13 +8,11 @@ import packageJson from "./package.json"
 function generateEntries(...indexDirs: string[]) {
   return Object.fromEntries(
     indexDirs.reduce(
-      (entries, indexDir) => {
-        const indexPath = `${indexDir}/index`
+      (entries, entry) => {
+        const match = entry.match(/^(.+)\.tsx?$/)
+        if (!match) throw Error("Entry needs to end with '.ts' or '.tsx'.")
 
-        entries.push([
-          indexPath,
-          path.resolve(__dirname, `src/${indexPath}.ts`),
-        ])
+        entries.push([match[1], path.resolve(__dirname, `src/${entry}`)])
 
         return entries
       },
@@ -25,10 +23,6 @@ function generateEntries(...indexDirs: string[]) {
 
 // "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
 // "./images/svg/*": "./src/images/svg/*.svg",
-// "./utils/api": "./src/utils/api.tsx",
-// "./utils/test": "./src/utils/test.tsx",
-// "./utils/theme": "./src/utils/theme.tsx",
-// "./utils/*": "./src/utils/*.ts",
 // "./server": "./src/server.js"
 
 export default defineConfig({
@@ -52,20 +46,30 @@ export default defineConfig({
     // Informs Vite we are building a library.
     lib: {
       entry: generateEntries(
-        "api",
-        "api/endpoints",
-        "components",
-        "components/form",
-        "components/page",
-        "components/router",
-        "components/table",
-        "features",
-        "hooks",
-        "middlewares",
-        "settings",
-        "slices",
-        "theme",
-        "theme/components",
+        "api/index.ts",
+        "api/endpoints/index.ts",
+        "components/index.ts",
+        "components/form/index.ts",
+        "components/page/index.ts",
+        "components/router/index.ts",
+        "components/table/index.ts",
+        "features/index.ts",
+        "hooks/index.ts",
+        "middlewares/index.ts",
+        "settings/index.ts",
+        "slices/index.ts",
+        "theme/index.ts",
+        "theme/components/index.ts",
+        "utils/api.tsx",
+        "utils/auth.ts",
+        "utils/form.ts",
+        "utils/general.ts",
+        "utils/router.ts",
+        "utils/schema.ts",
+        "utils/store.ts",
+        "utils/test.tsx",
+        "utils/theme.tsx",
+        "utils/window.ts",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,
