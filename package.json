@@ -62,6 +62,11 @@
       "types": "./dist/middlewares/index.d.ts",
       "import": "./dist/middlewares/index.es.js",
       "require": "./dist/middlewares/index.cjs.js"
+    },
+    "./settings": {
+      "types": "./dist/settings/index.d.ts",
+      "import": "./dist/settings/index.es.js",
+      "require": "./dist/settings/index.cjs.js"
     }
   },
   "files": [

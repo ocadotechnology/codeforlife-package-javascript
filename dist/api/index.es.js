@@ -1,10 +1,10 @@
 import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
-import { b as u } from "../general-DsmN0W6Q.js";
-import { b as d } from "../session-Crq887C4.js";
-import { g as s } from "../auth-DpHNJqSB.js";
-import { i as l } from "../urls-Bl1eUttT.js";
-import { u as C } from "../urls-Bl1eUttT.js";
-import { s as G } from "../schemas-Dhvt1lNE.js";
+import { SERVICE_API_URL as u } from "../settings/index.es.js";
+import { b as d } from "../session-Jnss79-e.js";
+import { g as s } from "../auth-DQRI3Kbu.js";
+import { i as l } from "../urls-HoIcuORM.js";
+import { u as C } from "../urls-HoIcuORM.js";
+import { s as G } from "../schemas-DKgmBzcu.js";
 const g = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
@@ -14,7 +14,7 @@ const g = [
   "Class",
   "AuthFactor"
 ];
-function A({
+function b({
   tagTypes: c = []
 } = {}) {
   const i = f({
@@ -51,7 +51,7 @@ function A({
   });
 }
 export {
-  A as createApi,
+  b as createApi,
   G as schemas,
   g as tagTypes,
   C as urls

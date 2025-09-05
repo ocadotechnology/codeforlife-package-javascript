@@ -69,6 +69,7 @@ export default defineConfig({
         "features",
         "hooks",
         "middlewares",
+        "settings",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,

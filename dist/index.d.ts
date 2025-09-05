@@ -1,6 +1,36 @@
-import { Middleware } from '@reduxjs/toolkit';
+export declare const BASE_URL: string;
 
-export declare const logoutMiddleware: Middleware;
+export declare const CSRF_COOKIE_NAME: string;
+
+declare const _default: Record<string, string>;
+export default _default;
+
+export declare const DEV: boolean;
+
+/**
+ * This file contains all of vite's environment variables.
+ *
+ * https://vite.dev/guide/env-and-mode#env-variables
+ */
+export declare const MODE: string;
+
+export declare const PROD: boolean;
+
+export declare const SERVICE_API_URL: string;
+
+/**
+ * This file contains all of our custom settings we define for our own purposes.
+ *
+ * This file is based on:
+ * https://github.com/ocadotechnology/codeforlife-package-python/blob/main/codeforlife/settings/custom.py
+ */
+export declare const SERVICE_NAME: string;
+
+export declare const SESSION_COOKIE_NAME: string;
+
+export declare const SESSION_METADATA_COOKIE_NAME: string;
+
+export declare const SSR: boolean;
 
 export { }
 

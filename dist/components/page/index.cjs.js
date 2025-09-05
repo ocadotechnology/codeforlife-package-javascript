@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("../../index-D5JW6qWR.cjs");exports.Banner=e.Banner;exports.Notification=e.Notification;exports.Page=e.Page;exports.Section=e.Section;exports.TabBar=e.TabBar;
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("../../index-b-6PlAm7.cjs");exports.Banner=e.Banner;exports.Notification=e.Notification;exports.Page=e.Page;exports.Section=e.Section;exports.TabBar=e.TabBar;
 //# sourceMappingURL=index.cjs.js.map
