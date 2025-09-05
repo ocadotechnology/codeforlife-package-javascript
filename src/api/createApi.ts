@@ -1,12 +1,20 @@
 import {
+  type Api,
+  type BaseQueryApi,
   type FetchArgs,
+  type FetchBaseQueryError,
+  type FetchBaseQueryMeta,
+  type MutationDefinition,
+  type QueryReturnValue,
   createApi as _createApi,
+  type coreModuleName,
   fetchBaseQuery,
+  type reactHooksModuleName,
 } from "@reduxjs/toolkit/query/react"
 
+import defaultTagTypes, { type TagTypes as DefaultTagTypes } from "./tagTypes"
 import { SERVICE_API_URL } from "../settings"
 import { buildLogoutEndpoint } from "./endpoints/session"
-import defaultTagTypes from "./tagTypes"
 import { getCsrfCookie } from "../utils/auth"
 import { isSafeHttpMethod } from "../utils/api"
 
@@ -34,7 +42,19 @@ export default function createApi<TagTypes extends string = never>({
   tagTypes = [],
 }: {
   tagTypes?: readonly TagTypes[]
-} = {}) {
+} = {}): Api<
+  (
+    args: string | FetchArgs,
+    api: BaseQueryApi,
+    extraOptions: {},
+  ) => Promise<
+    QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>
+  >,
+  { logout: MutationDefinition<null, any, any, null, any, any> },
+  "api",
+  TagTypes | DefaultTagTypes,
+  typeof coreModuleName | typeof reactHooksModuleName
+> {
   const fetch = fetchBaseQuery({
     baseUrl: `${SERVICE_API_URL}/`,
     credentials: "include",
