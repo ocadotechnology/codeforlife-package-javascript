@@ -68,6 +68,8 @@ export default defineConfig({
     sourcemap: true,
     // Empty the output directory before writing the build to it.
     emptyOutDir: true,
+    // Ensure output directory is "dist".
+    outDir: "dist",
   },
   test: {
     globals: true,
