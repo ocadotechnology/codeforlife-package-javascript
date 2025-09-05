@@ -23,6 +23,25 @@ function generateEntries(...indexDirs: string[]) {
   )
 }
 
+// "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
+// "./hooks": "./src/hooks/index.ts",
+// "./hooks/*": "./src/hooks/*.tsx",
+// "./images/svg/*": "./src/images/svg/*.svg",
+// "./middlewares": "./src/middlewares/index.ts",
+// "./middlewares/*": "./src/middlewares/*.ts",
+// "./settings": "./src/settings/index.ts",
+// "./settings/*": "./src/settings/*.ts",
+// "./slices": "./src/slices/index.ts",
+// "./slices/*": "./src/slices/*.ts",
+// "./theme": "./src/theme/index.ts",
+// "./theme/components": "./src/theme/components/index.ts",
+// "./theme/*": "./src/theme/*.ts",
+// "./utils/api": "./src/utils/api.tsx",
+// "./utils/test": "./src/utils/test.tsx",
+// "./utils/theme": "./src/utils/theme.tsx",
+// "./utils/*": "./src/utils/*.ts",
+// "./server": "./src/server.js"
+
 export default defineConfig({
   plugins: [
     react(),
@@ -51,6 +70,7 @@ export default defineConfig({
         "components/page",
         "components/router",
         "components/table",
+        "features",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,

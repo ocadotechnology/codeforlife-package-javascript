@@ -47,6 +47,11 @@
       "types": "./dist/components/table/index.d.ts",
       "import": "./dist/components/table/index.es.js",
       "require": "./dist/components/table/index.cjs.js"
+    },
+    "./features": {
+      "types": "./dist/features/index.d.ts",
+      "import": "./dist/features/index.es.js",
+      "require": "./dist/features/index.cjs.js"
     }
   },
   "files": [
