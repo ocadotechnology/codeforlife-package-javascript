@@ -1,32 +1,7 @@
-import { CaseReducer } from '@reduxjs/toolkit';
-import { CreateSliceOptions } from '@reduxjs/toolkit';
-import { ReducerType } from '@reduxjs/toolkit';
-import { Slice } from '@reduxjs/toolkit';
-import { SliceCaseReducers } from '@reduxjs/toolkit';
-import { SliceSelectors } from '@reduxjs/toolkit';
+import { ThemeOptions } from '@mui/material';
 
-export declare const createSlice: <State, CaseReducers extends SliceCaseReducers<State>, Name extends string, Selectors extends SliceSelectors<State>, ReducerPath extends string = Name>(options: CreateSliceOptions<State, CaseReducers, Name, ReducerPath, Selectors>) => Slice<State, CaseReducers, Name, ReducerPath, Selectors>;
-
-export declare const sessionSlice: Slice<SessionState, {
-    login: CaseReducer<SessionState, {
-        payload: void;
-        type: string;
-    }> & {
-        _reducerDefinitionType: ReducerType.reducer;
-    };
-    logout: CaseReducer<SessionState, {
-        payload: void;
-        type: string;
-    }> & {
-        _reducerDefinitionType: ReducerType.reducer;
-    };
-}, "session", "session", {
-    selectIsLoggedIn: (session: SessionState) => boolean;
-}>;
-
-export declare interface SessionState {
-    isLoggedIn: boolean;
-}
+declare const components: ThemeOptions["components"];
+export default components;
 
 export { }
 

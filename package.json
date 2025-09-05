@@ -72,6 +72,16 @@
       "types": "./dist/slices/index.d.ts",
       "import": "./dist/slices/index.es.js",
       "require": "./dist/slices/index.cjs.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.es.js",
+      "require": "./dist/theme/index.cjs.js"
+    },
+    "./theme/components": {
+      "types": "./dist/theme/components/index.d.ts",
+      "import": "./dist/theme/components/index.es.js",
+      "require": "./dist/theme/components/index.cjs.js"
     }
   },
   "files": [
