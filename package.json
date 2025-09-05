@@ -52,6 +52,11 @@
       "types": "./dist/features/index.d.ts",
       "import": "./dist/features/index.es.js",
       "require": "./dist/features/index.cjs.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.es.js",
+      "require": "./dist/hooks/index.cjs.js"
     }
   },
   "files": [

@@ -24,8 +24,6 @@ function generateEntries(...indexDirs: string[]) {
 }
 
 // "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
-// "./hooks": "./src/hooks/index.ts",
-// "./hooks/*": "./src/hooks/*.tsx",
 // "./images/svg/*": "./src/images/svg/*.svg",
 // "./middlewares": "./src/middlewares/index.ts",
 // "./middlewares/*": "./src/middlewares/*.ts",
@@ -71,6 +69,7 @@ export default defineConfig({
         "components/router",
         "components/table",
         "features",
+        "hooks",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,

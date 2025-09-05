@@ -1,9 +1,9 @@
 import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
-import { c as u, i as d } from "../urls-Cs55cfVl.js";
-import { u as x } from "../urls-Cs55cfVl.js";
-import { b as l } from "../session-Bsl02xbZ.js";
-import { g as s } from "../auth-CjL6f2mR.js";
-import { s as v } from "../schemas-BCtHWQhT.js";
+import { c as u, i as d } from "../urls-DGMVuEdF.js";
+import { u as x } from "../urls-DGMVuEdF.js";
+import { b as l } from "../session-CepdkqF9.js";
+import { g as s } from "../auth-CA9GLP7t.js";
+import { s as v } from "../schemas-C9Qg9gE9.js";
 const g = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
