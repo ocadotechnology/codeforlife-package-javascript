@@ -1,28 +1,27 @@
 import { responsiveFontSizes as x, createTheme as u, buttonClasses as O, ThemeProvider as C, Box as T } from "@mui/material";
-import { g as S, i as j, t as B, s as F, c as I } from "../index-7Xo4626V.js";
-import { p as m, s as H, t as $, a as L } from "../palette-C_L0akN_.js";
+import { g as S, i as j, t as B, s as F, c as I } from "../index-CNtOlJ49.js";
+import { p as d, s as H, t as $, a as L } from "../palette-C_L0akN_.js";
 import { j as s } from "../jsx-runtime-Dpn_P65e.js";
 import { Circle as w, Hexagon as z } from "@mui/icons-material";
-import "@mui/material/OverridableComponent";
-const Y = ({
+const R = ({
   options: r = y,
-  withShapes: p = !1,
-  userType: d,
+  withShapes: m = !1,
+  userType: p,
   bgcolor: o,
   children: h,
   sx: v,
   ...M
 }) => {
   let i, a, t;
-  switch (d) {
+  switch (p) {
     case "teacher":
-      o = o ?? L[400], i = "tertiary", a = "secondary", t = m.primary.contrastText;
+      o = o ?? L[400], i = "tertiary", a = "secondary", t = d.primary.contrastText;
       break;
     case "student":
-      o = o ?? $[500], i = "secondary", a = "primary", t = m.tertiary.contrastText;
+      o = o ?? $[500], i = "secondary", a = "primary", t = d.tertiary.contrastText;
       break;
     case "independent":
-      o = o ?? H[500], i = "primary", a = "tertiary", t = m.secondary.contrastText;
+      o = o ?? H[500], i = "primary", a = "tertiary", t = d.secondary.contrastText;
       break;
   }
   const l = {
@@ -97,7 +96,7 @@ const Y = ({
             contained: ({ ownerState: e }) => n(
               e,
               {
-                ...d === "independent" && {
+                ...p === "independent" && {
                   backgroundColor: "white",
                   "&:hover": {
                     backgroundColor: "#f6f5f5",
@@ -168,7 +167,7 @@ const Y = ({
     {
       sx: {
         ...v,
-        ...p && {
+        ...m && {
           paddingY: { xs: 2, sm: 3, md: 5 },
           paddingX: { xs: 2, sm: 5, md: 10 },
           marginX: { md: "90px" }
@@ -179,7 +178,7 @@ const Y = ({
       },
       ...M,
       children: [
-        p && /* @__PURE__ */ s.jsxs(s.Fragment, { children: [
+        m && /* @__PURE__ */ s.jsxs(s.Fragment, { children: [
           /* @__PURE__ */ s.jsx(
             w,
             {
@@ -210,14 +209,14 @@ const Y = ({
     }
   ) });
 }, y = {
-  palette: m,
+  palette: d,
   components: I,
   spacing: F,
   typography: B
-}, q = x(u(y));
+}, Y = x(u(y));
 export {
-  Y as ThemedBox,
-  q as default,
+  R as ThemedBox,
+  Y as default,
   y as themeOptions
 };
 //# sourceMappingURL=index.es.js.map

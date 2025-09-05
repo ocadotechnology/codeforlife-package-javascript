@@ -1,13 +1,12 @@
-import "@reduxjs/toolkit/query/react";
 import { t, b as s } from "../../api-Cbyt3rw0.js";
 import { u as o } from "../../urls-DtHr1d3H.js";
-import { a as q, b as y } from "../../session-COyN01K0.js";
+import { a as q, b as y } from "../../session-D312kYKk.js";
 const a = "AuthFactor";
-function T(e) {
+function c(r) {
   return {
-    listAuthFactors: e.query({
-      query: (r) => ({
-        url: s(o.authFactor.list, { search: r }),
+    listAuthFactors: r.query({
+      query: (e) => ({
+        url: s(o.authFactor.list, { search: e }),
         method: "GET"
       }),
       providesTags: t(a, { includeListTag: !0 })
@@ -15,18 +14,18 @@ function T(e) {
   };
 }
 const u = "Class";
-function p(e) {
+function T(r) {
   return {
-    retrieveClass: e.query({
-      query: (r) => ({
-        url: s(o.class.detail, { url: { id: r } }),
+    retrieveClass: r.query({
+      query: (e) => ({
+        url: s(o.class.detail, { url: { id: e } }),
         method: "GET"
       }),
       providesTags: t(u)
     }),
-    listClasses: e.query({
-      query: (r) => ({
-        url: s(o.class.list, { search: r }),
+    listClasses: r.query({
+      query: (e) => ({
+        url: s(o.class.list, { search: e }),
         method: "GET"
       }),
       providesTags: t(u, { includeListTag: !0 })
@@ -34,11 +33,11 @@ function p(e) {
   };
 }
 const l = "School";
-function g(e) {
+function g(r) {
   return {
-    retrieveSchool: e.query({
-      query: (r) => ({
-        url: s(o.school.detail, { url: { id: r } }),
+    retrieveSchool: r.query({
+      query: (e) => ({
+        url: s(o.school.detail, { url: { id: e } }),
         method: "GET"
       }),
       providesTags: t(l)
@@ -46,18 +45,18 @@ function g(e) {
   };
 }
 const i = "User";
-function h(e) {
+function p(r) {
   return {
-    retrieveUser: e.query({
-      query: (r) => ({
-        url: s(o.user.detail, { url: { id: r } }),
+    retrieveUser: r.query({
+      query: (e) => ({
+        url: s(o.user.detail, { url: { id: e } }),
         method: "GET"
       }),
       providesTags: t(i)
     }),
-    listUsers: e.query({
-      query: (r) => ({
-        url: s(o.user.list, { search: r }),
+    listUsers: r.query({
+      query: (e) => ({
+        url: s(o.user.list, { search: e }),
         method: "GET"
       }),
       providesTags: t(i, { includeListTag: !0 })
@@ -71,9 +70,9 @@ export {
   i as USER_TAG,
   q as buildLoginEndpoint,
   y as buildLogoutEndpoint,
-  T as getReadAuthFactorEndpoints,
-  p as getReadClassEndpoints,
+  c as getReadAuthFactorEndpoints,
+  T as getReadClassEndpoints,
   g as getReadSchoolEndpoints,
-  h as getReadUserEndpoints
+  p as getReadUserEndpoints
 };
 //# sourceMappingURL=index.es.js.map
