@@ -84,54 +84,54 @@
       "require": "./dist/theme/components/index.cjs.js"
     },
     "./utils/api": {
-      "types": "./dist/utils/api/index.d.ts",
-      "import": "./dist/utils/api/index.es.js",
-      "require": "./dist/utils/api/index.cjs.js"
+      "types": "./dist/utils/api.d.ts",
+      "import": "./dist/utils/api.es.js",
+      "require": "./dist/utils/api.cjs.js"
     },
     "./utils/auth": {
-      "types": "./dist/utils/auth/index.d.ts",
-      "import": "./dist/utils/auth/index.es.js",
-      "require": "./dist/utils/auth/index.cjs.js"
+      "types": "./dist/utils/auth.d.ts",
+      "import": "./dist/utils/auth.es.js",
+      "require": "./dist/utils/auth.cjs.js"
     },
     "./utils/form": {
-      "types": "./dist/utils/form/index.d.ts",
-      "import": "./dist/utils/form/index.es.js",
-      "require": "./dist/utils/form/index.cjs.js"
+      "types": "./dist/utils/form.d.ts",
+      "import": "./dist/utils/form.es.js",
+      "require": "./dist/utils/form.cjs.js"
     },
     "./utils/general": {
-      "types": "./dist/utils/general/index.d.ts",
-      "import": "./dist/utils/general/index.es.js",
-      "require": "./dist/utils/general/index.cjs.js"
+      "types": "./dist/utils/general.d.ts",
+      "import": "./dist/utils/general.es.js",
+      "require": "./dist/utils/general.cjs.js"
     },
     "./utils/router": {
-      "types": "./dist/utils/router/index.d.ts",
-      "import": "./dist/utils/router/index.es.js",
-      "require": "./dist/utils/router/index.cjs.js"
+      "types": "./dist/utils/router.d.ts",
+      "import": "./dist/utils/router.es.js",
+      "require": "./dist/utils/router.cjs.js"
     },
     "./utils/schema": {
-      "types": "./dist/utils/schema/index.d.ts",
-      "import": "./dist/utils/schema/index.es.js",
-      "require": "./dist/utils/schema/index.cjs.js"
+      "types": "./dist/utils/schema.d.ts",
+      "import": "./dist/utils/schema.es.js",
+      "require": "./dist/utils/schema.cjs.js"
     },
     "./utils/store": {
-      "types": "./dist/utils/store/index.d.ts",
-      "import": "./dist/utils/store/index.es.js",
-      "require": "./dist/utils/store/index.cjs.js"
+      "types": "./dist/utils/store.d.ts",
+      "import": "./dist/utils/store.es.js",
+      "require": "./dist/utils/store.cjs.js"
     },
     "./utils/test": {
-      "types": "./dist/utils/test/index.d.ts",
-      "import": "./dist/utils/test/index.es.js",
-      "require": "./dist/utils/test/index.cjs.js"
+      "types": "./dist/utils/test.d.ts",
+      "import": "./dist/utils/test.es.js",
+      "require": "./dist/utils/test.cjs.js"
     },
     "./utils/theme": {
-      "types": "./dist/utils/theme/index.d.ts",
-      "import": "./dist/utils/theme/index.es.js",
-      "require": "./dist/utils/theme/index.cjs.js"
+      "types": "./dist/utils/theme.d.ts",
+      "import": "./dist/utils/theme.es.js",
+      "require": "./dist/utils/theme.cjs.js"
     },
     "./utils/window": {
-      "types": "./dist/utils/window/index.d.ts",
-      "import": "./dist/utils/window/index.es.js",
-      "require": "./dist/utils/window/index.cjs.js"
+      "types": "./dist/utils/window.d.ts",
+      "import": "./dist/utils/window.es.js",
+      "require": "./dist/utils/window.cjs.js"
     }
   },
   "files": [
