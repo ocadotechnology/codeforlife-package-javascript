@@ -14,6 +14,9 @@
       "require": "./dist/codeforlife.cjs.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "scripts": "../scripts/frontend"
   },
