@@ -21,10 +21,6 @@ function generateEntries(...indexDirs: string[]) {
   )
 }
 
-// "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
-// "./images/svg/*": "./src/images/svg/*.svg",
-// "./server": "./src/server.js"
-
 export default defineConfig({
   plugins: [
     react(),
