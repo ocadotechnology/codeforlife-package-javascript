@@ -1,9 +1,9 @@
 import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
 import { SERVICE_API_URL as u } from "../settings/index.es.js";
-import { b as d } from "../session-Jnss79-e.js";
+import { b as d } from "../session-COyN01K0.js";
 import { g as s } from "../auth-DQRI3Kbu.js";
-import { i as l } from "../urls-HoIcuORM.js";
-import { u as C } from "../urls-HoIcuORM.js";
+import { i as l } from "../urls-1_h_HoGf.js";
+import { u as C } from "../urls-1_h_HoGf.js";
 import { s as G } from "../schemas-DKgmBzcu.js";
 const g = [
   // These are the tags for the common models used throughout our system.

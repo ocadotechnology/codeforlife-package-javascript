@@ -67,6 +67,11 @@
       "types": "./dist/settings/index.d.ts",
       "import": "./dist/settings/index.es.js",
       "require": "./dist/settings/index.cjs.js"
+    },
+    "./slices": {
+      "types": "./dist/slices/index.d.ts",
+      "import": "./dist/slices/index.es.js",
+      "require": "./dist/slices/index.cjs.js"
     }
   },
   "files": [

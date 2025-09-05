@@ -1,36 +1,32 @@
-export declare const BASE_URL: string;
+import { CaseReducer } from '@reduxjs/toolkit';
+import { CreateSliceOptions } from '@reduxjs/toolkit';
+import { ReducerType } from '@reduxjs/toolkit';
+import { Slice } from '@reduxjs/toolkit';
+import { SliceCaseReducers } from '@reduxjs/toolkit';
+import { SliceSelectors } from '@reduxjs/toolkit';
 
-export declare const CSRF_COOKIE_NAME: string;
+export declare const createSlice: <State, CaseReducers extends SliceCaseReducers<State>, Name extends string, Selectors extends SliceSelectors<State>, ReducerPath extends string = Name>(options: CreateSliceOptions<State, CaseReducers, Name, ReducerPath, Selectors>) => Slice<State, CaseReducers, Name, ReducerPath, Selectors>;
 
-declare const _default: Record<string, string>;
-export default _default;
+export declare const sessionSlice: Slice<SessionState, {
+    login: CaseReducer<SessionState, {
+        payload: void;
+        type: string;
+    }> & {
+        _reducerDefinitionType: ReducerType.reducer;
+    };
+    logout: CaseReducer<SessionState, {
+        payload: void;
+        type: string;
+    }> & {
+        _reducerDefinitionType: ReducerType.reducer;
+    };
+}, "session", "session", {
+    selectIsLoggedIn: (session: SessionState) => boolean;
+}>;
 
-export declare const DEV: boolean;
-
-/**
- * This file contains all of vite's environment variables.
- *
- * https://vite.dev/guide/env-and-mode#env-variables
- */
-export declare const MODE: string;
-
-export declare const PROD: boolean;
-
-export declare const SERVICE_API_URL: string;
-
-/**
- * This file contains all of our custom settings we define for our own purposes.
- *
- * This file is based on:
- * https://github.com/ocadotechnology/codeforlife-package-python/blob/main/codeforlife/settings/custom.py
- */
-export declare const SERVICE_NAME: string;
-
-export declare const SESSION_COOKIE_NAME: string;
-
-export declare const SESSION_METADATA_COOKIE_NAME: string;
-
-export declare const SSR: boolean;
+export declare interface SessionState {
+    isLoggedIn: boolean;
+}
 
 export { }
 
