@@ -3,23 +3,23 @@ import { type To } from "react-router-dom"
 
 import { type NavigateOptions, useNavigate } from "../../hooks"
 
-export type NavigateProps<
+export type NavigatorProps<
   Override extends "delta" | "to",
   State extends Record<string, any> = Record<string, any>,
 > = Override extends "delta"
   ? { delta: number; to?: undefined }
   : { delta?: undefined; to: To } & NavigateOptions<State>
 
-const Navigate: {
-  (props: NavigateProps<"delta">): JSX.Element
+const Navigator: {
+  (props: NavigatorProps<"delta">): JSX.Element
   <State extends Record<string, any> = Record<string, any>>(
-    props: NavigateProps<"to", State>,
+    props: NavigatorProps<"to", State>,
   ): JSX.Element
 } = ({
   delta,
   to,
   ...options
-}: NavigateProps<"delta"> | NavigateProps<"to">) => {
+}: NavigatorProps<"delta"> | NavigatorProps<"to">) => {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const Navigate: {
   return <></>
 }
 
-export default Navigate
+export default Navigator
