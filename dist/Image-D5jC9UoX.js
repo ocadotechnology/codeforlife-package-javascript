@@ -1,4 +1,4 @@
-import { j as n } from "./jsx-runtime-XvoU0p7t.js";
+import { j as n } from "./jsx-runtime-Dpn_P65e.js";
 import { Box as p } from "@mui/material";
 import "react";
 import { openInNewTab as s } from "./utils/general.es.js";
@@ -18,4 +18,4 @@ const f = ({ href: i, hrefInNewTab: r = !1, ...e }) => {
 export {
   f as I
 };
-//# sourceMappingURL=Image-KHEjEELP.js.map
+//# sourceMappingURL=Image-D5jC9UoX.js.map

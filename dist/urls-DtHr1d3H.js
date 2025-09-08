@@ -1,4 +1,4 @@
-import { m as s } from "./api-CYqNqtN9.js";
+import { m as s } from "./api-Cbyt3rw0.js";
 const t = {
   user: s("users/", "users/<id>/"),
   teacher: s("users/teachers/", "users/teachers/<id>/"),
@@ -11,4 +11,4 @@ const t = {
 export {
   t as u
 };
-//# sourceMappingURL=urls-BY-za1bX.js.map
+//# sourceMappingURL=urls-DtHr1d3H.js.map

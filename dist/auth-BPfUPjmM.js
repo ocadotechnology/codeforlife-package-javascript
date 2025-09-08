@@ -1,4 +1,4 @@
-import { j as S } from "./jsx-runtime-XvoU0p7t.js";
+import { j as S } from "./jsx-runtime-Dpn_P65e.js";
 import * as j from "yup";
 import { object as L } from "yup";
 import { useEffect as g, useState as V, useCallback as J } from "react";
@@ -11,8 +11,8 @@ import { makeOAuth2StorageKey as R, generateOAuth2CodeChallenge as W } from "./u
 import "@mui/material";
 import { generateSecureRandomString as X } from "./utils/general.es.js";
 import "@mui/icons-material";
-import "./schemas-CDXuSjyI.js";
-import "./urls-BY-za1bX.js";
+import "./schemas-DlOtf2vf.js";
+import "./urls-DtHr1d3H.js";
 import { tryValidateSync as $ } from "./utils/schema.es.js";
 import "./palette-C_L0akN_.js";
 function C() {
@@ -234,4 +234,4 @@ export {
   Se as i,
   _ as u
 };
-//# sourceMappingURL=auth-BOecESFg.js.map
+//# sourceMappingURL=auth-BPfUPjmM.js.map
