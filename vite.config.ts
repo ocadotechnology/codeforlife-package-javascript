@@ -23,10 +23,14 @@ function generateEntries(...indexDirs: string[]) {
   )
 }
 
-function getDependencies(packageJson: {
-  dependencies?: Record<string, string>
-}) {
-  return Object.keys(packageJson.dependencies || {})
+function generateExternalDependencies(
+  ...dependencies: Array<Record<string, string> | undefined>
+) {
+  return dependencies.reduce((keys, dependencies) => {
+    keys.push(...Object.keys(dependencies || {}))
+
+    return keys
+  }, [] as string[])
 }
 
 export default defineConfig({
@@ -101,8 +105,11 @@ export default defineConfig({
       // - Efficient caching: The user's browser may already have these common
       //  libraries cached, so not bundling them saves download time.
       external: [
-        ...getDependencies(packageJson),
-        ...getDependencies(workspacePackageJson),
+        ...generateExternalDependencies(
+          packageJson.dependencies,
+          packageJson.devDependencies,
+          workspacePackageJson.dependencies,
+        ),
         // Make sure to externalize Node.js built-in modules.
         // It's a good practice to handle both 'fs' and 'node:fs' syntax.
         ...builtinModules.map(m => `node:${m}`),
