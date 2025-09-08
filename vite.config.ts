@@ -30,6 +30,7 @@ function getDependencies(packageJson: {
 
 export default defineConfig({
   plugins: [
+    // @ts-expect-error is a valid plugin option
     react(),
     // https://www.npmjs.com/package/vite-plugin-dts
     dts({
