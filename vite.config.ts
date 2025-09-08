@@ -18,7 +18,7 @@ function generateEntries(...indexDirs: string[]) {
 
         return entries
       },
-      [["index", path.resolve(__dirname, "src/index.ts")]],
+      [] as [string, string][],
     ),
   )
 }
@@ -51,6 +51,7 @@ export default defineConfig({
     // Informs Vite we are building a library.
     lib: {
       entry: generateEntries(
+        "index.ts",
         "api/index.ts",
         "api/endpoints/index.ts",
         "components/index.ts",
