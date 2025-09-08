@@ -6,25 +6,71 @@
  * Based off: https://github.com/bluwy/create-vite-extra/blob/master/template-ssr-react-ts/server.js
  */
 
+import { Cache, type CacheClass } from "memory-cache"
+import express, { type Express, type Request, type Response } from "express"
 import fs from "node:fs/promises"
-import express from "express"
-import { Cache } from "memory-cache"
+
+type Mode = "development" | "staging" | "production"
+type Options = Partial<{
+  mode: Mode
+  port: number
+  base: string
+}>
+
+type HealthStatus =
+  | "healthy"
+  | "startingUp"
+  | "shuttingDown"
+  | "unhealthy"
+  | "unknown"
+type HealthCheck = {
+  healthStatus: HealthStatus
+  additionalInfo: string
+  details?: Array<{
+    name: string
+    description: string
+    health: HealthStatus
+  }>
+}
+type HealthCheckResponse = {
+  appId: string
+  healthStatus: HealthStatus
+  lastCheckedTimestamp: string
+  additionalInformation: string
+  startupTimestamp: string
+  appVersion: string
+  details: Array<{
+    name: string
+    description: string
+    health: HealthStatus
+  }>
+}
+
+type Render = (path: string) => Promise<{ head?: string; html?: string }>
+type EntryModule = { render: Render }
+type RenderAndTemplate = [Render, string]
+type GetRenderAndTemplate = (path: string) => Promise<RenderAndTemplate>
+type OnServeError = (error: Error) => string | undefined
 
 export default class Server {
-  constructor(
-    /** @type {Partial<{ mode: "development" | "staging" | "production"; port: number; base: string }>} */
-    { mode, port, base } = {},
-  ) {
-    /** @type {boolean} */
+  envIsProduction: boolean
+  templateHtml: string
+  hostname: string
+  mode: Mode
+  port: number
+  base: string
+  app: Express
+  cache: CacheClass<string, any>
+  healthCheckCacheKey: string
+  healthCheckCacheTimeout: number
+  healthCheckStatusCodes: Record<HealthStatus, number>
+
+  constructor({ mode, port, base }: Options = {}) {
     this.envIsProduction = process.env.NODE_ENV === "production"
-    /** @type {string} */
     this.templateHtml = ""
-    /** @type {string} */
     this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1"
 
-    /** @type {"development" | "staging" | "production"} */
-    this.mode = mode || process.env.MODE || "development"
-    /** @type {number} */
+    this.mode = mode || (process.env.MODE as Mode) || "development"
     this.port =
       port ||
       (process.env.PORT
@@ -32,21 +78,13 @@ export default class Server {
         : this.envIsProduction
           ? 8080
           : 5173)
-    /** @type {string} */
     this.base = base || process.env.BASE || "/"
 
-    /** @type {import('express').Express} */
     this.app = express()
-    /** @type {import('vite').ViteDevServer | undefined} */
-    this.vite = undefined
-    /** @type {import('memory-cache').Cache<string, any>} */
     this.cache = new Cache()
 
-    /** @type {string} */
     this.healthCheckCacheKey = "health-check"
-    /** @type {number} */
     this.healthCheckCacheTimeout = 30000
-    /** @type {Record<"healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown", number>} */
     this.healthCheckStatusCodes = {
       // The app is running normally.
       healthy: 200,
@@ -68,18 +106,19 @@ export default class Server {
     }
   }
 
-  /** @type {(request: import('express').Request) => { healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; additionalInfo: string; details?: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }> }} */
-  getHealthCheck(request) {
+  // @ts-expect-error unused var
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getHealthCheck(request: Request): HealthCheck {
     return {
       healthStatus: "healthy",
       additionalInfo: "All healthy.",
     }
   }
 
-  /** @type {(request: import('express').Request, response: import('express').Response) => void} */
-  handleHealthCheck(request, response) {
-    /** @type {{ appId: string; healthStatus: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown"; lastCheckedTimestamp: string; additionalInformation: string; startupTimestamp: string; appVersion: string; details: Array<{ name: string; description: string; health: "healthy" | "startingUp" | "shuttingDown" | "unhealthy" | "unknown" }> }} */
-    let value = this.cache.get(this.healthCheckCacheKey)
+  handleHealthCheck(request: Request, response: Response): void {
+    let value: HealthCheckResponse = this.cache.get(
+      this.healthCheckCacheKey,
+    ) as HealthCheckResponse
     if (value === null) {
       const healthCheck = this.getHealthCheck(request)
 
@@ -107,27 +146,16 @@ export default class Server {
     response.status(this.healthCheckStatusCodes[value.healthStatus]).json(value)
   }
 
-  /** @type {(request: import('express').Request, response: import('express').Response) => Promise<void>} */
-  async handleServeHtml(request, response) {
+  async handleServeHtml(
+    request: Request,
+    response: Response,
+    getRenderAndTemplate: GetRenderAndTemplate,
+    onServeError: OnServeError,
+  ): Promise<void> {
     try {
       const path = request.originalUrl.replace(this.base, "")
 
-      /** @type {string} */
-      let template
-      /** @type {(path: string) => Promise<{ head?: string; html?: string }>} */
-      let render
-      if (this.envIsProduction) {
-        render = (await import("../../../dist/server/entry-server.js")).render
-
-        // Use cached template.
-        template = this.templateHtml
-      } else {
-        render = (await this.vite.ssrLoadModule("/src/entry-server.tsx")).render
-
-        // Always read fresh template.
-        template = await fs.readFile("./index.html", "utf-8")
-        template = await this.vite.transformIndexHtml(path, template)
-      }
+      const [render, template] = await getRenderAndTemplate(path)
 
       const rendered = await render(path)
 
@@ -137,9 +165,11 @@ export default class Server {
 
       response.status(200).set({ "Content-Type": "text/html" }).send(html)
     } catch (error) {
-      this.vite?.ssrFixStacktrace(error)
-      console.error(error.stack)
-      response.status(500).end(this.envIsProduction ? undefined : error.stack)
+      if (error instanceof Error) {
+        console.error(error.stack)
+        const body = onServeError(error)
+        response.status(500).end(body)
+      }
     }
   }
 
@@ -148,6 +178,8 @@ export default class Server {
       this.handleHealthCheck(request, response)
     })
 
+    let getRenderAndTemplate: GetRenderAndTemplate
+    let onServeError: OnServeError
     if (this.envIsProduction) {
       const compression = (await import("compression")).default
       const sirv = (await import("sirv")).default
@@ -156,21 +188,59 @@ export default class Server {
 
       this.app.use(compression())
       this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
+
+      getRenderAndTemplate = async () => {
+        const render = (
+          (await import(
+            // @ts-expect-error only present after building installing app.
+            "../../../dist/server/entry-server.js"
+          )) as EntryModule
+        ).render
+
+        // Use cached template.
+        const template = this.templateHtml
+
+        return [render, template]
+      }
+
+      onServeError = () => undefined
     } else {
       const { createServer } = await import("vite")
 
-      this.vite = await createServer({
+      const vite = await createServer({
         server: { middlewareMode: true },
         appType: "custom",
         base: this.base,
         mode: this.mode,
       })
 
-      this.app.use(this.vite.middlewares)
+      this.app.use(vite.middlewares)
+
+      getRenderAndTemplate = async path => {
+        const render = (
+          (await vite.ssrLoadModule("/src/entry-server.tsx")) as EntryModule
+        ).render
+
+        // Always read fresh template.
+        let template = await fs.readFile("./index.html", "utf-8")
+        template = await vite.transformIndexHtml(path, template)
+
+        return [render, template]
+      }
+
+      onServeError = error => {
+        vite.ssrFixStacktrace(error)
+        return error.stack
+      }
     }
 
     this.app.get("*", async (request, response) => {
-      await this.handleServeHtml(request, response)
+      await this.handleServeHtml(
+        request,
+        response,
+        getRenderAndTemplate,
+        onServeError,
+      )
     })
 
     this.app.listen(this.port, this.hostname, () => {

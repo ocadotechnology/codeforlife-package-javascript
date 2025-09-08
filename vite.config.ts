@@ -4,6 +4,7 @@ import dts from "vite-plugin-dts"
 import react from "@vitejs/plugin-react"
 
 import packageJson from "./package.json"
+import workspacePackageJson from "./node_modules/@codeforlife/workspace/package.json"
 
 function generateEntries(...indexDirs: string[]) {
   return Object.fromEntries(
@@ -19,6 +20,12 @@ function generateEntries(...indexDirs: string[]) {
       [["index", path.resolve(__dirname, "src/index.ts")]],
     ),
   )
+}
+
+function getDependencies(packageJson: {
+  dependencies?: Record<string, string>
+}) {
+  return Object.keys(packageJson.dependencies || {})
 }
 
 export default defineConfig({
@@ -66,6 +73,7 @@ export default defineConfig({
         "utils/test.tsx",
         "utils/theme.tsx",
         "utils/window.ts",
+        "server.ts",
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,
@@ -89,7 +97,11 @@ export default defineConfig({
       //  include the entire code for MUI, React, etc.
       // - Efficient caching: The user's browser may already have these common
       //  libraries cached, so not bundling them saves download time.
-      external: Object.keys(packageJson.dependencies || {}),
+      external: [
+        ...getDependencies(packageJson),
+        ...getDependencies(workspacePackageJson),
+        "../../../dist/server/entry-server.js",
+      ],
     },
     // Vite will output both your built .js file and a corresponding .js.map
     // file. When you install this package in your application and open your
