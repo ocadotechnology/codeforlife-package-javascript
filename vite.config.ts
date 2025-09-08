@@ -1,4 +1,5 @@
 import * as path from "path"
+import { builtinModules } from "node:module"
 import { defineConfig } from "vitest/config"
 import dts from "vite-plugin-dts"
 import react from "@vitejs/plugin-react"
@@ -101,6 +102,10 @@ export default defineConfig({
       external: [
         ...getDependencies(packageJson),
         ...getDependencies(workspacePackageJson),
+        // Make sure to externalize Node.js built-in modules.
+        // It's a good practice to handle both 'fs' and 'node:fs' syntax.
+        ...builtinModules.map(m => `node:${m}`),
+        ...builtinModules,
         "../../../dist/server/entry-server.js",
       ],
     },

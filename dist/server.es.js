@@ -1,7 +1,7 @@
 import { Cache as l } from "memory-cache";
 import p from "express";
-const o = {};
-class C {
+import o from "node:fs/promises";
+class v {
   envIsProduction;
   templateHtml;
   hostname;
@@ -66,7 +66,7 @@ class C {
   }
   async handleServeHtml(s, h, e, t) {
     try {
-      const a = s.originalUrl.replace(this.base, ""), [i, n] = await e(a), r = await i(a), c = n.replace("<!--app-head-->", r.head ?? "").replace("<!--app-html-->", r.html ?? "");
+      const a = s.originalUrl.replace(this.base, ""), [i, r] = await e(a), n = await i(a), c = r.replace("<!--app-head-->", n.head ?? "").replace("<!--app-html-->", n.html ?? "");
       h.status(200).set({ "Content-Type": "text/html" }).send(c);
     } catch (a) {
       if (a instanceof Error) {
@@ -100,8 +100,8 @@ class C {
       });
       this.app.use(t.middlewares), s = async (a) => {
         const i = (await t.ssrLoadModule("/src/entry-server.tsx")).render;
-        let n = await o.readFile("./index.html", "utf-8");
-        return n = await t.transformIndexHtml(a, n), [i, n];
+        let r = await o.readFile("./index.html", "utf-8");
+        return r = await t.transformIndexHtml(a, r), [i, r];
       }, h = (a) => (t.ssrFixStacktrace(a), a.stack);
     }
     this.app.get("*", async (e, t) => {
@@ -122,6 +122,6 @@ environment: ${process.env.NODE_ENV}
   }
 }
 export {
-  C as default
+  v as default
 };
 //# sourceMappingURL=server.es.js.map
