@@ -69,6 +69,7 @@ export default defineConfig({
       ),
       name: packageJson.name,
       fileName: (format, entryName) => `${entryName}.${format}.js`,
+      cssFileName: "style",
       formats: [
         // ES Modules are the official, standardized module system for
         // JavaScript. They use import and export statements, which are a part

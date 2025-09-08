@@ -132,7 +132,8 @@
       "types": "./dist/utils/window.d.ts",
       "import": "./dist/utils/window.es.js",
       "require": "./dist/utils/window.cjs.js"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist"
