@@ -1,153 +1,146 @@
-import { b as fe, c as de, a as pe, d as U, e as re, Q as le, f as be } from "../rtk-query.modern-DGiM5X48.js";
+import { b as ae, c as fe, a as de, d as U, Q as pe, e as le, f as be } from "../rtk-query.modern-CjetfYPg.js";
 import { formatProdErrorMessage as oe } from "@reduxjs/toolkit";
-import { useStore as ye, useSelector as he, useDispatch as ge, batch as me, shallowEqual as j } from "react-redux";
-import { useCallback as H, useDebugValue as J, useMemo as O, useState as ie, useEffect as A, useRef as q, useLayoutEffect as ve } from "react";
-import { SERVICE_API_URL as Se } from "../settings/index.es.js";
+import { useStore as ye, useSelector as he, useDispatch as ge, batch as me, shallowEqual as $ } from "react-redux";
+import { useCallback as N, useDebugValue as x, useMemo as k, useState as re, useEffect as A, useRef as q, useLayoutEffect as Se } from "react";
+import { SERVICE_API_URL as ve } from "../settings/index.es.js";
 import { b as Ee } from "../session-D312kYKk.js";
-import { getCsrfCookie as X } from "../utils/auth.es.js";
-import { i as Qe } from "../api-Cbyt3rw0.js";
-import { s as We } from "../schemas-DlOtf2vf.js";
-import { u as Ze } from "../urls-DtHr1d3H.js";
-function F(t) {
-  return t.replace(t[0], t[0].toUpperCase());
+import { getCsrfCookie as J } from "../utils/auth.es.js";
+import { i as Qe } from "../api-CYqNqtN9.js";
+import { s as Be } from "../schemas-CDXuSjyI.js";
+import { u as Ze } from "../urls-BY-za1bX.js";
+function F(e) {
+  return e.replace(e[0], e[0].toUpperCase());
 }
-function ke(t) {
-  let d = 0;
-  for (const m in t)
-    d++;
-  return d;
+function ke(e) {
+  let f = 0;
+  for (const y in e)
+    f++;
+  return f;
 }
-function Pe(t) {
-  return t.type === "query";
+function Pe(e) {
+  return e.type === "query";
 }
-function Oe(t) {
-  return t.type === "mutation";
+function Oe(e) {
+  return e.type === "mutation";
 }
-function ue(t) {
-  return t.type === "infinitequery";
+function se(e) {
+  return e.type === "infinitequery";
 }
-function $(t, ...d) {
-  return Object.assign(t, ...d);
+function C(e, ...f) {
+  return Object.assign(e, ...f);
 }
-var x = Symbol();
-function ee(t, d, m, h) {
-  const g = O(() => ({
-    queryArgs: t,
-    serialized: typeof t == "object" ? d({
-      queryArgs: t,
-      endpointDefinition: m,
-      endpointName: h
-    }) : t
-  }), [t, d, m, h]), l = q(g);
+var X = Symbol();
+function ee(e) {
+  const f = q(e), y = k(() => le(f.current, e), [e]);
   return A(() => {
-    l.current.serialized !== g.serialized && (l.current = g);
-  }, [g]), l.current.serialized === g.serialized ? l.current.queryArgs : t;
+    f.current !== y && (f.current = y);
+  }, [y]), y;
 }
-function G(t) {
-  const d = q(t);
+function G(e) {
+  const f = q(e);
   return A(() => {
-    j(d.current, t) || (d.current = t);
-  }, [t]), j(d.current, t) ? d.current : t;
+    $(f.current, e) || (f.current = e);
+  }, [e]), $(f.current, e) ? f.current : e;
 }
-var De = () => typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", Ie = /* @__PURE__ */ De(), we = () => typeof navigator < "u" && navigator.product === "ReactNative", Le = /* @__PURE__ */ we(), Me = () => Ie || Le ? ve : A, Ue = /* @__PURE__ */ Me(), se = (t) => t.isUninitialized ? {
-  ...t,
+var Ie = () => typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", De = /* @__PURE__ */ Ie(), we = () => typeof navigator < "u" && navigator.product === "ReactNative", Le = /* @__PURE__ */ we(), Me = () => De || Le ? Se : A, Ue = /* @__PURE__ */ Me(), ie = (e) => e.isUninitialized ? {
+  ...e,
   isUninitialized: !1,
   isFetching: !0,
-  isLoading: t.data === void 0,
-  status: le.pending
-} : t;
-function te(t, ...d) {
-  const m = {};
-  return d.forEach((h) => {
-    m[h] = t[h];
-  }), m;
+  isLoading: e.data === void 0,
+  status: pe.pending
+} : e;
+function te(e, ...f) {
+  const y = {};
+  return f.forEach((m) => {
+    y[m] = e[m];
+  }), y;
 }
 var ne = ["data", "status", "isLoading", "isSuccess", "isError", "error"];
 function qe({
-  api: t,
+  api: e,
   moduleOptions: {
-    batch: d,
+    batch: f,
     hooks: {
-      useDispatch: m,
-      useSelector: h,
-      useStore: g
+      useDispatch: y,
+      useSelector: m,
+      useStore: I
     },
-    unstable__sideEffectsInRender: l,
+    unstable__sideEffectsInRender: h,
     createSelector: S
   },
-  serializeQueryArgs: v,
-  context: E
+  serializeQueryArgs: g,
+  context: D
 }) {
-  const V = l ? (e) => e() : A;
+  const V = h ? (t) => t() : A;
   return {
     buildQueryHooks: R,
     buildInfiniteQueryHooks: Y,
     buildMutationHook: Z,
-    usePrefetch: W
+    usePrefetch: B
   };
-  function K(e, r, f) {
-    if (r?.endpointName && e.isUninitialized) {
+  function K(t, r, d) {
+    if (r?.endpointName && t.isUninitialized) {
       const {
         endpointName: s
-      } = r, c = E.endpointDefinitions[s];
-      f !== U && v({
+      } = r, c = D.endpointDefinitions[s];
+      d !== U && g({
         queryArgs: r.originalArgs,
         endpointDefinition: c,
         endpointName: s
-      }) === v({
-        queryArgs: f,
+      }) === g({
+        queryArgs: d,
         endpointDefinition: c,
         endpointName: s
       }) && (r = void 0);
     }
-    let u = e.isSuccess ? e.data : r?.data;
-    u === void 0 && (u = e.data);
-    const i = u !== void 0, n = e.isLoading, o = (!r || r.isLoading || r.isUninitialized) && !i && n, a = e.isSuccess || i && (n && !r?.isError || e.isUninitialized);
+    let u = t.isSuccess ? t.data : r?.data;
+    u === void 0 && (u = t.data);
+    const i = u !== void 0, n = t.isLoading, o = (!r || r.isLoading || r.isUninitialized) && !i && n, a = t.isSuccess || i && (n && !r?.isError || t.isUninitialized);
     return {
-      ...e,
+      ...t,
       data: u,
-      currentData: e.data,
+      currentData: t.data,
       isFetching: n,
       isLoading: o,
       isSuccess: a
     };
   }
-  function B(e, r, f) {
-    if (r?.endpointName && e.isUninitialized) {
+  function W(t, r, d) {
+    if (r?.endpointName && t.isUninitialized) {
       const {
         endpointName: s
-      } = r, c = E.endpointDefinitions[s];
-      f !== U && v({
+      } = r, c = D.endpointDefinitions[s];
+      d !== U && g({
         queryArgs: r.originalArgs,
         endpointDefinition: c,
         endpointName: s
-      }) === v({
-        queryArgs: f,
+      }) === g({
+        queryArgs: d,
         endpointDefinition: c,
         endpointName: s
       }) && (r = void 0);
     }
-    let u = e.isSuccess ? e.data : r?.data;
-    u === void 0 && (u = e.data);
-    const i = u !== void 0, n = e.isLoading, o = (!r || r.isLoading || r.isUninitialized) && !i && n, a = e.isSuccess || n && i;
+    let u = t.isSuccess ? t.data : r?.data;
+    u === void 0 && (u = t.data);
+    const i = u !== void 0, n = t.isLoading, o = (!r || r.isLoading || r.isUninitialized) && !i && n, a = t.isSuccess || n && i;
     return {
-      ...e,
+      ...t,
       data: u,
-      currentData: e.data,
+      currentData: t.data,
       isFetching: n,
       isLoading: o,
       isSuccess: a
     };
   }
-  function W(e, r) {
-    const f = m(), u = G(r);
-    return H((i, n) => f(t.util.prefetch(e, i, {
+  function B(t, r) {
+    const d = y(), u = G(r);
+    return N((i, n) => d(e.util.prefetch(t, i, {
       ...u,
       ...n
-    })), [e, f, u]);
+    })), [t, d, u]);
   }
-  function D(e, r, {
-    refetchOnReconnect: f,
+  function P(t, r, {
+    refetchOnReconnect: d,
     refetchOnFocus: u,
     refetchOnMountOrArgChange: i,
     skip: n = !1,
@@ -157,66 +150,56 @@ function qe({
   } = {}) {
     const {
       initiate: c
-    } = t.endpoints[e], b = m(), I = q(void 0);
-    if (!I.current) {
-      const M = b(t.internalActions.internal_getRTKQSubscriptions());
+    } = e.endpoints[t], l = y(), O = q(void 0);
+    if (!O.current) {
+      const M = l(e.internalActions.internal_getRTKQSubscriptions());
       if (process.env.NODE_ENV !== "production" && (typeof M != "object" || typeof M?.type == "string"))
-        throw new Error(process.env.NODE_ENV === "production" ? oe(37) : `Warning: Middleware for RTK-Query API at reducerPath "${t.reducerPath}" has not been added to the store.
+        throw new Error(process.env.NODE_ENV === "production" ? oe(37) : `Warning: Middleware for RTK-Query API at reducerPath "${e.reducerPath}" has not been added to the store.
     You must add the middleware for RTK-Query to function correctly!`);
-      I.current = M;
+      O.current = M;
     }
-    const p = ee(
-      n ? U : r,
-      // Even if the user provided a per-endpoint `serializeQueryArgs` with
-      // a consistent return value, _here_ we want to use the default behavior
-      // so we can tell if _anything_ actually changed. Otherwise, we can end up
-      // with a case where the query args did change but the serialization doesn't,
-      // and then we never try to initiate a refetch.
-      re,
-      E.endpointDefinitions[e],
-      e
-    ), y = G({
-      refetchOnReconnect: f,
+    const p = ee(n ? U : r), b = G({
+      refetchOnReconnect: d,
       refetchOnFocus: u,
       pollingInterval: o,
       skipPollingIfUnfocused: a
-    }), Q = s.initialPageParam, k = G(Q), P = q(void 0);
+    }), v = s.initialPageParam, E = G(v), Q = q(void 0);
     let {
       queryCacheKey: L,
-      requestId: z
-    } = P.current || {}, C = !1;
-    L && z && (C = I.current.isRequestSubscribed(L, z));
-    const N = !C && P.current !== void 0;
+      requestId: H
+    } = Q.current || {}, z = !1;
+    L && H && (z = O.current.isRequestSubscribed(L, H));
+    const j = !z && Q.current !== void 0;
     return V(() => {
-      N && (P.current = void 0);
-    }, [N]), V(() => {
-      const M = P.current;
-      if (typeof process < "u" && process.env.NODE_ENV === "removeMeOnCompilation" && console.log(N), p === U) {
-        M?.unsubscribe(), P.current = void 0;
+      j && (Q.current = void 0);
+    }, [j]), V(() => {
+      const M = Q.current;
+      if (typeof process < "u" && process.env.NODE_ENV === "removeMeOnCompilation" && console.log(j), p === U) {
+        M?.unsubscribe(), Q.current = void 0;
         return;
       }
-      const ce = P.current?.subscriptionOptions;
+      const ue = Q.current?.subscriptionOptions;
       if (!M || M.arg !== p) {
         M?.unsubscribe();
-        const ae = b(c(p, {
-          subscriptionOptions: y,
+        const ce = l(c(p, {
+          subscriptionOptions: b,
           forceRefetch: i,
-          ...ue(E.endpointDefinitions[e]) ? {
-            initialPageParam: k
+          ...se(D.endpointDefinitions[t]) ? {
+            initialPageParam: E
           } : {}
         }));
-        P.current = ae;
-      } else y !== ce && M.updateSubscriptionOptions(y);
-    }, [b, c, i, p, y, N, k, e]), [P, b, c, y];
+        Q.current = ce;
+      } else b !== ue && M.updateSubscriptionOptions(b);
+    }, [l, c, i, p, b, j, E, t]), [Q, l, c, b];
   }
-  function T(e, r) {
+  function T(t, r) {
     return (u, {
       skip: i = !1,
       selectFromResult: n
     } = {}) => {
       const {
         select: o
-      } = t.endpoints[e], a = ee(i ? U : u, v, E.endpointDefinitions[e], e), s = q(void 0), c = O(() => (
+      } = e.endpoints[t], a = ee(i ? U : u), s = q(void 0), c = k(() => (
         // Normally ts-ignores are bad and should be avoided, but we're
         // already casting this selector to be `Selector<any>` anyway,
         // so the inconsistencies don't matter here
@@ -224,42 +207,42 @@ function qe({
         S([
           // @ts-ignore
           o(a),
-          (Q, k) => k,
-          (Q) => a
+          (v, E) => E,
+          (v) => a
         ], r, {
           memoizeOptions: {
-            resultEqualityCheck: j
+            resultEqualityCheck: $
           }
         })
-      ), [o, a]), b = O(() => n ? S([c], n, {
+      ), [o, a]), l = k(() => n ? S([c], n, {
         devModeChecks: {
           identityFunctionCheck: "never"
         }
-      }) : c, [c, n]), I = h((Q) => b(Q, s.current), j), p = g(), y = c(p.getState(), s.current);
+      }) : c, [c, n]), O = m((v) => l(v, s.current), $), p = I(), b = c(p.getState(), s.current);
       return Ue(() => {
-        s.current = y;
-      }, [y]), I;
+        s.current = b;
+      }, [b]), O;
     };
   }
-  function w(e) {
+  function w(t) {
     A(() => () => {
-      e.current?.unsubscribe?.(), e.current = void 0;
-    }, [e]);
+      t.current?.unsubscribe?.(), t.current = void 0;
+    }, [t]);
   }
-  function _(e) {
-    if (!e.current) throw new Error(process.env.NODE_ENV === "production" ? oe(38) : "Cannot refetch a query that has not been started yet.");
-    return e.current.refetch();
+  function _(t) {
+    if (!t.current) throw new Error(process.env.NODE_ENV === "production" ? oe(38) : "Cannot refetch a query that has not been started yet.");
+    return t.current.refetch();
   }
-  function R(e) {
+  function R(t) {
     const r = (i, n = {}) => {
-      const [o] = D(e, i, n);
-      return w(o), O(() => ({
+      const [o] = P(t, i, n);
+      return w(o), k(() => ({
         /**
          * A method to manually refetch data for the query
          */
         refetch: () => _(o)
       }), [o]);
-    }, f = ({
+    }, d = ({
       refetchOnReconnect: i,
       refetchOnFocus: n,
       pollingInterval: o = 0,
@@ -267,7 +250,7 @@ function qe({
     } = {}) => {
       const {
         initiate: s
-      } = t.endpoints[e], c = m(), [b, I] = ie(x), p = q(void 0), y = G({
+      } = e.endpoints[t], c = y(), [l, O] = re(X), p = q(void 0), b = G({
         refetchOnReconnect: i,
         refetchOnFocus: n,
         pollingInterval: o,
@@ -275,113 +258,103 @@ function qe({
       });
       V(() => {
         const L = p.current?.subscriptionOptions;
-        y !== L && p.current?.updateSubscriptionOptions(y);
-      }, [y]);
-      const Q = q(y);
+        b !== L && p.current?.updateSubscriptionOptions(b);
+      }, [b]);
+      const v = q(b);
       V(() => {
-        Q.current = y;
-      }, [y]);
-      const k = H(function(L, z = !1) {
-        let C;
-        return d(() => {
-          p.current?.unsubscribe(), p.current = C = c(s(L, {
-            subscriptionOptions: Q.current,
-            forceRefetch: !z
-          })), I(L);
-        }), C;
-      }, [c, s]), P = H(() => {
-        p.current?.queryCacheKey && c(t.internalActions.removeQueryResult({
+        v.current = b;
+      }, [b]);
+      const E = N(function(L, H = !1) {
+        let z;
+        return f(() => {
+          p.current?.unsubscribe(), p.current = z = c(s(L, {
+            subscriptionOptions: v.current,
+            forceRefetch: !H
+          })), O(L);
+        }), z;
+      }, [c, s]), Q = N(() => {
+        p.current?.queryCacheKey && c(e.internalActions.removeQueryResult({
           queryCacheKey: p.current?.queryCacheKey
         }));
       }, [c]);
       return A(() => () => {
         p?.current?.unsubscribe();
       }, []), A(() => {
-        b !== x && !p.current && k(b, !0);
-      }, [b, k]), O(() => [k, b, {
-        reset: P
-      }], [k, b, P]);
-    }, u = T(e, K);
+        l !== X && !p.current && E(l, !0);
+      }, [l, E]), k(() => [E, l, {
+        reset: Q
+      }], [E, l, Q]);
+    }, u = T(t, K);
     return {
       useQueryState: u,
       useQuerySubscription: r,
-      useLazyQuerySubscription: f,
+      useLazyQuerySubscription: d,
       useLazyQuery(i) {
         const [n, o, {
           reset: a
-        }] = f(i), s = u(o, {
+        }] = d(i), s = u(o, {
           ...i,
-          skip: o === x
-        }), c = O(() => ({
+          skip: o === X
+        }), c = k(() => ({
           lastArg: o
         }), [o]);
-        return O(() => [n, {
+        return k(() => [n, {
           ...s,
           reset: a
         }, c], [n, s, a, c]);
       },
       useQuery(i, n) {
         const o = r(i, n), a = u(i, {
-          selectFromResult: i === U || n?.skip ? void 0 : se,
+          selectFromResult: i === U || n?.skip ? void 0 : ie,
           ...n
         }), s = te(a, ...ne);
-        return J(s), O(() => ({
+        return x(s), k(() => ({
           ...a,
           ...o
         }), [a, o]);
       }
     };
   }
-  function Y(e) {
+  function Y(t) {
     const r = (u, i = {}) => {
-      const [n, o, a, s] = D(e, u, i), c = q(s);
+      const [n, o, a, s] = P(t, u, i), c = q(s);
       V(() => {
         c.current = s;
       }, [s]);
-      const b = H(function(y, Q) {
-        let k;
-        return d(() => {
-          n.current?.unsubscribe(), n.current = k = o(a(y, {
+      const l = N(function(b, v) {
+        let E;
+        return f(() => {
+          n.current?.unsubscribe(), n.current = E = o(a(b, {
             subscriptionOptions: c.current,
-            direction: Q
+            direction: v
           }));
-        }), k;
+        }), E;
       }, [n, o, a]);
       w(n);
-      const I = ee(
-        i.skip ? U : u,
-        // Even if the user provided a per-endpoint `serializeQueryArgs` with
-        // a consistent return value, _here_ we want to use the default behavior
-        // so we can tell if _anything_ actually changed. Otherwise, we can end up
-        // with a case where the query args did change but the serialization doesn't,
-        // and then we never try to initiate a refetch.
-        re,
-        E.endpointDefinitions[e],
-        e
-      ), p = H(() => _(n), [n]);
-      return O(() => ({
-        trigger: b,
+      const O = ee(i.skip ? U : u), p = N(() => _(n), [n]);
+      return k(() => ({
+        trigger: l,
         /**
          * A method to manually refetch data for the query
          */
         refetch: p,
-        fetchNextPage: () => b(I, "forward"),
-        fetchPreviousPage: () => b(I, "backward")
-      }), [p, b, I]);
-    }, f = T(e, B);
+        fetchNextPage: () => l(O, "forward"),
+        fetchPreviousPage: () => l(O, "backward")
+      }), [p, l, O]);
+    }, d = T(t, W);
     return {
-      useInfiniteQueryState: f,
+      useInfiniteQueryState: d,
       useInfiniteQuerySubscription: r,
       useInfiniteQuery(u, i) {
         const {
           refetch: n,
           fetchNextPage: o,
           fetchPreviousPage: a
-        } = r(u, i), s = f(u, {
-          selectFromResult: u === U || i?.skip ? void 0 : se,
+        } = r(u, i), s = d(u, {
+          selectFromResult: u === U || i?.skip ? void 0 : ie,
           ...i
         }), c = te(s, ...ne, "hasNextPage", "hasPreviousPage");
-        return J(c), O(() => ({
+        return x(c), k(() => ({
           ...s,
           fetchNextPage: o,
           fetchPreviousPage: a,
@@ -390,92 +363,92 @@ function qe({
       }
     };
   }
-  function Z(e) {
+  function Z(t) {
     return ({
       selectFromResult: r,
-      fixedCacheKey: f
+      fixedCacheKey: d
     } = {}) => {
       const {
         select: u,
         initiate: i
-      } = t.endpoints[e], n = m(), [o, a] = ie();
+      } = e.endpoints[t], n = y(), [o, a] = re();
       A(() => () => {
         o?.arg.fixedCacheKey || o?.reset();
       }, [o]);
-      const s = H(function(L) {
-        const z = n(i(L, {
-          fixedCacheKey: f
+      const s = N(function(L) {
+        const H = n(i(L, {
+          fixedCacheKey: d
         }));
-        return a(z), z;
-      }, [n, i, f]), {
+        return a(H), H;
+      }, [n, i, d]), {
         requestId: c
-      } = o || {}, b = O(() => u({
-        fixedCacheKey: f,
+      } = o || {}, l = k(() => u({
+        fixedCacheKey: d,
         requestId: o?.requestId
-      }), [f, o, u]), I = O(() => r ? S([b], r) : b, [r, b]), p = h(I, j), y = f == null ? o?.arg.originalArgs : void 0, Q = H(() => {
-        d(() => {
-          o && a(void 0), f && n(t.internalActions.removeMutationResult({
+      }), [d, o, u]), O = k(() => r ? S([l], r) : l, [r, l]), p = m(O, $), b = d == null ? o?.arg.originalArgs : void 0, v = N(() => {
+        f(() => {
+          o && a(void 0), d && n(e.internalActions.removeMutationResult({
             requestId: c,
-            fixedCacheKey: f
+            fixedCacheKey: d
           }));
         });
-      }, [n, f, o, c]), k = te(p, ...ne, "endpointName");
-      J(k);
-      const P = O(() => ({
+      }, [n, d, o, c]), E = te(p, ...ne, "endpointName");
+      x(E);
+      const Q = k(() => ({
         ...p,
-        originalArgs: y,
-        reset: Q
-      }), [p, y, Q]);
-      return O(() => [s, P], [s, P]);
+        originalArgs: b,
+        reset: v
+      }), [p, b, v]);
+      return k(() => [s, Q], [s, Q]);
     };
   }
 }
 var Ae = /* @__PURE__ */ Symbol(), Ve = ({
-  batch: t = me,
-  hooks: d = {
+  batch: e = me,
+  hooks: f = {
     useDispatch: ge,
     useSelector: he,
     useStore: ye
   },
-  createSelector: m = pe,
-  unstable__sideEffectsInRender: h = !1,
-  ...g
+  createSelector: y = de,
+  unstable__sideEffectsInRender: m = !1,
+  ...I
 } = {}) => {
   if (process.env.NODE_ENV !== "production") {
-    const l = ["useDispatch", "useSelector", "useStore"];
+    const h = ["useDispatch", "useSelector", "useStore"];
     let S = !1;
-    for (const v of l)
-      if (ke(g) > 0 && (g[v] && (S || (console.warn("As of RTK 2.0, the hooks now need to be specified as one object, provided under a `hooks` key:\n`reactHooksModule({ hooks: { useDispatch, useSelector, useStore } })`"), S = !0)), d[v] = g[v]), typeof d[v] != "function")
-        throw new Error(process.env.NODE_ENV === "production" ? oe(36) : `When using custom hooks for context, all ${l.length} hooks need to be provided: ${l.join(", ")}.
-Hook ${v} was either not provided or not a function.`);
+    for (const g of h)
+      if (ke(I) > 0 && (I[g] && (S || (console.warn("As of RTK 2.0, the hooks now need to be specified as one object, provided under a `hooks` key:\n`reactHooksModule({ hooks: { useDispatch, useSelector, useStore } })`"), S = !0)), f[g] = I[g]), typeof f[g] != "function")
+        throw new Error(process.env.NODE_ENV === "production" ? oe(36) : `When using custom hooks for context, all ${h.length} hooks need to be provided: ${h.join(", ")}.
+Hook ${g} was either not provided or not a function.`);
   }
   return {
     name: Ae,
-    init(l, {
+    init(h, {
       serializeQueryArgs: S
-    }, v) {
-      const E = l, {
+    }, g) {
+      const D = h, {
         buildQueryHooks: V,
         buildInfiniteQueryHooks: K,
-        buildMutationHook: B,
-        usePrefetch: W
+        buildMutationHook: W,
+        usePrefetch: B
       } = qe({
-        api: l,
+        api: h,
         moduleOptions: {
-          batch: t,
-          hooks: d,
-          unstable__sideEffectsInRender: h,
-          createSelector: m
+          batch: e,
+          hooks: f,
+          unstable__sideEffectsInRender: m,
+          createSelector: y
         },
         serializeQueryArgs: S,
-        context: v
+        context: g
       });
-      return $(E, {
-        usePrefetch: W
-      }), $(v, {
-        batch: t
+      return C(D, {
+        usePrefetch: B
+      }), C(g, {
+        batch: e
       }), {
-        injectEndpoint(D, T) {
+        injectEndpoint(P, T) {
           if (Pe(T)) {
             const {
               useQuery: w,
@@ -483,38 +456,38 @@ Hook ${v} was either not provided or not a function.`);
               useLazyQuerySubscription: R,
               useQueryState: Y,
               useQuerySubscription: Z
-            } = V(D);
-            $(E.endpoints[D], {
+            } = V(P);
+            C(D.endpoints[P], {
               useQuery: w,
               useLazyQuery: _,
               useLazyQuerySubscription: R,
               useQueryState: Y,
               useQuerySubscription: Z
-            }), l[`use${F(D)}Query`] = w, l[`useLazy${F(D)}Query`] = _;
+            }), h[`use${F(P)}Query`] = w, h[`useLazy${F(P)}Query`] = _;
           }
           if (Oe(T)) {
-            const w = B(D);
-            $(E.endpoints[D], {
+            const w = W(P);
+            C(D.endpoints[P], {
               useMutation: w
-            }), l[`use${F(D)}Mutation`] = w;
-          } else if (ue(T)) {
+            }), h[`use${F(P)}Mutation`] = w;
+          } else if (se(T)) {
             const {
               useInfiniteQuery: w,
               useInfiniteQuerySubscription: _,
               useInfiniteQueryState: R
-            } = K(D);
-            $(E.endpoints[D], {
+            } = K(P);
+            C(D.endpoints[P], {
               useInfiniteQuery: w,
               useInfiniteQuerySubscription: _,
               useInfiniteQueryState: R
-            }), l[`use${F(D)}InfiniteQuery`] = w;
+            }), h[`use${F(P)}InfiniteQuery`] = w;
           }
         }
       };
     }
   };
-}, _e = /* @__PURE__ */ fe(de(), Ve());
-const ze = [
+}, _e = /* @__PURE__ */ ae(fe(), Ve());
+const He = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
   // NOTE: Don't use the "Teacher" and "Student" tags. Use "User" instead.
@@ -524,45 +497,45 @@ const ze = [
   "AuthFactor"
 ];
 function Ge({
-  tagTypes: t = []
+  tagTypes: e = []
 } = {}) {
-  const d = be({
-    baseUrl: `${Se}/`,
+  const f = be({
+    baseUrl: `${ve}/`,
     credentials: "include",
-    prepareHeaders: (h, g) => {
-      const { type: l, arg: S } = g, v = typeof S == "string" ? "GET" : S.method || "GET";
-      if (l === "mutation" || !Qe(v)) {
-        const E = X();
-        E && h.set("x-csrftoken", E);
+    prepareHeaders: (m, I) => {
+      const { type: h, arg: S } = I, g = typeof S == "string" ? "GET" : S.method || "GET";
+      if (h === "mutation" || !Qe(g)) {
+        const D = J();
+        D && m.set("x-csrftoken", D);
       }
-      return h;
+      return m;
     }
-  }), m = _e({
+  }), y = _e({
     // https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-custom-basequery
-    baseQuery: async (h, g, l) => {
-      if (g.type === "mutation" && X() === void 0) {
-        const { error: S } = await d(
+    baseQuery: async (m, I, h) => {
+      if (I.type === "mutation" && J() === void 0) {
+        const { error: S } = await f(
           { url: "/csrf/cookie/", method: "GET" },
-          g,
+          I,
           {}
         );
-        S !== void 0 && console.error(S), X();
+        S !== void 0 && console.error(S), J();
       }
-      return await d(h, g, l);
+      return await f(m, I, h);
     },
-    tagTypes: [...ze, ...t],
+    tagTypes: [...He, ...e],
     endpoints: () => ({})
   });
-  return m.injectEndpoints({
-    endpoints: (h) => ({
-      logout: Ee(m, h)
+  return y.injectEndpoints({
+    endpoints: (m) => ({
+      logout: Ee(y, m)
     })
   });
 }
 export {
   Ge as createApi,
-  We as schemas,
-  ze as tagTypes,
+  Be as schemas,
+  He as tagTypes,
   Ze as urls
 };
 //# sourceMappingURL=index.es.js.map

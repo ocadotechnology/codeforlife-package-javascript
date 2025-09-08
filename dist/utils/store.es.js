@@ -1,5 +1,5 @@
 import { configureStore as s } from "@reduxjs/toolkit";
-import { s as i } from "../rtk-query.modern-DGiM5X48.js";
+import { s as i } from "../rtk-query.modern-CjetfYPg.js";
 function a({
   reducer: t,
   middlewares: e = [],
