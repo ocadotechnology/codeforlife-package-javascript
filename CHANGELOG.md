@@ -1,3 +1,11 @@
+## [2.9.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.9.0...v2.9.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* test push dist ([8621b5d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8621b5d3ee8326d320656ad0a65d80649b6de247))
+* type declarations ([2cfe314](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2cfe31444d1435082707ced8a6a58c7653008cb1))
+
 # [2.9.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.8.3...v2.9.0) (2025-09-09)
 
 
