@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("./theme/index.cjs.js");exports.ThemedBox=e.ThemedBox;exports.theme=e.default;exports.themeOptions=e.themeOptions;
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const t=require("./theme/index.cjs.js"),e=require("./palette-CH6vv3U5.cjs");exports.ThemedBox=t.ThemedBox;exports.theme=t.default;exports.themeOptions=t.themeOptions;exports.indy=e.secondary;exports.primary=e.primary;exports.secondary=e.secondary;exports.student=e.tertiary;exports.teacher=e.primary;exports.tertiary=e.tertiary;
 //# sourceMappingURL=index.cjs.js.map

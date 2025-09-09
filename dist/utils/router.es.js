@@ -3,8 +3,8 @@ import "../jsx-runtime-Dpn_P65e.js";
 import "react";
 import "@mui/icons-material";
 import "@mui/material";
-import "../palette-C_L0akN_.js";
-import "../auth-BPfUPjmM.js";
+import "../palette-DhwoW9Id.js";
+import "../auth-BsPP4Ufc.js";
 function x(t, n = {}) {
   function c(i, l, e) {
     typeof i.__ == "object" && (e = e ? { ...e, ...i.__ } : i.__);

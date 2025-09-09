@@ -14,7 +14,7 @@ import "@mui/icons-material";
 import "./schemas-DlOtf2vf.js";
 import "./urls-DtHr1d3H.js";
 import { tryValidateSync as $ } from "./utils/schema.es.js";
-import "./palette-C_L0akN_.js";
+import "./palette-DhwoW9Id.js";
 function C() {
   const e = k(), s = T();
   return (o, t = void 0) => {
@@ -234,4 +234,4 @@ export {
   Se as i,
   _ as u
 };
-//# sourceMappingURL=auth-BPfUPjmM.js.map
+//# sourceMappingURL=auth-BsPP4Ufc.js.map

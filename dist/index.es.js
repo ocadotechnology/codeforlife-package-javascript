@@ -1,7 +1,14 @@
-import { ThemedBox as m, default as o, themeOptions as h } from "./theme/index.es.js";
+import { ThemedBox as a, default as s, themeOptions as r } from "./theme/index.es.js";
+import { s as m, p, s as d, t as h, p as i, t as n } from "./palette-DhwoW9Id.js";
 export {
-  m as ThemedBox,
-  o as theme,
-  h as themeOptions
+  a as ThemedBox,
+  m as indy,
+  p as primary,
+  d as secondary,
+  h as student,
+  i as teacher,
+  n as tertiary,
+  s as theme,
+  r as themeOptions
 };
 //# sourceMappingURL=index.es.js.map

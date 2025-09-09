@@ -9,6 +9,7 @@ import palette from "./palette"
 import spacing from "./spacing"
 import typography from "./typography"
 
+export * from "./colors"
 export * from "./palette"
 export * from "./ThemedBox"
 export { default as ThemedBox } from "./ThemedBox"
