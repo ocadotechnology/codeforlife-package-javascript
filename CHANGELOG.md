@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.8.3...v2.9.0) (2025-09-09)
+
+
+### Features
+
+* vite build ([#90](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/90)) ([bcf63e8](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/bcf63e8de9fe8f28bb1c26f975c6f1ad58db58f6))
+
 ## [2.8.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.8.2...v2.8.3) (2025-08-22)
 
 
