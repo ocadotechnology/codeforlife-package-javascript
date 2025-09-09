@@ -1,3 +1,11 @@
+## [2.9.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.9.1...v2.9.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* colors export ([d4a4ee9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d4a4ee9daa11b9f6e18661d91d94888aa6b1eacd))
+* export colors ([04483d0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/04483d0683832a2a6e06834a034ed39bdd7128c3))
+
 ## [2.9.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.9.0...v2.9.1) (2025-09-09)
 
 
