@@ -45,8 +45,10 @@ export default defineConfig({
       // example, `import('@mui/material').Button` is transformed to
       // `import { Button } from "@mui/material"`.
       staticImport: true,
-      // Generates a single TypeScript declaration file (.d.ts).
-      rollupTypes: true,
+      // Generates TypeScript declaration files (.d.ts) for each source file.
+      // There is a known issue of vite-plugin-dts not performing deep analysis
+      // of exports and therefore not correctly rolling up types into one file.
+      rollupTypes: false,
       // Provide path to client-side TypeScript configuration.
       tsconfigPath: "./tsconfig.app.json",
     }),
