@@ -23,8 +23,30 @@ jobs:
     with:
       node-version: 22
 
+  build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🌐 Set up JavaScript 22 Environment
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
+        with:
+          node-version: 22
+          install-args: --production=false
+
+      - name: 📥 Download TypeScript Config Files
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-typescript-configs@main
+
+      - name: 🏗️ Build Dist Files
+        run: yarn run vite build
+
+      - name: 📤 Push Dist Files
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/git/add-commit-push@main
+        with:
+          add: dist
+          commit-message: "built distribution files"
+
   release:
-    needs: [test] # TODO: add contributor
+    needs: [build] # TODO: add contributor
     concurrency: release
     runs-on: ubuntu-latest
     permissions:

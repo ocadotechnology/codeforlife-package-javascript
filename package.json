@@ -4,6 +4,145 @@
   "private": false,
   "version": "2.8.3",
   "type": "module",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.es.js",
+  "main": "dist/index.cjs.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "import": "./dist/api/index.es.js",
+      "require": "./dist/api/index.cjs.js"
+    },
+    "./api/endpoints": {
+      "types": "./dist/api/endpoints/index.d.ts",
+      "import": "./dist/api/endpoints/index.es.js",
+      "require": "./dist/api/endpoints/index.cjs.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.es.js",
+      "require": "./dist/components/index.cjs.js"
+    },
+    "./components/form": {
+      "types": "./dist/components/form/index.d.ts",
+      "import": "./dist/components/form/index.es.js",
+      "require": "./dist/components/form/index.cjs.js"
+    },
+    "./components/page": {
+      "types": "./dist/components/page/index.d.ts",
+      "import": "./dist/components/page/index.es.js",
+      "require": "./dist/components/page/index.cjs.js"
+    },
+    "./components/router": {
+      "types": "./dist/components/router/index.d.ts",
+      "import": "./dist/components/router/index.es.js",
+      "require": "./dist/components/router/index.cjs.js"
+    },
+    "./components/table": {
+      "types": "./dist/components/table/index.d.ts",
+      "import": "./dist/components/table/index.es.js",
+      "require": "./dist/components/table/index.cjs.js"
+    },
+    "./features": {
+      "types": "./dist/features/index.d.ts",
+      "import": "./dist/features/index.es.js",
+      "require": "./dist/features/index.cjs.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.es.js",
+      "require": "./dist/hooks/index.cjs.js"
+    },
+    "./middlewares": {
+      "types": "./dist/middlewares/index.d.ts",
+      "import": "./dist/middlewares/index.es.js",
+      "require": "./dist/middlewares/index.cjs.js"
+    },
+    "./settings": {
+      "types": "./dist/settings/index.d.ts",
+      "import": "./dist/settings/index.es.js",
+      "require": "./dist/settings/index.cjs.js"
+    },
+    "./slices": {
+      "types": "./dist/slices/index.d.ts",
+      "import": "./dist/slices/index.es.js",
+      "require": "./dist/slices/index.cjs.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.es.js",
+      "require": "./dist/theme/index.cjs.js"
+    },
+    "./theme/components": {
+      "types": "./dist/theme/components/index.d.ts",
+      "import": "./dist/theme/components/index.es.js",
+      "require": "./dist/theme/components/index.cjs.js"
+    },
+    "./utils/api": {
+      "types": "./dist/utils/api.d.ts",
+      "import": "./dist/utils/api.es.js",
+      "require": "./dist/utils/api.cjs.js"
+    },
+    "./utils/auth": {
+      "types": "./dist/utils/auth.d.ts",
+      "import": "./dist/utils/auth.es.js",
+      "require": "./dist/utils/auth.cjs.js"
+    },
+    "./utils/form": {
+      "types": "./dist/utils/form.d.ts",
+      "import": "./dist/utils/form.es.js",
+      "require": "./dist/utils/form.cjs.js"
+    },
+    "./utils/general": {
+      "types": "./dist/utils/general.d.ts",
+      "import": "./dist/utils/general.es.js",
+      "require": "./dist/utils/general.cjs.js"
+    },
+    "./utils/router": {
+      "types": "./dist/utils/router.d.ts",
+      "import": "./dist/utils/router.es.js",
+      "require": "./dist/utils/router.cjs.js"
+    },
+    "./utils/schema": {
+      "types": "./dist/utils/schema.d.ts",
+      "import": "./dist/utils/schema.es.js",
+      "require": "./dist/utils/schema.cjs.js"
+    },
+    "./utils/store": {
+      "types": "./dist/utils/store.d.ts",
+      "import": "./dist/utils/store.es.js",
+      "require": "./dist/utils/store.cjs.js"
+    },
+    "./utils/test": {
+      "types": "./dist/utils/test.d.ts",
+      "import": "./dist/utils/test.es.js",
+      "require": "./dist/utils/test.cjs.js"
+    },
+    "./utils/theme": {
+      "types": "./dist/utils/theme.d.ts",
+      "import": "./dist/utils/theme.es.js",
+      "require": "./dist/utils/theme.cjs.js"
+    },
+    "./utils/window": {
+      "types": "./dist/utils/window.d.ts",
+      "import": "./dist/utils/window.es.js",
+      "require": "./dist/utils/window.cjs.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.es.js",
+      "require": "./dist/server.cjs.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "scripts": "../scripts/frontend"
   },
@@ -18,47 +157,12 @@
   },
   "homepage": "https://github.com/ocadotechnology/codeforlife-package-javascript#readme",
   "//": [
-    "Export rules:",
-    "🚫 Don't export anything not contained in the src directory.",
-    "",
     "Dependency rules:",
     "✅ Do add `dependencies` that are required to use this package.",
     "✅ Do add `dependencies` that are shared across all services.",
     "🚫 Don't add `devDependencies` that are inherited from the CFL workspace.",
     "✅ Do add `devDependencies` that are unique to this package."
   ],
-  "exports": {
-    ".": "./src/index.ts",
-    "./api": "./src/api/index.ts",
-    "./api/endpoints": "./src/api/endpoints/index.ts",
-    "./api/*": "./src/api/*.ts",
-    "./components": "./src/components/index.ts",
-    "./components/form": "./src/components/form/index.tsx",
-    "./components/page": "./src/components/page/index.ts",
-    "./components/router": "./src/components/router/index.tsx",
-    "./components/table": "./src/components/table/index.tsx",
-    "./components/*": "./src/components/*.tsx",
-    "./features": "./src/features/index.ts",
-    "./features/*": "./src/features/*.tsx",
-    "./fonts/ttf/*": "./src/fonts/ttf/*.ttf",
-    "./hooks": "./src/hooks/index.ts",
-    "./hooks/*": "./src/hooks/*.tsx",
-    "./images/svg/*": "./src/images/svg/*.svg",
-    "./middlewares": "./src/middlewares/index.ts",
-    "./middlewares/*": "./src/middlewares/*.ts",
-    "./settings": "./src/settings/index.ts",
-    "./settings/*": "./src/settings/*.ts",
-    "./slices": "./src/slices/index.ts",
-    "./slices/*": "./src/slices/*.ts",
-    "./theme": "./src/theme/index.ts",
-    "./theme/components": "./src/theme/components/index.ts",
-    "./theme/*": "./src/theme/*.ts",
-    "./utils/api": "./src/utils/api.tsx",
-    "./utils/test": "./src/utils/test.tsx",
-    "./utils/theme": "./src/utils/theme.tsx",
-    "./utils/*": "./src/utils/*.ts",
-    "./server": "./src/server.js"
-  },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -81,7 +185,8 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@codeforlife/workspace": "link:../configs/frontend"
+    "@codeforlife/workspace": "link:../configs/frontend",
+    "vite-plugin-dts": "4.5.4"
   },
   "release": {
     "branches": [

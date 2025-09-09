@@ -14,7 +14,7 @@ import {
   Circle as CircleIcon,
   Hexagon as HexagonIcon,
 } from "@mui/icons-material"
-import { type CommonProps } from "@mui/material/OverridableComponent"
+import type { CommonProps } from "@mui/material/OverridableComponent"
 import type React from "react"
 
 import { getStyleOverrides, includesClassNames } from "../utils/theme"

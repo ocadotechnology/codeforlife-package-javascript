@@ -7,7 +7,7 @@ import { StaticRouter } from "react-router-dom/server"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 
 import "./App.css"
-import { SSR } from "../settings"
+// import { SSR } from "../settings"
 import { useLocation } from "../hooks"
 // import { InactiveDialog, ScreenTimeDialog } from "../features"
 // import { useCountdown, useEventListener } from "../hooks"
@@ -100,7 +100,7 @@ const App = <A extends Action = Action, S = unknown>({
             setTotalSeconds(maxTotalSeconds)
           }}
         /> */}
-        {SSR ? (
+        {typeof window === "undefined" ? (
           <StaticRouter location={path as string}>
             <Routes path={path as string} {...routesProps} />
           </StaticRouter>
