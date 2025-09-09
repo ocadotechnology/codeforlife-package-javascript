@@ -1,7 +1,7 @@
 import { Divider as C, buttonClasses as b, typographyClasses as y, listItemTextClasses as k, tabClasses as f, tableCellClasses as g, inputClasses as a, formHelperTextClasses as O, formLabelClasses as $, filledInputClasses as M, svgIconClasses as S, outlinedInputClasses as B, inputBaseClasses as d } from "@mui/material";
 import { j as m } from "./jsx-runtime-Dpn_P65e.js";
 import "react";
-import { p as w, a as x } from "./palette-DhwoW9Id.js";
+import { a as w, p as x } from "./palette-CYwuLBW7.js";
 const z = {
   styleOverrides: {
     root: {
@@ -569,4 +569,4 @@ export {
   c as s,
   n as t
 };
-//# sourceMappingURL=index-L2PCrCN2.js.map
+//# sourceMappingURL=index-CkM7p7f8.js.map

@@ -1,27 +1,28 @@
 import { responsiveFontSizes as x, createTheme as u, buttonClasses as O, ThemeProvider as C, Box as T } from "@mui/material";
-import { g as S, i as j, t as B, s as F, c as I } from "../index-L2PCrCN2.js";
-import { s as H, a as d, t as $, p as L } from "../palette-DhwoW9Id.js";
+import { g as S, i as j, t as B, s as F, c as I } from "../index-CkM7p7f8.js";
+import { s as H, p as m, t as $, a as L } from "../palette-CYwuLBW7.js";
+import { c as G } from "../palette-CYwuLBW7.js";
 import { j as s } from "../jsx-runtime-Dpn_P65e.js";
 import { Circle as w, Hexagon as z } from "@mui/icons-material";
 const R = ({
   options: r = y,
-  withShapes: m = !1,
-  userType: p,
-  bgcolor: o,
+  withShapes: p = !1,
+  userType: d,
+  bgcolor: t,
   children: h,
   sx: v,
   ...M
 }) => {
-  let i, a, t;
-  switch (p) {
+  let i, a, o;
+  switch (d) {
     case "teacher":
-      o = o ?? L[400], i = "tertiary", a = "secondary", t = d.primary.contrastText;
+      t = t ?? L[400], i = "tertiary", a = "secondary", o = m.primary.contrastText;
       break;
     case "student":
-      o = o ?? $[500], i = "secondary", a = "primary", t = d.tertiary.contrastText;
+      t = t ?? $[500], i = "secondary", a = "primary", o = m.tertiary.contrastText;
       break;
     case "independent":
-      o = o ?? H[500], i = "primary", a = "tertiary", t = d.secondary.contrastText;
+      t = t ?? H[500], i = "primary", a = "tertiary", o = m.secondary.contrastText;
       break;
   }
   const l = {
@@ -29,16 +30,16 @@ const R = ({
     fontSize: "180px",
     position: "absolute"
   }, c = {
-    color: t,
-    textDecorationColor: t
+    color: o,
+    textDecorationColor: o
   };
-  function n(e, b, k, f = "root") {
+  function n(e, b, f, k = "root") {
     return {
       // Get the original styles.
       ...S(
         e,
-        k,
         f,
+        k,
         r.components
       ),
       // Override styles unless the class name 'no-override' is set.
@@ -96,7 +97,7 @@ const R = ({
             contained: ({ ownerState: e }) => n(
               e,
               {
-                ...p === "independent" && {
+                ...d === "independent" && {
                   backgroundColor: "white",
                   "&:hover": {
                     backgroundColor: "#f6f5f5",
@@ -108,7 +109,7 @@ const R = ({
                   },
                   [`&.${O.disabled}`]: {
                     backgroundColor: "white",
-                    color: t
+                    color: o
                   }
                 }
               },
@@ -119,9 +120,9 @@ const R = ({
               e,
               {
                 ...c,
-                border: `2px solid ${t}`,
+                border: `2px solid ${o}`,
                 "&:hover": {
-                  border: `2px solid ${t}`,
+                  border: `2px solid ${o}`,
                   backgroundColor: "transparent",
                   textDecoration: "underline"
                 }
@@ -138,7 +139,7 @@ const R = ({
             root: ({ ownerState: e }) => n(
               e,
               {
-                color: `${t} !important`
+                color: `${o} !important`
               },
               "MuiCheckbox"
             )
@@ -152,7 +153,7 @@ const R = ({
               e,
               {
                 "&.checkbox-error": {
-                  color: `${t} !important`
+                  color: `${o} !important`
                 }
               },
               "MuiSvgIcon"
@@ -167,18 +168,18 @@ const R = ({
     {
       sx: {
         ...v,
-        ...m && {
+        ...p && {
           paddingY: { xs: 2, sm: 3, md: 5 },
           paddingX: { xs: 2, sm: 5, md: 10 },
           marginX: { md: "90px" }
         },
-        bgcolor: o,
+        bgcolor: t,
         alignItems: "center",
         position: "relative"
       },
       ...M,
       children: [
-        m && /* @__PURE__ */ s.jsxs(s.Fragment, { children: [
+        p && /* @__PURE__ */ s.jsxs(s.Fragment, { children: [
           /* @__PURE__ */ s.jsx(
             w,
             {
@@ -209,20 +210,15 @@ const R = ({
     }
   ) });
 }, y = {
-  palette: d,
+  palette: m,
   components: I,
   spacing: F,
   typography: B
 }, Y = x(u(y));
 export {
   R as ThemedBox,
+  G as colors,
   Y as default,
-  H as indy,
-  L as primary,
-  H as secondary,
-  $ as student,
-  L as teacher,
-  $ as tertiary,
   y as themeOptions
 };
 //# sourceMappingURL=index.es.js.map
