@@ -44,6 +44,7 @@ jobs:
         with:
           add: dist
           commit-message: "built distribution files"
+          force: true
 
   release:
     needs: [build] # TODO: add contributor
