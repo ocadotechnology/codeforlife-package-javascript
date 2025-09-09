@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes as RouterRoutes } from "react-router-dom"
+import { BrowserRouter, Routes as RouterRoutes } from "react-router"
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import { type FC, type JSX, type ReactNode } from "react"
 import { Provider, type ProviderProps } from "react-redux"
 import { type Action } from "redux"
-import { StaticRouter } from "react-router-dom/server"
+import { StaticRouter } from "react-router"
 import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
 
 import "./App.css"

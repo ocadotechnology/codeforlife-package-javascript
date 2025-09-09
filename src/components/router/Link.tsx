@@ -1,6 +1,6 @@
 import { Link as MuiLink, type LinkProps as MuiLinkProps } from "@mui/material"
 import { type JSX } from "react"
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink } from "react-router"
 
 import { type LinkProps as RouterLinkProps } from "../../utils/router"
 

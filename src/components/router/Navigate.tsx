@@ -1,5 +1,5 @@
 import { type JSX, useEffect } from "react"
-import { type To } from "react-router-dom"
+import { type To } from "react-router"
 
 import { type NavigateOptions, useNavigate } from "../../hooks"
 

@@ -2,7 +2,7 @@ import * as yup from "yup"
 import { type ReactNode, useCallback, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
-import { createSearchParams } from "react-router-dom"
+import { createSearchParams } from "react-router"
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useSelector } from "react-redux"
 
