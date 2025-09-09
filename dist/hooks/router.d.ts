@@ -1,4 +1,4 @@
-import { Location, Params, To, NavigateOptions as _NavigateOptions } from 'react-router-dom';
+import { Location, Params, To, NavigateOptions as _NavigateOptions } from 'react-router';
 import { ObjectShape } from 'yup';
 import { ReactNode, ReactPortal, ReactElement, JSXElementConstructor } from 'react';
 import { ObjectSchemaFromShape, TryValidateSyncOnErrorRT, TryValidateSyncOptions, TryValidateSyncRT } from '../utils/schema';
