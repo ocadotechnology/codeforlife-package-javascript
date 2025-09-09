@@ -32,6 +32,7 @@ jobs:
         with:
           node-version: 22
           install-args: --production=false
+          gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
 
       - name: 📥 Download TypeScript Config Files
         uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-typescript-configs@main
