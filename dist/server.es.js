@@ -95,7 +95,10 @@ class S {
       };
     } else {
       const { createServer: e } = await import("vite"), t = await e({
-        server: { middlewareMode: !0, hmr: { server: this.server } },
+        server: {
+          middlewareMode: !0,
+          hmr: { server: this.server }
+        },
         appType: "custom",
         base: this.base,
         mode: this.mode
