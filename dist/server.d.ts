@@ -1,5 +1,6 @@
 import { CacheClass } from 'memory-cache';
 import { Express, Request, Response } from 'express';
+import { default as http } from 'node:http';
 type Mode = "development" | "staging" | "production";
 type Options = Partial<{
     mode: Mode;
@@ -31,6 +32,7 @@ export default class Server {
     port: number;
     base: string;
     app: Express;
+    server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
     cache: CacheClass<string, any>;
     healthCheckCacheKey: string;
     healthCheckCacheTimeout: number;
