@@ -211,7 +211,10 @@ export default class Server {
       const { createServer } = await import("vite")
 
       const vite = await createServer({
-        server: { middlewareMode: true, hmr: { server: this.server } },
+        server: {
+          middlewareMode: true,
+          hmr: { server: this.server },
+        },
         appType: "custom",
         base: this.base,
         mode: this.mode,
