@@ -9,6 +9,7 @@
 import { Cache, type CacheClass } from "memory-cache"
 import express, { type Express, type Request, type Response } from "express"
 import fs from "node:fs/promises"
+import http from "node:http"
 
 type Mode = "development" | "staging" | "production"
 type Options = Partial<{
@@ -60,6 +61,7 @@ export default class Server {
   port: number
   base: string
   app: Express
+  server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>
   cache: CacheClass<string, any>
   healthCheckCacheKey: string
   healthCheckCacheTimeout: number
@@ -81,6 +83,7 @@ export default class Server {
     this.base = base || process.env.BASE || "/"
 
     this.app = express()
+    this.server = http.createServer(this.app)
     this.cache = new Cache()
 
     this.healthCheckCacheKey = "health-check"
@@ -208,7 +211,7 @@ export default class Server {
       const { createServer } = await import("vite")
 
       const vite = await createServer({
-        server: { middlewareMode: true },
+        server: { middlewareMode: true, hmr: { server: this.server } },
         appType: "custom",
         base: this.base,
         mode: this.mode,
@@ -243,7 +246,7 @@ export default class Server {
       )
     })
 
-    this.app.listen(this.port, this.hostname, () => {
+    this.server.listen(this.port, this.hostname, () => {
       let startMessage =
         "Server started.\n" +
         `url: http://${this.hostname}:${this.port}\n` +
