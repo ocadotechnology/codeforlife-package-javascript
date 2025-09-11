@@ -99,15 +99,18 @@ const App = <A extends Action = Action, S = unknown>({
             setTotalSeconds(maxTotalSeconds)
           }}
         /> */}
-        {path !== undefined ? (
-          <StaticRouter location={path}>
-            <Routes path={path} {...routesProps} />
-          </StaticRouter>
-        ) : (
-          <BrowserRouter>
-            <BrowserRoutes {...routesProps} />
-          </BrowserRouter>
-        )}
+        {
+          // https://github.com/remix-run/react-router/tree/main/examples/ssr
+          path !== undefined ? (
+            <StaticRouter location={path}>
+              <Routes path={path} {...routesProps} />
+            </StaticRouter>
+          ) : (
+            <BrowserRouter>
+              <BrowserRoutes {...routesProps} />
+            </BrowserRouter>
+          )
+        }
       </Provider>
     </ThemeProvider>
   )
