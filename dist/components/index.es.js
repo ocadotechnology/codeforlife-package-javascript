@@ -43,7 +43,11 @@ const O = ({
   ...n
 }) => /* @__PURE__ */ o.jsxs(E, { theme: s, children: [
   /* @__PURE__ */ o.jsx($, {}),
-  /* @__PURE__ */ o.jsx(q, { store: t, children: e !== void 0 ? /* @__PURE__ */ o.jsx(C, { location: e, children: /* @__PURE__ */ o.jsx(O, { path: e, ...n }) }) : /* @__PURE__ */ o.jsx(S, { children: /* @__PURE__ */ o.jsx(Z, { ...n }) }) })
+  /* @__PURE__ */ o.jsx(q, {
+    store: t,
+    // https://github.com/remix-run/react-router/tree/main/examples/ssr
+    children: e !== void 0 ? /* @__PURE__ */ o.jsx(C, { location: e, children: /* @__PURE__ */ o.jsx(O, { path: e, ...n }) }) : /* @__PURE__ */ o.jsx(S, { children: /* @__PURE__ */ o.jsx(Z, { ...n }) })
+  })
 ] }), mt = ({
   open: e = !1,
   onClick: s,
