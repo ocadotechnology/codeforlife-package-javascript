@@ -1,6 +1,6 @@
 import { ListItem, type ListItemProps } from "@mui/material"
 import { type JSX } from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 
 import { type LinkProps } from "../../utils/router"
 

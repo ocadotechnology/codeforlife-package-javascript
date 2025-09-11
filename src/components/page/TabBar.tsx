@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material"
 import { object as YupObject, string as YupString } from "yup"
-import { generatePath, useNavigate, useParams } from "react-router-dom"
+import { generatePath, useNavigate, useParams } from "react-router"
 
 import Section from "./Section"
 import { primary } from "../../theme/colors"
@@ -80,7 +80,7 @@ const TabBar: FC<TabBarProps> = ({ header, tabs, originalPath, value = 0 }) => {
         <Tabs
           value={_value}
           onChange={(_, value: number) => {
-            navigate(
+            void navigate(
               generatePath(originalPath, {
                 tab: paths[value],
               }),

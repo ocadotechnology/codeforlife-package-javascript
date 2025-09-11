@@ -7,7 +7,7 @@ import {
   useNavigate as _useNavigate,
   useParams as _useParams,
   useSearchParams as _useSearchParams,
-} from "react-router-dom"
+} from "react-router"
 import { type ObjectShape, object as objectSchema } from "yup"
 import { type ReactNode, useEffect } from "react"
 
@@ -44,11 +44,11 @@ export function useNavigate(): Navigate {
     toOrDelta: To | number,
     options: (NavigateOptions & { next?: boolean }) | undefined = undefined,
   ) => {
-    if (typeof toOrDelta === "number") navigate(toOrDelta)
+    if (typeof toOrDelta === "number") void navigate(toOrDelta)
     else {
       const { next = true, ..._options } = options || {}
 
-      navigate(
+      void navigate(
         next && "next" in searchParams ? searchParams.next : toOrDelta,
         _options,
       )

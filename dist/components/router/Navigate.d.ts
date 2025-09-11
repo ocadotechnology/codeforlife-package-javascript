@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { To } from 'react-router-dom';
+import { To } from 'react-router';
 import { NavigateOptions } from '../../hooks';
 export type NavigateProps<Override extends "delta" | "to", State extends Record<string, any> = Record<string, any>> = Override extends "delta" ? {
     delta: number;

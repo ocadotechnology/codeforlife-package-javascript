@@ -1,5 +1,5 @@
 import { Children, type JSX, useEffect } from "react"
-import { type Location, useLocation } from "react-router-dom"
+import { type Location, useLocation } from "react-router"
 
 import Notification, { type NotificationProps } from "./Notification"
 import {

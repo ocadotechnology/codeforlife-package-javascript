@@ -1,4 +1,4 @@
-import { To, LinkProps as _LinkProps } from 'react-router-dom';
+import { To, LinkProps as _LinkProps } from 'react-router';
 import { PageState } from '../components/page/Page';
 export type LinkProps<Override extends "delta" | "to", State extends Record<string, any> = Record<string, any>> = Omit<_LinkProps, "to" | "state"> & (Override extends "delta" ? {
     to: number;
