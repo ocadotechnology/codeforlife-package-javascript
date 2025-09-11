@@ -7,6 +7,7 @@
  */
 
 import { Cache, type CacheClass } from "memory-cache"
+import { type UUID, randomUUID } from "node:crypto"
 import express, { type Express, type Request, type Response } from "express"
 import fs from "node:fs/promises"
 import http from "node:http"
@@ -53,6 +54,11 @@ type RenderAndTemplate = [Render, string]
 type GetRenderAndTemplate = (path: string) => Promise<RenderAndTemplate>
 type OnServeError = (error: Error) => string | undefined
 
+type Setup = {
+  getRenderAndTemplate: GetRenderAndTemplate
+  onServeError: OnServeError
+}
+
 export default class Server {
   envIsProduction: boolean
   templateHtml: string
@@ -66,6 +72,7 @@ export default class Server {
   healthCheckCacheKey: string
   healthCheckCacheTimeout: number
   healthCheckStatusCodes: Record<HealthStatus, number>
+  devtoolsWorkspaceUUID: UUID
 
   constructor({ mode, port, base }: Options = {}) {
     this.envIsProduction = process.env.NODE_ENV === "production"
@@ -107,6 +114,8 @@ export default class Server {
       // The app is not able to report its own state.
       unknown: 503,
     }
+
+    this.devtoolsWorkspaceUUID = randomUUID()
   }
 
   // @ts-expect-error unused var
@@ -152,8 +161,7 @@ export default class Server {
   async handleServeHtml(
     request: Request,
     response: Response,
-    getRenderAndTemplate: GetRenderAndTemplate,
-    onServeError: OnServeError,
+    { getRenderAndTemplate, onServeError }: Setup,
   ): Promise<void> {
     try {
       const path = request.originalUrl.replace(this.base, "")
@@ -176,23 +184,43 @@ export default class Server {
     }
   }
 
-  async run() {
-    this.app.get("/health-check", (request, response) => {
-      this.handleHealthCheck(request, response)
-    })
-
-    let getRenderAndTemplate: GetRenderAndTemplate
-    let onServeError: OnServeError
+  // @ts-expect-error unused var
+  handleChromeDevTools(request: Request, response: Response) {
     if (this.envIsProduction) {
-      const compression = (await import("compression")).default
-      const sirv = (await import("sirv")).default
+      response.status(404).json({})
+    } else {
+      const localWorkspacePath = process.env.LOCAL_WORKSPACE_PATH
 
-      this.templateHtml = await fs.readFile("./dist/client/index.html", "utf-8")
+      let code: number
+      let body: object
+      if (localWorkspacePath) {
+        code = 200
+        body = {
+          workspace: {
+            uuid: this.devtoolsWorkspaceUUID,
+            root: localWorkspacePath,
+          },
+        }
+      } else {
+        code = 404
+        body = { error: "Local workspace path not configured." }
+      }
 
-      this.app.use(compression())
-      this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
+      response.status(code).json(body)
+    }
+  }
 
-      getRenderAndTemplate = async () => {
+  async setUpProduction(): Promise<Setup> {
+    const compression = (await import("compression")).default
+    const sirv = (await import("sirv")).default
+
+    this.templateHtml = await fs.readFile("./dist/client/index.html", "utf-8")
+
+    this.app.use(compression())
+    this.app.use(this.base, sirv("./dist/client", { extensions: [] }))
+
+    return {
+      getRenderAndTemplate: async () => {
         const render = (
           (await import(
             // @ts-expect-error only present after building installing app.
@@ -204,25 +232,28 @@ export default class Server {
         const template = this.templateHtml
 
         return [render, template]
-      }
+      },
+      onServeError: () => undefined,
+    }
+  }
 
-      onServeError = () => undefined
-    } else {
-      const { createServer } = await import("vite")
+  async setUpDevelopment(): Promise<Setup> {
+    const { createServer } = await import("vite")
 
-      const vite = await createServer({
-        server: {
-          middlewareMode: true,
-          hmr: { server: this.server },
-        },
-        appType: "custom",
-        base: this.base,
-        mode: this.mode,
-      })
+    const vite = await createServer({
+      server: {
+        middlewareMode: true,
+        hmr: { server: this.server },
+      },
+      appType: "custom",
+      base: this.base,
+      mode: this.mode,
+    })
 
-      this.app.use(vite.middlewares)
+    this.app.use(vite.middlewares)
 
-      getRenderAndTemplate = async path => {
+    return {
+      getRenderAndTemplate: async path => {
         const render = (
           (await vite.ssrLoadModule("/src/entry-server.tsx")) as EntryModule
         ).render
@@ -232,21 +263,32 @@ export default class Server {
         template = await vite.transformIndexHtml(path, template)
 
         return [render, template]
-      }
-
-      onServeError = error => {
+      },
+      onServeError: error => {
         vite.ssrFixStacktrace(error)
         return error.stack
-      }
+      },
     }
+  }
+
+  async run() {
+    const setup = this.envIsProduction
+      ? await this.setUpProduction()
+      : await this.setUpDevelopment()
+
+    this.app.get("/health-check", (request, response) => {
+      this.handleHealthCheck(request, response)
+    })
+
+    this.app.get(
+      "/.well-known/appspecific/com.chrome.devtools.json",
+      (request, response) => {
+        this.handleChromeDevTools(request, response)
+      },
+    )
 
     this.app.get("*", async (request, response) => {
-      await this.handleServeHtml(
-        request,
-        response,
-        getRenderAndTemplate,
-        onServeError,
-      )
+      await this.handleServeHtml(request, response, setup)
     })
 
     this.server.listen(this.port, this.hostname, () => {
