@@ -144,7 +144,7 @@
     "dist"
   ],
   "scripts": {
-    "scripts": "../scripts/frontend"
+    "scripts": "../scripts"
   },
   "repository": {
     "type": "git",
@@ -185,7 +185,7 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@codeforlife/workspace": "link:../configs/frontend",
+    "@codeforlife/workspace": "link:..",
     "vite-plugin-dts": "4.5.4"
   },
   "release": {
