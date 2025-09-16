@@ -1,4 +1,4 @@
 {
   "extends": "./node_modules/@codeforlife/workspace/tsconfig.node.json",
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "vitest.setup.ts"]
 }
