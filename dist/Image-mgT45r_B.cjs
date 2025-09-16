@@ -1,2 +1,0 @@
-"use strict";const s=require("./jsx-runtime-CeSfJrVB.cjs"),c=require("@mui/material");require("react");const l=require("./utils/general.cjs.js"),u=({href:i,hrefInNewTab:o=!1,...r})=>{let{onClick:t,style:e={},...n}=r;return e.width===void 0&&(e.width="100%"),i!==void 0&&(e={...e,cursor:"pointer"},o?t=()=>{l.openInNewTab(i)}:t=()=>{window.location.replace(i)}),s.jsxRuntimeExports.jsx(c.Box,{component:"img",onClick:t,style:e,...n})};exports.Image=u;
-//# sourceMappingURL=Image-mgT45r_B.cjs.map
