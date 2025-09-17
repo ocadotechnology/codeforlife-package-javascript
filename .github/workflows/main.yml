@@ -36,7 +36,7 @@ jobs:
           install-args: --production=false
           gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
 
-      - name: 📥 Download TypeScript Config Files
+      - name: 📥 Download TypeScript Config Files from Workspace
         uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-typescript-configs@main
 
       - name: 📥 Download Vite Config Files from Workspace
