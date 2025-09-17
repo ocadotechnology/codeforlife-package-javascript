@@ -26,6 +26,8 @@ jobs:
   build:
     needs: [test]
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.push-dist-files.outputs.sha }}
     steps:
       - name: 🌐 Set up JavaScript 22 Environment
         uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
@@ -41,6 +43,7 @@ jobs:
         run: yarn run vite build
 
       - name: 📤 Push Dist Files
+        id: push-dist-files
         uses: ocadotechnology/codeforlife-workspace/.github/actions/git/add-commit-push@main
         with:
           add: dist
@@ -62,6 +65,7 @@ jobs:
       - name: 🚀 Publish Semantic Release
         uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
         with:
+          ref: ${{ needs.build.outputs.sha }}
           cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
           npm-token: ${{ secrets.NPM_TOKEN }}
 
