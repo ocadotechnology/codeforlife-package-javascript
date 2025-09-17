@@ -1,8 +1,12 @@
 import * as path from "path"
+import { type PluginOption, defineConfig } from "vite"
+import {
+  viteConfig as workspaceViteConfig,
+  vitestConfig as workspaceVitestConfig,
+} from "@codeforlife/workspace/vite.config.ts"
 import { builtinModules } from "node:module"
-import { defineConfig } from "vitest/config"
 import dts from "vite-plugin-dts"
-import react from "@vitejs/plugin-react"
+import { mergeConfig } from "vitest/config"
 
 import packageJson from "./package.json"
 import workspacePackageJson from "./node_modules/@codeforlife/workspace/package.json"
@@ -33,10 +37,9 @@ function generateExternalDependencies(
   }, [] as string[])
 }
 
-export default defineConfig({
+const viteConfig = defineConfig({
   plugins: [
-    // @ts-expect-error is a valid plugin option
-    react(),
+    ...(workspaceViteConfig.plugins as PluginOption[]),
     // https://www.npmjs.com/package/vite-plugin-dts
     dts({
       // Generates the corresponding .d.ts files in the build directory.
@@ -132,15 +135,6 @@ export default defineConfig({
     // Ensure output directory is "dist".
     outDir: "dist",
   },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests",
-    mockReset: true,
-    coverage: {
-      enabled: true,
-      provider: "istanbul",
-      reporter: ["html", "cobertura"],
-    },
-  },
 })
+
+export default mergeConfig(viteConfig, workspaceVitestConfig)
