@@ -39,6 +39,9 @@ jobs:
       - name: 📥 Download TypeScript Config Files
         uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-typescript-configs@main
 
+      - name: 📥 Download Vite Config Files from Workspace
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-vite-configs@main
+
       - name: 🏗️ Build Dist Files
         run: yarn run vite build
 
