@@ -1,3 +1,10 @@
+## [2.10.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.1...v2.10.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* Upgrade React ([#93](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/93)) ([e90f267](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e90f267fed219f9857197c6ce7ada8bb0d4c1e2b))
+
 ## [2.10.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.0...v2.10.1) (2025-09-15)
 
 
