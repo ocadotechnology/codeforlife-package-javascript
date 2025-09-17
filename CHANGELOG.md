@@ -1,3 +1,10 @@
+## [2.10.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.2...v2.10.3) (2025-09-17)
+
+
+### Bug Fixes
+
+* Workspace 287 ([#94](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/94)) ([176dcc0](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/176dcc0b63d9fa75743a9f7b584acbecf6635c1b))
+
 ## [2.10.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.1...v2.10.2) (2025-09-17)
 
 
