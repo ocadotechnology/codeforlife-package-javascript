@@ -33,14 +33,8 @@ jobs:
         uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
         with:
           node-version: 22
-          install-args: --production=false
+          install-prod: false
           gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
-
-      - name: 📥 Download TypeScript Config Files from Workspace
-        uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-typescript-configs@main
-
-      - name: 📥 Download Vite Config Files from Workspace
-        uses: ocadotechnology/codeforlife-workspace/.github/actions/workspace/frontend/download-vite-configs@main
 
       - name: 🏗️ Build Dist Files
         run: yarn run vite build
