@@ -151,7 +151,7 @@
     "url": "git+https://github.com/ocadotechnology/codeforlife-package-javascript.git"
   },
   "author": "Ocado",
-  "license": "ISC",
+  "license": "AGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/ocadotechnology/codeforlife-package-javascript/issues"
   },
