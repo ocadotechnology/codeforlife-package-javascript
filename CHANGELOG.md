@@ -1,3 +1,10 @@
+## [2.10.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.3...v2.10.4) (2025-09-19)
+
+
+### Bug Fixes
+
+* load workspace-level vite config ([d9d79fc](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/d9d79fc50a76d54e7fcb55e195ca4d687845faf8))
+
 ## [2.10.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.2...v2.10.3) (2025-09-17)
 
 
