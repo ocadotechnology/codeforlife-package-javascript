@@ -241,6 +241,7 @@ export default class Server {
     const { createServer } = await import("vite")
 
     const vite = await createServer({
+      configFile: "/workspace/frontend/vite.config.ts",
       server: {
         middlewareMode: true,
         hmr: { server: this.server },
