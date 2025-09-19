@@ -1,3 +1,10 @@
+## [2.10.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.4...v2.10.5) (2025-09-19)
+
+
+### Bug Fixes
+
+* license ([7130981](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/71309819a0ebd4506db645ed5a14737a50e63b0f))
+
 ## [2.10.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.3...v2.10.4) (2025-09-19)
 
 
