@@ -111,6 +111,7 @@ class S {
   }
   async setUpDevelopment() {
     const { createServer: h } = await import("vite"), e = await h({
+      configFile: "/workspace/frontend/vite.config.ts",
       server: {
         middlewareMode: !0,
         hmr: { server: this.server }
