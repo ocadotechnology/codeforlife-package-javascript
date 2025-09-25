@@ -9,7 +9,7 @@ import MuiContainer from "./MuiContainer"
 import MuiDialog from "./MuiDialog"
 import MuiFormControlLabel from "./MuiFormControlLabel"
 import MuiFormHelperText from "./MuiFormHelperText"
-import MuiGrid2 from "./MuiGrid2"
+import MuiGrid from "./MuiGrid"
 import MuiInputBase from "./MuiInputBase"
 import MuiLink from "./MuiLink"
 import MuiList from "./MuiList"
@@ -36,7 +36,7 @@ const components: ThemeOptions["components"] = {
   MuiDialog,
   MuiFormControlLabel,
   MuiFormHelperText,
-  MuiGrid2,
+  MuiGrid,
   MuiInputBase,
   MuiLink,
   MuiList,

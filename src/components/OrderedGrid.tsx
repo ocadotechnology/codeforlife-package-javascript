@@ -1,22 +1,8 @@
 import { type FC, type ReactElement } from "react"
-import { Unstable_Grid2 as Grid, type Grid2Props } from "@mui/material"
+import { Grid, type GridProps } from "@mui/material"
 
 interface ItemProps
-  extends Omit<
-    Grid2Props,
-    | "key"
-    | "order"
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "xsOffset"
-    | "smOffset"
-    | "mdOffset"
-    | "lgOffset"
-    | "xlOffset"
-  > {}
+  extends Omit<GridProps, "key" | "order" | "size" | "offset"> {}
 
 interface GlobalItemProps extends ItemProps {
   xs: number
@@ -33,7 +19,7 @@ export interface OrderedGridProps {
       itemProps?: ItemProps
     }>
   >
-  containerProps?: Omit<Grid2Props, "container">
+  containerProps?: Omit<GridProps, "container">
   globalItemProps: GlobalItemProps
 }
 
@@ -66,18 +52,20 @@ const OrderedGrid: FC<OrderedGridProps> = ({
         row.map(({ element, itemProps = {} }, itemIndex) => (
           <Grid
             key={`${rowIndex}-${itemIndex}`}
-            order={{
+            size={{
               xs: getOrder(rowIndex, itemIndex, globalItemProps.xs),
               sm: getOrder(rowIndex, itemIndex, globalItemProps.sm),
               md: getOrder(rowIndex, itemIndex, globalItemProps.md),
               lg: getOrder(rowIndex, itemIndex, globalItemProps.lg),
               xl: getOrder(rowIndex, itemIndex, globalItemProps.xl),
             }}
-            xsOffset={getOffset(itemIndex, globalItemProps.xs)}
-            smOffset={getOffset(itemIndex, globalItemProps.sm)}
-            mdOffset={getOffset(itemIndex, globalItemProps.md)}
-            lgOffset={getOffset(itemIndex, globalItemProps.lg)}
-            xlOffset={getOffset(itemIndex, globalItemProps.xl)}
+            offset={{
+              xs: getOffset(itemIndex, globalItemProps.xs),
+              sm: getOffset(itemIndex, globalItemProps.sm),
+              md: getOffset(itemIndex, globalItemProps.md),
+              lg: getOffset(itemIndex, globalItemProps.lg),
+              xl: getOffset(itemIndex, globalItemProps.xl),
+            }}
             {...globalItemProps}
             {...itemProps}
           >

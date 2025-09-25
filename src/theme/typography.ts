@@ -1,7 +1,7 @@
 import {
   type CSSProperties,
-  type TypographyOptions,
-} from "@mui/material/styles/createTypography"
+  type TypographyVariantsOptions,
+} from "@mui/material"
 
 // Pseudo typography variant for all form text.
 export const form: CSSProperties = {
@@ -17,7 +17,7 @@ export const form: CSSProperties = {
 //  Doesn't play well with responsiveFontSizes.
 //  https://mui.com/material-ui/customization/theming/#responsivefontsizes-theme-options-theme
 
-const typography: TypographyOptions = {
+const typography: TypographyVariantsOptions = {
   h1: {
     color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
