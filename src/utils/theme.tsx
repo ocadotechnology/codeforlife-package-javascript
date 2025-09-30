@@ -32,6 +32,7 @@ export function getStyleOverrides(
 
     if (
       component !== undefined &&
+      typeof component === "object" &&
       "styleOverrides" in component &&
       typeof component.styleOverrides === "object" &&
       muiClassName in component.styleOverrides

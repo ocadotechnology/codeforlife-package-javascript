@@ -1,9 +1,6 @@
 import {
   type CSSObject,
-  type ComponentsOverrides,
   type ComponentsPropsList,
-  type OverridesStyleRules,
-  type Theme,
   type ThemeOptions,
   type TypographyVariantsOptions,
 } from "@mui/material"
@@ -18,12 +15,6 @@ import typography from "../typography"
 
 export default interface Components
   extends NonNullable<ThemeOptions["components"]> {}
-
-export type StyleOverridesWithRoot<
-  Component extends keyof ComponentsOverrides<Theme>,
-> = ComponentsOverrides<Theme>[Component] & {
-  root: OverridesStyleRules<"root", Component, Theme>["root"]
-}
 
 export type OwnerState<ComponentName extends keyof ComponentsPropsList> =
   ComponentsPropsList[ComponentName] & Record<string, unknown>
