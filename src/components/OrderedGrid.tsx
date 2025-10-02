@@ -5,11 +5,13 @@ interface ItemProps
   extends Omit<GridProps, "key" | "order" | "size" | "offset"> {}
 
 interface GlobalItemProps extends ItemProps {
-  xs: number
-  sm: number
-  md: number
-  lg: number
-  xl: number
+  size: {
+    xs: number
+    sm: number
+    md: number
+    lg: number
+    xl: number
+  }
 }
 
 export interface OrderedGridProps {
@@ -52,19 +54,19 @@ const OrderedGrid: FC<OrderedGridProps> = ({
         row.map(({ element, itemProps = {} }, itemIndex) => (
           <Grid
             key={`${rowIndex}-${itemIndex}`}
-            size={{
-              xs: getOrder(rowIndex, itemIndex, globalItemProps.xs),
-              sm: getOrder(rowIndex, itemIndex, globalItemProps.sm),
-              md: getOrder(rowIndex, itemIndex, globalItemProps.md),
-              lg: getOrder(rowIndex, itemIndex, globalItemProps.lg),
-              xl: getOrder(rowIndex, itemIndex, globalItemProps.xl),
+            order={{
+              xs: getOrder(rowIndex, itemIndex, globalItemProps.size.xs),
+              sm: getOrder(rowIndex, itemIndex, globalItemProps.size.sm),
+              md: getOrder(rowIndex, itemIndex, globalItemProps.size.md),
+              lg: getOrder(rowIndex, itemIndex, globalItemProps.size.lg),
+              xl: getOrder(rowIndex, itemIndex, globalItemProps.size.xl),
             }}
             offset={{
-              xs: getOffset(itemIndex, globalItemProps.xs),
-              sm: getOffset(itemIndex, globalItemProps.sm),
-              md: getOffset(itemIndex, globalItemProps.md),
-              lg: getOffset(itemIndex, globalItemProps.lg),
-              xl: getOffset(itemIndex, globalItemProps.xl),
+              xs: getOffset(itemIndex, globalItemProps.size.xs),
+              sm: getOffset(itemIndex, globalItemProps.size.sm),
+              md: getOffset(itemIndex, globalItemProps.size.md),
+              lg: getOffset(itemIndex, globalItemProps.size.lg),
+              xl: getOffset(itemIndex, globalItemProps.size.xl),
             }}
             {...globalItemProps}
             {...itemProps}
