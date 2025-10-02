@@ -22,18 +22,22 @@ All other assets including images, logos, sounds etc., are not covered by
 this licence and no-one may copy, modify, distribute, show in public or
 create any derivative work from these assets.
 
-## Installing your branch
+## Installing as a symlink
 
-You may wish to install and integrate your changes into a CFL frontend before
-it's been peer-reviewed.
+To install this package into a CFL frontend before it's been peer-reviewed and
+not have to reinstall it every time you make a change, you can install this
+package as a [symlink](https://classic.yarnpkg.com/lang/en/docs/cli/link/) by
+amending the `dependencies` in the `package.json` of a CFL frontend.
 
-*Remember to replace the branch name ("my-branch") with your
-[branch](https://github.com/ocadotechnology/codeforlife-package-javascript/branches)*.
+*Remember that the [exports in package.json](package.json#exports) do NOT point
+to the source ([src](src/index.ts)) files but rather the distribution
+([dist](dist/index.es.js)) files. Therefore, you'll need to rebuild the
+distribution files every time you make a change by running `yarn vite build`.*
 
 ```json
 {
   "dependencies": {
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#my-branch"
+    "codeforlife": "link:../package"
   }
 }
 ```
