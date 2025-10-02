@@ -1,13 +1,10 @@
 import {
   type CSSObject,
-  type ComponentsOverrides,
   type ComponentsPropsList,
-  type Theme,
   type ThemeOptions,
+  type TypographyVariantsOptions,
 } from "@mui/material"
 import type { CommonProps } from "@mui/material/OverridableComponent"
-import type { OverridesStyleRules } from "@mui/material/styles/overrides"
-import { type TypographyOptions } from "@mui/material/styles/createTypography"
 
 import {
   getClassNames,
@@ -18,12 +15,6 @@ import typography from "../typography"
 
 export default interface Components
   extends NonNullable<ThemeOptions["components"]> {}
-
-export type StyleOverridesWithRoot<
-  Component extends keyof ComponentsOverrides<Theme>,
-> = ComponentsOverrides<Theme>[Component] & {
-  root: OverridesStyleRules<"root", Component, Theme>["root"]
-}
 
 export type OwnerState<ComponentName extends keyof ComponentsPropsList> =
   ComponentsPropsList[ComponentName] & Record<string, unknown>
@@ -74,7 +65,7 @@ export function getFontStyleOverrides(props: CommonProps): CSSObject {
     .filter(className => className in typography)
     .forEach(className => {
       const typographyClass = typography[
-        className as keyof TypographyOptions
+        className as keyof TypographyVariantsOptions
       ] as CSSObject
 
       if (includesClassNames(classNames, [className])) {

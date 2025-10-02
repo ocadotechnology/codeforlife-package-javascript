@@ -1,8 +1,8 @@
-import { Divider as C, buttonClasses as b, typographyClasses as y, listItemTextClasses as k, tabClasses as f, tableCellClasses as g, inputClasses as a, formHelperTextClasses as O, formLabelClasses as $, filledInputClasses as M, svgIconClasses as S, outlinedInputClasses as B, inputBaseClasses as d } from "@mui/material";
+import { Divider as C, buttonClasses as b, typographyClasses as y, listItemTextClasses as k, tabClasses as f, tableCellClasses as g, inputClasses as a, formHelperTextClasses as $, formLabelClasses as M, filledInputClasses as O, svgIconClasses as S, outlinedInputClasses as B, inputBaseClasses as d } from "@mui/material";
 import { j as m } from "./jsx-runtime-C7wFtzyj.js";
 import "react";
-import { a as w, p as x } from "./palette-CYwuLBW7.js";
-const z = {
+import { a as z, p as x } from "./palette-CYwuLBW7.js";
+const w = {
   styleOverrides: {
     root: {
       borderRadius: "0px !important",
@@ -28,9 +28,9 @@ function lt({
 }
 function at(t, o, e = "root", i = et) {
   if (i !== void 0) {
-    const s = i[o];
-    if (s !== void 0 && "styleOverrides" in s && typeof s.styleOverrides == "object" && e in s.styleOverrides) {
-      const l = s.styleOverrides[e];
+    const n = i[o];
+    if (n !== void 0 && typeof n == "object" && "styleOverrides" in n && typeof n.styleOverrides == "object" && e in n.styleOverrides) {
+      const l = n.styleOverrides[e];
       switch (typeof l) {
         case "function":
           return l({ ownerState: t });
@@ -58,7 +58,7 @@ const h = {
   margin: 0,
   marginBottom: "12px",
   letterSpacing: 0
-}, n = {
+}, s = {
   h1: {
     color: "#383b3b",
     fontFamily: '"SpaceGrotesk"',
@@ -160,7 +160,7 @@ const h = {
         letterSpacing: "0"
       },
       ...r(t, ["body"]) && {
-        marginBottom: n.body1?.marginBottom
+        marginBottom: s.body1?.marginBottom
       }
     }),
     contained: ({ ownerState: t }) => ({
@@ -224,12 +224,12 @@ function v(t) {
 function A(t) {
   let o = {};
   const e = p(t);
-  return r(e, ["nowrap-ellipsis"]) && (o.whiteSpace = "nowrap", o.overflow = "hidden", o.textOverflow = "ellipsis"), ["h1", "h2", "h3", "h4", "h5", "h6", "body1", "body2"].filter((i) => i in n).forEach((i) => {
-    const s = n[i];
-    r(e, [i]) && (o = { ...o, ...s }), F(e, new RegExp(`^${i}-(\\w+)$`)).forEach(
+  return r(e, ["nowrap-ellipsis"]) && (o.whiteSpace = "nowrap", o.overflow = "hidden", o.textOverflow = "ellipsis"), ["h1", "h2", "h3", "h4", "h5", "h6", "body1", "body2"].filter((i) => i in s).forEach((i) => {
+    const n = s[i];
+    r(e, [i]) && (o = { ...o, ...n }), F(e, new RegExp(`^${i}-(\\w+)$`)).forEach(
       (l) => {
         const u = l[1];
-        u in s && (o[u] = s[u]);
+        u in n && (o[u] = n[u]);
       }
     );
   }), o;
@@ -275,7 +275,6 @@ const D = {
   }
 }, P = {
   defaultProps: {
-    disableEqualOverflow: !0
     // padding: 0 // TODO: normalize padding.
   },
   styleOverrides: {
@@ -288,7 +287,7 @@ const D = {
     root: {
       backgroundColor: "white",
       marginBottom: 0,
-      color: n.body1?.color
+      color: s.body1?.color
     }
   }
 }, H = {
@@ -313,7 +312,7 @@ const D = {
       ...r(t, ["back-to"]) && {
         textDecoration: "none",
         display: "inline-block",
-        marginBottom: n.body1?.marginBottom,
+        marginBottom: s.body1?.marginBottom,
         ":hover": {
           fontWeight: "bold",
           textDecoration: "underline"
@@ -331,7 +330,7 @@ const D = {
       paddingBottom: 0
     }
   }
-}, q = {
+}, X = {
   styleOverrides: {
     root: ({ ownerState: t }) => ({
       ...r(t, ["last"]) && {
@@ -341,7 +340,7 @@ const D = {
       }
     })
   }
-}, X = {
+}, q = {
   styleOverrides: {
     paper: {
       borderRadius: 0
@@ -377,7 +376,7 @@ const D = {
       minWidth: "150px",
       border: "2px solid white",
       [`&.${f.selected}`]: {
-        color: w[300],
+        color: z[300],
         backgroundColor: "white",
         cursor: "default"
       },
@@ -405,7 +404,7 @@ const D = {
         }
       },
       ...r(t, ["body"]) && {
-        marginBottom: n.body1?.marginBottom
+        marginBottom: s.body1?.marginBottom
       }
     })
   }
@@ -467,7 +466,7 @@ const D = {
       [`& > .${d.root}`]: {
         ...t.disabled ? {
           [`.${d.disabled}`]: {
-            color: `${n.body1.color} !important`,
+            color: `${s.body1.color} !important`,
             "-webkit-text-fill-color": "unset"
           },
           border: "0px !important",
@@ -488,15 +487,15 @@ const D = {
         borderColor: "black !important"
       },
       [`.${S.root}`]: {
-        color: `${n.body1.color} !important`
+        color: `${s.body1.color} !important`
       },
-      [`.${M.root}::after`]: {
-        borderColor: `${n.body1.color} !important`
+      [`.${O.root}::after`]: {
+        borderColor: `${s.body1.color} !important`
+      },
+      [`.${M.root}`]: {
+        color: `${s.body1.color} !important`
       },
       [`.${$.root}`]: {
-        color: `${n.body1.color} !important`
-      },
-      [`.${O.root}`]: {
         fontSize: "12px !important"
       },
       ...t.multiline === !0 && {
@@ -533,7 +532,7 @@ const D = {
     })
   }
 }, et = {
-  MuiAccordion: z,
+  MuiAccordion: w,
   MuiAutocomplete: W,
   MuiButton: I,
   MuiCardActions: T,
@@ -542,12 +541,12 @@ const D = {
   MuiDialog: E,
   MuiFormControlLabel: R,
   MuiFormHelperText: L,
-  MuiGrid2: P,
+  MuiGrid: P,
   MuiInputBase: G,
   MuiLink: H,
   MuiList: N,
-  MuiListItemText: q,
-  MuiMenu: X,
+  MuiListItemText: X,
+  MuiMenu: q,
   MuiMenuItem: J,
   MuiSelect: K,
   MuiTab: Q,
@@ -567,6 +566,6 @@ export {
   r as i,
   F as m,
   c as s,
-  n as t
+  s as t
 };
-//# sourceMappingURL=index-VverRavP.js.map
+//# sourceMappingURL=index-D8Gc0IWi.js.map

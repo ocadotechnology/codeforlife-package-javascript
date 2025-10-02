@@ -1,7 +1,7 @@
 import { JSX, ReactNode } from 'react';
 import { ProviderProps } from 'react-redux';
 import { Action } from 'redux';
-import { ThemeProviderProps } from '@mui/material/styles/ThemeProvider';
+import { ThemeProviderProps } from '@mui/material';
 export interface AppProps<A extends Action = Action, S = unknown> {
     path?: string;
     theme: ThemeProviderProps["theme"];

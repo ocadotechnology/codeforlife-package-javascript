@@ -3,7 +3,6 @@ import {
   DatePicker,
   type DatePickerProps,
   LocalizationProvider,
-  type PickerValidDate,
 } from "@mui/x-date-pickers"
 import { Field, type FieldConfig, type FieldProps } from "formik"
 import { type ValidateOptions, date as YupDate } from "yup"
@@ -15,10 +14,9 @@ import { type FormValues, schemaToFieldValidator } from "../../utils/form"
 import { getNestedProperty } from "../../utils/general"
 
 export interface DatePickerFieldProps<
-  TDate extends PickerValidDate,
-  TEnableAccessibleFieldDOMStructure extends boolean = false,
+  TEnableAccessibleFieldDOMStructure extends boolean = true,
 > extends Omit<
-    DatePickerProps<TDate, TEnableAccessibleFieldDOMStructure>,
+    DatePickerProps<TEnableAccessibleFieldDOMStructure>,
     "name" | "value" | "onChange" | "slotProps"
   > {
   name: string
@@ -27,7 +25,6 @@ export interface DatePickerFieldProps<
 }
 
 const DatePickerField = <
-  TDate extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
 >({
   name,
@@ -36,10 +33,7 @@ const DatePickerField = <
   maxDate,
   validateOptions,
   ...otherDatePickerProps
-}: DatePickerFieldProps<
-  TDate,
-  TEnableAccessibleFieldDOMStructure
->): JSX.Element => {
+}: DatePickerFieldProps<TEnableAccessibleFieldDOMStructure>): JSX.Element => {
   const dotPath = name.split(".")
 
   function dateToString(date: Dayjs) {
@@ -94,7 +88,6 @@ const DatePickerField = <
             dateAdapter={AdapterDayjs}
             adapterLocale="en-gb"
           >
-            {/* @ts-expect-error value is compatible */}
             <DatePicker
               name={name}
               value={value}
@@ -104,8 +97,8 @@ const DatePickerField = <
               slotProps={{
                 textField: {
                   id: name,
+                  // @ts-expect-error value is compatible
                   onChange: value => {
-                    // @ts-expect-error value is compatible
                     handleChange(value as Dayjs | null)
                   },
                   onBlur: form.handleBlur,

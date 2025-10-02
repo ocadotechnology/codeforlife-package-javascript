@@ -4,7 +4,7 @@ import { type FC, type JSX, type ReactNode } from "react"
 import { Provider, type ProviderProps } from "react-redux"
 import { type Action } from "redux"
 import { StaticRouter } from "react-router"
-import { type ThemeProviderProps } from "@mui/material/styles/ThemeProvider"
+import { type ThemeProviderProps } from "@mui/material"
 
 import "./App.css"
 import { useLocation } from "../hooks"
