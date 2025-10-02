@@ -1,3 +1,10 @@
+## [2.10.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.5...v2.10.6) (2025-10-02)
+
+
+### Bug Fixes
+
+* Upgrade to mui v7 ([#95](https://github.com/ocadotechnology/codeforlife-package-javascript/issues/95)) ([79ff549](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/79ff5494a77382db7e509735afbb44583fcd537c))
+
 ## [2.10.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.4...v2.10.5) (2025-09-19)
 
 
