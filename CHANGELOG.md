@@ -1,3 +1,10 @@
+## [2.10.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.6...v2.10.7) (2025-10-14)
+
+
+### Bug Fixes
+
+* compression 1.8.1 ([1b09a6d](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/1b09a6dab22e49f30a12d2938b81af34603ffcfd))
+
 ## [2.10.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.10.5...v2.10.6) (2025-10-02)
 
 
