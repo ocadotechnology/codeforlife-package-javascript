@@ -68,6 +68,11 @@
       "import": "./dist/server/server.es.js",
       "require": "./dist/server/server.cjs.js"
     },
+    "./server/App": {
+      "types": "./dist/server/App.d.ts",
+      "import": "./dist/server/App.es.js",
+      "require": "./dist/server/App.cjs.js"
+    },
     "./server/entry": {
       "types": "./dist/server/entry.d.ts",
       "import": "./dist/server/entry.es.js",

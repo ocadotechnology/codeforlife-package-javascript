@@ -71,6 +71,7 @@ const viteConfig = defineConfig({
         "features/index.ts",
         "hooks/index.ts",
         "middlewares/index.ts",
+        "server/App.tsx",
         "server/entry.tsx",
         "server/server.ts",
         "settings/index.ts",
