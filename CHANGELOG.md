@@ -1,3 +1,10 @@
+## [2.11.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.1...v2.11.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* export server/App ([5ebfb9a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/5ebfb9ab087f879e9b19d3e31601054cc30199ec))
+
 ## [2.11.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.0...v2.11.1) (2025-10-21)
 
 
