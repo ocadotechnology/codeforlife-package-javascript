@@ -41,12 +41,14 @@ export type EntryKwArgs = {
   createEmotionCacheOptions?: CreateEmotionCacheOptions
 }
 
-export function server({
+export async function server({
   App,
   routes,
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
+  const { default: cflStyle } = await import("codeforlife/style.css?inline")
+
   function render(path: string) {
     const emotionCache = createEmotionCache(createEmotionCacheOptions)
     const emotionServer = createEmotionServer(emotionCache)
@@ -66,7 +68,7 @@ export function server({
 
     return {
       html,
-      head: emotionCss,
+      head: `${emotionCss}<style data-cfl>${cflStyle}</style>`,
     }
   }
 

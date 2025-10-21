@@ -7,10 +7,10 @@ export type EntryKwArgs = {
     routes: ReactNode;
     createEmotionCacheOptions?: CreateEmotionCacheOptions;
 };
-export declare function server({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): {
+export declare function server({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<{
     render: (path: string) => {
         html: string;
         head: string;
     };
-};
+}>;
 export declare function client({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): void;
