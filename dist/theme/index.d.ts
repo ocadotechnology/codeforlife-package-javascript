@@ -4,5 +4,4 @@ export * from './palette';
 export * from './ThemedBox';
 export { default as ThemedBox } from './ThemedBox';
 export declare const themeOptions: ThemeOptions;
-declare const theme: Theme;
-export default theme;
+export declare const theme: Theme;

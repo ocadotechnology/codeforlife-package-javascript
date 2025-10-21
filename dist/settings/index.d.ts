@@ -1,4 +1,3 @@
-declare const _default: Record<string, string>;
-export default _default;
+export declare const vite: Record<string, string>;
 export * from './custom';
 export * from './vite';

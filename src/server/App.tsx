@@ -34,8 +34,10 @@ const App = <A extends Action = Action, S = unknown>({
   emotionCache,
   theme,
   store,
+  // @ts-expect-error TODO
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   maxIdleSeconds = 60 * 60,
+  // @ts-expect-error TODO
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   maxTotalSeconds = 60 * 60,
 }: AppProps<A, S>): JSX.Element => {

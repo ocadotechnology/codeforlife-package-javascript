@@ -21,6 +21,4 @@ export const themeOptions: ThemeOptions = {
   typography,
 }
 
-const theme = responsiveFontSizes(createTheme(themeOptions))
-
-export default theme
+export const theme = responsiveFontSizes(createTheme(themeOptions))

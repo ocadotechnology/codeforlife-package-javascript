@@ -1,5 +1,5 @@
 // Shorthand to access environment variables.
-export default new Proxy(import.meta.env, {
+export const vite = new Proxy(import.meta.env, {
   get: (target, name: string) => target[`VITE_${name}`] as string,
 }) as Record<string, string>
 
