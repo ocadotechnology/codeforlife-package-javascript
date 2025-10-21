@@ -64,9 +64,9 @@
       "require": "./dist/middlewares/index.cjs.js"
     },
     "./server": {
-      "types": "./dist/server/index.d.ts",
-      "import": "./dist/server/index.es.js",
-      "require": "./dist/server/index.cjs.js"
+      "types": "./dist/server/server.d.ts",
+      "import": "./dist/server/server.es.js",
+      "require": "./dist/server/server.cjs.js"
     },
     "./server/entry": {
       "types": "./dist/server/entry.d.ts",

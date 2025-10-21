@@ -1,2 +1,0 @@
-"use strict";const e=require("./jsx-runtime-B2pbW5Fp.cjs"),r=require("@mui/material"),x=require("@emotion/react");require("react");const o=require("react-redux"),u=({children:s,emotionCache:t,theme:i,store:n,maxIdleSeconds:c=3600,maxTotalSeconds:a=3600})=>e.jsxRuntimeExports.jsx(x.CacheProvider,{value:t,children:e.jsxRuntimeExports.jsxs(r.ThemeProvider,{theme:i,children:[e.jsxRuntimeExports.jsx(r.CssBaseline,{}),e.jsxRuntimeExports.jsx(o.Provider,{store:n,children:s})]})});exports.App=u;
-//# sourceMappingURL=App-UfeajXtp.cjs.map

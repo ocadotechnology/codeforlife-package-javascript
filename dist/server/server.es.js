@@ -3,7 +3,6 @@ import { randomUUID as p } from "node:crypto";
 import d from "express";
 import i from "node:fs/promises";
 import m from "node:http";
-import { A as P } from "../App-3VkR-ZEZ.js";
 class S {
   envIsProduction;
   templateHtml;
@@ -18,8 +17,8 @@ class S {
   healthCheckCacheTimeout;
   healthCheckStatusCodes;
   devtoolsWorkspaceUUID;
-  constructor({ mode: o, port: e, base: t } = {}) {
-    this.envIsProduction = process.env.NODE_ENV === "production", this.templateHtml = "", this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1", this.mode = o || process.env.MODE || "development", this.port = e || (process.env.PORT ? Number(process.env.PORT) : this.envIsProduction ? 8080 : 5173), this.base = t || process.env.BASE || "", this.app = d(), this.server = m.createServer(this.app), this.cache = new l(), this.healthCheckCacheKey = "health-check", this.healthCheckCacheTimeout = 3e4, this.healthCheckStatusCodes = {
+  constructor({ mode: h, port: e, base: t } = {}) {
+    this.envIsProduction = process.env.NODE_ENV === "production", this.templateHtml = "", this.hostname = this.envIsProduction ? "0.0.0.0" : "127.0.0.1", this.mode = h || process.env.MODE || "development", this.port = e || (process.env.PORT ? Number(process.env.PORT) : this.envIsProduction ? 8080 : 5173), this.base = t || process.env.BASE || "", this.app = d(), this.server = m.createServer(this.app), this.cache = new l(), this.healthCheckCacheKey = "health-check", this.healthCheckCacheTimeout = 3e4, this.healthCheckStatusCodes = {
       // The app is running normally.
       healthy: 200,
       // The app is performing app-specific initialisation which must
@@ -41,18 +40,18 @@ class S {
   }
   // @ts-expect-error unused var
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getHealthCheck(o) {
+  getHealthCheck(h) {
     return {
       healthStatus: "healthy",
       additionalInfo: "All healthy."
     };
   }
-  handleHealthCheck(o, e) {
+  handleHealthCheck(h, e) {
     let t = this.cache.get(
       this.healthCheckCacheKey
     );
     if (t === null) {
-      const s = this.getHealthCheck(o);
+      const s = this.getHealthCheck(h);
       s.healthStatus !== "healthy" && console.warn(`health check: ${JSON.stringify(s)}`), t = {
         appId: process.env.APP_ID || "REPLACE_ME",
         healthStatus: s.healthStatus,
@@ -69,20 +68,20 @@ class S {
     }
     e.status(this.healthCheckStatusCodes[t.healthStatus]).json(t);
   }
-  async handleServeHtml(o, e, { getRenderAndTemplate: t, onServeError: s }) {
+  async handleServeHtml(h, e, { getRenderAndTemplate: t, onServeError: s }) {
     try {
-      const a = o.originalUrl.replace(this.base, ""), [h, n] = await t(a), r = await h(a), c = n.replace("<!--app-head-->", r.head ?? "").replace("<!--app-html-->", r.html ?? "");
+      const a = h.originalUrl.replace(this.base, ""), [o, n] = await t(a), r = await o(a), c = n.replace("<!--app-head-->", r.head ?? "").replace("<!--app-html-->", r.html ?? "");
       e.status(200).set({ "Content-Type": "text/html" }).send(c);
     } catch (a) {
       if (a instanceof Error) {
         console.error(a.stack);
-        const h = s(a);
-        e.status(500).end(h);
+        const o = s(a);
+        e.status(500).end(o);
       }
     }
   }
   // @ts-expect-error unused var
-  handleChromeDevTools(o, e) {
+  handleChromeDevTools(h, e) {
     if (this.envIsProduction)
       e.status(404).json({});
     else {
@@ -97,8 +96,8 @@ class S {
     }
   }
   async setUpProduction() {
-    const o = (await import("compression")).default, e = (await import("sirv")).default;
-    return this.templateHtml = await i.readFile("./dist/client/index.html", "utf-8"), this.app.use(o()), this.app.use(this.base, e("./dist/client", { extensions: [] })), {
+    const h = (await import("compression")).default, e = (await import("sirv")).default;
+    return this.templateHtml = await i.readFile("./dist/client/index.html", "utf-8"), this.app.use(h()), this.app.use(this.base, e("./dist/client", { extensions: [] })), {
       getRenderAndTemplate: async () => {
         const t = (await import(
           // @ts-expect-error only present after building installing app.
@@ -111,7 +110,7 @@ class S {
     };
   }
   async setUpDevelopment() {
-    const { createServer: o } = await import("vite"), e = await o({
+    const { createServer: h } = await import("vite"), e = await h({
       configFile: "/workspace/frontend/vite.config.ts",
       server: {
         middlewareMode: !0,
@@ -131,7 +130,7 @@ class S {
     };
   }
   async run() {
-    const o = this.envIsProduction ? await this.setUpProduction() : await this.setUpDevelopment();
+    const h = this.envIsProduction ? await this.setUpProduction() : await this.setUpDevelopment();
     this.app.get("/health-check", (e, t) => {
       this.handleHealthCheck(e, t);
     }), this.app.get(
@@ -140,7 +139,7 @@ class S {
         this.handleChromeDevTools(e, t);
       }
     ), this.app.get("*", async (e, t) => {
-      await this.handleServeHtml(e, t, o);
+      await this.handleServeHtml(e, t, h);
     }), this.server.listen(this.port, this.hostname, () => {
       let e = `Server started.
 url: http://${this.hostname}:${this.port}
@@ -152,7 +151,6 @@ environment: ${process.env.NODE_ENV}
   }
 }
 export {
-  P as App,
-  S as Server
+  S as default
 };
-//# sourceMappingURL=index.es.js.map
+//# sourceMappingURL=server.es.js.map
