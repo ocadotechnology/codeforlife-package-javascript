@@ -33,7 +33,7 @@ function createEmotionCache(
   return createCache({ key, prepend, ...otherOptions })
 }
 
-export type EntryKwArgs = Omit<AppProps, "emotionCache"> & {
+export type EntryKwArgs = Omit<AppProps, "emotionCache" | "children"> & {
   routes: ReactNode
   createEmotionCacheOptions?: CreateEmotionCacheOptions
 }
