@@ -1,3 +1,10 @@
+## [2.11.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.4...v2.11.5) (2025-10-21)
+
+
+### Bug Fixes
+
+* lazy load client and server specific imports ([535791e](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/535791e6fa57238ad5161e523067dd226d7ad224))
+
 ## [2.11.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.3...v2.11.4) (2025-10-21)
 
 
