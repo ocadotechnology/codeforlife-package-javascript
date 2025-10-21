@@ -1,3 +1,10 @@
+## [2.11.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.3...v2.11.4) (2025-10-21)
+
+
+### Bug Fixes
+
+* auto inject cfl styles ([9c99247](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/9c99247211e205c275b145efb913600e2ec33c79))
+
 ## [2.11.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.2...v2.11.3) (2025-10-21)
 
 
