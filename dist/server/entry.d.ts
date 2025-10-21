@@ -1,14 +1,16 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { Options as CreateEmotionCacheOptions } from '@emotion/cache';
 import { AppProps } from './App';
-export type EntryKwArgs = Omit<AppProps, "emotionCache" | "children"> & {
+export type EntryAppProps = Pick<AppProps, "emotionCache" | "children">;
+export type EntryKwArgs = {
+    App: FC<EntryAppProps>;
     routes: ReactNode;
     createEmotionCacheOptions?: CreateEmotionCacheOptions;
 };
-export declare function server({ routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): {
+export declare function server({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): {
     render: (path: string) => {
         html: string;
         head: string;
     };
 };
-export declare function client({ routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): void;
+export declare function client({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): void;

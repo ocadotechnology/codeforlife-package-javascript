@@ -10,7 +10,7 @@
  */
 
 import { BrowserRouter, Routes, StaticRouter } from "react-router"
-import { type ReactNode, StrictMode } from "react"
+import { type FC, type ReactNode, StrictMode } from "react"
 import createCache, {
   type Options as CreateEmotionCacheOptions,
 } from "@emotion/cache"
@@ -18,7 +18,7 @@ import createEmotionServer from "@emotion/server/create-instance"
 import { hydrateRoot } from "react-dom/client"
 import { renderToString } from "react-dom/server"
 
-import App, { type AppProps } from "./App"
+import { type AppProps } from "./App"
 
 /**
  * Creates a new Emotion cache instance.
@@ -33,12 +33,16 @@ function createEmotionCache(
   return createCache({ key, prepend, ...otherOptions })
 }
 
-export type EntryKwArgs = Omit<AppProps, "emotionCache" | "children"> & {
+export type EntryAppProps = Pick<AppProps, "emotionCache" | "children">
+
+export type EntryKwArgs = {
+  App: FC<EntryAppProps>
   routes: ReactNode
   createEmotionCacheOptions?: CreateEmotionCacheOptions
 }
 
 export function server({
+  App,
   routes,
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
@@ -70,6 +74,7 @@ export function server({
 }
 
 export function client({
+  App,
   routes,
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
