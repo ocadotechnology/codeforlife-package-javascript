@@ -1,179 +1,144 @@
-import { i as Rt } from "../index-CI5O_yH6.js";
-import { i as kt } from "../index-DcmDxIXA.js";
-import { L as bt, a as Ct, b as St, c as wt, N as zt } from "../Navigate-SL_oMjPc.js";
-import { L as Et } from "../LinkButton-Bk50AHHg.js";
-import { i as Mt } from "../index-Dfo744Sb.js";
-import { j as o } from "../jsx-runtime-C7wFtzyj.js";
-import { StaticRouter as S, BrowserRouter as w, Routes as z } from "react-router";
-import { ThemeProvider as O, CssBaseline as E, Tooltip as $, IconButton as M, Button as k, useScrollTrigger as F, AppBar as U, Container as A, Toolbar as D, List as N, Grid as R, Link as _, Stack as G, TablePagination as V, Box as Y } from "@mui/material";
-import T, { useEffect as B, cloneElement as H } from "react";
-import { Provider as P } from "react-redux";
-import { C as Ut } from "../Countdown-BTyB1rrK.js";
-import { f as q } from "../auth-CQ1InCxP.js";
-import { wrap as J } from "../utils/general.es.js";
-import { ContentCopy as K, Download as Q } from "@mui/icons-material";
-import { I as Dt } from "../Image-C-f2ChBh.js";
-import { h as W } from "../api-BvUiTeR7.js";
-import { S as _t } from "../api-BvUiTeR7.js";
-import { u as X } from "../api-Cs4Y-WeI.js";
-const b = ({
-  path: e,
-  routes: s,
-  header: t = /* @__PURE__ */ o.jsx(o.Fragment, {}),
-  // TODO: "header = <Header />"
-  footer: n = /* @__PURE__ */ o.jsx(o.Fragment, {}),
-  // TODO: "footer = <Footer />"
-  headerExcludePaths: r = [],
-  footerExcludePaths: i = []
-}) => /* @__PURE__ */ o.jsxs(o.Fragment, { children: [
-  !r.includes(e) && t,
-  /* @__PURE__ */ o.jsx(z, { children: s }),
-  !i.includes(e) && n
-] }), Z = (e) => {
-  const { pathname: s } = q();
-  return /* @__PURE__ */ o.jsx(b, { path: s, ...e });
-}, lt = ({
-  path: e,
-  theme: s,
-  store: t,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  maxIdleSeconds: n = 3600,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  maxTotalSeconds: r = 3600,
-  ...i
-}) => /* @__PURE__ */ o.jsxs(O, { theme: s, children: [
-  /* @__PURE__ */ o.jsx(E, {}),
-  /* @__PURE__ */ o.jsx(P, {
-    store: t,
-    // https://github.com/remix-run/react-router/tree/main/examples/ssr
-    children: e !== void 0 ? /* @__PURE__ */ o.jsx(S, { location: e, children: /* @__PURE__ */ o.jsx(b, { path: e, ...i }) }) : /* @__PURE__ */ o.jsx(w, { children: /* @__PURE__ */ o.jsx(Z, { ...i }) })
-  })
-] }), mt = ({
+import { i as lt } from "../index-BRHFlEjS.js";
+import { i as mt } from "../index-hdS8RgRc.js";
+import { L as ft, a as dt, b as xt, c as gt, N as ht } from "../Navigate-ClPcw87e.js";
+import { L as Lt } from "../LinkButton-sQ5jgHnX.js";
+import { i as vt } from "../index-B3e_XaVG.js";
+import { j as i } from "../jsx-runtime-lzYHhGH3.js";
+import { Tooltip as C, IconButton as R, Button as b, useScrollTrigger as w, AppBar as O, Container as S, Toolbar as $, List as E, Grid as T, Link as M, Stack as U, TablePagination as D, Box as N } from "@mui/material";
+import k, { useEffect as B, cloneElement as _ } from "react";
+import { wrap as A } from "../utils/general.es.js";
+import { ContentCopy as F, Download as G } from "@mui/icons-material";
+import { C as kt } from "../Countdown-DhjAmB0u.js";
+import { I as Bt } from "../Image-DTOu0h-V.js";
+import { h as V } from "../api-BFYu8ZvQ.js";
+import { S as Ct } from "../api-BFYu8ZvQ.js";
+import { u as Y } from "../api-Cs4Y-WeI.js";
+const X = ({
   open: e = !1,
-  onClick: s,
+  onClick: o,
   ...t
 }) => {
-  const [n, r] = T.useState(e);
-  return T.useEffect(() => {
-    r(e);
-  }, [e]), /* @__PURE__ */ o.jsx(
-    $,
+  const [r, s] = k.useState(e);
+  return k.useEffect(() => {
+    s(e);
+  }, [e]), /* @__PURE__ */ i.jsx(
+    C,
     {
-      open: n,
+      open: r,
       onMouseOver: () => {
-        n || r(!0);
+        r || s(!0);
       },
       onMouseLeave: () => {
-        r(!1);
+        s(!1);
       },
-      onClick: J(
+      onClick: A(
         {
           after: () => {
-            r(!n);
+            s(!r);
           }
         },
-        s
+        o
       ),
       ...t
     }
   );
-}, ut = ({
+}, Z = ({
   content: e,
-  children: s = /* @__PURE__ */ o.jsx(K, {}),
+  children: o = /* @__PURE__ */ i.jsx(F, {}),
   ...t
-}) => /* @__PURE__ */ o.jsx(
-  M,
+}) => /* @__PURE__ */ i.jsx(
+  R,
   {
     "data-testid": "copy-icon-button",
     onClick: () => {
       navigator.clipboard.writeText(e);
     },
     ...t,
-    children: s
+    children: o
   }
-), pt = ({
+), I = ({
   children: e = "Download",
-  endIcon: s = /* @__PURE__ */ o.jsx(Q, {}),
+  endIcon: o = /* @__PURE__ */ i.jsx(G, {}),
   file: t,
-  ...n
-}) => {
-  let r, i;
-  if ("mimeType" in t) {
-    const { text: c, mimeType: m, name: a, charset: u = "utf-8" } = t;
-    let { extension: d } = t;
-    d || (d = "." + { plain: "txt", csv: "csv" }[m]), i = {
-      download: a + d,
-      href: `data:text/${m};charset=${u},${encodeURIComponent(c)}`
-    };
-  } else
-    r = URL.createObjectURL(t), i = { href: r };
-  return B(() => () => {
-    r && URL.revokeObjectURL(r);
-  }, [r]), /* @__PURE__ */ o.jsx(k, { endIcon: s, ...n, ...i, children: e });
-}, dt = ({
-  containerProps: e,
-  toolbarProps: s,
-  elevation: t = 4,
-  children: n,
   ...r
 }) => {
-  const i = F({
+  let s, a;
+  if ("mimeType" in t) {
+    const { text: c, mimeType: u, name: n, charset: m = "utf-8" } = t;
+    let { extension: f } = t;
+    f || (f = "." + { plain: "txt", csv: "csv" }[u]), a = {
+      download: n + f,
+      href: `data:text/${u};charset=${m},${encodeURIComponent(c)}`
+    };
+  } else
+    s = URL.createObjectURL(t), a = { href: s };
+  return B(() => () => {
+    s && URL.revokeObjectURL(s);
+  }, [s]), /* @__PURE__ */ i.jsx(b, { endIcon: o, ...r, ...a, children: e });
+}, tt = ({
+  containerProps: e,
+  toolbarProps: o,
+  elevation: t = 4,
+  children: r,
+  ...s
+}) => {
+  const a = w({
     disableHysteresis: !0,
     threshold: 0
   });
-  return H(
-    /* @__PURE__ */ o.jsx(U, { elevation: t, ...r, children: /* @__PURE__ */ o.jsx(A, { ...e, children: /* @__PURE__ */ o.jsx(D, { ...s, children: n }) }) }),
+  return _(
+    /* @__PURE__ */ i.jsx(O, { elevation: t, ...s, children: /* @__PURE__ */ i.jsx(S, { ...e, children: /* @__PURE__ */ i.jsx($, { ...o, children: r }) }) }),
     {
-      position: i ? "fixed" : "sticky"
+      position: a ? "fixed" : "sticky"
     }
   );
-}, xt = ({
+}, et = ({
   children: e,
-  inputProps: s,
+  inputProps: o,
   ...t
-}) => /* @__PURE__ */ o.jsxs(k, { component: "label", ...t, children: [
+}) => /* @__PURE__ */ i.jsxs(b, { component: "label", ...t, children: [
   e,
-  /* @__PURE__ */ o.jsx("input", { type: "file", hidden: !0, ...s })
-] }), ft = ({
+  /* @__PURE__ */ i.jsx("input", { type: "file", hidden: !0, ...o })
+] }), ot = ({
   styleType: e,
-  listProps: s = {},
+  listProps: o = {},
   pl: t = 4,
-  children: n
+  children: r
 }) => {
-  const { sx: r, ...i } = s, c = { display: "list-item" };
-  return /* @__PURE__ */ o.jsx(
-    N,
+  const { sx: s, ...a } = o, c = { display: "list-item" };
+  return /* @__PURE__ */ i.jsx(
+    E,
     {
       sx: {
         listStyleType: e,
         pl: t,
         ".MuiListItem-root": c,
         ".MuiListItemText-root": c,
-        ...r
+        ...s
       },
-      ...i,
-      children: n
+      ...a,
+      children: r
     }
   );
-}, jt = ({
+}, st = ({
   rows: e,
-  containerProps: s = {},
+  containerProps: o = {},
   globalItemProps: t
 }) => {
-  const n = Number(s.columns ?? 12), r = (m) => Math.floor(n / m), i = (m, a, u) => Math.floor(a / r(u)) * e.length + m, c = (m, a) => {
-    const u = e[0].length % r(a);
-    return u !== 0 && m === e[0].length - 1 ? (n - u * a) / 2 : 0;
+  const r = Number(o.columns ?? 12), s = (u) => Math.floor(r / u), a = (u, n, m) => Math.floor(n / s(m)) * e.length + u, c = (u, n) => {
+    const m = e[0].length % s(n);
+    return m !== 0 && u === e[0].length - 1 ? (r - m * n) / 2 : 0;
   };
-  return /* @__PURE__ */ o.jsx(R, { container: !0, ...s, children: e.map(
-    (m, a) => m.map(({ element: u, itemProps: d = {} }, l) => /* @__PURE__ */ o.jsx(
-      R,
+  return /* @__PURE__ */ i.jsx(T, { container: !0, ...o, children: e.map(
+    (u, n) => u.map(({ element: m, itemProps: f = {} }, l) => /* @__PURE__ */ i.jsx(
+      T,
       {
         order: {
-          xs: i(a, l, t.size.xs),
-          sm: i(a, l, t.size.sm),
-          md: i(a, l, t.size.md),
-          lg: i(a, l, t.size.lg),
-          xl: i(a, l, t.size.xl)
+          xs: a(n, l, t.size.xs),
+          sm: a(n, l, t.size.sm),
+          md: a(n, l, t.size.md),
+          lg: a(n, l, t.size.lg),
+          xl: a(n, l, t.size.xl)
         },
         offset: {
           xs: c(l, t.size.xs),
@@ -183,126 +148,125 @@ const b = ({
           xl: c(l, t.size.xl)
         },
         ...t,
-        ...d,
-        children: u
+        ...f,
+        children: m
       },
-      `${a}-${l}`
+      `${n}-${l}`
     ))
   ) });
-}, ht = ({
+}, it = ({
   elementId: e,
-  options: s,
+  options: o,
   ...t
-}) => /* @__PURE__ */ o.jsx(
-  _,
+}) => /* @__PURE__ */ i.jsx(
+  M,
   {
     ...t,
     onClick: () => {
-      document.getElementById(e)?.scrollIntoView(s);
+      document.getElementById(e)?.scrollIntoView(o);
     }
   }
-), gt = ({
+), rt = ({
   children: e,
-  useLazyListQuery: s,
+  useLazyListQuery: o,
   preferCacheValue: t,
-  filters: n,
-  page: r = 0,
-  rowsPerPage: i = 50,
+  filters: r,
+  page: s = 0,
+  rowsPerPage: a = 50,
   rowsPerPageOptions: c = [50, 100, 150],
-  stackProps: m,
-  onRowsPerPageChange: a,
-  onPageChange: u,
-  ...d
+  stackProps: u,
+  onRowsPerPageChange: n,
+  onPageChange: m,
+  ...f
 }) => {
-  const [l, g] = s(), [{ limit: x, page: L, offset: j }, v] = X({
-    page: r,
-    limit: i
+  const [l, j] = o(), [{ limit: d, page: L, offset: g }, y] = Y({
+    page: s,
+    limit: a
   });
   B(
     () => {
-      l({ limit: x, offset: j, ...n }, t);
+      l({ limit: d, offset: g, ...r }, t);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       l,
-      x,
-      j,
+      d,
+      g,
       // eslint-disable-next-line react-hooks/exhaustive-deps,@typescript-eslint/no-unsafe-assignment
-      ...Object.values(n || {}),
+      ...Object.values(r || {}),
       t
     ]
   );
-  const { count: y, max_limit: h } = g.data || {};
+  const { count: v, max_limit: h } = j.data || {};
   return h && (c = c.filter(
     (p) => p <= h
-  )), /* @__PURE__ */ o.jsxs(G, { ...m, children: [
-    W(
-      g,
+  )), /* @__PURE__ */ i.jsxs(U, { ...u, children: [
+    V(
+      j,
       ({ data: p }) => e(p, {
-        limit: x,
+        limit: d,
         page: L,
-        offset: j,
-        count: y,
+        offset: g,
+        count: v,
         maxLimit: h
       })
     ),
-    /* @__PURE__ */ o.jsx(
-      V,
+    /* @__PURE__ */ i.jsx(
+      D,
       {
         component: "div",
-        count: y ?? 0,
-        rowsPerPage: x,
+        count: v ?? 0,
+        rowsPerPage: d,
         onRowsPerPageChange: (p) => {
-          v({ limit: parseInt(p.target.value), page: 0 }), a && a(p);
+          y({ limit: parseInt(p.target.value), page: 0 }), n && n(p);
         },
         page: L,
-        onPageChange: (p, f) => {
-          v(({ limit: C }) => ({ limit: C, page: f })), u && u(p, f);
+        onPageChange: (p, x) => {
+          y(({ limit: z }) => ({ limit: z, page: x })), m && m(p, x);
         },
-        rowsPerPageOptions: c.sort((p, f) => p - f),
-        ...d
+        rowsPerPageOptions: c.sort((p, x) => p - x),
+        ...f
       }
     )
   ] });
-}, Lt = ({
+}, nt = ({
   src: e,
-  style: s = {},
+  style: o = {},
   ...t
-}) => /* @__PURE__ */ o.jsx(
-  Y,
+}) => /* @__PURE__ */ i.jsx(
+  N,
   {
     component: "iframe",
     width: "100%",
     src: e,
     title: "YouTube video player",
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen",
-    style: { border: "0px", aspectRatio: "16 / 9", ...s },
+    style: { border: "0px", aspectRatio: "16 / 9", ...o },
     ...t
   }
 );
 export {
-  lt as App,
-  mt as ClickableTooltip,
-  ut as CopyIconButton,
-  Ut as Countdown,
-  pt as DownloadFileButton,
-  dt as ElevatedAppBar,
-  Dt as Image,
-  xt as InputFileButton,
-  ft as ItemizedList,
-  bt as Link,
-  Et as LinkButton,
-  Ct as LinkIconButton,
-  St as LinkListItem,
-  wt as LinkTab,
-  zt as Navigate,
-  jt as OrderedGrid,
-  ht as ScrollIntoViewLink,
-  _t as SyncError,
-  gt as TablePagination,
-  Lt as YouTubeVideo,
-  Rt as forms,
-  kt as pages,
-  Mt as tables
+  X as ClickableTooltip,
+  Z as CopyIconButton,
+  kt as Countdown,
+  I as DownloadFileButton,
+  tt as ElevatedAppBar,
+  Bt as Image,
+  et as InputFileButton,
+  ot as ItemizedList,
+  ft as Link,
+  Lt as LinkButton,
+  dt as LinkIconButton,
+  xt as LinkListItem,
+  gt as LinkTab,
+  ht as Navigate,
+  st as OrderedGrid,
+  it as ScrollIntoViewLink,
+  Ct as SyncError,
+  rt as TablePagination,
+  nt as YouTubeVideo,
+  lt as forms,
+  mt as pages,
+  vt as tables
 };
 //# sourceMappingURL=index.es.js.map

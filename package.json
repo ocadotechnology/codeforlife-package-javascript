@@ -63,6 +63,16 @@
       "import": "./dist/middlewares/index.es.js",
       "require": "./dist/middlewares/index.cjs.js"
     },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.es.js",
+      "require": "./dist/server/index.cjs.js"
+    },
+    "./server/entry": {
+      "types": "./dist/server/entry.d.ts",
+      "import": "./dist/server/entry.es.js",
+      "require": "./dist/server/entry.cjs.js"
+    },
     "./settings": {
       "types": "./dist/settings/index.d.ts",
       "import": "./dist/settings/index.es.js",
@@ -73,6 +83,7 @@
       "import": "./dist/slices/index.es.js",
       "require": "./dist/slices/index.cjs.js"
     },
+    "./style.css": "./dist/style.css",
     "./theme": {
       "types": "./dist/theme/index.d.ts",
       "import": "./dist/theme/index.es.js",
@@ -132,13 +143,7 @@
       "types": "./dist/utils/window.d.ts",
       "import": "./dist/utils/window.es.js",
       "require": "./dist/utils/window.cjs.js"
-    },
-    "./server": {
-      "types": "./dist/server.d.ts",
-      "import": "./dist/server.es.js",
-      "require": "./dist/server.cjs.js"
-    },
-    "./style.css": "./dist/style.css"
+    }
   },
   "files": [
     "dist"
@@ -164,7 +169,9 @@
     "✅ Do add `devDependencies` that are unique to this package."
   ],
   "dependencies": {
+    "@emotion/cache": "11.14.0",
     "@emotion/react": "11.12.0",
+    "@emotion/server": "11.11.0",
     "@emotion/styled": "11.14.1",
     "@mui/icons-material": "7.3.2",
     "@mui/material": "7.3.2",

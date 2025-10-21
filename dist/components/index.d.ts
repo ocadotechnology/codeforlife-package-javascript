@@ -2,7 +2,6 @@ export * as forms from './form';
 export * as pages from './page';
 export * from './router';
 export * as tables from './table';
-export { default as App, type AppProps } from './App';
 export { default as ClickableTooltip, type ClickableTooltipProps, } from './ClickableTooltip';
 export { default as CopyIconButton, type CopyIconButtonProps, } from './CopyIconButton';
 export { default as Countdown, type CountdownProps } from './Countdown';

@@ -1,8 +1,8 @@
 import { responsiveFontSizes as x, createTheme as u, buttonClasses as O, ThemeProvider as C, Box as T } from "@mui/material";
-import { g as S, i as j, t as B, s as F, c as I } from "../index-D8Gc0IWi.js";
+import { g as S, i as j, t as B, s as F, c as I } from "../index-CHboZsxD.js";
 import { s as H, p as m, t as $, a as L } from "../palette-CYwuLBW7.js";
 import { c as G } from "../palette-CYwuLBW7.js";
-import { j as s } from "../jsx-runtime-C7wFtzyj.js";
+import { j as s } from "../jsx-runtime-lzYHhGH3.js";
 import { Circle as w, Hexagon as z } from "@mui/icons-material";
 const R = ({
   options: r = y,
@@ -33,13 +33,13 @@ const R = ({
     color: o,
     textDecorationColor: o
   };
-  function n(e, b, f, k = "root") {
+  function n(e, b, k, f = "root") {
     return {
       // Get the original styles.
       ...S(
         e,
-        f,
         k,
+        f,
         r.components
       ),
       // Override styles unless the class name 'no-override' is set.
@@ -218,7 +218,7 @@ const R = ({
 export {
   R as ThemedBox,
   G as colors,
-  Y as default,
+  Y as theme,
   y as themeOptions
 };
 //# sourceMappingURL=index.es.js.map

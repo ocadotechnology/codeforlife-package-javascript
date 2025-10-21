@@ -1,9 +1,9 @@
-import { ThemedBox as t, default as m, themeOptions as r } from "./theme/index.es.js";
-import { c as a } from "./palette-CYwuLBW7.js";
+import { ThemedBox as m, theme as r, themeOptions as t } from "./theme/index.es.js";
+import { c as p } from "./palette-CYwuLBW7.js";
 export {
-  t as ThemedBox,
-  a as colors,
-  m as theme,
-  r as themeOptions
+  m as ThemedBox,
+  p as colors,
+  r as theme,
+  t as themeOptions
 };
 //# sourceMappingURL=index.es.js.map
