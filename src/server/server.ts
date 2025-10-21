@@ -87,7 +87,7 @@ export default class Server {
         : this.envIsProduction
           ? 8080
           : 5173)
-    this.base = base || process.env.BASE || "/"
+    this.base = base || process.env.BASE || ""
 
     this.app = express()
     this.server = http.createServer(this.app)
