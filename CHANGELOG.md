@@ -1,3 +1,10 @@
+## [2.11.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.2...v2.11.3) (2025-10-21)
+
+
+### Bug Fixes
+
+* pass app by reference ([c8f5469](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c8f5469ac94d1ab6fc767631cf03571a7cbea7b6))
+
 ## [2.11.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.1...v2.11.2) (2025-10-21)
 
 
