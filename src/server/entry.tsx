@@ -14,9 +14,6 @@ import { type FC, type ReactNode, StrictMode } from "react"
 import createCache, {
   type Options as CreateEmotionCacheOptions,
 } from "@emotion/cache"
-import createEmotionServer from "@emotion/server/create-instance"
-import { hydrateRoot } from "react-dom/client"
-import { renderToString } from "react-dom/server"
 
 import { type AppProps } from "./App"
 
@@ -47,6 +44,10 @@ export async function server({
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
+  const { default: createEmotionServer } = await import(
+    "@emotion/server/create-instance"
+  )
+  const { renderToString } = await import("react-dom/server")
   const { default: cflStyle } = await import("codeforlife/style.css?inline")
 
   function render(path: string) {
@@ -75,12 +76,14 @@ export async function server({
   return { render }
 }
 
-export function client({
+export async function client({
   App,
   routes,
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
+  const { hydrateRoot } = await import("react-dom/client")
+
   const emotionCache = createEmotionCache(createEmotionCacheOptions)
 
   hydrateRoot(

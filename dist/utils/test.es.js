@@ -1,7 +1,7 @@
 import { j as a } from "../jsx-runtime-lzYHhGH3.js";
 import "@testing-library/dom";
 import { render as o } from "@testing-library/react";
-import "../client-BK9NlSVR.js";
+import "../client-CUE3jVb4.js";
 import p from "@testing-library/user-event";
 import { Provider as f } from "react-redux";
 import { makeStore as c } from "./store.es.js";

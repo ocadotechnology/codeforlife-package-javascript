@@ -13,4 +13,4 @@ export declare function server({ App, routes, createEmotionCacheOptions, ...appP
         head: string;
     };
 }>;
-export declare function client({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): void;
+export declare function client({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<void>;
