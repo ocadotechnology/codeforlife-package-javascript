@@ -30,11 +30,20 @@ function generateEntries(...indexDirs: string[]) {
 function generateExternalDependencies(
   ...dependencies: Array<Record<string, string> | undefined>
 ) {
-  return dependencies.reduce((keys, dependencies) => {
-    keys.push(...Object.keys(dependencies || {}))
+  return dependencies.reduce(
+    (keys, dependencies) => {
+      for (const dependency of Object.keys(dependencies || {})) {
+        // Add the dependency (e.g. "react")
+        keys.push(dependency)
+        // Add all subpaths of the dependency (e.g. "react/jsx-runtime")
+        // eslint-disable-next-line no-useless-escape
+        keys.push(new RegExp(`^${dependency}\/.*`))
+      }
 
-    return keys
-  }, [] as string[])
+      return keys
+    },
+    [] as Array<string | RegExp>,
+  )
 }
 
 const viteConfig = defineConfig({
@@ -122,15 +131,6 @@ const viteConfig = defineConfig({
         ...builtinModules.map(m => `node:${m}`),
         ...builtinModules,
         "../../../dist/server/entry-server.js",
-        "react/jsx-runtime",
-        "react-dom/client",
-        "react-dom/server",
-        "@emotion/server/create-instance",
-        "@reduxjs/toolkit/query",
-        "@reduxjs/toolkit/query/react",
-        "dayjs/locale/en-gb",
-        "@mui/x-date-pickers/AdapterDayjs",
-        "@mui/material/OverridableComponent",
       ],
     },
     // Vite will output both your built .js file and a corresponding .js.map
