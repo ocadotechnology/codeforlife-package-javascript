@@ -122,6 +122,11 @@ const viteConfig = defineConfig({
       //  libraries cached, so not bundling them saves download time.
       external: [
         ...generateExternalDependencies(
+          // Special case: any self-references to this package ("codeforlife")
+          // should be seen as external as these references should only be
+          // lazy-loaded during the runtime of the services (and during the
+          // buildtime of the package).
+          { [packageJson.name]: packageJson.version },
           packageJson.dependencies,
           packageJson.devDependencies,
           workspacePackageJson.dependencies,
