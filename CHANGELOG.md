@@ -1,3 +1,10 @@
+## [2.11.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.7...v2.11.8) (2025-10-29)
+
+
+### Bug Fixes
+
+* include dayjs in build ([3280e64](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3280e644e93a92e7a751b16ea75b8c0079fc58fe))
+
 ## [2.11.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.6...v2.11.7) (2025-10-29)
 
 
