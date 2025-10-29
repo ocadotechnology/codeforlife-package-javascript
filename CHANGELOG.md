@@ -1,3 +1,10 @@
+## [2.11.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.8...v2.11.9) (2025-10-29)
+
+
+### Bug Fixes
+
+* relative reference to styles ([29fca17](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/29fca1753e804b18fc48711318495874000791fb))
+
 ## [2.11.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.7...v2.11.8) (2025-10-29)
 
 
