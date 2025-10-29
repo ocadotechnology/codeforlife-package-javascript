@@ -21,7 +21,7 @@ async function j({
   createEmotionCacheOptions: r = {},
   ...n
 }) {
-  const { default: c } = await import("@emotion/server/create-instance"), { renderToString: i } = await import("react-dom/server"), { default: u } = await import("codeforlife/style.css?inline");
+  const { default: c } = await import("@emotion/server/create-instance"), { renderToString: i } = await import("react-dom/server"), { default: u } = await import("./dist/style.css?inline");
   function p(f) {
     const a = h(r), m = c(a), s = i(
       /* @__PURE__ */ t(d, { children: /* @__PURE__ */ t(o, { emotionCache: a, ...n, children: /* @__PURE__ */ t(w, { location: f, children: /* @__PURE__ */ t(l, { children: e }) }) }) })

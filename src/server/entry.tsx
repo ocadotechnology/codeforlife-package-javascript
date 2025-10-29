@@ -48,7 +48,7 @@ export async function server({
     "@emotion/server/create-instance"
   )
   const { renderToString } = await import("react-dom/server")
-  const { default: cflStyle } = await import("codeforlife/style.css?inline")
+  const { default: cflStyle } = await import("./dist/style.css?inline")
 
   function render(path: string) {
     const emotionCache = createEmotionCache(createEmotionCacheOptions)
