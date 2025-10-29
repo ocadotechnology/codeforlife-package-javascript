@@ -1,3 +1,10 @@
+## [2.11.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.5...v2.11.6) (2025-10-29)
+
+
+### Bug Fixes
+
+* add external packages to reduce build size ([3cc9232](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/3cc92323197b59b37e0f89958e61dba620a3e998))
+
 ## [2.11.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.4...v2.11.5) (2025-10-21)
 
 
