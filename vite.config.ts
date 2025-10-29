@@ -28,11 +28,14 @@ function generateEntries(...indexDirs: string[]) {
 }
 
 function generateExternalDependencies(
+  ignore: string[],
   ...dependencies: Array<Record<string, string> | undefined>
 ) {
   return dependencies.reduce(
     (keys, dependencies) => {
       for (const dependency of Object.keys(dependencies || {})) {
+        if (ignore.includes(dependency)) continue
+
         // Add the dependency (e.g. "react")
         keys.push(dependency)
         // Add all subpaths of the dependency (e.g. "react/jsx-runtime")
@@ -122,6 +125,7 @@ const viteConfig = defineConfig({
       //  libraries cached, so not bundling them saves download time.
       external: [
         ...generateExternalDependencies(
+          ["dayjs"],
           // Special case: any self-references to this package ("codeforlife")
           // should be seen as external as these references should only be
           // lazy-loaded during the runtime of the services (and during the
