@@ -1,3 +1,10 @@
+## [2.11.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.6...v2.11.7) (2025-10-29)
+
+
+### Bug Fixes
+
+* ignore self references when building ([08d67ab](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/08d67ab7faad891eb3749f386d1a0be467cb6f8d))
+
 ## [2.11.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.5...v2.11.6) (2025-10-29)
 
 
