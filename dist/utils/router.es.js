@@ -1,10 +1,10 @@
 import { generatePath as p } from "react-router";
-import "../jsx-runtime-lzYHhGH3.js";
+import "react/jsx-runtime";
 import "react";
 import "@mui/icons-material";
 import "@mui/material";
 import "../palette-CYwuLBW7.js";
-import "../auth-Bb8WkZGN.js";
+import "../auth-B6anBtxF.js";
 function x(t, n = {}) {
   function c(i, l, e) {
     typeof i.__ == "object" && (e = e ? { ...e, ...i.__ } : i.__);

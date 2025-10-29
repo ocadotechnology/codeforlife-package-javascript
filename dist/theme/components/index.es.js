@@ -1,5 +1,5 @@
 import "@mui/material";
-import { c as a } from "../../index-CHboZsxD.js";
+import { c as a } from "../../index-CDxf6gMv.js";
 export {
   a as default
 };

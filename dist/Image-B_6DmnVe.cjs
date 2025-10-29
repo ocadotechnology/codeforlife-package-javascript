@@ -1,0 +1,2 @@
+"use strict";const s=require("react/jsx-runtime"),c=require("@mui/material");require("react");const l=require("./utils/general.cjs.js"),a=({href:i,hrefInNewTab:t=!1,...r})=>{let{onClick:o,style:e={},...n}=r;return e.width===void 0&&(e.width="100%"),i!==void 0&&(e={...e,cursor:"pointer"},t?o=()=>{l.openInNewTab(i)}:o=()=>{window.location.replace(i)}),s.jsx(c.Box,{component:"img",onClick:o,style:e,...n})};exports.Image=a;
+//# sourceMappingURL=Image-B_6DmnVe.cjs.map

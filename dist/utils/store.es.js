@@ -1,20 +1,20 @@
-import { configureStore as s } from "@reduxjs/toolkit";
-import { s as i } from "../rtk-query.modern-CjetfYPg.js";
-function a({
+import { configureStore as i } from "@reduxjs/toolkit";
+import { setupListeners as c } from "@reduxjs/toolkit/query";
+function p({
   reducer: t,
   middlewares: e = [],
   preloadedState: o = {}
 }) {
-  const r = s({
+  const r = i({
     reducer: t,
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: (n) => n().concat(e),
     preloadedState: o
   });
-  return i(r.dispatch), r;
+  return c(r.dispatch), r;
 }
 export {
-  a as makeStore
+  p as makeStore
 };
 //# sourceMappingURL=store.es.js.map

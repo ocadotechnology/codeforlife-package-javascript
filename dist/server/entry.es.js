@@ -1,37 +1,37 @@
-import { j as t } from "../jsx-runtime-lzYHhGH3.js";
-import { BrowserRouter as C, Routes as u, StaticRouter as y } from "react-router";
+import { jsx as t } from "react/jsx-runtime";
+import { BrowserRouter as S, Routes as l, StaticRouter as w } from "react-router";
 import { StrictMode as d } from "react";
-import S from "@emotion/cache";
+import R from "@emotion/cache";
 import "@mui/material";
 import "@emotion/react";
 import "react-redux";
 /* empty css              */
-function p({
+function h({
   key: o = "css",
   // ensures all styles are generated with this prefix
   prepend: e = !0,
   // loads MUI-styles first so we can override them easily
   ...r
 } = {}) {
-  return S({ key: o, prepend: e, ...r });
+  return R({ key: o, prepend: e, ...r });
 }
-async function $({
+async function j({
   App: o,
   routes: e,
   createEmotionCacheOptions: r = {},
   ...n
 }) {
-  const { default: c } = await import("../emotion-server-create-instance.browser.esm-CgeoyX9a.js"), { renderToString: i } = await import("../server.browser-gAvZ6xhz.js").then((a) => a.s), { default: s } = await import("../style-C3515J9T.js");
-  function f(a) {
-    const m = p(r), l = c(m), h = i(
-      /* @__PURE__ */ t.jsx(d, { children: /* @__PURE__ */ t.jsx(o, { emotionCache: m, ...n, children: /* @__PURE__ */ t.jsx(y, { location: a, children: /* @__PURE__ */ t.jsx(u, { children: e }) }) }) })
-    ), x = l.extractCriticalToChunks(h), j = l.constructStyleTagsFromChunks(x);
+  const { default: c } = await import("@emotion/server/create-instance"), { renderToString: i } = await import("react-dom/server"), { default: u } = await import("../style-C3515J9T.js");
+  function p(f) {
+    const a = h(r), m = c(a), s = i(
+      /* @__PURE__ */ t(d, { children: /* @__PURE__ */ t(o, { emotionCache: a, ...n, children: /* @__PURE__ */ t(w, { location: f, children: /* @__PURE__ */ t(l, { children: e }) }) }) })
+    ), C = m.extractCriticalToChunks(s), y = m.constructStyleTagsFromChunks(C);
     return {
-      html: h,
-      head: `${j}<style data-cfl>${s}</style>`
+      html: s,
+      head: `${y}<style data-cfl>${u}</style>`
     };
   }
-  return { render: f };
+  return { render: p };
 }
 async function F({
   App: o,
@@ -39,14 +39,14 @@ async function F({
   createEmotionCacheOptions: r = {},
   ...n
 }) {
-  const { hydrateRoot: c } = await import("../client-CUE3jVb4.js").then((s) => s.c), i = p(r);
+  const { hydrateRoot: c } = await import("react-dom/client"), i = h(r);
   c(
     document.getElementById("root"),
-    /* @__PURE__ */ t.jsx(d, { children: /* @__PURE__ */ t.jsx(o, { emotionCache: i, ...n, children: /* @__PURE__ */ t.jsx(C, { children: /* @__PURE__ */ t.jsx(u, { children: e }) }) }) })
+    /* @__PURE__ */ t(d, { children: /* @__PURE__ */ t(o, { emotionCache: i, ...n, children: /* @__PURE__ */ t(S, { children: /* @__PURE__ */ t(l, { children: e }) }) }) })
   );
 }
 export {
   F as client,
-  $ as server
+  j as server
 };
 //# sourceMappingURL=entry.es.js.map

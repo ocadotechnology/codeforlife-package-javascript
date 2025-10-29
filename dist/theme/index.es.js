@@ -1,53 +1,53 @@
-import { responsiveFontSizes as x, createTheme as u, buttonClasses as O, ThemeProvider as C, Box as T } from "@mui/material";
-import { g as S, i as j, t as B, s as F, c as I } from "../index-CHboZsxD.js";
-import { s as H, p as m, t as $, a as L } from "../palette-CYwuLBW7.js";
-import { c as G } from "../palette-CYwuLBW7.js";
-import { j as s } from "../jsx-runtime-lzYHhGH3.js";
-import { Circle as w, Hexagon as z } from "@mui/icons-material";
-const R = ({
-  options: r = y,
+import { responsiveFontSizes as u, createTheme as y, buttonClasses as C, ThemeProvider as T, Box as S } from "@mui/material";
+import { g as B, i as F, t as I, s as H, c as $ } from "../index-CDxf6gMv.js";
+import { s as L, p as c, t as j, a as w } from "../palette-CYwuLBW7.js";
+import { c as Q } from "../palette-CYwuLBW7.js";
+import { jsx as m, jsxs as x, Fragment as z } from "react/jsx-runtime";
+import { Circle as D, Hexagon as P } from "@mui/icons-material";
+const E = ({
+  options: r = h,
   withShapes: p = !1,
   userType: d,
   bgcolor: t,
-  children: h,
-  sx: v,
-  ...M
+  children: v,
+  sx: M,
+  ...g
 }) => {
-  let i, a, o;
+  let s, i, o;
   switch (d) {
     case "teacher":
-      t = t ?? L[400], i = "tertiary", a = "secondary", o = m.primary.contrastText;
+      t = t ?? w[400], s = "tertiary", i = "secondary", o = c.primary.contrastText;
       break;
     case "student":
-      t = t ?? $[500], i = "secondary", a = "primary", o = m.tertiary.contrastText;
+      t = t ?? j[500], s = "secondary", i = "primary", o = c.tertiary.contrastText;
       break;
     case "independent":
-      t = t ?? H[500], i = "primary", a = "tertiary", o = m.secondary.contrastText;
+      t = t ?? L[500], s = "primary", i = "tertiary", o = c.secondary.contrastText;
       break;
   }
   const l = {
     display: { xs: "none", md: "block" },
     fontSize: "180px",
     position: "absolute"
-  }, c = {
+  }, a = {
     color: o,
     textDecorationColor: o
   };
-  function n(e, b, k, f = "root") {
+  function n(e, k, f, O = "root") {
     return {
       // Get the original styles.
-      ...S(
+      ...B(
         e,
-        k,
         f,
+        O,
         r.components
       ),
       // Override styles unless the class name 'no-override' is set.
-      ...!j(e, ["no-override"]) && b
+      ...!F(e, ["no-override"]) && k
     };
   }
-  const g = x(
-    u({
+  const b = u(
+    y({
       ...r,
       components: {
         ...r.components,
@@ -58,7 +58,7 @@ const R = ({
             root: ({ ownerState: e }) => n(
               e,
               {
-                ...c
+                ...a
               },
               "MuiTypography"
             )
@@ -71,7 +71,7 @@ const R = ({
             root: ({ ownerState: e }) => n(
               e,
               {
-                ...c
+                ...a
               },
               "MuiFormHelperText"
             )
@@ -84,7 +84,7 @@ const R = ({
             root: ({ ownerState: e }) => n(
               e,
               {
-                ...c
+                ...a
               },
               "MuiLink"
             )
@@ -107,7 +107,7 @@ const R = ({
                       "0px 3px 5px 0px rgba(0, 0, 0, 0.2);"
                     ].join()
                   },
-                  [`&.${O.disabled}`]: {
+                  [`&.${C.disabled}`]: {
                     backgroundColor: "white",
                     color: o
                   }
@@ -119,7 +119,7 @@ const R = ({
             outlined: ({ ownerState: e }) => n(
               e,
               {
-                ...c,
+                ...a,
                 border: `2px solid ${o}`,
                 "&:hover": {
                   border: `2px solid ${o}`,
@@ -163,11 +163,11 @@ const R = ({
       }
     })
   );
-  return /* @__PURE__ */ s.jsx(C, { theme: g, children: /* @__PURE__ */ s.jsxs(
-    T,
+  return /* @__PURE__ */ m(T, { theme: b, children: /* @__PURE__ */ x(
+    S,
     {
       sx: {
-        ...v,
+        ...M,
         ...p && {
           paddingY: { xs: 2, sm: 3, md: 5 },
           paddingX: { xs: 2, sm: 5, md: 10 },
@@ -177,13 +177,13 @@ const R = ({
         alignItems: "center",
         position: "relative"
       },
-      ...M,
+      ...g,
       children: [
-        p && /* @__PURE__ */ s.jsxs(s.Fragment, { children: [
-          /* @__PURE__ */ s.jsx(
-            w,
+        p && /* @__PURE__ */ x(z, { children: [
+          /* @__PURE__ */ m(
+            D,
             {
-              color: i,
+              color: s,
               sx: {
                 ...l,
                 top: "5%",
@@ -192,10 +192,10 @@ const R = ({
               }
             }
           ),
-          /* @__PURE__ */ s.jsx(
-            z,
+          /* @__PURE__ */ m(
+            P,
             {
-              color: a,
+              color: i,
               sx: {
                 ...l,
                 bottom: "5%",
@@ -205,20 +205,20 @@ const R = ({
             }
           )
         ] }),
-        h
+        v
       ]
     }
   ) });
-}, y = {
-  palette: m,
-  components: I,
-  spacing: F,
-  typography: B
-}, Y = x(u(y));
+}, h = {
+  palette: c,
+  components: $,
+  spacing: H,
+  typography: I
+}, G = u(y(h));
 export {
-  R as ThemedBox,
-  G as colors,
-  Y as theme,
-  y as themeOptions
+  E as ThemedBox,
+  Q as colors,
+  G as theme,
+  h as themeOptions
 };
 //# sourceMappingURL=index.es.js.map
