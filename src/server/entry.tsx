@@ -88,7 +88,11 @@ export async function client({
   createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
-  const { hydrateRoot } = await import("react-dom/client")
+  const reactDomClientModule = await import("react-dom/client")
+
+  // Check for the .default property to handle CJS/ESM interop.
+  // 'hydrateRoot' will be on the module itself OR on the .default object.
+  const { hydrateRoot } = reactDomClientModule.default || reactDomClientModule
 
   const emotionCache = createEmotionCache(createEmotionCacheOptions)
 
