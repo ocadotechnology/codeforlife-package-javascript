@@ -1,3 +1,10 @@
+## [2.12.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.1...v2.12.2) (2025-10-30)
+
+
+### Bug Fixes
+
+* routes ([12c9507](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/12c950702f0bb771cd0bf75456abdc9944617912))
+
 ## [2.12.1](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.0...v2.12.1) (2025-10-30)
 
 
