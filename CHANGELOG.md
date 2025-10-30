@@ -1,3 +1,10 @@
+## [2.11.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.10...v2.11.11) (2025-10-30)
+
+
+### Bug Fixes
+
+* CJS/ESM interop ([e208684](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e20868428d10ea1f929b51a7797675bb39eb02a7))
+
 ## [2.11.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.9...v2.11.10) (2025-10-30)
 
 
