@@ -73,6 +73,11 @@
       "import": "./dist/server/App.es.js",
       "require": "./dist/server/App.cjs.js"
     },
+    "./server/DefaultRoutes": {
+      "types": "./dist/server/DefaultRoutes.d.ts",
+      "import": "./dist/server/DefaultRoutes.es.js",
+      "require": "./dist/server/DefaultRoutes.cjs.js"
+    },
     "./server/entry": {
       "types": "./dist/server/entry.d.ts",
       "import": "./dist/server/entry.es.js",
@@ -88,7 +93,6 @@
       "import": "./dist/slices/index.es.js",
       "require": "./dist/slices/index.cjs.js"
     },
-    "./style.css": "./dist/style.css",
     "./theme": {
       "types": "./dist/theme/index.d.ts",
       "import": "./dist/theme/index.es.js",

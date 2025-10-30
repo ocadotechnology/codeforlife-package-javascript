@@ -1,7 +1,7 @@
 import { Button, Dialog, Typography } from "@mui/material"
 import { type FC } from "react"
 
-import BrainImage from "../images/svg/brain.svg"
+import BrainImage from "../images/brain.svg"
 import { Image } from "../components"
 
 export interface ScreenTimeDialogProps {

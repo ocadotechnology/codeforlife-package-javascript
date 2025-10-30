@@ -84,6 +84,7 @@ const viteConfig = defineConfig({
         "hooks/index.ts",
         "middlewares/index.ts",
         "server/App.tsx",
+        "server/DefaultRoutes.tsx",
         "server/entry.tsx",
         "server/server.ts",
         "settings/index.ts",

@@ -9,12 +9,13 @@
  * https://github.com/remix-run/react-router/tree/main/examples/ssr
  */
 
-import { BrowserRouter, Routes, StaticRouter } from "react-router"
-import { type FC, type ReactNode, StrictMode } from "react"
+import { BrowserRouter, StaticRouter } from "react-router"
+import { type FC, StrictMode } from "react"
 import createCache, {
   type Options as CreateEmotionCacheOptions,
 } from "@emotion/cache"
 
+import DefaultRoutes, { type DefaultRoutesProps } from "./DefaultRoutes"
 import { type AppProps } from "./App"
 import packageJson from "../../package.json"
 
@@ -35,7 +36,7 @@ export type EntryAppProps = Pick<AppProps, "emotionCache" | "children">
 
 export type EntryKwArgs = {
   App: FC<EntryAppProps>
-  routes: ReactNode
+  routes: DefaultRoutesProps["children"]
   createEmotionCacheOptions?: CreateEmotionCacheOptions
 }
 
@@ -64,7 +65,7 @@ export async function server({
       <StrictMode>
         <App emotionCache={emotionCache} {...appProps}>
           <StaticRouter location={path}>
-            <Routes>{routes}</Routes>
+            <DefaultRoutes>{routes}</DefaultRoutes>
           </StaticRouter>
         </App>
       </StrictMode>,
@@ -101,7 +102,7 @@ export async function client({
     <StrictMode>
       <App emotionCache={emotionCache} {...appProps}>
         <BrowserRouter>
-          <Routes>{routes}</Routes>
+          <DefaultRoutes>{routes}</DefaultRoutes>
         </BrowserRouter>
       </App>
     </StrictMode>,

@@ -11,6 +11,10 @@ const env = import.meta.env as Record<string, string | undefined>
 // The name of the current service.
 export const SERVICE_NAME = env.VITE_SERVICE_NAME ?? "REPLACE_ME"
 
+// The title of the current service. Used in the <title/> within the <head/>.
+export const SERVICE_TITLE =
+  env.VITE_SERVICE_TITLE ?? `Code for Life | ${SERVICE_NAME}`
+
 // The api url of the current service.
 export const SERVICE_API_URL =
   env.VITE_SERVICE_API_URL ?? "http://localhost:8000"
