@@ -1,3 +1,10 @@
+## [2.11.10](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.9...v2.11.10) (2025-10-30)
+
+
+### Bug Fixes
+
+*  read file instead of import ([7652741](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/765274190dc6b764a7e60ea847a0844fa0ed89b1))
+
 ## [2.11.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.8...v2.11.9) (2025-10-29)
 
 
