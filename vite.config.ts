@@ -136,7 +136,7 @@ const viteConfig = defineConfig({
         ...builtinModules.map(m => `node:${m}`),
         ...builtinModules,
         /^\.\/dist\/.*/, // this package's dist files
-        /^\.\.\/\.\.\/\.\.\/dist\/.*/, // a service's dist files
+        /^(\.\.\/){3,}dist\/.*/, // a service's dist files
       ],
     },
     // Vite will output both your built .js file and a corresponding .js.map

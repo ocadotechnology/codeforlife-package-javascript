@@ -37,13 +37,17 @@ export type EntryAppProps = Pick<AppProps, "emotionCache" | "children">
 export type EntryKwArgs = {
   App: FC<EntryAppProps>
   routes: DefaultRoutesProps["children"]
+  catchAllRoute?: DefaultRoutesProps["catchAll"]
   createEmotionCacheOptions?: CreateEmotionCacheOptions
 }
+
+const DEFAULT_CATCH_ALL: DefaultRoutesProps["catchAll"] = true
 
 export async function server({
   App,
   routes,
-  createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
+  catchAllRoute = DEFAULT_CATCH_ALL,
+  createEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
   const { default: createEmotionServer } = await import(
@@ -65,7 +69,7 @@ export async function server({
       <StrictMode>
         <App emotionCache={emotionCache} {...appProps}>
           <StaticRouter location={path}>
-            <DefaultRoutes>{routes}</DefaultRoutes>
+            <DefaultRoutes catchAll={catchAllRoute}>{routes}</DefaultRoutes>
           </StaticRouter>
         </App>
       </StrictMode>,
@@ -86,7 +90,8 @@ export async function server({
 export async function client({
   App,
   routes,
-  createEmotionCacheOptions = {} as CreateEmotionCacheOptions,
+  catchAllRoute = DEFAULT_CATCH_ALL,
+  createEmotionCacheOptions,
   ...appProps
 }: EntryKwArgs) {
   const reactDomClientModule = await import("react-dom/client")
@@ -102,7 +107,7 @@ export async function client({
     <StrictMode>
       <App emotionCache={emotionCache} {...appProps}>
         <BrowserRouter>
-          <DefaultRoutes>{routes}</DefaultRoutes>
+          <DefaultRoutes catchAll={catchAllRoute}>{routes}</DefaultRoutes>
         </BrowserRouter>
       </App>
     </StrictMode>,

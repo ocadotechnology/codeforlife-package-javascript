@@ -1,23 +1,17 @@
 import { type FC, type ReactNode } from "react"
 import { Route, Routes } from "react-router"
 
-import FaviconImage from "../images/favicon.ico"
-
 export interface DefaultRoutesProps {
   children: ReactNode
-  faviconPath?: string
+  catchAll: boolean
 }
 
-const DefaultRoutes: FC<DefaultRoutesProps> = ({
-  children,
-  faviconPath = "/favicon.ico",
-}) => (
+const DefaultRoutes: FC<DefaultRoutesProps> = ({ children, catchAll }) => (
   <Routes>
-    <Route
-      path={faviconPath}
-      element={<img src={FaviconImage} alt="code for Life favicon" />}
-    />
     {children}
+    {catchAll && (
+      <Route path="*" element={<>TODO: Replace with Not Found Error Page</>} />
+    )}
   </Routes>
 )
 

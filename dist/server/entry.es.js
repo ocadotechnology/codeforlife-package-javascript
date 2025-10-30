@@ -1,14 +1,14 @@
 import { jsx as t } from "react/jsx-runtime";
-import { BrowserRouter as w, StaticRouter as g } from "react-router";
-import { StrictMode as d } from "react";
+import { BrowserRouter as T, StaticRouter as g } from "react-router";
+import { StrictMode as u } from "react";
 import k from "@emotion/cache";
-import u from "./DefaultRoutes.es.js";
+import h from "./DefaultRoutes.es.js";
 import "@mui/material";
 import "@emotion/react";
 import "react-redux";
 /* empty css              */
-const R = "codeforlife", v = {
-  name: R
+const E = "codeforlife", R = {
+  name: E
 };
 function f({
   key: o = "css",
@@ -19,41 +19,44 @@ function f({
 } = {}) {
   return k({ key: o, prepend: e, ...r });
 }
-async function I({
+const p = !0;
+async function j({
   App: o,
   routes: e,
-  createEmotionCacheOptions: r = {},
-  ...c
+  catchAllRoute: r = p,
+  createEmotionCacheOptions: c,
+  ...i
 }) {
-  const { default: n } = await import("@emotion/server/create-instance"), { renderToString: i } = await import("react-dom/server"), { default: a } = await import("node:fs/promises"), h = await a.readFile(
-    `./node_modules/${v.name}/dist/style.css`,
+  const { default: n } = await import("@emotion/server/create-instance"), { renderToString: a } = await import("react-dom/server"), { default: s } = await import("node:fs/promises"), C = await s.readFile(
+    `./node_modules/${R.name}/dist/style.css`,
     "utf-8"
   );
-  function p(C) {
-    const s = f(r), m = n(s), l = i(
-      /* @__PURE__ */ t(d, { children: /* @__PURE__ */ t(o, { emotionCache: s, ...c, children: /* @__PURE__ */ t(g, { location: C, children: /* @__PURE__ */ t(u, { children: e }) }) }) })
-    ), y = m.extractCriticalToChunks(l), S = m.constructStyleTagsFromChunks(y);
+  function y(S) {
+    const l = f(c), m = n(l), d = a(
+      /* @__PURE__ */ t(u, { children: /* @__PURE__ */ t(o, { emotionCache: l, ...i, children: /* @__PURE__ */ t(g, { location: S, children: /* @__PURE__ */ t(h, { catchAll: r, children: e }) }) }) })
+    ), w = m.extractCriticalToChunks(d), A = m.constructStyleTagsFromChunks(w);
     return {
-      html: l,
-      head: `${S}<style data-cfl>${h}</style>`
+      html: d,
+      head: `${A}<style data-cfl>${C}</style>`
     };
   }
-  return { render: p };
+  return { render: y };
 }
-async function J({
+async function H({
   App: o,
   routes: e,
-  createEmotionCacheOptions: r = {},
-  ...c
+  catchAllRoute: r = p,
+  createEmotionCacheOptions: c,
+  ...i
 }) {
-  const n = await import("react-dom/client"), { hydrateRoot: i } = n.default || n, a = f(r);
-  i(
+  const n = await import("react-dom/client"), { hydrateRoot: a } = n.default || n, s = f(c);
+  a(
     document.getElementById("root"),
-    /* @__PURE__ */ t(d, { children: /* @__PURE__ */ t(o, { emotionCache: a, ...c, children: /* @__PURE__ */ t(w, { children: /* @__PURE__ */ t(u, { children: e }) }) }) })
+    /* @__PURE__ */ t(u, { children: /* @__PURE__ */ t(o, { emotionCache: s, ...i, children: /* @__PURE__ */ t(T, { children: /* @__PURE__ */ t(h, { catchAll: r, children: e }) }) }) })
   );
 }
 export {
-  J as client,
-  I as server
+  H as client,
+  j as server
 };
 //# sourceMappingURL=entry.es.js.map

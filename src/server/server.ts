@@ -224,7 +224,7 @@ export default class Server {
         const render = (
           (await import(
             // @ts-expect-error only present after building installing app.
-            "../../../dist/server/entry-server.js"
+            "../../../../dist/server/entry-server.js"
           )) as EntryModule
         ).render
 

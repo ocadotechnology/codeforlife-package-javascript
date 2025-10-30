@@ -6,12 +6,13 @@ export type EntryAppProps = Pick<AppProps, "emotionCache" | "children">;
 export type EntryKwArgs = {
     App: FC<EntryAppProps>;
     routes: DefaultRoutesProps["children"];
+    catchAllRoute?: DefaultRoutesProps["catchAll"];
     createEmotionCacheOptions?: CreateEmotionCacheOptions;
 };
-export declare function server({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<{
+export declare function server({ App, routes, catchAllRoute, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<{
     render: (path: string) => {
         html: string;
         head: string;
     };
 }>;
-export declare function client({ App, routes, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<void>;
+export declare function client({ App, routes, catchAllRoute, createEmotionCacheOptions, ...appProps }: EntryKwArgs): Promise<void>;

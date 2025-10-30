@@ -101,7 +101,7 @@ class S {
       getRenderAndTemplate: async () => {
         const t = (await import(
           // @ts-expect-error only present after building installing app.
-          "../../../dist/server/entry-server.js"
+          "../../../../dist/server/entry-server.js"
         )).render, s = this.templateHtml;
         return [t, s];
       },
