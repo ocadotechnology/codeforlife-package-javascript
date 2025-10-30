@@ -16,6 +16,7 @@ import createCache, {
 } from "@emotion/cache"
 
 import { type AppProps } from "./App"
+import packageJson from "../../package.json"
 
 /**
  * Creates a new Emotion cache instance.
@@ -48,7 +49,12 @@ export async function server({
     "@emotion/server/create-instance"
   )
   const { renderToString } = await import("react-dom/server")
-  const { default: cflStyle } = await import("./dist/style.css?inline")
+  const { default: fs } = await import("node:fs/promises")
+
+  const cflStyle = await fs.readFile(
+    `./node_modules/${packageJson.name}/dist/style.css`,
+    "utf-8",
+  )
 
   function render(path: string) {
     const emotionCache = createEmotionCache(createEmotionCacheOptions)

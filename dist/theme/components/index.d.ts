@@ -1,3 +1,4 @@
-import { ThemeOptions } from '@mui/material';
-declare const components: ThemeOptions["components"];
-export default components;
+export {}
+import Codeforlife from '../../src/theme/components/index'
+export default Codeforlife
+export {}

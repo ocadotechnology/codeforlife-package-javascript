@@ -1,5 +1,2 @@
-export { default as Banner, type BannerProps } from './Banner';
-export { default as Notification, type NotificationProps } from './Notification';
-export { default as Page, type PageProps, type PageState } from './Page';
-export { default as Section, type SectionProps } from './Section';
-export { default as TabBar, type TabBarProps } from './TabBar';
+export * from '../../src/components/page/index'
+export {}

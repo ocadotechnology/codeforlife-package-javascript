@@ -126,11 +126,6 @@ const viteConfig = defineConfig({
       external: [
         ...generateExternalDependencies(
           ["dayjs"],
-          // // Special case: any self-references to this package ("codeforlife")
-          // // should be seen as external as these references should only be
-          // // lazy-loaded during the runtime of the services (and during the
-          // // buildtime of the package).
-          // { [packageJson.name]: packageJson.version },
           packageJson.dependencies,
           packageJson.devDependencies,
           workspacePackageJson.dependencies,
@@ -139,8 +134,8 @@ const viteConfig = defineConfig({
         // It's a good practice to handle both 'fs' and 'node:fs' syntax.
         ...builtinModules.map(m => `node:${m}`),
         ...builtinModules,
-        /^\.\/dist\/.*/,
-        "../../../dist/server/entry-server.js",
+        /^\.\/dist\/.*/, // this package's dist files
+        /^\.\.\/\.\.\/\.\.\/dist\/.*/, // a service's dist files
       ],
     },
     // Vite will output both your built .js file and a corresponding .js.map
