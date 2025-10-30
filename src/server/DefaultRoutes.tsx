@@ -9,6 +9,7 @@ export interface DefaultRoutesProps {
 }
 
 const DefaultRoutes: FC<DefaultRoutesProps> = ({
+  children,
   faviconPath = "/favicon.ico",
 }) => (
   <Routes>
@@ -16,6 +17,7 @@ const DefaultRoutes: FC<DefaultRoutesProps> = ({
       path={faviconPath}
       element={<img src={FaviconImage} alt="code for Life favicon" />}
     />
+    {children}
   </Routes>
 )
 
