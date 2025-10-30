@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.11...v2.12.0) (2025-10-30)
+
+
+### Features
+
+* favicon and title ([2124bf3](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/2124bf386deb98d266c6d0e625de6cf4f862de3a))
+
 ## [2.11.11](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.11.10...v2.11.11) (2025-10-30)
 
 
