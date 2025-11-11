@@ -1,3 +1,10 @@
+## [2.12.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.2...v2.12.3) (2025-11-11)
+
+
+### Bug Fixes
+
+* Upgrade to sirv 3.0.2 ([b4c7f1a](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/b4c7f1ac0fd35c8566aab6fef109b28a1ec00c8a))
+
 ## [2.12.2](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.1...v2.12.2) (2025-10-30)
 
 
