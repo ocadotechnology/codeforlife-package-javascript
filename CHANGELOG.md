@@ -1,3 +1,10 @@
+## [2.12.4](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.3...v2.12.4) (2025-12-03)
+
+
+### Bug Fixes
+
+* Upgrade to express 4.22.0 ([e0b4e6f](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e0b4e6f96b64b4fd083339f8c6e3070b9411588a))
+
 ## [2.12.3](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.2...v2.12.3) (2025-11-11)
 
 
