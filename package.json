@@ -188,7 +188,7 @@
     "@reduxjs/toolkit": "2.9.0",
     "compression": "1.8.1",
     "dayjs": "^1.11.11",
-    "express": "^4.21.2",
+    "express": "4.22.0",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.5",
     "memory-cache": "^0.2.0",
