@@ -1,3 +1,11 @@
+## [2.12.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.5...v2.12.6) (2026-01-08)
+
+
+### Bug Fixes
+
+* latest semantic release ([e0c08db](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/e0c08db518708956f2ca754b146653c68f795a59))
+* publish without token ([26849c6](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/26849c66393cadc88a249cc23a37137b54552790))
+
 ## [2.12.5](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.4...v2.12.5) (2026-01-08)
 
 
