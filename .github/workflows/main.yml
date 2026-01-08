@@ -59,44 +59,11 @@ jobs:
       github.repository_owner_id == 2088731 &&
       github.ref_name == github.event.repository.default_branch
     steps:
-      # - name: 🚀 Publish Semantic Release
-      #   uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
-      #   with:
-      #     ref: ${{ needs.build.outputs.sha }}
-      #     cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
-      #     npm-token: ${{ secrets.NPM_TOKEN }}
-
-      - name: 🛫 Checkout
-        uses: actions/checkout@v5
-        with:
-          token: ${{ secrets.CFL_BOT_GH_TOKEN }}
-          ref: ${{ needs.build.outputs.sha }}
-          fetch-depth: 0
-
-      - name: 🌐 Set up Node 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: 🛠 Install Dependencies
-        shell: bash
-        run: |
-          npm install --global npm
-          npm install --global \
-            semantic-release@^25.0.2 \
-            @semantic-release/git@^10.0.1 \
-            @semantic-release/changelog@^6.0.3
-
       - name: 🚀 Publish Semantic Release
-        shell: bash
-        env:
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.CFL_BOT_GH_TOKEN }}
-          GIT_AUTHOR_NAME: cfl-bot
-          GIT_AUTHOR_EMAIL: codeforlife-bot@ocado.com
-          GIT_COMMITTER_NAME: cfl-bot
-          GIT_COMMITTER_EMAIL: codeforlife-bot@ocado.com
-        run: npx semantic-release
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
+        with:
+          ref: ${{ needs.build.outputs.sha }}
+          cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
 
   monitor:
     uses: ocadotechnology/codeforlife-workspace/.github/workflows/monitor-javascript-release.yaml@main
