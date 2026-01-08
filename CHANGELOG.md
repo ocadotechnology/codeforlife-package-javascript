@@ -1,3 +1,10 @@
+## [2.12.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.6...v2.12.7) (2026-01-08)
+
+
+### Bug Fixes
+
+* use github oidc ([7fc5ec9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7fc5ec9719fc27db4b1de070a5a207c5339eb806))
+
 ## [2.12.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.5...v2.12.6) (2026-01-08)
 
 
