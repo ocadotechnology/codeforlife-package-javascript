@@ -83,9 +83,9 @@ jobs:
         run: |
           npm install --global npm
           npm install --global \
-            semantic-release@^20.1.1 \
+            semantic-release@^25.0.2 \
             @semantic-release/git@^10.0.1 \
-            @semantic-release/changelog@^6.0.2
+            @semantic-release/changelog@^6.0.3
 
       - name: 🚀 Publish Semantic Release
         shell: bash
