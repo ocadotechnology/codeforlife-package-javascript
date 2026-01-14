@@ -1,3 +1,10 @@
+## [2.12.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.7...v2.12.8) (2026-01-14)
+
+
+### Bug Fixes
+
+* Upgrade to react-router 7.12.0 ([8cef3a7](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/8cef3a74fe1ece74014b3c585e273a2ca640adef))
+
 ## [2.12.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.6...v2.12.7) (2026-01-08)
 
 
