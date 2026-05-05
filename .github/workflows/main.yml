@@ -17,44 +17,44 @@ jobs:
   contributor:
     uses: ocadotechnology/codeforlife-contributor-backend/.github/workflows/check-pr-authors-signed-latest-agreement.yaml@main
 
-  # test:
-  #   uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@main
-  #   secrets: inherit
-  #   with:
-  #     node-version: 22
+  test:
+    uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@main
+    secrets: inherit
+    with:
+      node-version: 22
 
-  # build:
-  #   needs: [test]
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     sha: ${{ steps.push-dist-files.outputs.sha }}
-  #   steps:
-  #     - name: 🤖 Set up CFL bot
-  #       uses: ocadotechnology/codeforlife-workspace/.github/actions/bot/setup@main
-  #       id: setup-bot
-  #       with:
-  #         cfl-app-private-key: ${{ secrets.CFL_APP_PRIVATE_KEY }}
+  build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.push-dist-files.outputs.sha }}
+    steps:
+      - name: 🤖 Set up CFL bot
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/bot/setup@main
+        id: setup-bot
+        with:
+          cfl-app-private-key: ${{ secrets.CFL_APP_PRIVATE_KEY }}
       
-  #     - name: 🌐 Set up JavaScript 22 Environment
-  #       uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
-  #       with:
-  #         node-version: 22
-  #         install-prod: false
-  #         gh-token: ${{ steps.setup-bot.outputs.token }}
+      - name: 🌐 Set up JavaScript 22 Environment
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
+        with:
+          node-version: 22
+          install-prod: false
+          gh-token: ${{ steps.setup-bot.outputs.token }}
 
-  #     - name: 🏗️ Build Dist Files
-  #       run: yarn run vite build
+      - name: 🏗️ Build Dist Files
+        run: yarn run vite build
 
-  #     - name: 📤 Push Dist Files
-  #       id: push-dist-files
-  #       uses: ocadotechnology/codeforlife-workspace/.github/actions/git/add-commit-push@main
-  #       with:
-  #         cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
-  #         add: dist
-  #         commit-message: "built distribution files"
+      - name: 📤 Push Dist Files
+        id: push-dist-files
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/git/add-commit-push@main
+        with:
+          cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
+          add: dist
+          commit-message: "built distribution files"
 
   release:
-    # needs: [build] # TODO: add contributor
+    needs: [build] # TODO: add contributor
     concurrency: release
     runs-on: ubuntu-latest
     permissions:
@@ -75,7 +75,7 @@ jobs:
       - name: 🚀 Publish Semantic Release
         uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
         with:
-          # ref: ${{ needs.build.outputs.sha }}#
+          ref: ${{ needs.build.outputs.sha }}
           cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
           cfl-bot-user-name: ${{ steps.setup-bot.outputs.user-name }}
           cfl-bot-user-email: ${{ steps.setup-bot.outputs.user-email }}
