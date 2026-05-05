@@ -29,12 +29,18 @@ jobs:
     outputs:
       sha: ${{ steps.push-dist-files.outputs.sha }}
     steps:
+      - name: 🤖 Set up CFL bot
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/bot/setup@main
+        id: setup-bot
+        with:
+          cfl-app-private-key: ${{ secrets.CFL_APP_PRIVATE_KEY }}
+      
       - name: 🌐 Set up JavaScript 22 Environment
         uses: ocadotechnology/codeforlife-workspace/.github/actions/javascript/setup-environment@main
         with:
           node-version: 22
           install-prod: false
-          gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
+          gh-token: ${{ steps.setup-bot.outputs.token }}
 
       - name: 🏗️ Build Dist Files
         run: yarn run vite build
@@ -59,11 +65,19 @@ jobs:
       github.repository_owner_id == 2088731 &&
       github.ref_name == github.event.repository.default_branch
     steps:
+      - name: 🤖 Set up CFL bot
+        uses: ocadotechnology/codeforlife-workspace/.github/actions/bot/setup@main
+        id: setup-bot
+        with:
+          cfl-app-private-key: ${{ secrets.CFL_APP_PRIVATE_KEY }}
+
       - name: 🚀 Publish Semantic Release
         uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
         with:
           ref: ${{ needs.build.outputs.sha }}
-          cfl-bot-gh-token: ${{ secrets.CFL_BOT_GH_TOKEN }}
+          cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
+          cfl-bot-user-name: ${{ steps.setup-bot.outputs.user-name }}
+          cfl-bot-user-email: ${{ steps.setup-bot.outputs.user-email }}
 
   monitor:
     uses: ocadotechnology/codeforlife-workspace/.github/workflows/monitor-javascript-release.yaml@main
