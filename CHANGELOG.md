@@ -1,10 +1,3 @@
-# [2.13.0](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.8...v2.13.0) (2026-05-05)
-
-
-### Features
-
-* load env variables at runtime ([db36cce](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/db36cce860f370ac624ff9c9090bde860c4cb27d))
-
 ## [2.12.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.12.7...v2.12.8) (2026-01-14)
 
 
