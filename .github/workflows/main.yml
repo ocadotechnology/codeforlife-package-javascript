@@ -75,7 +75,7 @@ jobs:
       - name: 🚀 Publish Semantic Release
         uses: ocadotechnology/codeforlife-workspace/.github/actions/github/release@main
         with:
-          # ref: ${{ needs.build.outputs.sha }}
+          # ref: ${{ needs.build.outputs.sha }}#
           cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
           cfl-bot-user-name: ${{ steps.setup-bot.outputs.user-name }}
           cfl-bot-user-email: ${{ steps.setup-bot.outputs.user-email }}
