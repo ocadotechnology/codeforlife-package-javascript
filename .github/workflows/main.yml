@@ -49,6 +49,7 @@ jobs:
         id: push-dist-files
         uses: ocadotechnology/codeforlife-workspace/.github/actions/git/add-commit-push@main
         with:
+          cfl-bot-gh-token: ${{ steps.setup-bot.outputs.token }}
           add: dist
           commit-message: "built distribution files"
 
