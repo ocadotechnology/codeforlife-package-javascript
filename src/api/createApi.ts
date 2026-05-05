@@ -11,9 +11,9 @@ import {
   fetchBaseQuery,
   type reactHooksModuleName,
 } from "@reduxjs/toolkit/query/react"
+import { type ActionCreatorWithoutPayload } from "@reduxjs/toolkit"
 
 import defaultTagTypes, { type TagTypes as DefaultTagTypes } from "./tagTypes"
-import { SERVICE_API_URL } from "../settings"
 import { buildLogoutEndpoint } from "./endpoints/session"
 import { getCsrfCookie } from "../utils/auth"
 import { isSafeHttpMethod } from "../utils/api"
@@ -39,10 +39,14 @@ import { isSafeHttpMethod } from "../utils/api"
 // }
 
 export default function createApi<TagTypes extends string = never>({
+  serviceApiUrl,
+  logoutAction,
   tagTypes = [],
 }: {
+  serviceApiUrl: string
+  logoutAction: ActionCreatorWithoutPayload
   tagTypes?: readonly TagTypes[]
-} = {}): Api<
+}): Api<
   (
     args: string | FetchArgs,
     api: BaseQueryApi,
@@ -56,7 +60,7 @@ export default function createApi<TagTypes extends string = never>({
   typeof coreModuleName | typeof reactHooksModuleName
 > {
   const fetch = fetchBaseQuery({
-    baseUrl: `${SERVICE_API_URL}/`,
+    baseUrl: `${serviceApiUrl}/`,
     credentials: "include",
     prepareHeaders: (headers, endpoint) => {
       const { type, arg } = endpoint as typeof endpoint & {
@@ -105,7 +109,7 @@ export default function createApi<TagTypes extends string = never>({
 
   return api.injectEndpoints({
     endpoints: build => ({
-      logout: buildLogoutEndpoint<null, null>(api, build),
+      logout: buildLogoutEndpoint<null, null>(api, build, logoutAction),
     }),
   })
 }

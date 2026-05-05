@@ -1,6 +1,5 @@
 import { type Api, type EndpointBuilder } from "@reduxjs/toolkit/query/react"
-
-import { login, logout } from "../../slices/session"
+import { type ActionCreatorWithoutPayload } from "@reduxjs/toolkit"
 
 export type ExchangeOAuth2CodeArg = {
   code: string
@@ -10,6 +9,7 @@ export type ExchangeOAuth2CodeArg = {
 
 export function buildLoginEndpoint<ResultType, QueryArg>(
   build: EndpointBuilder<any, any, any>,
+  action: ActionCreatorWithoutPayload,
   url: string = "session/login/",
 ) {
   return build.mutation<ResultType, QueryArg>({
@@ -17,7 +17,7 @@ export function buildLoginEndpoint<ResultType, QueryArg>(
     async onQueryStarted(_, { dispatch, queryFulfilled }) {
       try {
         await queryFulfilled
-        dispatch(login())
+        dispatch(action())
       } catch (error) {
         console.error("Failed to call login endpoint...", error)
       }
@@ -28,6 +28,7 @@ export function buildLoginEndpoint<ResultType, QueryArg>(
 export function buildLogoutEndpoint<ResultType, QueryArg>(
   api: Api<any, any, any, any, any>,
   build: EndpointBuilder<any, any, any>,
+  action: ActionCreatorWithoutPayload,
   url: string = "session/logout/",
 ) {
   return build.mutation<ResultType, QueryArg>({
@@ -38,7 +39,7 @@ export function buildLogoutEndpoint<ResultType, QueryArg>(
       } catch (error) {
         console.error("Failed to call logout endpoint...", error)
       } finally {
-        dispatch(logout())
+        dispatch(action())
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         dispatch(api.util.resetApiState())
       }

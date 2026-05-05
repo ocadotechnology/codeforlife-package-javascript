@@ -3,6 +3,7 @@ import { type Location, useLocation } from "react-router"
 
 import Notification, { type NotificationProps } from "./Notification"
 import {
+  type SelectIsLoggedIn,
   type SessionMetadata,
   type UseSessionChildren,
   type UseSessionChildrenFunction,
@@ -21,6 +22,7 @@ export type PageState = {
 export interface PageProps<
   SessionUserType extends SessionMetadata["user_type"] | undefined,
 > {
+  selectIsLoggedIn: SelectIsLoggedIn
   children: UseSessionChildren<SessionUserType>
   session?: UseSessionOptions<SessionUserType>
 }
@@ -28,6 +30,7 @@ export interface PageProps<
 const Page = <
   SessionUserType extends SessionMetadata["user_type"] | undefined = undefined,
 >({
+  selectIsLoggedIn,
   children,
   session,
 }: PageProps<SessionUserType>): JSX.Element => {
@@ -43,29 +46,33 @@ const Page = <
 
   return (
     <>
-      {useSession((metadata?: SessionMetadata) => {
-        if (typeof children === "function") {
-          children = metadata
-            ? (children as UseSessionChildrenFunction<true>)(metadata)
-            : (children as UseSessionChildrenFunction<false>)(metadata)
-        }
+      {useSession(
+        selectIsLoggedIn,
+        (metadata?: SessionMetadata) => {
+          if (typeof children === "function") {
+            children = metadata
+              ? (children as UseSessionChildrenFunction<true>)(metadata)
+              : (children as UseSessionChildrenFunction<false>)(metadata)
+          }
 
-        if (notifications.length) {
-          const childrenArray = Children.toArray(children)
+          if (notifications.length) {
+            const childrenArray = Children.toArray(children)
 
-          notifications.forEach((notification, index) => {
-            void childrenArray.splice(
-              notification.index ?? index,
-              0,
-              <Notification {...notification.props} />,
-            )
-          })
+            notifications.forEach((notification, index) => {
+              void childrenArray.splice(
+                notification.index ?? index,
+                0,
+                <Notification {...notification.props} />,
+              )
+            })
 
-          return childrenArray
-        }
+            return childrenArray
+          }
 
-        return children
-      }, session)}
+          return children
+        },
+        session,
+      )}
     </>
   )
 }

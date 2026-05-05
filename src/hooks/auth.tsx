@@ -17,13 +17,14 @@ import {
 } from "../utils/auth"
 import { useLocation, useNavigate, useSearchParams } from "./router"
 import { type ExchangeOAuth2CodeArg } from "../api/endpoints/session"
-import { SESSION_METADATA_COOKIE_NAME } from "../settings"
 import { generateSecureRandomString } from "../utils/general"
-import { selectIsLoggedIn } from "../slices/session"
+import { getSessionMetadataCookieName } from "../utils/settings"
 
 // -----------------------------------------------------------------------------
 // Session
 // -----------------------------------------------------------------------------
+
+export type SelectIsLoggedIn = (state: any) => boolean
 
 export interface SessionMetadata {
   user_id: User["id"]
@@ -33,10 +34,10 @@ export interface SessionMetadata {
 }
 
 export function useSessionMetadata<T = SessionMetadata>(
-  cookieName = SESSION_METADATA_COOKIE_NAME,
+  selectIsLoggedIn: SelectIsLoggedIn,
 ): T | undefined {
   return useSelector(selectIsLoggedIn)
-    ? (JSON.parse(Cookies.get(cookieName)!) as T)
+    ? (JSON.parse(Cookies.get(getSessionMetadataCookieName())!) as T)
     : undefined
 }
 
@@ -46,9 +47,9 @@ export function useSessionMetadata<T = SessionMetadata>(
  * @returns An object containing the session metadata.
  */
 useSessionMetadata.predefine = <SessionMetadata,>(
-  cookieName = SESSION_METADATA_COOKIE_NAME,
+  selectIsLoggedIn: SelectIsLoggedIn,
 ) => {
-  return () => useSessionMetadata<SessionMetadata>(cookieName)
+  return () => useSessionMetadata<SessionMetadata>(selectIsLoggedIn)
 }
 
 export type UseSessionChildrenFunction<Required extends boolean> = (
@@ -75,6 +76,7 @@ export type UseSessionOptions<
 export function useSession<
   UserType extends SessionMetadata["user_type"] | undefined = undefined,
 >(
+  selectIsLoggedIn: SelectIsLoggedIn,
   children: UseSessionChildren<UserType>,
   options: UseSessionOptions<UserType> = {},
 ) {
@@ -82,7 +84,7 @@ export function useSession<
 
   const { pathname } = useLocation()
   const navigate = useNavigate()
-  const sessionMetadata = useSessionMetadata()
+  const sessionMetadata = useSessionMetadata(selectIsLoggedIn)
 
   const loginRequired =
     userType && (!sessionMetadata || sessionMetadata.user_type !== userType)

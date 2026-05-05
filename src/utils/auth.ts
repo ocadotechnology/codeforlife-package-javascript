@@ -1,20 +1,20 @@
 import Cookies from "js-cookie"
 
 import {
-  CSRF_COOKIE_NAME,
-  SESSION_COOKIE_NAME,
-  SESSION_METADATA_COOKIE_NAME,
-} from "../settings"
+  getCsrfCookieName,
+  getSessionCookieName,
+  getSessionMetadataCookieName,
+} from "../utils/settings"
 import { generateSecureRandomString } from "./general"
 
 export function logout() {
-  Cookies.remove(SESSION_COOKIE_NAME)
-  Cookies.remove(SESSION_METADATA_COOKIE_NAME)
+  Cookies.remove(getSessionCookieName())
+  Cookies.remove(getSessionMetadataCookieName())
 }
 
 // https://docs.djangoproject.com/en/3.2/ref/csrf/
 export function getCsrfCookie() {
-  return Cookies.get(CSRF_COOKIE_NAME)
+  return Cookies.get(getCsrfCookieName())
 }
 
 export function makeOAuth2StorageKey(provider: string, key: string) {
