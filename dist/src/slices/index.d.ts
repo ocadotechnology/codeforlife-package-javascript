@@ -1,2 +1,2 @@
 export { default as createSlice } from './createSlice';
-export { default as sessionSlice, type SessionState } from './session';
+export { default as createSessionSlice, type SessionState } from './session';

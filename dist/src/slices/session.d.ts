@@ -1,9 +1,8 @@
-import { Slice, CaseReducer, ActionCreatorWithoutPayload } from '@reduxjs/toolkit';
-import { Selector } from 'reselect';
+import { Slice, CaseReducer } from '@reduxjs/toolkit';
 export interface SessionState {
     isLoggedIn: boolean;
 }
-declare const sessionSlice: Slice<SessionState, {
+export default function createSessionSlice(sessionMetadataCookieName: string): Slice<SessionState, {
     login: CaseReducer<SessionState, {
         payload: void;
         type: string;
@@ -19,10 +18,3 @@ declare const sessionSlice: Slice<SessionState, {
 }, "session", "session", {
     selectIsLoggedIn: (session: SessionState) => boolean;
 }>;
-export default sessionSlice;
-export declare const login: ActionCreatorWithoutPayload<"session/login">, logout: ActionCreatorWithoutPayload<"session/logout">;
-export declare const selectIsLoggedIn: Selector<{
-    session: SessionState;
-}, boolean, []> & {
-    unwrapped: (session: SessionState) => boolean;
-};

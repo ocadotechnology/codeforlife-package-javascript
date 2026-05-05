@@ -1,16 +1,16 @@
-import o from "js-cookie";
-import { CSRF_COOKIE_NAME as a, SESSION_COOKIE_NAME as c, SESSION_METADATA_COOKIE_NAME as i } from "../settings/index.es.js";
-import { generateSecureRandomString as E } from "./general.es.js";
-function g() {
-  o.remove(c), o.remove(i);
+import t from "js-cookie";
+import { getCsrfCookieName as a, getSessionCookieName as i, getSessionMetadataCookieName as c } from "./settings.es.js";
+import { generateSecureRandomString as g } from "./general.es.js";
+function u() {
+  t.remove(i()), t.remove(c());
 }
-function A() {
-  return o.get(a);
+function d() {
+  return t.get(a());
 }
-function _(t, e) {
-  return `oauth2.${t}.${e}`;
+function f(o, e) {
+  return `oauth2.${o}.${e}`;
 }
-const u = ["S256"], m = [
+const S = ["S256"], l = [
   43,
   44,
   45,
@@ -98,8 +98,8 @@ const u = ["S256"], m = [
   127,
   128
 ];
-async function s(t) {
-  const e = E(t), r = new TextEncoder().encode(e), n = await window.crypto.subtle.digest("SHA-256", r);
+async function E(o) {
+  const e = g(o), r = new TextEncoder().encode(e), n = await window.crypto.subtle.digest("SHA-256", r);
   return {
     verifier: e,
     challenge: btoa(String.fromCharCode(...new Uint8Array(n))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""),
@@ -107,11 +107,11 @@ async function s(t) {
   };
 }
 export {
-  m as OAUTH2_CODE_CHALLENGE_LENGTHS,
-  u as OAUTH2_CODE_CHALLENGE_METHODS,
-  s as generateOAuth2CodeChallenge,
-  A as getCsrfCookie,
-  g as logout,
-  _ as makeOAuth2StorageKey
+  l as OAUTH2_CODE_CHALLENGE_LENGTHS,
+  S as OAUTH2_CODE_CHALLENGE_METHODS,
+  E as generateOAuth2CodeChallenge,
+  d as getCsrfCookie,
+  u as logout,
+  f as makeOAuth2StorageKey
 };
 //# sourceMappingURL=auth.es.js.map

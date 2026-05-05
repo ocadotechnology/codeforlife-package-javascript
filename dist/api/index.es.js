@@ -1,11 +1,11 @@
-import { fetchBaseQuery as f, createApi as m } from "@reduxjs/toolkit/query/react";
-import { SERVICE_API_URL as u } from "../settings/index.es.js";
-import { b as d } from "../session-COyN01K0.js";
+import { fetchBaseQuery as u, createApi as d } from "@reduxjs/toolkit/query/react";
+import "@reduxjs/toolkit";
+import { b as l } from "../session-CJM1Czfv.js";
 import { getCsrfCookie as s } from "../utils/auth.es.js";
-import { i as l } from "../api-uh8UKwsU.js";
+import { i as y } from "../api-uh8UKwsU.js";
 import { s as C } from "../schemas-UIk-meAN.js";
-import { u as G } from "../urls-BG788CnL.js";
-const y = [
+import { u as w } from "../urls-BG788CnL.js";
+const g = [
   // These are the tags for the common models used throughout our system.
   // https://github.com/ocadotechnology/codeforlife-package-python/tree/main/codeforlife/user/models
   // NOTE: Don't use the "Teacher" and "Student" tags. Use "User" instead.
@@ -14,21 +14,23 @@ const y = [
   "Class",
   "AuthFactor"
 ];
-function b({
-  tagTypes: c = []
-} = {}) {
-  const i = f({
-    baseUrl: `${u}/`,
+function x({
+  serviceApiUrl: c,
+  logoutAction: p,
+  tagTypes: f = []
+}) {
+  const i = u({
+    baseUrl: `${c}/`,
     credentials: "include",
     prepareHeaders: (t, o) => {
-      const { type: r, arg: e } = o, p = typeof e == "string" ? "GET" : e.method || "GET";
-      if (r === "mutation" || !l(p)) {
+      const { type: r, arg: e } = o, m = typeof e == "string" ? "GET" : e.method || "GET";
+      if (r === "mutation" || !y(m)) {
         const a = s();
         a && t.set("x-csrftoken", a);
       }
       return t;
     }
-  }), n = m({
+  }), n = d({
     // https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-custom-basequery
     baseQuery: async (t, o, r) => {
       if (o.type === "mutation" && s() === void 0) {
@@ -41,19 +43,19 @@ function b({
       }
       return await i(t, o, r);
     },
-    tagTypes: [...y, ...c],
+    tagTypes: [...g, ...f],
     endpoints: () => ({})
   });
   return n.injectEndpoints({
     endpoints: (t) => ({
-      logout: d(n, t)
+      logout: l(n, t, p)
     })
   });
 }
 export {
-  b as createApi,
+  x as createApi,
   C as schemas,
-  y as tagTypes,
-  G as urls
+  g as tagTypes,
+  w as urls
 };
 //# sourceMappingURL=index.es.js.map
