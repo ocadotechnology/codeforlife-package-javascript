@@ -83,11 +83,6 @@
       "import": "./dist/server/entry.es.js",
       "require": "./dist/server/entry.cjs.js"
     },
-    "./settings": {
-      "types": "./dist/settings/index.d.ts",
-      "import": "./dist/settings/index.es.js",
-      "require": "./dist/settings/index.cjs.js"
-    },
     "./slices": {
       "types": "./dist/slices/index.d.ts",
       "import": "./dist/slices/index.es.js",
@@ -132,6 +127,11 @@
       "types": "./dist/utils/schema.d.ts",
       "import": "./dist/utils/schema.es.js",
       "require": "./dist/utils/schema.cjs.js"
+    },
+    "./utils/settings": {
+      "types": "./dist/utils/settings.d.ts",
+      "import": "./dist/utils/settings.es.js",
+      "require": "./dist/utils/settings.cjs.js"
     },
     "./utils/store": {
       "types": "./dist/utils/store.d.ts",
@@ -179,7 +179,7 @@
   ],
   "dependencies": {
     "@emotion/cache": "11.14.0",
-    "@emotion/react": "11.12.0",
+    "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.14.1",
     "@mui/icons-material": "7.3.2",
@@ -188,11 +188,11 @@
     "@reduxjs/toolkit": "2.9.0",
     "compression": "1.8.1",
     "dayjs": "1.11.19",
-    "express": "4.22.0",
+    "express": "4.22.1",
     "formik": "2.4.9",
     "js-cookie": "3.0.5",
     "memory-cache": "0.2.0",
-    "qs": "6.14.1",
+    "qs": "6.14.2",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-redux": "9.2.0",
