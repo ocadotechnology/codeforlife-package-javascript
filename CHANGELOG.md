@@ -1,3 +1,11 @@
+## [2.14.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.7...v2.14.8) (2026-05-08)
+
+
+### Bug Fixes
+
+* cookies imports ([7b5d556](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/7b5d55667584e715413800c4bcf5882e30c90a23))
+* support for express-json-cookies ([fdb080b](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/fdb080b37d728713b3b33adcff9c49c684bf8403))
+
 ## [2.14.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.6...v2.14.7) (2026-05-08)
 
 
