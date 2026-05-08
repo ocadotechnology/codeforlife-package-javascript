@@ -118,6 +118,11 @@
       "import": "./dist/utils/auth.es.js",
       "require": "./dist/utils/auth.cjs.js"
     },
+    "./utils/cookies": {
+      "types": "./dist/utils/cookies.d.ts",
+      "import": "./dist/utils/cookies.es.js",
+      "require": "./dist/utils/cookies.cjs.js"
+    },
     "./utils/form": {
       "types": "./dist/utils/form.d.ts",
       "import": "./dist/utils/form.es.js",

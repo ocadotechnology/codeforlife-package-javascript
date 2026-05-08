@@ -23,7 +23,7 @@ import {
 import DefaultRoutes from "../DefaultRoutes"
 import packageJson from "../../../package.json"
 
-export async function server({
+export default async function server({
   App,
   routes,
   catchAllRoute = DEFAULT_CATCH_ALL,

@@ -20,7 +20,7 @@ import {
 } from "./common"
 import DefaultRoutes from "../DefaultRoutes"
 
-export function client({
+export default function client({
   App,
   routes,
   catchAllRoute = DEFAULT_CATCH_ALL,

@@ -94,6 +94,7 @@ const viteConfig = defineConfig({
         "theme/components/index.ts",
         "utils/api.tsx",
         "utils/auth.ts",
+        "utils/cookies.ts",
         "utils/form.ts",
         "utils/general.ts",
         "utils/router.ts",

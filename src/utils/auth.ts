@@ -1,4 +1,4 @@
-import Cookies from "js-cookie"
+import cookies from "../utils/cookies"
 
 import {
   getCsrfCookieName,
@@ -8,13 +8,13 @@ import {
 import { generateSecureRandomString } from "./general"
 
 export function logout() {
-  Cookies.remove(getSessionCookieName())
-  Cookies.remove(getSessionMetadataCookieName())
+  cookies.remove(getSessionCookieName())
+  cookies.remove(getSessionMetadataCookieName())
 }
 
 // https://docs.djangoproject.com/en/3.2/ref/csrf/
 export function getCsrfCookie() {
-  return Cookies.get(getCsrfCookieName())
+  return cookies.get(getCsrfCookieName()) as string | undefined
 }
 
 export function makeOAuth2StorageKey(provider: string, key: string) {
