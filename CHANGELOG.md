@@ -1,3 +1,10 @@
+## [2.14.9](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.8...v2.14.9) (2026-05-08)
+
+
+### Bug Fixes
+
+* cookies types ([c3acbe9](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/c3acbe943c82abdbaf858b7388343d389c2b5813))
+
 ## [2.14.8](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.7...v2.14.8) (2026-05-08)
 
 
