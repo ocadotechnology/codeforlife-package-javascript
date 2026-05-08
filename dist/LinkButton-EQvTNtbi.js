@@ -4,9 +4,9 @@ import "react";
 import { Link as m } from "react-router";
 import "@mui/icons-material";
 import "./palette-CYwuLBW7.js";
-import "./auth-D-8t6wfR.js";
+import "./auth-C3UdJFcP.js";
 const L = (o) => /* @__PURE__ */ t(r, { ...o, component: m });
 export {
   L
 };
-//# sourceMappingURL=LinkButton-BVU_MF2a.js.map
+//# sourceMappingURL=LinkButton-EQvTNtbi.js.map

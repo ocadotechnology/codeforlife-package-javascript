@@ -1,6 +1,6 @@
-import t from "js-cookie";
+import t from "./cookies.es.js";
 import { getCsrfCookieName as a, getSessionCookieName as i, getSessionMetadataCookieName as c } from "./settings.es.js";
-import { generateSecureRandomString as g } from "./general.es.js";
+import { generateSecureRandomString as s } from "./general.es.js";
 function u() {
   t.remove(i()), t.remove(c());
 }
@@ -10,7 +10,7 @@ function d() {
 function f(o, e) {
   return `oauth2.${o}.${e}`;
 }
-const S = ["S256"], l = [
+const S = ["S256"], E = [
   43,
   44,
   45,
@@ -98,8 +98,8 @@ const S = ["S256"], l = [
   127,
   128
 ];
-async function E(o) {
-  const e = g(o), r = new TextEncoder().encode(e), n = await window.crypto.subtle.digest("SHA-256", r);
+async function l(o) {
+  const e = s(o), r = new TextEncoder().encode(e), n = await window.crypto.subtle.digest("SHA-256", r);
   return {
     verifier: e,
     challenge: btoa(String.fromCharCode(...new Uint8Array(n))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""),
@@ -107,9 +107,9 @@ async function E(o) {
   };
 }
 export {
-  l as OAUTH2_CODE_CHALLENGE_LENGTHS,
+  E as OAUTH2_CODE_CHALLENGE_LENGTHS,
   S as OAUTH2_CODE_CHALLENGE_METHODS,
-  E as generateOAuth2CodeChallenge,
+  l as generateOAuth2CodeChallenge,
   d as getCsrfCookie,
   u as logout,
   f as makeOAuth2StorageKey

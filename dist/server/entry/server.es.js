@@ -12,8 +12,8 @@ const g = "codeforlife", v = {
 async function j({
   App: n,
   routes: c,
-  catchAllRoute: i = T,
-  createEmotionCacheOptions: s,
+  catchAllRoute: s = T,
+  createEmotionCacheOptions: i,
   ...m
 }) {
   const a = await S.readFile(
@@ -21,8 +21,8 @@ async function j({
     "utf-8"
   );
   function l(f) {
-    const o = k(s), e = C(o), r = y(
-      /* @__PURE__ */ t(p, { children: /* @__PURE__ */ t(n, { emotionCache: o, ...m, children: /* @__PURE__ */ t(h, { location: f, children: /* @__PURE__ */ t(A, { catchAll: i, children: c }) }) }) })
+    const o = k(i), e = C(o), r = y(
+      /* @__PURE__ */ t(p, { children: /* @__PURE__ */ t(n, { emotionCache: o, ...m, children: /* @__PURE__ */ t(h, { location: f, children: /* @__PURE__ */ t(A, { catchAll: s, children: c }) }) }) })
     ), d = e.extractCriticalToChunks(r), u = e.constructStyleTagsFromChunks(d);
     return {
       html: r,
@@ -32,6 +32,6 @@ async function j({
   return { render: l };
 }
 export {
-  j as server
+  j as default
 };
 //# sourceMappingURL=server.es.js.map

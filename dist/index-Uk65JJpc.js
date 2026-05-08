@@ -13,7 +13,7 @@ import { AdapterDayjs as be } from "@mui/x-date-pickers/AdapterDayjs";
 import { EmailOutlined as ye, PersonOutlined as Fe, Visibility as Ce, VisibilityOff as Pe } from "@mui/icons-material";
 import "@reduxjs/toolkit/query/react";
 import "@reduxjs/toolkit";
-import "js-cookie";
+import "./utils/cookies.es.js";
 import { u as Oe } from "./schemas-UIk-meAN.js";
 import "./urls-BG788CnL.js";
 const xe = ({
@@ -617,4 +617,4 @@ export {
   Ve as c,
   tt as i
 };
-//# sourceMappingURL=index-De-EwYmr.js.map
+//# sourceMappingURL=index-Uk65JJpc.js.map

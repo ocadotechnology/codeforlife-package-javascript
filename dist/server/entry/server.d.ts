@@ -1,2 +1,4 @@
-export * from '../../src/server/entry/server'
+export {}
+import Codeforlife from '../../src/server/entry/server'
+export default Codeforlife
 export {}

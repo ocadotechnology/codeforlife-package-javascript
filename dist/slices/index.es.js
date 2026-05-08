@@ -1,15 +1,15 @@
 import { buildCreateSlice as n, asyncThunkCreator as t } from "@reduxjs/toolkit";
-import i from "js-cookie";
+import i from "../utils/cookies.es.js";
 const c = n({
   creators: { asyncThunk: t }
 });
-function l(r) {
-  const s = {
-    isLoggedIn: !!i.get(r)
+function l(s) {
+  const r = {
+    isLoggedIn: !!i.get(s)
   };
   return c({
     name: "session",
-    initialState: s,
+    initialState: r,
     reducers: (e) => ({
       login: e.reducer((o) => {
         o.isLoggedIn = !0;

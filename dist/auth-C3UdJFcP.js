@@ -1,23 +1,23 @@
-import { jsx as V, Fragment as j } from "react/jsx-runtime";
+import { jsx as E, Fragment as V } from "react/jsx-runtime";
 import * as L from "yup";
-import { object as E } from "yup";
+import { object as j } from "yup";
 import { useEffect as d, useState as J, useCallback as $ } from "react";
-import F from "js-cookie";
-import { useNavigate as T, useLocation as w, useSearchParams as z, useParams as B, createSearchParams as G } from "react-router";
-import { useSelector as H } from "react-redux";
+import { useNavigate as F, useLocation as T, useSearchParams as w, useParams as z, createSearchParams as B } from "react-router";
+import { useSelector as G } from "react-redux";
 import "@reduxjs/toolkit/query/react";
 import "@reduxjs/toolkit";
-import { makeOAuth2StorageKey as K, generateOAuth2CodeChallenge as Q } from "./utils/auth.es.js";
+import { makeOAuth2StorageKey as K, generateOAuth2CodeChallenge as H } from "./utils/auth.es.js";
 import "@mui/material";
-import { generateSecureRandomString as W } from "./utils/general.es.js";
+import { generateSecureRandomString as Q } from "./utils/general.es.js";
 import "@mui/icons-material";
 import "./schemas-UIk-meAN.js";
 import "./urls-BG788CnL.js";
 import { tryValidateSync as R } from "./utils/schema.es.js";
 import "./palette-CYwuLBW7.js";
+import W from "./utils/cookies.es.js";
 import { getSessionMetadataCookieName as X } from "./utils/settings.es.js";
 function _() {
-  const e = T(), o = q();
+  const e = F(), o = q();
   return (a, t = void 0) => {
     if (typeof a == "number") e(a);
     else {
@@ -30,15 +30,15 @@ function _() {
   };
 }
 function k() {
-  return w();
+  return T();
 }
 function q(e, o) {
-  const a = Object.fromEntries(z()[0].entries());
-  return e ? R(a, E(e), o) : a;
+  const a = Object.fromEntries(w()[0].entries());
+  return e ? R(a, j(e), o) : a;
 }
 function Y(e, o) {
-  const a = B();
-  return e ? R(a, E(e), o) : a;
+  const a = z();
+  return e ? R(a, j(e), o) : a;
 }
 function ve({
   shape: e,
@@ -55,10 +55,10 @@ function ve({
     },
     []
     // eslint-disable-line react-hooks/exhaustive-deps
-  ), n ? o(n) : /* @__PURE__ */ V(j, {});
+  ), n ? o(n) : /* @__PURE__ */ E(V, {});
 }
 function S(e) {
-  return H(e) ? JSON.parse(F.get(X())) : void 0;
+  return G(e) ? JSON.parse(W.get(X())) : void 0;
 }
 S.predefine = (e) => () => S(e);
 function ye(e, o, a = {}) {
@@ -70,15 +70,15 @@ function ye(e, o, a = {}) {
         student: "/student",
         indy: "/independent"
       }[t],
-      search: r ? G({ next: n }).toString() : void 0
+      search: r ? B({ next: n }).toString() : void 0
     });
-  }, [c, i, t, r, n]), i ? /* @__PURE__ */ V(j, {}) : typeof o == "function" ? o(u) : o;
+  }, [c, i, t, r, n]), i ? /* @__PURE__ */ E(V, {}) : typeof o == "function" ? o(u) : o;
 }
 function Z(e, o = 32, a = "state") {
   const t = K(e, a), r = sessionStorage.getItem(t), [n, c] = J();
   d(() => {
     let i;
-    r && r.length === o ? i = r : (i = W(o), sessionStorage.setItem(t, i)), c(i);
+    r && r.length === o ? i = r : (i = Q(o), sessionStorage.setItem(t, i)), c(i);
   }, [t, r, o]);
   const u = $(() => {
     sessionStorage.removeItem(t), c(void 0);
@@ -97,7 +97,7 @@ function D(e, o = 128, a = "codeChallenge") {
         method: s.method
       });
     }
-    i ? c(i) : Q(o).then((s) => {
+    i ? c(i) : H(o).then((s) => {
       sessionStorage.setItem(
         t,
         JSON.stringify(s)
@@ -128,8 +128,8 @@ function U({
   const [g, A] = Z(e), [
     {
       verifier: h,
-      challenge: I,
-      method: x
+      challenge: x,
+      method: I
     } = {},
     O
   ] = D(e), [
@@ -201,7 +201,7 @@ function U({
     v,
     C,
     P
-  ]), g && I && x) {
+  ]), g && x && I) {
     const y = {
       client_id: a,
       redirect_uri: t,
@@ -209,8 +209,8 @@ function U({
       response_type: n,
       access_type: c,
       state: g,
-      code_challenge: I,
-      code_challenge_method: x
+      code_challenge: x,
+      code_challenge_method: I
     };
     return u && (y.prompt = u), [
       o + "?" + new URLSearchParams(y).toString(),
@@ -235,4 +235,4 @@ export {
   ve as i,
   S as u
 };
-//# sourceMappingURL=auth-D-8t6wfR.js.map
+//# sourceMappingURL=auth-C3UdJFcP.js.map
