@@ -1,3 +1,10 @@
+## [2.14.7](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.6...v2.14.7) (2026-05-08)
+
+
+### Bug Fixes
+
+* ssr entry points ([03dc7c5](https://github.com/ocadotechnology/codeforlife-package-javascript/commit/03dc7c51af12edcba341d8bc6c6594a7ec9f4e2d))
+
 ## [2.14.6](https://github.com/ocadotechnology/codeforlife-package-javascript/compare/v2.14.5...v2.14.6) (2026-05-05)
 
 
