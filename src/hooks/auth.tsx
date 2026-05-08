@@ -1,6 +1,5 @@
 import * as yup from "yup"
 import { type ReactNode, useCallback, useEffect, useState } from "react"
-import Cookies from "js-cookie"
 import type { TypedUseMutation } from "@reduxjs/toolkit/query/react"
 import { createSearchParams } from "react-router"
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
@@ -17,6 +16,7 @@ import {
 } from "../utils/auth"
 import { useLocation, useNavigate, useSearchParams } from "./router"
 import { type ExchangeOAuth2CodeArg } from "../api/endpoints/session"
+import cookies from "../utils/cookies"
 import { generateSecureRandomString } from "../utils/general"
 import { getSessionMetadataCookieName } from "../utils/settings"
 
@@ -37,7 +37,7 @@ export function useSessionMetadata<T = SessionMetadata>(
   selectIsLoggedIn: SelectIsLoggedIn,
 ): T | undefined {
   return useSelector(selectIsLoggedIn)
-    ? (JSON.parse(Cookies.get(getSessionMetadataCookieName())!) as T)
+    ? (JSON.parse(cookies.get(getSessionMetadataCookieName()) as string) as T)
     : undefined
 }
 

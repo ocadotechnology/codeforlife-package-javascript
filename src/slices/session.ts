@@ -1,5 +1,4 @@
-import Cookies from "js-cookie"
-
+import cookies from "../utils/cookies"
 import createSlice from "./createSlice"
 
 export interface SessionState {
@@ -8,7 +7,7 @@ export interface SessionState {
 
 export default function createSessionSlice(sessionMetadataCookieName: string) {
   const initialState: SessionState = {
-    isLoggedIn: Boolean(Cookies.get(sessionMetadataCookieName)),
+    isLoggedIn: Boolean(cookies.get(sessionMetadataCookieName)),
   }
 
   return createSlice({
