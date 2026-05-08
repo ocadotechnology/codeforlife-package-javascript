@@ -79,9 +79,19 @@
       "require": "./dist/server/DefaultRoutes.cjs.js"
     },
     "./server/entry": {
-      "types": "./dist/server/entry.d.ts",
-      "import": "./dist/server/entry.es.js",
-      "require": "./dist/server/entry.cjs.js"
+      "types": "./dist/server/entry/index.d.ts",
+      "import": "./dist/server/entry/index.es.js",
+      "require": "./dist/server/entry/index.cjs.js"
+    },
+    "./server/entry/client": {
+      "types": "./dist/server/entry/client.d.ts",
+      "import": "./dist/server/entry/client.es.js",
+      "require": "./dist/server/entry/client.cjs.js"
+    },
+    "./server/entry/server": {
+      "types": "./dist/server/entry/server.d.ts",
+      "import": "./dist/server/entry/server.es.js",
+      "require": "./dist/server/entry/server.cjs.js"
     },
     "./slices": {
       "types": "./dist/slices/index.d.ts",
