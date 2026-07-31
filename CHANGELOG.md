@@ -1,3 +1,10 @@
+## [2.15.4](https://github.com/codeforlife-education/codeforlife-package-javascript/compare/v2.15.3...v2.15.4) (2026-07-31)
+
+
+### Bug Fixes
+
+* add docstring ([c284efc](https://github.com/codeforlife-education/codeforlife-package-javascript/commit/c284efca8c6603cadcdd4134ed5da7954d90907a))
+
 ## [2.15.3](https://github.com/codeforlife-education/codeforlife-package-javascript/compare/v2.15.2...v2.15.3) (2026-07-06)
 
 
