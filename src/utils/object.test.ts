@@ -63,12 +63,12 @@ test("exclude nested keys by their path", () => {
 test("create path strings from an object", () => {
   const obj = createPathStrings({
     a: "b",
-    d: { e: ["f", "g"] },
+    d: { e: ["f", "g", { h: ["i", "j"] }] },
   } as const)
 
   expect(obj).toMatchObject({
     a: { b: "a.b" },
-    d: { e: { f: "d.e.f", g: "d.e.g" } },
+    d: { e: { f: "d.e.f", g: "d.e.g", h: { i: "d.e.h.i", j: "d.e.h.j" } } },
   })
 })
 

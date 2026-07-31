@@ -128,15 +128,28 @@ type JoinPath<
   D extends string,
 > = A extends "" ? B : `${A}${D}${B}`
 
+type ArrayPathStringMap<
+  Arr extends readonly unknown[],
+  Path extends string,
+  D extends string,
+> = Arr extends readonly [infer Head, ...infer Tail extends readonly unknown[]]
+  ? (Head extends string
+      ? Record<Head, JoinPath<Path, Head, D>>
+      : Head extends object
+        ? PathStringMap<Head, Path, D>
+        : object) &
+      ArrayPathStringMap<Tail, Path, D>
+  : object
+
 export type PathStringMap<
   T extends object,
   Path extends string = "",
   D extends string = ".",
-> = T extends readonly (infer E extends string)[]
-  ? { [V in E]: JoinPath<Path, V, D> }
+> = T extends readonly unknown[]
+  ? ArrayPathStringMap<T, Path, D>
   : {
-      [K in keyof T & string]: T[K] extends readonly (infer E extends string)[]
-        ? { [V in E]: JoinPath<JoinPath<Path, K, D>, V, D> }
+      [K in keyof T & string]: T[K] extends readonly unknown[]
+        ? ArrayPathStringMap<T[K], JoinPath<Path, K, D>, D>
         : T[K] extends object
           ? PathStringMap<T[K] & object, JoinPath<Path, K, D>, D>
           : T[K] extends string
@@ -155,18 +168,23 @@ export function createPathStrings(
   obj: object,
   delimiter: string = ".",
 ): object {
-  function _createPathStrings(obj: object, path: string[]): object {
+  function _createPathStrings(
+    obj: object,
+    path: string[],
+  ): Record<string, unknown> {
     if (Array.isArray(obj)) {
-      return Object.fromEntries(
-        (obj as string[]).map(value => [
-          value,
-          [...path, value].join(delimiter),
-        ]),
+      const entries: [string, unknown][] = (obj as unknown[]).flatMap(
+        (value): [string, unknown][] =>
+          typeof value === "object" && value !== null
+            ? Object.entries(_createPathStrings(value, path))
+            : [[value as string, [...path, value as string].join(delimiter)]],
       )
+
+      return Object.fromEntries(entries)
     }
 
     return Object.fromEntries(
-      Object.entries(obj).map(([key, value]) => {
+      Object.entries(obj).map(([key, value]): [string, unknown] => {
         const _path = [...path, key]
 
         if (typeof value === "object" && value !== null)
