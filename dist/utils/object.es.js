@@ -3,19 +3,19 @@ function u(i, n) {
     (e) => n(e) ? [e] : typeof e == "object" && e !== null ? u(e, n) : []
   );
 }
-function p(i) {
+function y(i) {
   return u(
     i,
     (n) => typeof n == "number"
   );
 }
-function y(i) {
+function j(i) {
   return u(
     i,
     (n) => typeof n == "string"
   );
 }
-function j(i, n) {
+function p(i, n) {
   typeof n == "string" && (n = n.split("."));
   let e = i;
   for (let r = 0; r < n.length; r++)
@@ -26,9 +26,9 @@ function j(i, n) {
 function b(i, n = ".") {
   function e(r, s) {
     return Object.fromEntries(
-      Object.entries(r).map(([f, t]) => {
-        const o = [...s, f];
-        return typeof t == "object" && t !== null && (t = e(t, o)), [o.join(n), t];
+      Object.entries(r).map(([o, t]) => {
+        const f = [...s, o];
+        return typeof t == "object" && t !== null && (t = e(t, f)), [f.join(n), t];
       })
     );
   }
@@ -36,63 +36,64 @@ function b(i, n = ".") {
 }
 function l(i, n = ".") {
   function e(r, s) {
-    return Object.entries(r).map(([f, t]) => {
-      const o = [...s, f], c = o.join(n);
-      return typeof t == "object" && t !== null ? [c, ...e(t, o)] : [c];
+    return Object.entries(r).map(([o, t]) => {
+      const f = [...s, o], c = f.join(n);
+      return typeof t == "object" && t !== null ? [c, ...e(t, f)] : [c];
     }).flat();
   }
   return e(i, []);
 }
 function g(i, n, e = ".") {
-  function r(s, f) {
+  function r(s, o) {
     return Object.fromEntries(
-      Object.entries(s).map(([t, o]) => {
-        const c = [...f, t];
-        return typeof o == "object" && o !== null && !(o instanceof Date) && (o = r(o, c)), n.includes(c.join(e)) ? [] : [t, o];
+      Object.entries(s).map(([t, f]) => {
+        const c = [...o, t];
+        return typeof f == "object" && f !== null && !(f instanceof Date) && (f = r(f, c)), n.includes(c.join(e)) ? [] : [t, f];
       }).filter((t) => t.length)
     );
   }
   return n.length ? r(i, []) : i;
 }
-function h(i, n = ".") {
+function O(i, n = ".") {
   function e(r, s) {
-    return Array.isArray(r) ? Object.fromEntries(
-      r.map((f) => [
-        f,
-        [...s, f].join(n)
-      ])
-    ) : Object.fromEntries(
-      Object.entries(r).map(([f, t]) => {
-        const o = [...s, f];
-        return typeof t == "object" && t !== null ? t = e(t, o) : typeof t == "string" && (t = { [t]: [...o, t].join(n) }), [f, t];
+    if (Array.isArray(r)) {
+      const o = r.flatMap(
+        (t) => typeof t == "object" && t !== null ? Object.entries(e(t, s)) : [[t, [...s, t].join(n)]]
+      );
+      return Object.fromEntries(o);
+    }
+    return Object.fromEntries(
+      Object.entries(r).map(([o, t]) => {
+        const f = [...s, o];
+        return typeof t == "object" && t !== null ? t = e(t, f) : typeof t == "string" && (t = { [t]: [...f, t].join(n) }), [o, t];
       })
     );
   }
   return e(i, []);
 }
-function m(i) {
+function h(i) {
   const n = {};
-  function e(r, s, f) {
+  function e(r, s, o) {
     if (typeof s == "string")
-      r[s] = f;
+      r[s] = o;
     else
-      for (const [t, o] of Object.entries(s))
-        t in r || (r[t] = {}), e(r[t], o, f);
+      for (const [t, f] of Object.entries(s))
+        t in r || (r[t] = {}), e(r[t], f, o);
   }
   for (const [r, s] of Object.entries(i)) {
-    const f = Number(r), t = !isNaN(f) && r.trim() !== "" ? f : r;
+    const o = Number(r), t = !isNaN(o) && r.trim() !== "" ? o : r;
     e(n, s, t);
   }
   return n;
 }
 export {
-  m as createIdRegistry,
-  h as createPathStrings,
+  h as createIdRegistry,
+  O as createPathStrings,
   g as excludeKeyPaths,
-  p as flattenNumberValues,
-  y as flattenStringValues,
+  y as flattenNumberValues,
+  j as flattenStringValues,
   l as getKeyPaths,
-  j as getNestedProperty,
+  p as getNestedProperty,
   b as withKeyPaths
 };
 //# sourceMappingURL=object.es.js.map

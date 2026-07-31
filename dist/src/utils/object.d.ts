@@ -9,12 +9,9 @@ export declare function withKeyPaths(obj: object, delimiter?: string): object;
 export declare function getKeyPaths(obj: object, delimiter?: string): string[];
 export declare function excludeKeyPaths(obj: object, exclude: string[], delimiter?: string): any;
 type JoinPath<A extends string, B extends string, D extends string> = A extends "" ? B : `${A}${D}${B}`;
-export type PathStringMap<T extends object, Path extends string = "", D extends string = "."> = T extends readonly (infer E extends string)[] ? {
-    [V in E]: JoinPath<Path, V, D>;
-} : {
-    [K in keyof T & string]: T[K] extends readonly (infer E extends string)[] ? {
-        [V in E]: JoinPath<JoinPath<Path, K, D>, V, D>;
-    } : T[K] extends object ? PathStringMap<T[K] & object, JoinPath<Path, K, D>, D> : T[K] extends string ? {
+type ArrayPathStringMap<Arr extends readonly unknown[], Path extends string, D extends string> = Arr extends readonly [infer Head, ...infer Tail extends readonly unknown[]] ? (Head extends string ? Record<Head, JoinPath<Path, Head, D>> : Head extends object ? PathStringMap<Head, Path, D> : object) & ArrayPathStringMap<Tail, Path, D> : object;
+export type PathStringMap<T extends object, Path extends string = "", D extends string = "."> = T extends readonly unknown[] ? ArrayPathStringMap<T, Path, D> : {
+    [K in keyof T & string]: T[K] extends readonly unknown[] ? ArrayPathStringMap<T[K], JoinPath<Path, K, D>, D> : T[K] extends object ? PathStringMap<T[K] & object, JoinPath<Path, K, D>, D> : T[K] extends string ? {
         [V in T[K]]: JoinPath<JoinPath<Path, K, D>, V, D>;
     } : never;
 };
