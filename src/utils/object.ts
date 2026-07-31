@@ -157,6 +157,11 @@ export type PathStringMap<
             : never
     }
 
+/**
+ * Creates a nested object structure where each string in the input object is
+ * replaced with its corresponding path string. This is useful for generating a
+ * global registry of unique path strings.
+ */
 export function createPathStrings<const T extends object>(
   obj: T,
 ): PathStringMap<T>
