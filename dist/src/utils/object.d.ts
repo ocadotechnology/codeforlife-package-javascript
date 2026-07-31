@@ -15,6 +15,11 @@ export type PathStringMap<T extends object, Path extends string = "", D extends 
         [V in T[K]]: JoinPath<JoinPath<Path, K, D>, V, D>;
     } : never;
 };
+/**
+ * Creates a nested object structure where each string in the input object is
+ * replaced with its corresponding path string. This is useful for generating a
+ * global registry of unique path strings.
+ */
 export declare function createPathStrings<const T extends object>(obj: T): PathStringMap<T>;
 export declare function createPathStrings<const T extends object, D extends string>(obj: T, delimiter: D): PathStringMap<T, "", D>;
 type PathSpec = string | {
